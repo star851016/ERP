@@ -1,6 +1,6 @@
 <html>
 <link rel='stylesheet' href='/stylesheets/style.css' />
-<script src="/javascripts/jquery.min.js"></script>
+
 <body>
     <% include ../Shared/header %>
         <div class="hdr">
@@ -30,9 +30,14 @@
                         <%= upWorklist.CarId %>
                     </td>
                     <td class="td">車主:</td>
-                    <td class="td1"><%= upWorklist.CName %></td>
+                    <td class="td1">
+                        <%= upWorklist.CName %>
+                    </td>
                     <td class="td">車型:</td>
-                    <td class="td1"><%= upWorklist.carBrand %>&nbsp<%= upWorklist.carType %></td>
+                    <td class="td1">
+                        <%= upWorklist.carBrand %>&nbsp
+                            <%= upWorklist.carType %>
+                    </td>
                     <td class="td">里程數:
                         <td class="td1">
                             <input class="text" type="text" value="<%= upWorklist.Miles %>"></td>
@@ -65,10 +70,14 @@
 
         <div class="container">
             <p>維修套組:
-                <button class="btn0" id="jQueryColorChange">&nbsp;無&nbsp;</button>
+                <button class="btn0" id="jQueryColorChange">無</button>
+                <button class="btn0" id="jQueryColorChange">鈑&nbsp;&nbsp;金</button>
+                <button class="btn0" id="jQueryColorChange">烤&nbsp;&nbsp;漆</button>
+                <button class="btn0" id="jQueryColorChange">驗&nbsp;&nbsp;車</button>
                 <button class="btn0" id="jQueryColorChange">小保養</button>
                 <button class="btn0" id="jQueryColorChange">中保養</button>
                 <button class="btn0" id="jQueryColorChange">大保養</button>
+                <button class="btn0" id="jQueryColorChange">行車記錄器</button>
                 <script>
                     $("button#jQueryColorChange").click(function() {
                         $('button').removeClass('selected');
@@ -136,45 +145,46 @@
                 <div id="tab1" class="tab_content">
                     <table class="table1">
                         <tr>
-                            <th>車牌</th>
-                            <th>車主</th>
-                            <th colspan="2">車輛型式</th>
-                            <th>排氣量</th>
-                            <th>車身碼</th>
-                            <th>引擎碼</th>
-                            <th>出廠年份</th>
+                            <th class="th">車牌</th>
+                            <th class="th">車主</th>
+                            <th class="th" colspan="2">車輛型式</th>
+                            <th class="th">排氣量</th>
+                            <th class="th">車身碼</th>
+                            <th class="th">引擎碼</th>
+                            <th class="th">出廠年份</th>
 
                         </tr>
                         <tr class="tr">
-                            <td class="td">
-                                <form class="form1" action="/worklist/searchPId" method="POST" novalidate>
-                                    <input type="text" class="text2" value = "<%= upWorklist.CarId %>">
-                                </form>
-                            </td>
-                            <td class="td">
-                                <form class="form1" action="/worklist/searchPId" method="POST" novalidate>
-                                    <input type="text" class="text2" value = "<%= upWorklist.CName %>">
-                                </form>
-                            </td>
-                            <td class="td"><input type="text" class="text2" value = "<%= upWorklist.carBrand %>"></td>
-                            <td class="td"><input type="text" class="text2" value = "<%= upWorklist.carType %>"></td>
-                            <td class="td">
-                                <input type="text" class="text2" value = "<%= upWorklist.cc %>">
-                            </td>
-                            <td class="td"><input type="text" class="text2" value = "<%= upWorklist.CarBodyNum %>"></td>
-                            <td class="td"><input type="text" class="text2" value = "<%= upWorklist.EngineNum %>"></td>
-                            <td class="td1">
-                                <input class="text" type="text" value = "<%= upWorklist.YrOfManu %>">
+                          <td class="td">
+                            <form class="form1" action="/worklist/searchPId" method="POST" novalidate>
+                            <input type="text" class="text2" value = "<%= upWorklist.CarId %>">
+                            </form>
+                          </td>
+                          <td class="td">
+                            <form class="form1" action="/worklist/searchPId" method="POST" novalidate>
+                              <input type="text" class="text2" value = "<%= upWorklist.CName %>">
+                            </form>
+                          </td>
+                          <td class="td"><input type="text" class="text2" value = "<%= upWorklist.carBrand %>"></td>
+                          <td class="td"><input type="text" class="text2" value = "<%= upWorklist.carType %>"></td>
+                          <td class="td">
+                            <input type="text" class="text2" value = "<%= upWorklist.cc %>">
+                          </td>
+                          <td class="td"><input type="text" class="text2" value = "<%= upWorklist.CarBodyNum %>"></td>
+                          <td class="td"><input type="text" class="text2" value = "<%= upWorklist.EngineNum %>"></td>
+                          <td class="td1">
+                            <input class="text" type="text" value = "<%= upWorklist.YrOfManu %>">
 
-                            </td>
+                          </td>
                         </tr>
                         <tr class="tr">
-                            <th>聯絡人</th>
-                            <th colspan="2">電話(1)</th>
-                            <th colspan="2">電話(2)</th>
-                            <th colspan="2">統一編號</th>
-                            <th>生日</th>
+                            <th class="th">聯絡人</th>
+                            <th class="th" colspan="2">電話(1)</th>
+                            <th class="th" colspan="2">電話(2)</th>
+                            <th class="th" colspan="2">統一編號</th>
+                            <th class="th">生日</th>
                         </tr>
+
 
                         <tr class="tr_odd">
                             <td>
@@ -218,43 +228,50 @@
 
                 </div>
                 <div id="tab2" class="tab_content">
-                  <form style="width:100%" >
-                    <input type= "hidden" name="id" value="<%= upWorklist.WorkId %>"/>
-                      <button class="button1" style="float:right;">新增</button>
-                  </form>
+                    <form style="width:100%">
+                        <button class="btn2" style="float:right;">新增</button>
+                    </form>
                     <br>
-                    <table class="table2">
+                    <table class="table1">
                         <tr>
-                            <th>No.</th>
-                            <th>工作內容</th>
-                            <th>工 資</th>
-                            <th>維修人員</th>
-                            <th>備註</th>
-                            <th>編輯</th>
+                            <th class="th">No.</th>
+                            <th class="th">工作內容</th>
+                            <th class="th">工 資</th>
+                            <th class="th">維修人員</th>
+                            <th class="th">覆驗人員</th>
+                            <th class="th">備註</th>
+                            <th class="th">編輯</th>
                         </tr>
                         <tr class="tr">
                             <td>1</td>
                             <td class="td2">
-                                <input type="text" class="text3" value = "<%= upWorklist.WContect %>" >
+                                <input type="text" class="text3">
                             </td>
-                            <td class="td2"><input type="text" class="text2" value = "<%= upWorklist.Wages %>"></td>
+                            <td class="td2"><input type="text" class="text2"></td>
                             <td>
                                 <select class="selector">
-                <option><%= upWorklist.WhoFix %></option>
                 <option>A</option>
                 <option>B</option>
                 <option>C</option>
               </select>
+                            </td>
+                            <td>
+                                <select class="selector">
+                <option>A</option>
+                <option>B</option>
+                <option>C</option>
+              </select>
+                            </td>
 
-                                <td class="td2">
-                                    <input type="text" class="text3" value = "<%= upWorklist.WNote %>" >
-                                </td>
-                                <td rowspan="2">
-                                    <form style="margin:5px;">
-                                        <button class="button1" style="float:center;">登錄</button>
-                                        <button class="button1" style="float:center;">刪除</button>
-                                    </form>
-                                </td>
+                            <td class="td2">
+                                <input type="text" class="text3">
+                            </td>
+                            <td rowspan="2">
+                                <form style="margin:5px;">
+                                    <button class="btn2" style="float:center;">登錄</button>
+                                    <button class="btn2" style="float:center;">刪除</button>
+                                </form>
+                            </td>
                         </tr>
 
                     </table>
@@ -396,7 +413,7 @@
                              <td rowspan="2">
 
                              <input type= "hidden" name="MatId" value=""/>
-                               <input type= "hidden" name="id" value=""/>
+                               <input type= "hidden" name="id" value="<%= upWorklist.WorkId %>"/>
                                <button  class="button1" style="float:center;">登錄</button>
                            </form>
                              <form  action="/delProduct" method="POST" novalidate>

@@ -66,6 +66,7 @@ router.post('/', function(req, res,next) {
 
 //編輯點進去 去找該列的資料
 router.get('/upWorklist', function(req, res,next) {
+  console.log('req.query.WorkId'+req.query.WorkId);
   var newUpWorklist = new UpWorklist({
     id : req.query.WorkId || req.session.WorkId
    });
@@ -73,7 +74,7 @@ router.get('/upWorklist', function(req, res,next) {
    async.series([
      function(done){
        newUpWorklist.find(function(err,upWorklist) {
-        
+
           req.session.upWorklist = upWorklist[0];
           upWorklist[0].InDate = fecha.format(upWorklist[0].InDate, 'YYYY-MM-DD');
           upWorklist[0].CBirthDate = fecha.format(upWorklist[0].CBirthDate, 'YYYY-MM-DD');
