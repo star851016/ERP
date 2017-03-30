@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<link rel='stylesheet' href='/stylesheets/style.css' />
+<body>
+  <div class="hdl">
+    <a href="/home1"><img src = "./images/home.png"></a>
+  </div>
+  <div class="hdr">
+    <p class="title">進貨排行榜</p>
+  </div>
+  <div style="width:100%;">
+    <form name="sentMessage" action="/rankSupplier" method="POST" id="product" novalidate>
+
+  <div style="width:90%;">
+    <br><br><br><br>
+    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<p style="font-size:48px;font-weight:bold;display:inline;">開始日期&nbsp</p>
+  <input type="text"  class="text" name="StartTime" id="date_1" readonly value="<%= StartTime %>"/>
+
+    <p style="font-size:48px;font-weight:bold;display:inline;">截止日期&nbsp</p>
+    <input class="text" type="text" name="EndTime" id="date_2" readonly value="<%= EndTime %>" >
+
+
+    <button id="button" class="button" type="submit" >查詢</button>
+  </div>
+
+  </form>
+</div>
+  <br>
+  <div style="width:100%;">
+
+    </div>
+    <table style="position:relative;margin:1px auto;">
+      <tr border="1">
+        <th>名次</th>
+        <th>廠商</th>
+        <th>進貨額</th>
+      </tr>
+
+      <% rankList.forEach(function(rank) { %>
+             <tr class="tr_odd">
+               <td >1</td>
+               <td ><%= rank.SName %></td>
+               <td ><%= rank.TPrice %></td>
+
+             </tr>
+             <%  }); %>
+
+
+
+
+    </table>
+    <link rel="stylesheet" type="text/css" href="/stylesheets/jquery-ui.css" />
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+    <script type="text/javascript" src="/javascripts/jquery-ui-datepicker.js"></script>
+    <script type="text/javascript">
+    $(function(){
+    	$("#date_1").datepicker();
+      $("#date_2").datepicker();
+    });
+    </script>
+    <a href="/product"><img src = "./images/back.png" style="float:right;"></a>
+  </body>
+  </html>

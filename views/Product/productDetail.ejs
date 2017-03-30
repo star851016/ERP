@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<link rel='stylesheet' href='/stylesheets/style.css' />
+<body>
+  <div class="hdl">
+    <a href="/home1"><img src = "./images/home.png"></a>
+  </div>
+  <div class="hdr">
+    <p class="title">查詢</p>
+  </div>
+  <div style="width:100%;">
+    <form name="sentMessage" action="/productDetail" method="POST" id="product" novalidate>
+
+  <div style="width:90%;">
+    <br><br><br><br><br>
+    <p style="font-size:48px;font-weight:bold;display:inline;">依名稱&nbsp</p>
+
+    <select id="PName" class="selector" name="PName"  >
+       <option class="options" >---請選擇---</option>
+       <% PNameList.forEach(function(PName) { %>
+      <option class="options"><%= PName.PName %></option>
+        <%  }); %>
+    </select>
+
+    <p style="font-size:48px;font-weight:bold;display:inline;">依廠牌&nbsp</p>
+    <select id="Types" class="selector" name="Types" onchange="myFunction()">
+        <option class="options" >---請選擇---</option>
+        <% TypesList.forEach(function(Types) { %>
+       <option class="options"><%= Types.Types %></option>
+         <%  }); %>
+    </select>
+    <p style="font-size:48px;font-weight:bold;display:inline;">依規格&nbsp</p>
+    <select id="Specification" class="selector" name="Specification" >
+        <option class="options" >---請選擇---</option>
+        <% SpecificationList.forEach(function(Specification) { %>
+       <option class="options"><%= Specification.Specification %></option>
+         <%  }); %>
+
+    </select>
+    <button id="button" class="button" type="submit" >查詢</button>
+  </div>
+
+  </form>
+</div>
+  <br>
+  <div style="width:100%;">
+
+    </div>
+    <p id="demo"></p>
+    <table style="position:relative;margin:1px auto;">
+      <tr border="1">
+        <th>商品名稱</th>
+        <th>廠牌</th>
+        <th>商品規格</th>
+        <th>存貨數量</th>
+        <th>其他功能</th>
+      </tr>
+      <% productList.forEach(function(product) { %>
+      <tr class="tr_odd">
+        <td name="PName"><%= product.PName %></td>
+        <td name="Types"><%= product.Types %></td>
+        <td name="Specification"><%= product.Specification %></td>
+        <td name="Quantity"><%= product.Quantity %></td>
+        <td>
+          <form  action="/upProduct" method="POST" novalidate>
+            <input type= "hidden" name="id" value="<%= product.id %>"/>
+            <button id="button" class="button" type="submit" >編輯</button>
+            </form>
+            <form  action="/delProduct" method="POST" novalidate>
+              <input type= "hidden" name="id" value="<%= product.id %>"/>
+            <button id="button" class="button" type="submit" >刪除</button>
+          </form>
+        </td>
+      </tr>
+        <%  }); %>
+
+    </table>
+
+    <a href="/product"><img src = "./images/back.png" style="float:right;"></a>
+    <script src="/javascripts/jquery.min.js"></script>
+    <script>
+   function myFunction() {
+    var x = document.getElementById("Types").value;
+    document.getElementById("demo").innerHTML = "You selected: " + x;
+
+    $.ajax({
+             url: "http://localhost:3000/productDetail",
+             dataType:'html',
+             type : 'GET',
+
+             success: function(data){
+                 alert(data);
+                 var x = document.getElementById("Types").value;
+                 Types = x ;
+             },
+
+              error:function(xhr, ajaxOptions, thrownError){
+                 alert(xhr.status);
+                 alert(thrownError);
+              }
+
+      });
+
+}
+</script>
+  </body>
+  </html>

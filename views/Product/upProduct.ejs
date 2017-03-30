@@ -1,0 +1,29 @@
+<html>
+<link rel='stylesheet' href='/stylesheets/style.css' />
+<body>
+  <div class="hdl">
+    <a href="/home1"><img src = "./images/home.png"></a>
+  </div>
+  <div class="hdr">
+    <p class="title">編輯商品</p>
+  </div>
+  <br><br><br><br>
+  <div style="width:100%;position:relative;top:10%;">
+    <form name="sentMessage" action="/upProduct/update" method="POST" id="contactForm" novalidate>
+      <p class="input">商品&nbsp&nbsp&nbsp<input class="text" type="text" name="PName" value=<%= upProduct.PName %>>&nbsp&nbsp&nbsp</p>
+
+      <p class="input">廠牌&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input class="text" type="text" name="Types" value=<%= upProduct.Types %>>&nbsp&nbsp&nbsp</p>
+
+      <p class="input">規格&nbsp&nbsp&nbsp<input class="text" type="text" name="Specification" value=<%= upProduct.Specification %>>&nbsp&nbsp&nbsp</p>
+
+      <p class="input">數量&nbsp&nbsp&nbsp<input class="text" type="text" name="Quantity" value=<%= upProduct.Quantity %>>&nbsp&nbsp&nbsp</p>
+      <br><br>
+      <input type= "hidden" name="id" value="<%= upProduct.id %>"/>
+     <button class="button" type="submit" style="float:center;">更新</button>
+   </form>
+
+      <button class="button"  style="float:center;" onclick="location.href='/productDetail'">放棄</button>
+
+  </div>
+</body>
+</html>

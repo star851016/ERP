@@ -1,0 +1,633 @@
+body {
+    padding-top: 0px;
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-bottom: 40px;
+    font: 20px "Microsoft JhengHei", "Lucida Grande", Helvetica, Arial, sans-serif;
+    text-align: center;
+    background-color: #E5ECD8;
+}
+
+.hdr {
+    width: 100%;
+    height: auto;
+    margin: auto;
+    text-align: left;
+}
+
+.title {
+    text-align: left;
+    position: absolute;
+    font-size: 40px;
+    font-weight: bold;
+    color: #2B597C;
+}
+
+.container {
+    width: 100%;
+    height: auto;
+    margin: auto;
+    text-align: left;
+}
+
+.container1 {
+    width: 100%;
+    height: auto;
+    margin: auto;
+    text-align: left;
+    background-color: #CEE7E0;
+}
+
+.container2 {
+    width: 80%;
+    height: auto;
+    margin: auto;
+    text-align: left;
+    background-color: #EEF7C9;
+}
+
+.container3 {
+    width: 80%;
+    height: auto;
+    margin: 0px;
+    border: 0px;
+    background-color: transparent;
+    position: relative;
+    left: 10%;
+    right: 10%;
+}
+
+.p0 {
+    text-align: left;
+    font-size: 20px;
+    color: black;
+    background-color: transparent;
+}
+
+.p1 {
+    background-color: #387168;
+    width: 100px;
+    height: 48px;
+    font-size: 30px;
+    display: inline-block;
+    float: left;
+    margin: 0px;
+    padding: 0px;
+    text-align: center;
+}
+
+a {
+    color: #00B7FF;
+}
+
+.p1:hover {
+    color: white;
+}
+
+.text {
+    width: 150px;
+    height: 30px;
+    font-size: 16px;
+}
+
+.text0 {
+    width: 120px;
+    height: 30px;
+    font-size: 16px;
+}
+
+.text1 {
+    width: 150px;
+    height: 40px;
+    border-radius: 8px;
+    font-size: 16px;
+}
+
+.text2 {
+    width: 100px;
+    height: 30px;
+    font-size: 16px;
+    margin: 5px;
+}
+
+.text3 {
+    width: 200px;
+    height: 30px;
+    font-size: 16px;
+    margin: 5px;
+}
+
+.text4 {
+    width: 600px;
+    height: 30px;
+    font-size: 16px;
+    margin: 5px;
+    left: 0px;
+}
+
+.text5 {
+    width: 50px;
+    height: 30px;
+    font-size: 20px;
+    margin: 5px;
+    text-align: center;
+}
+
+.tax {
+    width: 100px;
+    height: 30px;
+    font-size: 20px;
+    margin: 5px;
+    background-color: #f7f7f7;
+}
+
+.button {
+    background-color: #DDDDDD;
+    font-family: "Microsoft JhengHei";
+    font-size: 24px;
+    border-radius: 10px;
+}
+
+.button1 {
+    background-color: #A1B47B;
+    color: white;
+    font-family: "Microsoft JhengHei";
+    font-size: 18px;
+    border-radius: 10px;
+    border: 0px;
+    margin: 0px;
+}
+
+.button2 {
+    background-color: transparent;
+    font-family: "Microsoft JhengHei";
+    font-size: 14px;
+    border: 0px;
+    margin: 0px;
+}
+
+.btn0 {
+    background-color: #f7f7f7;
+    font-family: "Microsoft JhengHei";
+    font-size: 18px;
+    border-radius: 8px;
+    border: 2px solid #000000;
+    margin: 0px;
+    height: 40px;
+    width: 120px;
+}
+
+.btn1 {
+    background-color: #f9f9f9;
+    font-family: "Microsoft JhengHei";
+    font-size: 12px;
+    border-radius: 8px;
+    border: 2px solid #000000;
+    margin: 5px;
+    height: 30px;
+    width: 50px;
+}
+
+.btn2 {
+    background-color: gray;
+    color: white;
+    font-family: "Microsoft JhengHei";
+    font-size: 14px;
+    border-radius: 8px;
+    border: 0px;
+    margin: 5px;
+    height: 30px;
+    width: 50px;
+}
+
+.dbtn {
+    width: 200px;
+    height: auto;
+}
+
+.selector {
+    width: 120px;
+    font-size: 20px;
+    border-radius: 10px;
+}
+
+.selector0 {
+    width: 150px;
+    font-size: 20px;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.selector1 {
+    size: 10;
+    font-size: 20px;
+    border-radius: 6px;
+}
+
+.selector2 {
+    width: 100%;
+    font-size: 20px;
+    border: 0 10 0 10px;
+    margin: 0px;
+    text-align: center;
+}
+
+table {
+    position: relative;
+    font-family: "Microsoft JhengHei";
+    font-size: 20px;
+    background-color: transparent;
+}
+
+.table1 {
+    border: 1;
+    position: relative;
+    margin: 1px auto;
+    font-family: "Microsoft JhengHei";
+    font-size: 18px;
+    text-align: center;
+    width: 100%;
+}
+
+.table2 {
+    border: 1;
+    position: relative;
+    margin: 1px auto;
+    font-family: "Microsoft JhengHei";
+    font-size: 18px;
+    text-align: center;
+    width: 90%;
+    border-collapse: collapse;
+}
+
+.worklisttable {
+    position: relative;
+    margin: 3px auto;
+    border: 2px solid #4E7FFF;
+    padding: 0 0 0 0;
+    width: 90%;
+    text-align: left;
+    border-collapse: collapse;
+}
+
+.problem {
+    border: 1;
+    position: relative;
+    margin: 1px auto;
+    font-family: "Microsoft JhengHei";
+    font-size: 18px;
+    text-align: center;
+    width: 90%;
+    float: left;
+}
+
+.tr {
+    background-color: rgb(210, 222, 239);
+    color: black;
+}
+
+.tr0 {
+    background-color: #A9B725;
+    color: black;
+}
+
+.tr1 {
+    background-color: #E6E7E4;
+    color: black;
+}
+
+.tr_odd {
+    background-color: rgb(210, 222, 239);
+    color: black;
+}
+
+.tr_even {
+    background-color: rgb(234, 239, 247);
+    color: black;
+}
+
+.tr_search {
+    background-color: #FFFBD2;
+    color: black;
+}
+
+.th {
+    color: black;
+    background-color: #A1CFE9;
+    width: auto;
+}
+
+.th0 {
+    background-color: #E6E7E4;
+    font-size: 20px;
+    height: 50px;
+    border: 5;
+    border-bottom: 2px solid #000000;
+}
+
+.th1 {
+    background-color: #A9B725;
+    font-size: 20px;
+    height: 50px;
+    border: 5;
+    border-bottom: 2px solid #000000;
+}
+
+.th2 {
+    background-color: #E1E898;
+    font-size: 20px;
+    height: 50px;
+    border: 2px solid gray;
+}
+
+.th3 {
+    background-color: #E1E898;
+    font-size: 20px;
+    height: 50px;
+    border: 1px solid white;
+}
+
+.td {
+    width: 10%;
+}
+
+.td0 {
+    width: 100px;
+    color: black;
+    background-color: #FCFCEB;
+    border: 2px solid gray;
+}
+
+.td1 {
+    width: 15%;
+}
+
+.td2 {
+    width: 200px;
+}
+
+.td3 {
+    width: 200px;
+    border: 1px solid white;
+}
+
+.underline {
+    background-color: transparent;
+    border: 2px;
+    border-bottom-style: solid;
+    border-top-style: none;
+    border-left-style: none;
+    border-right-style: none;
+    width: 120px;
+    height: 30px;
+    font-size: 16px;
+    text-align: center;
+}
+
+.form1 {
+    border: 0px;
+    margin: 0px;
+    display: inline;
+}
+
+.selected {
+    color: white;
+    background: #1C6DB5;
+}
+
+.input {
+    text-align: center;
+    font-size: 40px;
+}
+
+.options {
+    margin: 20px;
+    width: 120px;
+    font-size: 18px;
+    border-radius: 10px;
+}
+
+.abgne_tab {
+    clear: left;
+    width: 100%;
+    margin: 10px 0;
+    background-color: transparent;
+}
+
+ul, li {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+ul.tabs {
+    width: 100%;
+    height: 32px;
+    border: 0px;
+}
+
+ul.tabs li {
+    float: left;
+    height: 31px;
+    line-height: 31px;
+    overflow: hidden;
+    position: relative;
+    margin-bottom: -1px;
+    /* 讓 li 往下移來遮住 ul 的部份 border-bottom */
+    border: 1px solid #999;
+    border-left: none;
+    background: #BADBAA;
+}
+
+ul.tabs li a {
+    display: block;
+    padding: 0 20px;
+    color: #000;
+    border: 0px solid #fff;
+    text-decoration: none;
+}
+
+ul.tabs li a:hover {
+    color: white;
+}
+
+ul.tabs li.active {
+    background: #fff;
+    border-bottom: 1px solid#fff;
+}
+
+ul.tabs li.active a:hover {
+    background: #fff;
+}
+
+div.tab_container {
+    clear: left;
+    width: 100%;
+    border: 0px solid black;
+    border-top: none;
+    background: white;
+    text-align: left;
+}
+
+div.tab_container .tab_content {
+    padding: 20px;
+}
+
+div.tab_container .tab_content h2 {
+    margin: 0 0 20px;
+}
+
+ol {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: black;
+    font-size: 20px;
+    width: 100%;
+    height: 48px;
+}
+
+li {
+    display: block;
+    color: white;
+    padding: 10px 10px;
+    text-align: left;
+}
+
+li a {
+    display: block;
+    color: white;
+    text-align: left;
+    text-decoration: none;
+}
+
+li a:hover {
+    display: block;
+    color: #387168;
+    text-align: left;
+    text-decoration: none;
+}
+
+
+/* 設定主選單項目 */
+
+li.mainmenu {
+    float: left;
+    display: inline-block;
+}
+
+li.mainmenu:hover {
+    display: block;
+}
+
+
+/* 設定所有滑鼠移到上方字型的顏色 */
+
+li:hover {
+    color: #387168;
+}
+
+
+/* 設定副選單項目 */
+
+li.submenu {
+    float: none;
+    display: block;
+}
+
+li.submenu a {
+    display: block;
+    color: black;
+    text-align: left;
+    text-decoration: none;
+}
+
+li.submenu a:hover {
+    display: block;
+    color: #387168;
+    text-align: left;
+    text-decoration: none;
+}
+
+ul {
+    z-index: 1;
+}
+
+ul.level1 {
+    display: none;
+    position: absolute;
+    min-width: 100px;
+    top: 2.8em;
+}
+
+ul.level2 {
+    display: none;
+    position: absolute;
+    min-width: 160px;
+    left: 4em;
+    top: 0em;
+}
+
+li.mainmenu:hover {
+    display: block;
+    background-color: white;
+    color: #387168;
+}
+
+li.mainmenu:hover ul.level1 {
+    display: block;
+    background-color: white;
+    color: #387168;
+}
+
+ul.level1 li.submenu:hover {
+    display: block;
+    background-color: white;
+    color: #387168;
+}
+
+ul.level1 li.submenu:hover ul.level2 {
+    display: block;
+    background-color: white;
+    color: #387168;
+}
+
+ul.level2 li.submenu:hover {
+    display: block;
+    background-color: gray;
+    color: #387168;
+}
+
+ul.level1 li.submenu {
+    position: relative;
+    background-color: black;
+    color: #387168;
+}
+
+
+/*第三層背景及字體*/
+
+ul.level2 li.ssubmenu {
+    position: relative;
+    background-color: white;
+    color: black;
+}
+
+
+/*第二層字體*/
+
+ul.level1 li.submenu {
+    position: relative;
+    background-color: white;
+    color: black;
+}
+
+
+/*第三層字體選取顏色*/
+
+ul.level2 li.ssubmenu:hover {
+    position: relative;
+    background-color: white;
+    color: #387168;
+}

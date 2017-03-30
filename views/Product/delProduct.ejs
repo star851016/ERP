@@ -1,0 +1,29 @@
+<html>
+<link rel='stylesheet' href='/stylesheets/style.css' />
+<body>
+  <div class="hdl">
+    <a href="/home1"><img src = "./images/home.png"></a>
+  </div>
+  <div class="hdr">
+    <p class="title" style="color:rgb(91,155,213);">刪除商品</p>
+  </div>
+  <div style="width:100%;">
+
+    </div>
+    <br><br><br><br><br><br><br><br>
+<div style="text-align:center;">
+  <div style="position:relative;left:50%;margin-left:-250px;">
+    <p style="background-color:#DDDDDD;border-radius:10px;height:200px;width:500px;text-align:center;margin:0px;font-size:40px;">
+      商品：<%= delProduct.PName %><br>廠牌：<%= delProduct.Types %><br>規格：<%= delProduct.Specification %><br>數量：<%= delProduct.Quantity %>
+
+    </div>
+    <br>
+      <form name="sentMessage" action="/delProduct/delete" method="POST" novalidate>
+        <input type= "hidden" name="id" value="<%= delProduct.id %>"/>
+     <button class="button" type="submit" style="float:center;">刪除</button>
+   </form>
+     <button class="button" type="submit" style="float:center;" onclick="location.href='/productDetail'">取消</button>
+    <a href="/sup"><img src = "./images/back.png" style="float:right;"></a>
+  </div>
+    </body>
+</html>

@@ -1,0 +1,110 @@
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Inventory System</title>
+    <link href="/stylesheets/style.css" rel="stylesheet">
+
+</head>
+
+<body>
+    <div>
+        <% if(member) {%>
+            <ol>
+                <li class="p1">城林</li>
+                <li class="mainmenu">工單管理
+                    <ul class="level1">
+                        <li class="submenu"><a href="/workList">總列表</li>
+                    <li class="submenu"><a href="/addWorkList">新增工單</li>
+                  </ul>
+                </li>
+          <li class="mainmenu">基本資料➜
+            <ul class="level1">
+             <li class="submenu">客戶➜
+              <ul class="level2">
+               <li class="ssubmenu">新增</li>
+               <li class="ssubmenu">編輯/查詢</li>
+              </ul>
+              <li class="submenu">廠商➜
+             </li>
+             <li class="submenu">零件➜
+            </li>
+            <li class="submenu">工資➜
+           </li>
+           <li class="submenu">車型➜
+          </li>
+            </li>
+            </ul>
+        </li>
+          <li class="mainmenu">庫存管理
+            <ul class="level1">
+             <li class="submenu">進貨➜
+              <ul class="level2">
+               <li class="ssubmenu">進貨單</li>
+               <li class="ssubmenu">進貨明細</li>
+              </ul>
+              <li class="submenu">退貨➜
+                <ul class="level2">
+                 <li class="ssubmenu">進貨退回</li>
+                 <li class="ssubmenu">銷貨退回</li>
+                </ul>
+             </li>
+             <li class="submenu">庫存表➜
+            </li>
+            </li>
+            </ul>
+          </li>
+
+          <li class="mainmenu">會計管理</li>
+
+          <li class="mainmenu">報表管理</li>
+
+          <li class="mainmenu"><a href="/worklist/carHistory">車歷卡</li>
+
+          <li class="mainmenu" style="float:right;">
+              <form action="/register/logout" method="post">
+                <style media="screen">
+                  #logout {
+                    background: transparent;
+                    color: white;
+                    font-size: 20px;
+                    font-weight: bold;
+                    margin-top: 0px;
+                    border : none;
+                    margin-left: 4px;
+                    text-transform: uppercase;
+                    letter-spacing: 1px;
+                  }
+                  #logout:hover {
+                    color: #387168;
+                  }
+                </style>
+                <input id="logout" type="submit" value="Logout" />
+              </form>
+          <li class="mainmenu" style="float:right;">
+            <a href="/login">報表頁</a>
+                        </li>
+
+                        <li class="mainmenu" style="float:right;">
+                            <a href="/">Welcome, <%= member.name %></a>
+                        </li>
+                        <%# css 大家在自己調整%>
+                </li>
+                <% } else {%>
+                    <li style="float:right;">
+                        <a href="/register" style="color:black;">註冊</a>
+                    </li>
+                    <li style="float:right;">
+                        <a href="/login" style="color:black;">登入</a>
+                    </li>
+                    <% } %>
+            </ol>
+    </div>
+</body>
+
+</html>
