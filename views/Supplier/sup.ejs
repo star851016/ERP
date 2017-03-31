@@ -1,23 +1,23 @@
 <html>
-<link rel='stylesheet' href='/stylesheets/style.css' />
-<body>
-  <div class="hdl">
-    <a href="/home1"><img src = "./images/home.png"></a>
-  </div>
-  <div class="hdr">
-    <p class="title">新增廠商</p>
-  </div>
-  <br><br><br><br>
-  <div style="width:100%;position:relative;top:10%;">
-    <form name="sentMessage" action="/sup" method="POST" id="contactForm" novalidate>
-      <p class="input">新增廠商&nbsp&nbsp&nbsp<input class="text" type="text" name="SName">&nbsp&nbsp&nbsp</p>
+<% include ../Shared/header %>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
 
-      <p class="input">聯絡人&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input class="text" type="text" name="Contact_Person">&nbsp&nbsp&nbsp</p>
+    <body>
+        <div class="hdr">
+            <p class="title">新增廠商</p>
+        </div>
+        <br><br><br><br>
+        <div style="width:100%;position:relative;top:10%;">
+            <form name="sentMessage" action="/sup" method="POST" id="contactForm" novalidate>
+                <p class="input">新增廠商&nbsp&nbsp&nbsp<input class="text" type="text" name="SName">&nbsp&nbsp&nbsp</p>
 
-      <p class="input">連絡電話&nbsp&nbsp&nbsp<input class="text" type="text" name="Phone">&nbsp&nbsp&nbsp</p>
-      <br><br>
-     <button class="button" type="submit" style="float:center;">新增</button>
-     </form>
-  </div>
-</body>
+                <p class="input">聯絡人&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input class="text" type="text" name="Contact_Person">&nbsp&nbsp&nbsp</p>
+
+                <p class="input">連絡電話&nbsp&nbsp&nbsp<input class="text" type="text" name="Phone">&nbsp&nbsp&nbsp</p>
+                <br><br>
+                <button class="button" type="submit" style="float:center;">新增</button>
+            </form>
+        </div>
+    </body>
+
 </html>

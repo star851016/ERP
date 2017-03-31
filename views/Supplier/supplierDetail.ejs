@@ -1,73 +1,74 @@
 <!DOCTYPE html>
 <html>
-<link rel='stylesheet' href='/stylesheets/style.css' />
+<% include ../Shared/header %>
 
-<body>
-    <div>
-        <% include ../Shared/header %>
-    </div>
-    <div class="hdr">
-        <p class="title">查詢</p>
-    </div>
-    <div style="width:100%;">
-        <form name="sentMessage" action="/supplierDetail" method="POST" id="product" novalidate>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
 
-            <div style="width:90%;">
-                <br><br><br>
-                <p style="font-weight:bold;display:inline;">依名稱&nbsp</p>
-                <select class="selector0" name="SName">
+    <body>
+        <div>
+        </div>
+        <div class="hdr">
+            <p class="title">查詢</p>
+        </div>
+        <div style="width:100%;">
+            <form name="sentMessage" action="/supplierDetail" method="POST" id="product" novalidate>
+
+                <div style="width:90%;">
+                    <br><br><br>
+                    <p style="font-weight:bold;display:inline;">依名稱&nbsp</p>
+                    <select class="selector0" name="SName">
       <option class="options" >---請選擇---</option>
       <% supplierList.forEach(function(supplier) { %>
       <option class="options"><%= supplier.SName %></option>
     <%  }); %>
     </select>
-                <button id="button" class="button1" type="submit">查詢</button>
-            </div>
+                    <button id="button" class="button1" type="submit">查詢</button>
+                </div>
 
-        </form>
-    </div>
-    <br>
-    <div style="width:100%;overflow:scroll;height:500px;">
-        <table class="table2">
-            <tr>
-                <th class="th3">公司名稱</th>
-                <th class="th3">聯絡人</th>
-                <th class="th3">電話</th>
-                <th class="th3">統一編號</th>
-                <th class="th3">備註</th>
-                <th class="th3">編輯/刪除</th>
-            </tr>
-            <% supplierList.forEach(function(supplier) { %>
-                <tr class="tr_search">
-                    <td class="td3" rowspan="2" style="font-weight:bold;font-size:24px;">
-                        <%= supplier.SName %>
-                    </td>
-                    <td class="td3">
-                        <%= supplier.Contact_Person %>
-                    </td>
-                    <td class="td3">
-                        <%= supplier.Phone %>
-                    </td>
-                    <td class="td3"></td>
-                    <td class="td3"></td>
-                    <td class="td3">
-                        <form class="form1" action="/supplier/upSupplier" method="POST" novalidate>
-                            <input type="hidden" name="id" value="<%= supplier.id %>" />
-                            <button id="button" class="btn2" type="submit">編輯</button>
-                        </form>
-                        <form class="form1" action="/supplier/delSupplier" method="POST" novalidate>
-                            <input type="hidden" name="id" value="<%= supplier.id %>" />
-                            <button id="button" class="btn2" type="submit">刪除</button>
-                        </form>
-                    </td>
+            </form>
+        </div>
+        <br>
+        <div style="width:100%;overflow:scroll;height:500px;">
+            <table class="table2">
+                <tr>
+                    <th class="th3">公司名稱</th>
+                    <th class="th3">聯絡人</th>
+                    <th class="th3">電話</th>
+                    <th class="th3">統一編號</th>
+                    <th class="th3">備註</th>
+                    <th class="th3">編輯/刪除</th>
                 </tr>
-                <tr class="tr_search">
-                    <th class="th3">地址</th>
-                    <td class="td3" colspan="4"></td>
-                </tr>
-                <%  }); %>
-        </table>
-    </div>
-</body>
+                <% supplierList.forEach(function(supplier) { %>
+                    <tr class="tr_search">
+                        <td class="td3" rowspan="2" style="font-weight:bold;font-size:24px;">
+                            <%= supplier.SName %>
+                        </td>
+                        <td class="td3">
+                            <%= supplier.Contact_Person %>
+                        </td>
+                        <td class="td3">
+                            <%= supplier.Phone %>
+                        </td>
+                        <td class="td3"></td>
+                        <td class="td3"></td>
+                        <td class="td3">
+                            <form class="form1" action="/supplier/upSupplier" method="POST" novalidate>
+                                <input type="hidden" name="id" value="<%= supplier.id %>" />
+                                <button id="button" class="btn2" type="submit">編輯</button>
+                            </form>
+                            <form class="form1" action="/supplier/delSupplier" method="POST" novalidate>
+                                <input type="hidden" name="id" value="<%= supplier.id %>" />
+                                <button id="button" class="btn2" type="submit">刪除</button>
+                            </form>
+                        </td>
+                    </tr>
+                    <tr class="tr_search">
+                        <th class="th3">地址</th>
+                        <td class="td3" colspan="4"></td>
+                    </tr>
+                    <%  }); %>
+            </table>
+        </div>
+    </body>
 
 </html>
