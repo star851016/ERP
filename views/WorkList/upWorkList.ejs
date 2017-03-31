@@ -309,8 +309,8 @@
 
                             </td>
                           <div id = "SearchPIdWindows" style = "display : none"  ></div>
-                            <td class="td2"><input type="text" class="text2" value="<%= materiallist[j].PName %>" ></td>
-                            <td class="td2"><input type="text" class="text2" value="<%= materiallist[j].MNote %>"></td>
+                            <td class="td2"><input type="text" name="PName" class="text2" value="<%= materiallist[j].PName %>" ></td>
+                            <td class="td2"><input type="text" name="MNote" class="text2" value="<%= materiallist[j].MNote %>"></td>
                             <td class="td2">
                                 <div id = "searchSupplier" style = "display : none"  ></div>
                                 <input type="text" class="text2">
@@ -342,14 +342,14 @@
 
                         <tr class="tr">
                             <td>
-                                <select class="selector">
+                                <select class="selector" name="WhoCheck">
                                   <option><%= materiallist[j].WhoFix %></option>
                                   <option>A</option>
                                   <option>B</option>
                                   <option>C</option>
                                 </select>
                             </td>
-                            <td><select class="selector">
+                            <td><select class="selector" name="WhoCheck">
                               <option><%= materiallist[j].WhoCheck %></option>
                               <option>A</option>
                               <option>B</option>
@@ -358,7 +358,7 @@
                             </td>
 
                             <td>
-                                <form class="form1" action="" method="get" style="display:inline;">
+                                <form class="form1"  action="" method="get" style="display:inline;">
                                     <input type="radio" name="impair" value="yes">是<br>
                                     <input type="radio" name="impair" value="no">否<br>
                                 </form>
@@ -366,7 +366,7 @@
                             <td>
                                 <input type="checkbox" name="impaired" value="yes">
                             </td>
-                            <td>$<input type="text" class="text2" value="<%= materiallist[j].Amount %>" ></td>
+                            <td>$<input type="text" name="Amount" class="text2" value="<%= materiallist[j].Amount %>" ></td>
                         </tr>
                         <%  i++}; %>
 
@@ -388,19 +388,20 @@
                              <td class="td2">
 
                                      <input id = "searchPId<%= i %>" type="text" class="text2" name="PId" value="">
-                                     <button class="button2" onClick="searchPId()">&darr;</button>
+                                     <button class="button2" onClick="searchPId(<%= i %>)">&darr;</button>
 
 
                              </td>
-                             <td class="td2"><input type="text" class="text2" value="" ></td>
-                             <td class="td2"><input type="text" class="text2" value=""></td>
+                           <div id = "SearchPIdWindows" style = "display : none"  ></div>
+                             <td class="td2"><input type="text" name="PName" class="text2" value="" ></td>
+                             <td class="td2"><input type="text" name="MNote" class="text2" value=""></td>
                              <td class="td2">
-                               <div id = "searchSupplier" style = "display : none"  ></div>
+                                 <div id = "searchSupplier" style = "display : none"  ></div>
                                  <input type="text" class="text2">
                                  <button class="button2" onclick="searchSupplier()">&darr;</button>
                              </td>
                              <form  action="/worklist/saveMat" method="POST" novalidate>
-                             <td class="td2"><input type="text"  class="text2" value=""></td>
+                             <td class="td2"><input type="text" name="Price" class="text2" value=""></td>
                              <td class="td2"><input type="text" name = "MQuantity" class="text2" value=""></td>
 
                          </tr>
@@ -413,7 +414,7 @@
                              <td rowspan="2">
 
                              <input type= "hidden" name="MatId" value=""/>
-                               <input type= "hidden" name="id" value="<%= upWorklist.WorkId %>"/>
+                               <input type= "hidden" name="id" value=""/>
                                <button  class="button1" style="float:center;">登錄</button>
                            </form>
                              <form  action="/delProduct" method="POST" novalidate>
@@ -425,23 +426,23 @@
 
                          <tr class="tr">
                              <td>
-                                 <select class="selector">
-                 <option></option>
-                 <option>A</option>
-                 <option>B</option>
-                 <option>C</option>
-               </select>
+                                 <select class="selector" name="WhoCheck">
+                                  
+                                   <option>A</option>
+                                   <option>B</option>
+                                   <option>C</option>
+                                 </select>
                              </td>
-                             <td><select class="selector">
-               <option></option>
-               <option>A</option>
-               <option>B</option>
-               <option>C</option>
-             </select>
+                             <td><select class="selector" name="WhoCheck">
+
+                               <option>A</option>
+                               <option>B</option>
+                               <option>C</option>
+                             </select>
                              </td>
 
                              <td>
-                                 <form class="form1" action="" method="get" style="display:inline;">
+                                 <form class="form1"  action="" method="get" style="display:inline;">
                                      <input type="radio" name="impair" value="yes">是<br>
                                      <input type="radio" name="impair" value="no">否<br>
                                  </form>
@@ -449,10 +450,8 @@
                              <td>
                                  <input type="checkbox" name="impaired" value="yes">
                              </td>
-                             <td>$<input type="text" class="text2" value="" ></td>
+                             <td>$<input type="text" name="Amount" class="text2" value="" ></td>
                          </tr>
-
-
                      </table>
                   <% }; %>
                 </div>

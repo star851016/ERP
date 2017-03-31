@@ -139,8 +139,13 @@ router.post('/saveMat', function(req, res,next) {
   var newSaveMat = new SaveMat({
     WorkId : req.body.id,
     id : req.body.MatId,
+    PName : req.body.PName,
+    MNote : req.body.MNote,
     MQuantity : req.body.MQuantity,
-    Price : req.body.Price
+    Price : req.body.Price,
+    Repair : req.body.impair,
+    impaired : req.body.impaired,
+    Amount : req.body.Amount
    });
    console.log(req.body.MQuantity);
    newSaveMat.saveMat();
