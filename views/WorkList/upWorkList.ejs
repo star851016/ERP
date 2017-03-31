@@ -495,9 +495,13 @@
                     success: function(data) {
 
                         $("#SearchPIdWindows").show()
-                        $('#SearchPIdWindows').html('<span>' +
-                            data[0].PName +
-                            '</span>')
+                        $.each(data, function(i, item) {
+                          $('#SearchPIdWindows').append('<span>'+
+                          data[i].PName
+
+          +'</span>')
+
+        });
 
 
 
@@ -545,15 +549,14 @@
 
 
                     $("#SearchPIdWindows").show()
-                    $('#SearchPIdWindows').html('<span>' +
-                        data[0].PName +
-                        '</span>')
+                
+                    $.each(data, function(i, item) {
+                      $('#SearchPIdWindows').append('<span>'+
+                      data[i].PName
 
+                      +'</span>')
 
-                    $("#SearchPIdWindows").show()
-                    $('#SearchPIdWindows').html('<span>' +
-                        data[0].PName +
-                        '</span>')
+                    });
 
 
 
