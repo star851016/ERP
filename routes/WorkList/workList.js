@@ -183,7 +183,7 @@ router.post('/addMat', function(req, res,next) {
 
 
 //carhistory車歷卡
-router.post('/carHistory', function(req, res, next) {
+router.get('/carHistory', function(req, res, next) {
     console.log('carhistory');
     res.render('WorkList/carHistory', {
 
