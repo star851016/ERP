@@ -1,21 +1,22 @@
 <html>
-<link rel='stylesheet' href='/stylesheets/style.css' />
-<link rel="stylesheet" type="text/css" href="/stylesheets/jquery-ui.css" />
-<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
-<script type="text/javascript" src="/javascripts/jquery-ui-datepicker.js"></script>
-<script type="text/javascript">
-$(function() {
-    $("#OutTime").datepicker();
-});
-</script>
-<script type="text/javascript">
-$(function() {
-    $("#InTime").datepicker();
-});
-</script>
+<% include ../Shared/header %>
 
-<body>
-    <% include ../Shared/header %>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel="stylesheet" type="text/css" href="/stylesheets/jquery-ui.css" />
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+    <script type="text/javascript" src="/javascripts/jquery-ui-datepicker.js"></script>
+    <script type="text/javascript">
+        $(function() {
+            $("#OutTime").datepicker();
+        });
+    </script>
+    <script type="text/javascript">
+        $(function() {
+            $("#InTime").datepicker();
+        });
+    </script>
+
+    <body>
         <div class="hdr">
             <p class="title">開立新工單YA</p>
         </div>
@@ -74,10 +75,10 @@ $(function() {
                 <button class="btn0" id="jQueryColorChange">行車記錄器</button>
                 <button class="button1" style="float:right">儲存</button>
                 <script>
-                $("button#jQueryColorChange").click(function() {
-                    $('button').removeClass('selected');
-                    $(this).addClass('selected');
-                });
+                    $("button#jQueryColorChange").click(function() {
+                        $('button').removeClass('selected');
+                        $(this).addClass('selected');
+                    });
                 </script>
             </p>
         </div>
@@ -96,15 +97,15 @@ $(function() {
             <p>新增問題:</p>
             <div class="container" style="overflow:scroll;height:60%;width:100%;">
                 <script>
-                department = new Array();
-                department[0] = ["閃燈", "破了"]; // 資訊系
-                department[1] = ["熄火", "故障"]; // 電機系
+                    department = new Array();
+                    department[0] = ["閃燈", "破了"]; // 資訊系
+                    department[1] = ["熄火", "故障"]; // 電機系
 
-                function renew(index) {
-                    for (var i = 0; i < department[index].length; i++)
-                        document.theForm.Wrong.options[i] = new Option(department[index][i], department[index][i]); // 設定新選項
-                    document.theForm.Wrong.length = department[index].length; // 刪除多餘的選項
-                }
+                    function renew(index) {
+                        for (var i = 0; i < department[index].length; i++)
+                            document.theForm.Wrong.options[i] = new Option(department[index][i], department[index][i]); // 設定新選項
+                        document.theForm.Wrong.length = department[index].length; // 刪除多餘的選項
+                    }
                 </script>
                 <form name="theForm" action="/addWorkList" method="POST">
                     <div>
@@ -163,32 +164,32 @@ $(function() {
                     </table>
                 </form>
                 <script>
-                function changeList() {
-                    var x = document.getElementById("Material ").value;
-                    document.getElementById("de ").innerHTML = "You selected: " + x;
+                    function changeList() {
+                        var x = document.getElementById("Material ").value;
+                        document.getElementById("de ").innerHTML = "You selected: " + x;
 
-                    $.ajax({
-                        url: "http://localhost:3000/addWorklist ",
-                        dataType: 'html',
-                        type: 'POST',
+                        $.ajax({
+                            url: "http://localhost:3000/addWorklist ",
+                            dataType: 'html',
+                            type: 'POST',
 
-                        success: function(data) {
-                            alert(data);
-                            var x = document.getElementById("Material ").value;
-                            Types = x;
-                        },
+                            success: function(data) {
+                                alert(data);
+                                var x = document.getElementById("Material ").value;
+                                Types = x;
+                            },
 
-                        error: function(xhr, ajaxOptions, thrownError) {
-                            alert(xhr.status);
-                            alert(thrownError);
-                        }
+                            error: function(xhr, ajaxOptions, thrownError) {
+                                alert(xhr.status);
+                                alert(thrownError);
+                            }
 
-                    });
+                        });
 
-                }
+                    }
                 </script>
             </div>
         </div>
-</body>
+    </body>
 
 </html>
