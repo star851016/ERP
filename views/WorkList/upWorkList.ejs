@@ -316,7 +316,6 @@
                                 <td class="td2"><input type="text" name="MNote" class="text2" value="<%= materiallist[j].MNote %>"></td>
                                 <td class="td2">
                                     <div id="searchSupplier" style="display : none"></div>
-                                    <input type="text" class="text2">
                                     <button class="button3" onclick="searchSupplier()">按此選材料行</button>
                                 </td>
                                 <form action="/worklist/saveMat" method="POST" novalidate>
@@ -420,78 +419,17 @@
                                 <tr class="tr">
                                     <td>
                                         <select class="selector" name="WhoCheck">
-                                 <% }; %>
-
-                    </table>
-                   <% if(status == "add"){ %>
-                     <table class="table1">
-                         <tr>
-                             <th>No.</th>
-                             <th>料 號</th>
-                             <th>品 名</th>
-                             <th>註 記</th>
-                             <th>材料行</th>
-                             <th>售 價</th>
-                             <th>數 量</th>
-
-                         </tr>
-                         <tr class="tr">
-                             <td rowspan="3"><%= i %></td>
-                             <td class="td2">
-
-                                     <input id = "searchPId<%= i %>" type="text" class="text2" name="PId" value="">
-                                     <button class="button2" onClick="searchPId(<%= i %>)">&darr;</button>
-
-
-                             </td>
-                           <div id = "SearchPIdWindows" style = "display : none"  ></div>
-                             <td class="td2"><input type="text" name="PName" class="text2" value="" ></td>
-                             <td class="td2"><input type="text" name="MNote" class="text2" value=""></td>
-                             <td class="td2">
-                                 <div id = "searchSupplier" style = "display : none"  ></div>
-                                 <input type="text" class="text2">
-                                 <button class="button2" onclick="searchSupplier()">&darr;</button>
-                             </td>
-                             <form  action="/worklist/saveMat" method="POST" novalidate>
-                             <td class="td2"><input type="text" name="Price" class="text2" value=""></td>
-                             <td class="td2"><input type="text" name = "MQuantity" class="text2" value=""></td>
-
-                         </tr>
-                         <tr class="tr">
-                             <th>維修人員</th>
-                             <th>覆驗人員</th>
-                             <th>是否修</th>
-                             <th>已維修</th>
-                             <th>小 計</th>
-                             <td rowspan="2">
-
-                             <input type= "hidden" name="MatId" value=""/>
-                               <input type= "hidden" name="id" value=""/>
-                               <button  class="button1" style="float:center;">登錄</button>
-                           </form>
-                             <form  action="/delProduct" method="POST" novalidate>
-                               <input type= "hidden" name="id" value=""/>
-                             <button class="button1" style="float:center;">刪除</button>
-                           </form>
-                             </td>
-                         </tr>
-
-                         <tr class="tr">
-                             <td>
-                                 <select class="selector" name="WhoCheck">
-
-
-                                   <option>A</option>
-                                   <option>B</option>
-                                   <option>C</option>
-                                 </select>
+                                          <option>A</option>
+                                          <option>B</option>
+                                          <option>C</option>
+                                        </select>
                                     </td>
                                     <td><select class="selector" name="WhoCheck">
 
-                               <option>A</option>
-                               <option>B</option>
-                               <option>C</option>
-                             </select>
+                                      <option>A</option>
+                                      <option>B</option>
+                                      <option>C</option>
+                                    </select>
                                     </td>
 
                                     <td>
@@ -519,6 +457,7 @@
                             </table>
                             <% }; %>
                 </div>
+
                 <div id="tab4" class="tab_content">
                     <div class="container" style="float:center;">
                         <p>工資金額:<input type="text" class="tax"></p>
@@ -605,10 +544,10 @@
                 success: function(data) {
 
 
-        $("#SearchPIdWindows").show()
-        $('#SearchPIdWindows').html('<span>'+
-        data[0].PName
-        +'</span>')
+                    $("#SearchPIdWindows").show()
+                    $('#SearchPIdWindows').html('<span>' +
+                        data[0].PName +
+                        '</span>')
 
 
                     $("#SearchPIdWindows").show()
