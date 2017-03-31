@@ -1,8 +1,9 @@
 <html>
-<link rel='stylesheet' href='/stylesheets/style.css' />
+<% include ../Shared/header %>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
 
-<body>
-    <% include ../Shared/header %>
+    <body>
+
         <div class="hdr">
             <p class="title">編輯工單</p>
         </div>
@@ -155,27 +156,27 @@
 
                         </tr>
                         <tr class="tr">
-                          <td class="td">
-                            <form class="form1" action="/worklist/searchPId" method="POST" novalidate>
-                            <input type="text" class="text2" value = "<%= upWorklist.CarId %>">
-                            </form>
-                          </td>
-                          <td class="td">
-                            <form class="form1" action="/worklist/searchPId" method="POST" novalidate>
-                              <input type="text" class="text2" value = "<%= upWorklist.CName %>">
-                            </form>
-                          </td>
-                          <td class="td"><input type="text" class="text2" value = "<%= upWorklist.carBrand %>"></td>
-                          <td class="td"><input type="text" class="text2" value = "<%= upWorklist.carType %>"></td>
-                          <td class="td">
-                            <input type="text" class="text2" value = "<%= upWorklist.cc %>">
-                          </td>
-                          <td class="td"><input type="text" class="text2" value = "<%= upWorklist.CarBodyNum %>"></td>
-                          <td class="td"><input type="text" class="text2" value = "<%= upWorklist.EngineNum %>"></td>
-                          <td class="td1">
-                            <input class="text" type="text" value = "<%= upWorklist.YrOfManu %>">
+                            <td class="td">
+                                <form class="form1" action="/worklist/searchPId" method="POST" novalidate>
+                                    <input type="text" class="text2" value="<%= upWorklist.CarId %>">
+                                </form>
+                            </td>
+                            <td class="td">
+                                <form class="form1" action="/worklist/searchPId" method="POST" novalidate>
+                                    <input type="text" class="text2" value="<%= upWorklist.CName %>">
+                                </form>
+                            </td>
+                            <td class="td"><input type="text" class="text2" value="<%= upWorklist.carBrand %>"></td>
+                            <td class="td"><input type="text" class="text2" value="<%= upWorklist.carType %>"></td>
+                            <td class="td">
+                                <input type="text" class="text2" value="<%= upWorklist.cc %>">
+                            </td>
+                            <td class="td"><input type="text" class="text2" value="<%= upWorklist.CarBodyNum %>"></td>
+                            <td class="td"><input type="text" class="text2" value="<%= upWorklist.EngineNum %>"></td>
+                            <td class="td1">
+                                <input class="text" type="text" value="<%= upWorklist.YrOfManu %>">
 
-                          </td>
+                            </td>
                         </tr>
                         <tr class="tr">
                             <th class="th">聯絡人</th>
@@ -188,19 +189,19 @@
 
                         <tr class="tr_odd">
                             <td>
-                                <input type="text" class="text2" value = "<%= upWorklist.Contact_Person %>"></td>
+                                <input type="text" class="text2" value="<%= upWorklist.Contact_Person %>"></td>
                             </td>
                             <td colspan="2">
-                                <input type="text" class="text0" value = "<%= upWorklist.Tell1 %>"></td>
+                                <input type="text" class="text0" value="<%= upWorklist.Tell1 %>"></td>
                             </td>
                             <td colspan="2">
-                                <input type="text" class="text0" value = "<%= upWorklist.Tell2 %>"></td>
+                                <input type="text" class="text0" value="<%= upWorklist.Tell2 %>"></td>
                             </td>
                             <td colspan="2">
-                                <input type="text" class="text0" value = "<%= upWorklist.UniformNum %>"></td>
+                                <input type="text" class="text0" value="<%= upWorklist.UniformNum %>"></td>
                             </td>
                             <td class="td1">
-                                <input class="text" type="text" name="EndTime" id="date_9" value = "<%= upWorklist.CBirthDate %>">
+                                <input class="text" type="text" name="EndTime" id="date_9" value="<%= upWorklist.CBirthDate %>">
                                 <link rel="stylesheet" type="text/css" href="/stylesheets/jquery-ui.css" />
                                 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
                                 <script type="text/javascript" src="/javascripts/jquery-ui-datepicker.js"></script>
@@ -215,7 +216,7 @@
                         <tr class="tr_odd">
                             <th>地址</th>
                             <td colspan="4">
-                                <input type="text" class="text4" size="15" value = "<%= upWorklist.Address %>" style=" background-color:transparent;border:3px; border-bottom-style: solid;border-top-style: none;border-left-style:none;border-right-style:none;" placeholder="Please enter your address." >
+                                <input type="text" class="text4" size="15" value="<%= upWorklist.Address %>" style=" background-color:transparent;border:3px; border-bottom-style: solid;border-top-style: none;border-left-style:none;border-right-style:none;" placeholder="Please enter your address.">
                         </tr>
                         <tr>
                             <td class="td1" colspan="8">
@@ -278,97 +279,148 @@
                 </div>
 
                 <div id="tab3" class="tab_content">
-                    <form  action="/worklist/addMat" method="POST" novalidate>
-                      <input type= "hidden" name="id" value="<%= upWorklist.WorkId %>"/>
-                    <button  class="button1" style="float:right;">新增</button>
-                  </form>
-                <br>
+                    <form action="/worklist/addMat" method="POST" novalidate>
+                        <input type="hidden" name="id" value="<%= upWorklist.WorkId %>" />
+                        <button class="button1" style="float:right;">新增</button>
+                    </form>
+                    <br>
 
                     <%  var i = 1 ;
 
                     for(var j = 0; j < materiallist.length; j++){
                      %>
-                    <table class="table1">
-                        <tr>
-                            <th>No.</th>
-                            <th>料 號</th>
-                            <th>品 名</th>
-                            <th>註 記</th>
-                            <th>材料行</th>
-                            <th>售 價</th>
-                            <th>數 量</th>
+                        <table class="table1">
+                            <tr class="tr">
+                                <th>No.</th>
+                                <th>料 號</th>
+                                <th>品 名</th>
+                                <th>註 記</th>
+                                <th>材料行</th>
+                                <th>售 價</th>
+                                <th>數 量</th>
 
-                        </tr>
-                        <tr class="tr">
-                            <td rowspan="3"><%= i %></td>
-                            <td class="td2">
+                            </tr>
+                            <tr class="tr">
+                                <td rowspan="3">
+                                    <%= i %>
+                                </td>
+                                <td class="td2">
 
-                                    <input id = "searchPId<%= i %>" type="text" class="text2" name="PId" value="<%= materiallist[j].Id %>">
+                                    <input id="searchPId<%= i %>" type="text" class="text2" name="PId" value="<%= materiallist[j].Id %>">
                                     <button class="button2" onClick="searchPId(<%= i %>)">&darr;</button>
 
 
-                            </td>
-                          <div id = "SearchPIdWindows" style = "display : none"  ></div>
-                            <td class="td2"><input type="text" name="PName" class="text2" value="<%= materiallist[j].PName %>" ></td>
-                            <td class="td2"><input type="text" name="MNote" class="text2" value="<%= materiallist[j].MNote %>"></td>
-                            <td class="td2">
-                                <div id = "searchSupplier" style = "display : none"  ></div>
-                                <input type="text" class="text2">
-                                <button class="button2" onclick="searchSupplier()">&darr;</button>
-                            </td>
-                            <form  action="/worklist/saveMat" method="POST" novalidate>
-                            <td class="td2"><input type="text" name="Price" class="text2" value="<%= materiallist[j].Price %>"></td>
-                            <td class="td2"><input type="text" name = "MQuantity" class="text2" value="<%= materiallist[j].MQuantity %>"></td>
+                                </td>
+                                <div id="SearchPIdWindows" style="display : none"></div>
+                                <td class="td2"><input type="text" name="PName" class="text2" value="<%= materiallist[j].PName %>"></td>
+                                <td class="td2"><input type="text" name="MNote" class="text2" value="<%= materiallist[j].MNote %>"></td>
+                                <td class="td2">
+                                    <div id="searchSupplier" style="display : none"></div>
+                                    <input type="text" class="text2">
+                                    <button class="button3" onclick="searchSupplier()">按此選材料行</button>
+                                </td>
+                                <form action="/worklist/saveMat" method="POST" novalidate>
+                                    <td class="td2"><input type="text" name="Price" class="text2" value="<%= materiallist[j].Price %>"></td>
+                                    <td class="td2"><input type="text" name="MQuantity" class="text2" value="<%= materiallist[j].MQuantity %>"></td>
 
-                        </tr>
-                        <tr class="tr">
-                            <th>維修人員</th>
-                            <th>覆驗人員</th>
-                            <th>是否修</th>
-                            <th>已維修</th>
-                            <th>小 計</th>
-                            <td rowspan="2">
+                            </tr>
+                            <tr class="tr">
+                                <th>維修人員</th>
+                                <th>覆驗人員</th>
+                                <th>是否修</th>
+                                <th>已維修</th>
+                                <th>小 計</th>
+                                <th></th>
+                            </tr>
 
-                            <input type= "hidden" name="MatId" value="<%= materiallist[j].MatId %>"/>
-                              <input type= "hidden" name="id" value="<%= upWorklist.WorkId %>"/>
-                              <button  class="button1" style="float:center;">登錄</button>
-                          </form>
-                            <form  action="/delProduct" method="POST" novalidate>
-                              <input type= "hidden" name="id" value="<%= materiallist[j].Id %>"/>
-                            <button class="button1" style="float:center;">刪除</button>
-                          </form>
-                            </td>
-                        </tr>
-
-                        <tr class="tr">
-                            <td>
-                                <select class="selector" name="WhoCheck">
+                            <tr class="tr">
+                                <td>
+                                    <select class="selector" name="WhoCheck">
                                   <option><%= materiallist[j].WhoFix %></option>
                                   <option>A</option>
                                   <option>B</option>
                                   <option>C</option>
                                 </select>
-                            </td>
-                            <td><select class="selector" name="WhoCheck">
+                                </td>
+                                <td><select class="selector" name="WhoCheck">
                               <option><%= materiallist[j].WhoCheck %></option>
                               <option>A</option>
                               <option>B</option>
                               <option>C</option>
                             </select>
-                            </td>
+                                </td>
 
-                            <td>
-                                <form class="form1"  action="" method="get" style="display:inline;">
-                                    <input type="radio" name="impair" value="yes">是<br>
-                                    <input type="radio" name="impair" value="no">否<br>
-                                </form>
-                            </td>
-                            <td>
-                                <input type="checkbox" name="impaired" value="yes">
-                            </td>
-                            <td>$<input type="text" name="Amount" class="text2" value="<%= materiallist[j].Amount %>" ></td>
-                        </tr>
-                        <%  i++}; %>
+                                <td>
+                                    <form class="form1" action="" method="get" style="display:inline;">
+                                        <input type="radio" name="impair" value="yes">是<br>
+                                        <input type="radio" name="impair" value="no">否<br>
+                                    </form>
+                                </td>
+                                <td>
+                                    <input type="checkbox" name="impaired" value="yes">
+                                </td>
+                                <td>$<input type="text" name="Amount" class="text2" value="<%= materiallist[j].Amount %>"></td>
+                                <td>
+                                    <input type="hidden" name="MatId" value="<%= materiallist[j].MatId %>" />
+                                    <input type="hidden" name="id" value="<%= upWorklist.WorkId %>" />
+                                    <button class="button1" style="float:center;">登錄</button>
+                                    </form>
+                                    <form action="/delProduct" method="POST" novalidate>
+                                        <input type="hidden" name="id" value="<%= materiallist[j].Id %>" />
+                                        <button class="button1" style="float:center;">刪除</button>
+                                    </form>
+                                </td>
+                            </tr>
+                            <%  i++}; %>
+
+                        </table>
+                        <% if(status == "add"){ %>
+                            <table class="table1">
+                                <tr class="tr">
+                                    <th>No.</th>
+                                    <th>料 號</th>
+                                    <th>品 名</th>
+                                    <th>註 記</th>
+                                    <th>材料行</th>
+                                    <th>售 價</th>
+                                    <th>數 量</th>
+                                </tr>
+                                <tr class="tr">
+                                    <td rowspan="3">
+                                        <%= i %>
+                                    </td>
+                                    <td class="td2">
+
+                                        <input id="searchPId<%= i %>" type="text" class="text2" name="PId" value="">
+                                        <button class="button2" onClick="searchPId(<%= i %>)">&darr;</button>
+
+
+                                    </td>
+                                    <div id="SearchPIdWindows" style="display : none"></div>
+                                    <td class="td2"><input type="text" name="PName" class="text2" value=""></td>
+                                    <td class="td2"><input type="text" name="MNote" class="text2" value=""></td>
+                                    <td class="td2">
+                                        <div id="searchSupplier" style="display : none"></div>
+                                        <button class="button3" onclick="searchSupplier()">按此選材料行</button>
+                                    </td>
+                                    <form action="/worklist/saveMat" method="POST" novalidate>
+                                        <td class="td2"><input type="text" name="Price" class="text2" value=""></td>
+                                        <td class="td2"><input type="text" name="MQuantity" class="text2" value=""></td>
+
+                                </tr>
+                                <tr class="tr">
+                                    <th>維修人員</th>
+                                    <th>覆驗人員</th>
+                                    <th>是否修</th>
+                                    <th>已維修</th>
+                                    <th>小 計</th>
+                                    <th></th>
+                                </tr>
+
+                                <tr class="tr">
+                                    <td>
+                                        <select class="selector" name="WhoCheck">
+
 
                     </table>
                    <% if(status == "add"){ %>
@@ -428,32 +480,44 @@
                              <td>
                                  <select class="selector" name="WhoCheck">
 
+
                                    <option>A</option>
                                    <option>B</option>
                                    <option>C</option>
                                  </select>
-                             </td>
-                             <td><select class="selector" name="WhoCheck">
+                                    </td>
+                                    <td><select class="selector" name="WhoCheck">
 
                                <option>A</option>
                                <option>B</option>
                                <option>C</option>
                              </select>
-                             </td>
+                                    </td>
 
-                             <td>
-                                 <form class="form1"  action="" method="get" style="display:inline;">
-                                     <input type="radio" name="impair" value="yes">是<br>
-                                     <input type="radio" name="impair" value="no">否<br>
-                                 </form>
-                             </td>
-                             <td>
-                                 <input type="checkbox" name="impaired" value="yes">
-                             </td>
-                             <td>$<input type="text" name="Amount" class="text2" value="" ></td>
-                         </tr>
-                     </table>
-                  <% }; %>
+                                    <td>
+                                        <form class="form1" action="" method="get" style="display:inline;">
+                                            <input type="radio" name="impair" value="yes">是<br>
+                                            <input type="radio" name="impair" value="no">否<br>
+                                        </form>
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" name="impaired" value="yes">
+                                    </td>
+                                    <td>$<input type="text" name="Amount" class="text2" value=""></td>
+                                    <td>
+
+                                        <input type="hidden" name="MatId" value="" />
+                                        <input type="hidden" name="id" value="" />
+                                        <button class="button1" style="float:center;">登錄</button>
+                                        </form>
+                                        <form action="/delProduct" method="POST" novalidate>
+                                            <input type="hidden" name="id" value="" />
+                                            <button class="button1" style="float:center;">刪除</button>
+                                        </form>
+                                    </td>
+                                </tr>
+                            </table>
+                            <% }; %>
                 </div>
                 <div id="tab4" class="tab_content">
                     <div class="container" style="float:center;">
@@ -477,47 +541,101 @@
             </div>
         </div>
 
-</body>
+        <script>
+            function searchPId(i) {
+                var searchPId = $('#searchPId' + i).val();
 
-<script>
+                $.ajax({
+                    url: "http://localhost:3000/worklist/searchPId",
+                    data: {
+                        searchPId: searchPId
+                    },
+                    type: "get",
+                    dataType: 'json',
+
+                    success: function(data) {
+
+                        $("#SearchPIdWindows").show()
+                        $('#SearchPIdWindows').html('<span>' +
+                            data[0].PName +
+                            '</span>')
 
 
 
-function searchPId(i){
-  var searchPId = $('#searchPId'+i).val();
 
-    $.ajax({
-        url:"http://localhost:3000/worklist/searchPId",
-        data: {searchPId : searchPId },
-        type : "get",
-        dataType:'json',
+                    },
 
-        success:function(data){
+                    error: function() {
+
+                        alert("再接再勵");
+                    }
+
+                });
+
+            };
+
+
+            function searchSupplier() {
+                $("#searchSupplier").show()
+
+            };
+        </script>
+
+
+        <p>總金額:<input type="text" class="tax"></p>
+        <form class="form1" style="float:right;">
+            <button class="button1">結帳交車</button>
+        </form>
+        <br><br>
+
+    </body>
+
+    <script>
+        function searchPId(i) {
+            var searchPId = $('#searchPId' + i).val();
+
+            $.ajax({
+                url: "http://localhost:3000/worklist/searchPId",
+                data: {
+                    searchPId: searchPId
+                },
+                type: "get",
+                dataType: 'json',
+
+                success: function(data) {
+
 
         $("#SearchPIdWindows").show()
         $('#SearchPIdWindows').html('<span>'+
         data[0].PName
         +'</span>')
-        
+
+
+                    $("#SearchPIdWindows").show()
+                    $('#SearchPIdWindows').html('<span>' +
+                        data[0].PName +
+                        '</span>')
 
 
 
-      },
-
-        error:function(){
-
-        alert("再接再勵");
-        }
-
-    });
-
-};
 
 
-function searchSupplier(){
-  $("#searchSupplier").show()
+                },
 
-};
+                error: function() {
 
-</script>
+                    alert("再接再勵");
+                }
+
+            });
+
+        };
+
+
+        function searchSupplier() {
+            $("#searchSupplier").show()
+
+        };
+    </script>
+
 </html>

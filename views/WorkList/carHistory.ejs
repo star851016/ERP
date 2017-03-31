@@ -1,22 +1,23 @@
 <html>
-<link rel='stylesheet' href='/stylesheets/style.css' />
-<link rel="stylesheet" type="text/css" href="/stylesheets/jquery-ui.css" />
-<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
-<script type="text/javascript" src="/javascripts/jquery-ui-datepicker.js"></script>
-<script type="text/javascript">
-    $(function() {
-        $("#OutTime").datepicker();
-    });
-</script>
+<% include ../Shared/header %>
 
-<script type="text/javascript">
-    $(function() {
-        $("#InTime").datepicker();
-    });
-</script>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel="stylesheet" type="text/css" href="/stylesheets/jquery-ui.css" />
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+    <script type="text/javascript" src="/javascripts/jquery-ui-datepicker.js"></script>
+    <script type="text/javascript">
+        $(function() {
+            $("#OutTime").datepicker();
+        });
+    </script>
 
-<body>
-    <% include ../Shared/header %>
+    <script type="text/javascript">
+        $(function() {
+            $("#InTime").datepicker();
+        });
+    </script>
+
+    <body>
 
         <div class="hdr">
             <p class="title">車歷卡</p>
