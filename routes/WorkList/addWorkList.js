@@ -46,24 +46,24 @@ router.get('/', function(req, res) {
 
 //抓到part
 router.post('/', function(req, res, next) {
-            console.log('req.body.part' + req.body.Part);
-            var newQuestion = new Question({
-                Part: req.body.Part,
-                Wrong: req.body.Wrong
-            });
-            newQuestion.QuestionList(function(err, QuestionList) {
-                // if(err){
-                //   next(err);
-                // }else{
-                //   console.log('Q1List'+Q1List);
-                //   console.log('Q1List'+Q1List[0].Q1_Mat);
-                console.log(req.body.theForm);
-                res.render('WorkList/addWorkList', {
-                    //  Q1List : Q1List,
-                    member: req.session.member || null
-                });
-            });
+    console.log('req.body.part' + req.body.Part);
+    var newQuestion = new Question({
+        Part: req.body.Part,
+        Wrong: req.body.Wrong
+    });
+    newQuestion.QuestionList(function(err, QuestionList) {
+        // if(err){
+        //   next(err);
+        // }else{
+        //   console.log('Q1List'+Q1List);
+        //   console.log('Q1List'+Q1List[0].Q1_Mat);
+        console.log(req.body.theForm);
+        res.render('WorkList/addWorkList', {
+            //  Q1List : Q1List,
+            member: req.session.member || null
         });
+    });
+});
 
 
-        module.exports = router;
+module.exports = router;
