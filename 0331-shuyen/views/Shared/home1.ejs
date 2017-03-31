@@ -1,0 +1,79 @@
+<% include ./header %>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <br><br><br>
+    <section id="portfolio" class="bg-light-gray">
+        <div class="row">
+
+            <div class="col-md-4 col-sm-6 portfolio-item">
+                <a class="portfolio-link" data-toggle="modal">
+                    <img src="./images/images/supplier1.png" class="img-responsive" alt="">
+                </a>
+                <div class="portfolio-caption">
+                    廠商
+                </div>
+
+                <button class="button" onclick="location.href='/sup'">新增廠商</button>
+                <br><br>
+                <form name="sentMessage" action="/supplier" method="POST" id="contactForm" novalidate>
+                    <button class="button" onclick="location.href='/supplier'">查詢廠商</button>
+                </form>
+            </div>
+
+            <div class="col-md-4 col-sm-6 portfolio-item">
+                <a class="portfolio-link" data-toggle="modal">
+                    <img src="./images/images/查詢存貨1.png" class="img-responsive" alt="">
+                </a>
+                <div class="portfolio-caption">
+                    商品
+                </div>
+
+                <button class="button" onclick="location.href='/addProduct'">新增商品</button>
+                <br><br>
+                <form name="sentMessage" action="/product" method="POST" id="contactForm" novalidate>
+                    <button class="button" onclick="location.href='/product'">查詢商品</button>
+                </form>
+            </div>
+            <div class="col-md-4 col-sm-6 portfolio-item">
+                <a class="portfolio-link" data-toggle="modal">
+                    <img src="./images/images/back1.png" class="img-responsive" alt="">
+                </a>
+                <div class="portfolio-caption">
+                    退貨
+                </div>
+                <button class="button" onclick="location.href='/bkpurchase'">進貨退回</button><br><br>
+                <button class="button" onclick="location.href='/bksales'">銷貨退回</button>
+            </div>
+
+            <div class="col-md-4 col-sm-6 portfolio-item">
+                <a href="/purchase" class="portfolio-link" data-toggle="modal">
+                    <img src="./images/images/進貨1.png" class="img-responsive" alt="">
+                </a>
+                <div class="portfolio-caption">
+                    進貨
+                </div>
+
+            </div>
+            <div class="col-md-4 col-sm-6 portfolio-item">
+                <a href="/sales" class="portfolio-link" data-toggle="modal">
+                    <img src="./images/images/銷貨1.png" class="img-responsive" alt="">
+                </a>
+                <div class="portfolio-caption">
+                    銷貨
+                </div>
+
+            </div>
+            <div class="col-md-4 col-sm-6 portfolio-item">
+                <a href="/report" class="portfolio-link" data-toggle="modal">
+                    <img src="./images/images/報表分析1.png" class="img-responsive" alt="">
+                </a>
+                <div class="portfolio-caption">
+                    進貨日報表
+                </div>
+
+
+            </div>
+
+
+        </div>
+        </div>
+    </section>

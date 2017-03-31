@@ -1,0 +1,520 @@
+<html>
+<% include ../Shared/header %>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel="stylesheet" type="text/css" href="/stylesheets/jquery-ui.css" />
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+    <script type="text/javascript" src="/javascripts/jquery-ui-datepicker.js"></script>
+    <script type="text/javascript">
+        $(function() {
+            $("#date_5").datepicker();
+        });
+    </script>
+
+    <body>
+
+        <div class="hdr">
+            <p class="title">編輯工單</p>
+        </div>
+        <br><br><br><br>
+
+        <div class="container">
+            <table style="width:100%">
+                <tr>
+                    <td class="td">工單號碼:</td>
+                    <td class="td1">
+                        <%= upWorklist.WorkId %>
+                    </td>
+                    <td class="td">狀態:</td>
+                    <td class="td1">
+                        <select class="selector">
+    <option><%= upWorklist.Status %></option>
+    <option>維修中</option>
+  </select>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="td">車牌:</td>
+                    <td class="td1">
+                        <%= upWorklist.CarId %>
+                    </td>
+                    <td class="td">車主:</td>
+                    <td class="td1">
+                        <%= upWorklist.CName %>
+                    </td>
+                    <td class="td">車型:</td>
+                    <td class="td1">
+                        <%= upWorklist.carBrand %>&nbsp
+                            <%= upWorklist.carType %>
+                    </td>
+                    <td class="td">里程數:
+                        <td class="td1">
+                            <input class="text" type="text" value="<%= upWorklist.Miles %>"></td>
+                </tr>
+
+                <tr>
+                    <td class="td">進廠日期:</td>
+                    <td class="td1" colspan="3">
+                        <%= upWorklist.InDate %>
+                    </td>
+                    <td class="td">預計出廠:</td>
+                    <td class="td1" colspan="3">
+                        <input class="text" type="text" name="EndTime" id="date_5">
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="container">
+            <hr color=black size=3>
+        </div>
+
+        <div class="container">
+            <p>維修套組:
+                <button class="btn0" id="jQueryColorChange">無</button>
+                <button class="btn0" id="jQueryColorChange">鈑&nbsp;&nbsp;金</button>
+                <button class="btn0" id="jQueryColorChange">烤&nbsp;&nbsp;漆</button>
+                <button class="btn0" id="jQueryColorChange">驗&nbsp;&nbsp;車</button>
+                <button class="btn0" id="jQueryColorChange">小保養</button>
+                <button class="btn0" id="jQueryColorChange">中保養</button>
+                <button class="btn0" id="jQueryColorChange">大保養</button>
+                <button class="btn0" id="jQueryColorChange">行車記錄器</button>
+                <script>
+                    $("button#jQueryColorChange").click(function() {
+                        $('button').removeClass('selected');
+                        $(this).addClass('selected');
+                    });
+                </script>
+            </p>
+        </div>
+
+        <div class="container">
+            <hr color=black size=3>
+        </div>
+
+        <div class="container">
+            <p>客戶問題:
+                <input class="text2" value=""></td>&nbsp;➜
+                <input class="text2" value=""></td>&nbsp;➜
+                <input class="text2" value=""></td>
+            </p>
+        </div>
+
+        <div class="container">
+            <hr color=black size=3>
+        </div>
+
+        <div class="abgne_tab">
+            <script>
+                $(function() {
+                    // 預設顯示第一個 Tab
+                    var _showTab = 2;
+                    $('.abgne_tab').each(function() {
+                        // 目前的頁籤區塊
+                        var $tab = $(this);
+
+                        var $defaultLi = $('ul.tabs li', $tab).eq(_showTab).addClass('active');
+                        $($defaultLi.find('a').attr('href')).siblings().hide();
+
+                        // 當 li 頁籤被點擊時...
+                        // 若要改成滑鼠移到 li 頁籤就切換時, 把 click 改成 mouseover
+                        $('ul.tabs li', $tab).click(function() {
+                            // 找出 li 中的超連結 href(#id)
+                            var $this = $(this),
+                                _clickTab = $this.find('a').attr('href');
+                            // 把目前點擊到的 li 頁籤加上 .active
+                            // 並把兄弟元素中有 .active 的都移除 class
+                            $this.addClass('active').siblings('.active').removeClass('active');
+                            // 淡入相對應的內容並隱藏兄弟元素
+                            $(_clickTab).stop(false, true).fadeIn().siblings().hide();
+
+                            return false;
+                        }).find('a').focus(function() {
+                            this.blur();
+                        });
+                    });
+                });
+            </script>
+            <ul class="tabs">
+                <li><a href="#tab1">客戶資料</a></li>
+                <li><a href="#tab2">工資登錄</a></li>
+                <li><a href="#tab3">材料登錄</a></li>
+                <li><a href="#tab4">結算交車</a></li>
+            </ul>
+
+            <div class="tab_container">
+                <div id="tab1" class="tab_content">
+                    <table class="table1">
+                        <tr>
+                            <th class="th">車牌</th>
+                            <th class="th">車主</th>
+                            <th class="th" colspan="2">車輛型式</th>
+                            <th class="th">排氣量</th>
+                            <th class="th">車身碼</th>
+                            <th class="th">引擎碼</th>
+                            <th class="th">出廠年份</th>
+
+                        </tr>
+                        <tr class="tr">
+                            <td class="td">
+                                <form class="form1" action="/worklist/searchPId" method="POST" novalidate>
+                                    <input type="text" class="text2" value="<%= upWorklist.CarId %>">
+                                </form>
+                            </td>
+                            <td class="td">
+                                <form class="form1" action="/worklist/searchPId" method="POST" novalidate>
+                                    <input type="text" class="text2" value="<%= upWorklist.CName %>">
+                                </form>
+                            </td>
+                            <td class="td"><input type="text" class="text2" value="<%= upWorklist.carBrand %>"></td>
+                            <td class="td"><input type="text" class="text2" value="<%= upWorklist.carType %>"></td>
+                            <td class="td">
+                                <input type="text" class="text2" value="<%= upWorklist.cc %>">
+                            </td>
+                            <td class="td"><input type="text" class="text2" value="<%= upWorklist.CarBodyNum %>"></td>
+                            <td class="td"><input type="text" class="text2" value="<%= upWorklist.EngineNum %>"></td>
+                            <td class="td1">
+                                <input class="text" type="text" value="<%= upWorklist.YrOfManu %>">
+
+                            </td>
+                        </tr>
+                        <tr class="tr">
+                            <th class="th">聯絡人</th>
+                            <th class="th" colspan="2">電話(1)</th>
+                            <th class="th" colspan="2">電話(2)</th>
+                            <th class="th" colspan="2">統一編號</th>
+                            <th class="th">生日</th>
+                        </tr>
+
+
+                        <tr class="tr_odd">
+                            <td>
+                                <input type="text" class="text2" value="<%= upWorklist.Contact_Person %>"></td>
+                            </td>
+                            <td colspan="2">
+                                <input type="text" class="text0" value="<%= upWorklist.Tell1 %>"></td>
+                            </td>
+                            <td colspan="2">
+                                <input type="text" class="text0" value="<%= upWorklist.Tell2 %>"></td>
+                            </td>
+                            <td colspan="2">
+                                <input type="text" class="text0" value="<%= upWorklist.UniformNum %>"></td>
+                            </td>
+                            <td class="td1">
+                                <input class="text" type="text" name="EndTime" id="date_9" value="<%= upWorklist.CBirthDate %>">
+                                <link rel="stylesheet" type="text/css" href="/stylesheets/jquery-ui.css" />
+                                <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+                                <script type="text/javascript" src="/javascripts/jquery-ui-datepicker.js"></script>
+                                <script type="text/javascript">
+                                    $(function() {
+                                        $("#date_9").datepicker();
+                                    });
+                                </script>
+                            </td>
+
+                        </tr>
+                        <tr class="tr_odd">
+                            <th>地址</th>
+                            <td colspan="4">
+                                <input type="text" class="text4" size="15" value="<%= upWorklist.Address %>" style=" background-color:transparent;border:3px; border-bottom-style: solid;border-top-style: none;border-left-style:none;border-right-style:none;" placeholder="Please enter your address.">
+                        </tr>
+                        <tr>
+                            <td class="td1" colspan="8">
+                                <form class="form1" style="float:right;">
+                                    <button class="button1">儲存</button>
+                                </form>
+                            </td>
+                        </tr>
+                    </table>
+
+                </div>
+                <div id="tab2" class="tab_content">
+                    <form style="width:100%">
+                        <button class="btn2" style="float:right;">新增</button>
+                    </form>
+                    <br>
+                    <table class="table1">
+                        <tr>
+                            <th class="th">No.</th>
+                            <th class="th">工作內容</th>
+                            <th class="th">工 資</th>
+                            <th class="th">維修人員</th>
+                            <th class="th">覆驗人員</th>
+                            <th class="th">備註</th>
+                            <th class="th">編輯</th>
+                        </tr>
+                        <tr class="tr">
+                            <td>1</td>
+                            <td class="td2">
+                                <input type="text" class="text3">
+                            </td>
+                            <td class="td2"><input type="text" class="text2"></td>
+                            <td>
+                                <select class="selector">
+                <option>A</option>
+                <option>B</option>
+                <option>C</option>
+              </select>
+                            </td>
+                            <td>
+                                <select class="selector">
+                <option>A</option>
+                <option>B</option>
+                <option>C</option>
+              </select>
+                            </td>
+
+                            <td class="td2">
+                                <input type="text" class="text3">
+                            </td>
+                            <td rowspan="2">
+                                <form style="margin:5px;">
+                                    <button class="btn2" style="float:center;">登錄</button>
+                                    <button class="btn2" style="float:center;">刪除</button>
+                                </form>
+                            </td>
+                        </tr>
+
+                    </table>
+                </div>
+
+                <div id="tab3" class="tab_content">
+                    <form action="/worklist/addMat" method="POST" novalidate>
+                        <input type="hidden" name="id" value="<%= upWorklist.WorkId %>" />
+                        <button class="button1" style="float:right;">新增</button>
+                    </form>
+                    <br>
+
+                    <%  var i = 1 ;
+
+                    for(var j = 0; j < materiallist.length; j++){
+                     %>
+                        <table class="table1">
+                            <tr>
+                                <th>No.</th>
+                                <th>料 號</th>
+                                <th>品 名</th>
+                                <th>註 記</th>
+                                <th>材料行</th>
+                                <th>售 價</th>
+                                <th>數 量</th>
+
+                            </tr>
+                            <tr class="tr">
+                                <td rowspan="3">
+                                    <%= i %>
+                                </td>
+                                <td class="td2">
+                                    <input id="searchPId<%= i %>" type="text" class="text2" name="PId" value="<%= materiallist[j].Id %>">
+                                    <button class="button2" onClick="searchPId(<%= i %>)">&darr;</button>
+                                </td>
+                                <div id="SearchPIdWindows" style="display:relative">
+                                    <p>查詢料號</p>
+                                </div>
+                                <td class="td2"><input type="text" class="text2" value="<%= materiallist[j].PName %>"></td>
+                                <td class="td2"><input type="text" class="text2" value="<%= materiallist[j].MNote %>"></td>
+                                <td class="td2">
+                                    <input type="text" class="text2">
+                                    <button class="button2">&darr;</button>
+                                </td>
+                                <form action="/worklist/saveMat" method="POST" novalidate>
+                                    <td class="td2"><input type="text" class="text2" value="<%= materiallist[j].Price %>"></td>
+                                    <td class="td2"><input type="text" name="MQuantity" class="text2" value="<%= materiallist[j].MQuantity %>"></td>
+
+                            </tr>
+                            <tr class="tr">
+                                <th>維修人員</th>
+                                <th>覆驗人員</th>
+                                <th>是否修</th>
+                                <th>已維修</th>
+                                <th>小 計</th>
+                                <td rowspan="2">
+
+                                    <input type="hidden" name="MatId" value="<%= materiallist[j].MatId %>" />
+                                    <input type="hidden" name="id" value="<%= upWorklist.WorkId %>" />
+                                    <button class="button1" style="float:center;">登錄</button>
+                                    </form>
+                                    <form action="/delProduct" method="POST" novalidate>
+                                        <input type="hidden" name="id" value="<%= materiallist[j].Id %>" />
+                                        <button class="button1" style="float:center;">刪除</button>
+                                    </form>
+                                </td>
+                            </tr>
+
+                            <tr class="tr">
+                                <td>
+                                    <select class="selector">
+                <option><%= materiallist[j].WhoFix %></option>
+                <option>A</option>
+                <option>B</option>
+                <option>C</option>
+              </select>
+                                </td>
+                                <td><select class="selector">
+              <option><%= materiallist[j].WhoCheck %></option>
+              <option>A</option>
+              <option>B</option>
+              <option>C</option>
+            </select>
+                                </td>
+
+                                <td>
+                                    <form class="form1" action="" method="get" style="display:inline;">
+                                        <input type="radio" name="impair" value="yes">是<br>
+                                        <input type="radio" name="impair" value="no">否<br>
+                                    </form>
+                                </td>
+                                <td>
+                                    <input type="checkbox" name="impaired" value="yes">
+                                </td>
+                                <td>$<input type="text" class="text2" value="<%= materiallist[j].Amount %>"></td>
+                            </tr>
+                            <%  i++}; %>
+
+                        </table>
+                        <% if(status == "add"){ %>
+                            <table class="table1">
+                                <tr>
+                                    <th>No.</th>
+                                    <th>料 號</th>
+                                    <th>品 名</th>
+                                    <th>註 記</th>
+                                    <th>材料行</th>
+                                    <th>售 價</th>
+                                    <th>數 量</th>
+
+                                </tr>
+                                <tr class="tr">
+                                    <td rowspan="3">
+                                        <%= i %>
+                                    </td>
+                                    <td class="td2">
+
+                                        <input id="searchPId<%= i %>" type="text" class="text2" name="PId" value="">
+                                        <button class="button2" onClick="searchPId()">&darr;</button>
+
+
+                                    </td>
+                                    <td class="td2"><input type="text" class="text2" value=""></td>
+                                    <td class="td2"><input type="text" class="text2" value=""></td>
+                                    <td class="td2">
+
+                                        <input type="text" class="text2">
+                                        <button class="button2">&darr;</button>
+                                    </td>
+                                    <form action="/worklist/saveMat" method="POST" novalidate>
+                                        <td class="td2"><input type="text" class="text2" value=""></td>
+                                        <td class="td2"><input type="text" name="MQuantity" class="text2" value=""></td>
+
+                                </tr>
+                                <tr class="tr">
+                                    <th>維修人員</th>
+                                    <th>覆驗人員</th>
+                                    <th>是否修</th>
+                                    <th>已維修</th>
+                                    <th>小 計</th>
+                                    <td rowspan="2">
+
+                                        <input type="hidden" name="MatId" value="" />
+                                        <input type="hidden" name="id" value="<%= upWorklist.WorkId %>" />
+                                        <button class="button1" style="float:center;">登錄</button>
+                                        </form>
+                                        <form action="/delProduct" method="POST" novalidate>
+                                            <input type="hidden" name="id" value="" />
+                                            <button class="button1" style="float:center;">刪除</button>
+                                        </form>
+                                    </td>
+                                </tr>
+
+                                <tr class="tr">
+                                    <td>
+                                        <select class="selector">
+                 <option></option>
+                 <option>A</option>
+                 <option>B</option>
+                 <option>C</option>
+               </select>
+                                    </td>
+                                    <td><select class="selector">
+               <option></option>
+               <option>A</option>
+               <option>B</option>
+               <option>C</option>
+             </select>
+                                    </td>
+
+                                    <td>
+                                        <form class="form1" action="" method="get" style="display:inline;">
+                                            <input type="radio" name="impair" value="yes">是<br>
+                                            <input type="radio" name="impair" value="no">否<br>
+                                        </form>
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" name="impaired" value="yes">
+                                    </td>
+                                    <td>$<input type="text" class="text2" value=""></td>
+                                </tr>
+
+
+                            </table>
+                            <% }; %>
+                </div>
+                <div id="tab4" class="tab_content">
+                    <div class="container" style="float:center;">
+                        <p>工資金額:<input type="text" class="tax"></p>
+                        <p>零件金額:<input type="text" class="tax"></p>
+                        <p>稅前金額:<input type="text" class="tax"></p>
+                        <form class="form1" action="" method="get" style="display:inline;">
+                            <input type="radio" name="tax" value="no"><span>不要稅金</span>
+                            <input type="radio" name="tax" value="yes"><span>要稅金:</span>
+                            <input type="text" class="tax">%
+                        </form>
+                        </span>
+                        <p>稅金:<input type="text" class="tax"></p>
+                        <p>總金額:<input type="text" class="tax"></p>
+                        <form class="form1" style="float:right;">
+                            <button class="button1">結帳交車</button>
+                        </form>
+                        <br><br>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script>
+            function searchPId(i) {
+
+
+                var searchPId = $('#searchPId' + i).val();
+                alert(searchPId);
+                $.ajax({
+                    url: "http://localhost:3000/worklist/searchPId",
+                    data: {
+                        searchPId: searchPId
+                    },
+                    type: "get",
+                    dataType: 'json',
+
+
+
+                    success: function(data) {
+                        var res = data;
+                        alert(res[0]);
+                        alert(data);
+
+                        alert("成功");
+
+                    },
+
+                    error: function() {
+
+                        alert("再接再勵");
+                    }
+
+                });
+
+            };
+        </script>
+    </body>
+
+</html>

@@ -1,0 +1,115 @@
+<html>
+<% include ../Shared/header %>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel="stylesheet" type="text/css" href="/stylesheets/jquery-ui.css" />
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+    <script type="text/javascript" src="/javascripts/jquery-ui-datepicker.js"></script>
+    <script type="text/javascript">
+        $(function() {
+            $("#OutTime").datepicker();
+        });
+    </script>
+
+    <script type="text/javascript">
+        $(function() {
+            $("#InTime").datepicker();
+        });
+    </script>
+
+    <body>
+
+
+        <div class="hdr">
+            <p class="title">車歷卡</p>
+        </div>
+        <p id="de"></p>
+        <br><br><br>
+        <div class="container2">
+            <table style="width:100%">
+                <tr>
+                    <td class="td">車牌:</td>
+                    <td class="td2">
+                        <form class="form1" action="/worklist" method="POST" novalidate>
+                            <input type="text" class="underline" size="5" placeholder="請輸入車牌">
+                        </form>
+                    </td>
+                    <td class="td">車主:</td>
+                    <td class="td2">
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="td">From</td>
+                    <td class="td2">
+                        <input class="text0" type="text" name="InTime" id="InTime">
+                    </td>
+                    <td class="td">To</td>
+                    <td class="td2">
+                        <input class="text0" type="text" name="OutTime" id="OutTime">
+                    </td>
+                </tr>
+                <tr>
+                    <td class="td">料號:</td>
+                    <td class="td2">
+                        <form class="form1" action="/worklist" method="POST" novalidate>
+                            <input class="text0" type="text">
+                        </form>
+                    </td>
+                    <td class="td">品名:</td>
+                    <td class="td2">
+                        <form class="form1" action="/worklist" method="POST" novalidate>
+                            <input class="text0" type="text">
+                        </form>
+                    </td>
+                    <td class="td2" colspan="3" style="width:100%">
+                        <form class="form1" style="float:left;">
+                            <button style="background-color:transparent;border:0px;"><img style="height:40px;" src="../images/images/search.png"></a>
+                        </form>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <br><br>
+        <div class="container3">
+          <p class="p0">日期</p>
+          <table class="table2">
+            <tr>
+              <th class="th2">完工日
+                <th class="th2">工單號碼
+                  <th class="th2">進廠里程
+                    <th class="th2">料號
+                      <th class="th2">名稱
+                        <th class="th2">單價
+                          <th class="th2">數量
+                            <th class="th2">小計
+                            </tr>
+                            <tr>
+                              <td class="td0" rowspan="3"></td>
+                              <td class="td0" rowspan="3"></td>
+                              <td class="td0" rowspan="3"></td>
+                              <td class="td0">料號</td>
+                              <td class="td0">品名</td>
+                              <td class="td0">單價</td>
+                              <td class="td0">數量</td>
+                              <td class="td0">小計</td>
+                            </tr>
+                            <tr>
+                              <td class="td0">料號</td>
+                              <td class="td0">品名</td>
+                              <td class="td0">單價</td>
+                              <td class="td0">數量</td>
+                              <td class="td0">小計</td>
+                            </tr>
+                            <tr>
+                              <td class="td0">料號</td>
+                              <td class="td0">品名</td>
+                              <td class="td0">單價</td>
+                              <td class="td0">數量</td>
+                              <td class="td0">小計</td>
+                            </tr>
+                            </table>
+                          </div>
+
+</body>
+
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<link rel='stylesheet' href='/stylesheets/style.css' />
+<body>
+  <% include ../Shared/header %>
+  <div class="hdl">
+    <a href="/home1"><img src = "../images/home.png"></a>
+  </div>
+  <div class="hdr">
+    <p class="title">查詢</p>
+  </div>
+
+    <table style="position:relative;margin:1px auto;">
+      <tr border="1">
+        <th>料號</th>
+        <th>品名</th>
+      </tr>
+      <% PIdList.forEach(function(product) { %>
+      <tr class="tr_odd">
+        <td >
+          <form  action="/workList/upWorklist" method="POST" novalidate>
+            <%= product.Id %>
+            <button id="button" class="button" type="submit" >選擇</button>
+            </form>
+            </td>
+        <td ><%= product.PName %></td>
+      </tr>
+        <%  }); %>
+    </table>
+
+  </body>
+  </html>

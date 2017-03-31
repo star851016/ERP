@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<link rel='stylesheet' href='/stylesheets/style.css' />
+<body>
+  <div class="hdl">
+    <a href="/home1"><img src = "./images/home.png"></a>
+  </div>
+  <div class="hdr">
+    <p class="title">進貨年統計表</p>
+    單位(萬元)
+  </div>
+  <% SupplierList.forEach(function(Supplier) { %>
+     <%= Supplier.SName %>
+   <%  }); %>
+  <br><br><br><br><br><br>
+  <table style="position:relative;margin:1px auto;">
+    <tr border="1">
+
+      <th>廠商</th>
+      <th>一月</th>
+      <th>二月</th>
+      <th>三月</th>
+      <th>四月</th>
+      <th>五月</th>
+      <th>六月</th>
+      <th>七月</th>
+      <th>八月</th>
+      <th>九月</th>
+      <th>十月</th>
+      <th>十一月</th>
+      <th>十二月</th>
+
+    </tr>
+       <% SupplierList.forEach(function(Supplier) { %>
+           <tr class="tr_odd">
+             <td ><%= Supplier.SName %></td>
+             <td >10</td>
+             <td >50</td>
+             <td >30</td>
+             <td >2</td>
+             <td >1</td>
+             <td >2</td>
+             <td >5</td>
+             <td >10</td>
+             <td >0</td>
+             <td >50</td>
+             <td >60</td>
+             <td >80</td>
+           </tr>
+           
+
+
+
+    <%  }); %>
+
+  </table>
+  <br>
+
+    <a href="/product"><img src = "./images/back.png" style="float:right;"></a>
+  </body>
+  </html>

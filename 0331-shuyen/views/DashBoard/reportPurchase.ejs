@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<link rel='stylesheet' href='/stylesheets/style.css' />
+<body>
+  <div class="hdl">
+    <a href="/home1"><img src = "./images/home.png"></a>
+  </div>
+  <div class="hdr">
+    <p class="title">進貨日報表</p>
+  </div>
+  <div style="width:100%;">
+    <form name="sentMessage" action="/report" method="POST" id="product" novalidate>
+
+  <div style="width:90%;">
+    <br><br><br><br><br><br>
+    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<p style="font-size:48px;font-weight:bold;display:inline;">開始日期&nbsp</p>
+    <input type="text"  class="text" name="StartTime" id="date_1" readonly />
+    <p style="font-size:48px;font-weight:bold;display:inline;">截止日期&nbsp</p>
+    <input type="text"  class="text" name="EndTime" id="date_2" readonly />
+
+
+    <button id="button" class="button" type="submit" >查詢</button>
+  </div>
+  </form>
+</div>
+
+
+<link rel="stylesheet" type="text/css" href="/stylesheets/jquery-ui.css" />
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+<script type="text/javascript" src="/javascripts/jquery-ui-datepicker.js"></script>
+<script type="text/javascript">
+$(function(){
+	$("#date_1").datepicker();
+  $("#date_2").datepicker();
+});
+</script>
+ <br>
+    <a href="/product"><img src = "./images/back.png" style="float:right;"></a>
+  </body>
+  </html>

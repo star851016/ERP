@@ -1,0 +1,49 @@
+<link rel='stylesheet' href='/stylesheets/style.css' />
+
+<div class="hdl">
+  <a href="/home1"><img src = "./images/home.png"></a>
+</div>
+<div class="hdr">
+  <p class="title">進貨退回</p>
+</div>
+<form name="sentMessage" action="/purchase" method="POST" novalidate>
+  <br><br><br>
+  <div style="text-align:center;">
+    <div style="position:relative;left:50%;margin-left:-250px;">
+      <p style="background-color:#DDDDDD;border-radius:10px;height:200px;width:500px;text-align:center;margin:0px;font-size:40px;">
+        供應商：<%= bkpurchase.SName %><br>總額：<%= bkpurchase.TPrice %><br>狀態：<%= bkpurchase.Status %>
+      </div>
+      <br>
+    </div>
+
+    <div style="width:100%;">
+
+      <table >
+        <tr border="1">
+          <th>名稱</th>
+          <th>廠牌</th>
+          <th>規格</th>
+          <th>數量</th>
+          <th>單價</th>
+          <th>小計</th>
+        </tr>
+
+
+        <% for(i=0;i<10;i++) { %>
+         <tr class="tr_odd">
+           <td ><%= bkpurList.bk_PName[i] %></td>
+           <td ><%= bkpurList.bk_Types[i] %></td>
+           <td ><%= bkpurList.bk_Specification[i] %></td>
+           <td ><%= bkpurList.bk_Quantity[i] %></td>
+           <td ><%= bkpurList.bk_Price[i] %></td>
+           <td ><%= bkpurList.bkSubPrice[i] %></td>
+         </tr>
+         <%  }; %>
+
+
+      </table>
+
+
+  </div>
+    <button id="button" class="button" type="submit" >返回</button>
+    </form>

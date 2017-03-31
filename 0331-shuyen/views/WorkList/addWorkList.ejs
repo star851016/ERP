@@ -1,0 +1,195 @@
+<html>
+<% include ../Shared/header %>
+
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel="stylesheet" type="text/css" href="/stylesheets/jquery-ui.css" />
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+    <script type="text/javascript" src="/javascripts/jquery-ui-datepicker.js"></script>
+    <script type="text/javascript">
+        $(function() {
+            $("#OutTime").datepicker();
+        });
+    </script>
+    <script type="text/javascript">
+        $(function() {
+            $("#InTime").datepicker();
+        });
+    </script>
+
+    <body>
+        <div class="hdr">
+            <p class="title">開立新工單</p>
+        </div>
+        <p id="de"></p>
+        <br>
+        <br>
+        <br>
+        <div class="container1">
+            <table style="width:100%">
+                <tr>
+                    <td class="td">車牌:</td>
+                    <td class="td1">
+                        <form class="form1" action="/worklist/carhistory" method="POST" novalidate>
+                            <input type="text" name="" class="text0">
+                            <button class="button2">&darr;</button>
+                        </form>
+                    </td>
+                    <td class="td">車主:</td>
+                    <td class="td1"></td>
+                    <td class="td">車型:</td>
+                    <td class="td1"></td>
+                    <td class="td">里程數:
+                        <td class="td1">
+                            <input class="text0" type="text">&nbsp;km</td>
+                </tr>
+                <tr>
+                    <td class="td">進廠日期:</td>
+                    <td class="td1" colspan="3">
+                        <input class="text" type="text" name="InTime" id="InTime">
+                    </td>
+                    <td class="td">預計出廠:</td>
+                    <td class="td1" colspan="2">
+                        <input class="text" type="text" name="OutTime" id="OutTime">
+                    </td>
+                    <td class="td2" colspan="3" style="width:100%">
+                        <form class="form1" style="float:right;">
+                            <button class="button1">儲存</button>
+                            <button class="button1">刪除</button>
+                        </form>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div class="container">
+            <hr color=black size=3>
+        </div>
+        <div class="container">
+            <p>維修套組:
+                <button class="btn0" id="jQueryColorChange">無</button>
+                <button class="btn0" id="jQueryColorChange">鈑&nbsp;&nbsp;金</button>
+                <button class="btn0" id="jQueryColorChange">烤&nbsp;&nbsp;漆</button>
+                <button class="btn0" id="jQueryColorChange">驗&nbsp;&nbsp;車</button>
+                <button class="btn0" id="jQueryColorChange">小保養</button>
+                <button class="btn0" id="jQueryColorChange">中保養</button>
+                <button class="btn0" id="jQueryColorChange">大保養</button>
+                <button class="btn0" id="jQueryColorChange">行車記錄器</button>
+                <button class="button1" style="float:right">儲存</button>
+                <script>
+                    $("button#jQueryColorChange").click(function() {
+                        $('button').removeClass('selected');
+                        $(this).addClass('selected');
+                    });
+                </script>
+            </p>
+        </div>
+        <div class="container">
+            <hr color=black size=3>
+        </div>
+        <div class="container">
+            <p>客戶問題:
+                <button class="button1" style="float:right">送出</button>
+            </p>
+        </div>
+        <div class="container">
+            <hr color=black size=3>
+        </div>
+        <div class="container">
+            <p>新增問題:</p>
+            <div class="container" style="overflow:scroll;height:60%;width:100%;">
+                <script>
+                    department = new Array();
+                    department[0] = ["閃燈", "破了"]; // 資訊系
+                    department[1] = ["熄火", "故障"]; // 電機系
+
+                    function renew(index) {
+                        for (var i = 0; i < department[index].length; i++)
+                            document.theForm.member.options[i] = new Option(department[index][i], department[index][i]); // 設定新選項
+                        document.theForm.member.length = department[index].length; // 刪除多餘的選項
+                    }
+                </script>
+                <form name="theForm" action="/addQuestion" method="POST">
+                    <div>
+                        <p style="display:inline-block;">情境:
+                            <input type="radio" name="condition" value="cold">冷車時
+                            <input type="radio" name="condition" value="start">啟動時
+                            <input type="radio" name="condition" value="off">熄火時
+                        </p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <p style="display:inline-block;">頻率:
+                            <input type="radio" name="frequency" value="somtimes">有時
+                            <input type="radio" name="frequency" value="seldom">偶爾
+                            <input type="radio" name="frequency" value="often">常常
+                            <input type="radio" name="frequency" value="always">一直
+                        </p>
+                    </div>
+                    <div>
+                        <p style="display:inline-block;">位置:
+                            <input type="checkbox" name="position" value="front">前
+                            <input type="checkbox" name="position" value="back">後
+                            <input type="checkbox" name="position" value="left">左
+                            <input type="checkbox" name="position" value="right">右
+                            <input type="checkbox" name="position" value="inside">內
+                            <input type="checkbox" name="position" value="outside">外
+                            <input type="checkbox" name="position" value="up">上
+                            <input type="checkbox" name="position" value="down">下
+                            <input type="checkbox" name="position" value="driver">駕駛座
+                            <input type="checkbox" name="position" value="vice-driver">副駕駛座
+                        </p>
+                    </div>
+                    <div>
+                        <p style="display:inline-block;">備註:
+                            <input type="text" class="text4">
+                        </p>
+                    </div>
+                    <table class="problem">
+                        <tr>
+                            <th class="th">零件
+                                <th class="th">問題
+                                    <th style="background-color:transparent;">
+                        </tr>
+                        <tr>
+                            <td class="td2">
+                                <select class="selector2" name="part" size=5 onChange="renew(this.selectedIndex);">
+                                    <option value="車燈">車燈
+                                        <option value="引擎">引擎
+                                </select>
+                                <td class="td2" style="text-align:center;">
+                                    <select class="selector2" name="member" size=5>
+                                        <option value="">
+                                    </select>
+                                    <td class="td2" style="text-align:center;">
+                                        <td align=center>
+                                            <button class="btn1">清空</button>
+                                            <button class="btn1" type="submit">加入</button>
+                        </tr>
+                    </table>
+                </form>
+                <script>
+                    function changeList() {
+                        var x = document.getElementById("Material ").value;
+                        document.getElementById("de ").innerHTML = "You selected: " + x;
+
+                        $.ajax({
+                            url: "http://localhost:3000/addWorklist ",
+                            dataType: 'html',
+                            type: 'POST',
+
+                            success: function(data) {
+                                alert(data);
+                                var x = document.getElementById("Material ").value;
+                                Types = x;
+                            },
+
+                            error: function(xhr, ajaxOptions, thrownError) {
+                                alert(xhr.status);
+                                alert(thrownError);
+                            }
+
+                        });
+
+                    }
+                </script>
+            </div>
+        </div>
+    </body>
+
+</html>

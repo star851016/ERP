@@ -1,0 +1,94 @@
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Inventory System</title>
+    <link href="stylesheets/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body>
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="javascripts/bootstrap.min.js"></script>
+    <div>
+        <% if(member) {%>
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li><a href="#">城林</a></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">工單管理</a>
+                        <ul class="dropdown-menu" role="collapse">
+                            <li><a href="/workList">工單列表</a></li>
+                            <li><a href="/addWorkList">新增工單</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">基本資料</a>
+                        <ul class="dropdown-menu" role="collapse">
+                            <li><a href="#">客戶</a></li>
+                            <li><a href="#">廠商</a></li>
+                            <li><a href="#">零件</a></li>
+                            <li><a href="#">工資</a></li>
+                            <li><a href="#">車型</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">庫存管理</a>
+                        <ul class="dropdown-menu" role="collapse">
+                            <li><a href="#">進貨</a></li>
+                            <li><a href="#">退貨</a></li>
+                            <li><a href="#">庫存表</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#">會計管理</a></li>
+                    <li><a href="/WorkList/carHistory">車歷卡</li>
+
+                </ul>
+
+          <li class="mainmenu" style="float:right;">
+              <form action="/register/logout" method="post">
+                <style media="screen">
+                  #logout {
+                    background: transparent;
+                    color: black;
+                    font-size: 20px;
+                    font-weight: bold;
+                    margin-top: 0px;
+                    border : none;
+                    margin-left: 4px;
+                    text-transform: uppercase;
+                    letter-spacing: 1px;
+                  }
+                  #logout:hover {
+                    color: #387168;
+                  }
+                </style>
+                <input id="logout" type="submit" value="Logout" />
+              </form>
+          <li class="mainmenu" style="float:right;">
+            <a href="/login">報表頁</a>
+                    </li>
+
+                    <li class="mainmenu" style="float:right;">
+                        <a href="/">Welcome, <%= member.name %></a>
+                    </li>
+                    <%# css 大家在自己調整%>
+                        </li>
+                        <% } else {%>
+                            <li style="float:right;">
+                                <a href="/register" style="color:black;">註冊</a>
+                            </li>
+                            <li style="float:right;">
+                                <a href="/login" style="color:black;">登入</a>
+                            </li>
+                            <% } %>
+                                </ol>
+            </div>
+    </div>
+</body>
+
+</html>
