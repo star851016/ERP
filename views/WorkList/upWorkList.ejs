@@ -308,7 +308,7 @@
 
 
                             </td>
-                          <div id = "SearchPIdWindows" style = "display : block"  ></div>
+                          <div id = "SearchPIdWindows" style = "display : none"  ></div>
                             <td class="td2"><input type="text" class="text2" value="<%= materiallist[j].PName %>" ></td>
                             <td class="td2"><input type="text" class="text2" value="<%= materiallist[j].MNote %>"></td>
                             <td class="td2">
@@ -317,7 +317,7 @@
                                 <button class="button2">&darr;</button>
                             </td>
                             <form  action="/worklist/saveMat" method="POST" novalidate>
-                            <td class="td2"><input type="text"  class="text2" value="<%= materiallist[j].Price %>"></td>
+                            <td class="td2"><input type="text" name="Price" class="text2" value="<%= materiallist[j].Price %>"></td>
                             <td class="td2"><input type="text" name = "MQuantity" class="text2" value="<%= materiallist[j].MQuantity %>"></td>
 
                         </tr>
@@ -343,18 +343,18 @@
                         <tr class="tr">
                             <td>
                                 <select class="selector">
-                <option><%= materiallist[j].WhoFix %></option>
-                <option>A</option>
-                <option>B</option>
-                <option>C</option>
-              </select>
+                                  <option><%= materiallist[j].WhoFix %></option>
+                                  <option>A</option>
+                                  <option>B</option>
+                                  <option>C</option>
+                                </select>
                             </td>
                             <td><select class="selector">
-              <option><%= materiallist[j].WhoCheck %></option>
-              <option>A</option>
-              <option>B</option>
-              <option>C</option>
-            </select>
+                              <option><%= materiallist[j].WhoCheck %></option>
+                              <option>A</option>
+                              <option>B</option>
+                              <option>C</option>
+                            </select>
                             </td>
 
                             <td>
@@ -485,24 +485,23 @@
 
 
 function searchPId(i){
-
-
   var searchPId = $('#searchPId'+i).val();
-  alert(searchPId);
+
     $.ajax({
         url:"http://localhost:3000/worklist/searchPId",
         data: {searchPId : searchPId },
         type : "get",
         dataType:'json',
 
-
-
         success:function(data){
-          var res = data;
-          alert(res[0]);
-        alert(data);
+        
+        $("#SearchPIdWindows").show()
+        $('#SearchPIdWindows').html('<span>'+
+        data[0].PName
+        +'</span>')
 
-        alert("成功");
+
+
 
       },
 

@@ -42,7 +42,7 @@ WorkList.prototype.WorkList = function(cb) {
 WorkList.prototype.find = function(cb) {
         console.log('this.id' + this.id);
         db.select('worklist.WorkId', 'worklist.CarId', 'worklist.Miles',
-                  'worklist.Status', 'worklist.InDate', 'customer.Tell1', 
+                  'worklist.Status', 'worklist.InDate', 'customer.Tell1',
                   'customer.Tell2', 'customer.Address', 'customer.Contact_Person',
                   'customer.UniformNum', 'customer.CBirthDate', 'customer.CName',
                   'car.cc', 'car.EngineNum', 'car.CarBodyNum', 'car.YrOfManu',
@@ -99,20 +99,22 @@ WorkList.prototype.saveMat = function(cb) {
         });
 }
 
-//撈Q1
-WorkList.prototype.Q1List = function(cb) {
-        db.select('Q1_Mat')
-            .from('q1')
-            .then(function(Q1List) {
-                //  console.log('Q1_Mat'+Q1List);
-                cb(null, Q1List);
-            }.bind(this))
+//searchPId
+//料號查詢
+WorkList.prototype.searchPId = function(cb){
+  db.select('product.Id', 'product.PName')
+            .from('product')
+            .where('Id', 'like', '%'+this.id+'%')
+            .then(function(PIdList) {
+              console.log('Id'+PIdList[0].Id);
+              cb(null, PIdList);
+            }.bind(this)
+          )
             .catch(function(err) {
-                console.log("Q1List", err);
-                cb(new GeneralErrors.Database());
+              console.log("PIdList", err);
+              cb(new GeneralErrors.Database());
             });
-    }
-    //存Question資料
+}    //存Question資料
 WorkList.prototype.QuestionList = function(cb) {
     console.log("QuestionList");
     console.log("this part" + this.Part);

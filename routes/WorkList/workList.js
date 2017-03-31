@@ -139,7 +139,8 @@ router.post('/saveMat', function(req, res,next) {
   var newSaveMat = new SaveMat({
     WorkId : req.body.id,
     id : req.body.MatId,
-    MQuantity : req.body.MQuantity
+    MQuantity : req.body.MQuantity,
+    Price : req.body.Price
    });
    console.log(req.body.MQuantity);
    newSaveMat.saveMat();
@@ -156,18 +157,14 @@ router.get('/searchPId', function(req, res,next) {
   var newSearchPId = new SearchPId({
     id : req.query.searchPId
    });
-  //  newSearchPId.searchPId(function(err,PIdList) {
-  //    if(err) {
-  //      next(err);
-  //    } else {
-  //        req.session.PIdList = PIdList;
-         res.json(['success','good']);
-        //  res.render('WorkList/searchPId', {
-        //    PIdList : req.session.PIdList,
-        //    member : req.session.member || null
-        //  });
-    // }
-  // });
+
+   newSearchPId.searchPId(function(err,PIdList) {
+     if(err) {
+       next(err);
+     } else {
+         res.json(PIdList);
+    }
+  });
 });
 
 //新增材料登錄--每一筆
