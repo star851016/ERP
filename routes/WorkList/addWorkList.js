@@ -16,18 +16,12 @@ router.get('/', function(req, res) {
         Contact_Person: req.body.Contact_Person
     });
 
-    newaddWorklist.Q1List(function(err, Q1List) {
-        if (err) {
-            next(err);
-        } else {
 
-            console.log('Q1List' + Q1List[0].Q1_Mat);
             res.render('WorkList/addWorkList', {
-                Q1List: Q1List,
+              
                 member: req.session.member || null
             });
-        }
-    })
+
 });
 
 // router.post('/', function(req, res, next) {
