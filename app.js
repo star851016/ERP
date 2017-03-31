@@ -34,6 +34,7 @@ var rankFullYear = require('./routes/Report/rankFullYear');
 var purSalesReport = require('./routes/Report/purSalesReport');
 var workList = require('./routes/WorkList/workList');
 var addWorkList= require('./routes/WorkList/addWorkList');
+var server= require('./routes/WorkList/Server');
 //var upWorklist = require('./routes/workList/upWorkList');
 
 var app = express();
@@ -79,6 +80,7 @@ app.use('/rankFullYear',rankFullYear);
 app.use('/purSalesReport',purSalesReport);
 app.use('/workList',workList);
 app.use('/addWorkList',addWorkList);
+app.use('/server',server);
 //app.use('/upWorkList',upWorkList);
 
 // catch 404 and forward to error handler
