@@ -8,6 +8,10 @@ body {
     background-color: #E5ECD8;
 }
 
+.subheading {
+    color: white;
+}
+
 .hdr {
     width: 100%;
     height: auto;
@@ -281,10 +285,10 @@ table {
 .worklisttable {
     position: relative;
     margin: 3px auto;
-    border: 2px solid #4E7FFF;
+    border: 2px solid black;
     padding: 0 0 0 0;
     width: 90%;
-    text-align: left;
+    text-align: center;
     border-collapse: collapse;
 }
 
@@ -333,6 +337,8 @@ table {
     color: black;
     background-color: #A1CFE9;
     width: auto;
+    text-align: center;
+    border: 2px solid white;
 }
 
 .th0 {
@@ -341,6 +347,7 @@ table {
     height: 50px;
     border: 5;
     border-bottom: 2px solid #000000;
+    text-align: center;
 }
 
 .th1 {
@@ -416,7 +423,7 @@ table {
 
 .input {
     text-align: center;
-    font-size: 40px;
+    font-size: 24px;
 }
 
 .options {
@@ -657,7 +664,7 @@ ul.level2 li.ssubmenu:hover {
     left: 300px;
     width: 300px;
     height: 300px;
-    background: yellow;
+    background: #E7F3E8;
     z-index: 2;
 }
 
@@ -667,6 +674,6 @@ ul.level2 li.ssubmenu:hover {
     left: 500px;
     width: 300px;
     height: 300px;
-    background: yellow;
+    background: #E7F3E8;
     z-index: 2;
 }

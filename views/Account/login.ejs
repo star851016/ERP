@@ -1,51 +1,52 @@
 <% include ../Shared/header %>
-<!-- Set your background image for this header on the line below. -->
+    <!-- Set your background image for this header on the line below. -->
 
-<link rel='stylesheet' href='/stylesheets/style.css' />
-<!-- Main Content -->
-<br><br><br><br>
-<div class="container">
-    <div class="row">
-        <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-            <h2>登入</h2>
-            <!-- Contact Form - Enter your email address on line 19 of the mail/contact_me.php file to make this form work. -->
-            <!-- WARNING: Some web hosts do not allow emails to be sent through forms to common mail hosts like Gmail or Yahoo. It's recommended that you use a private domain email address! -->
-            <!-- NOTE: To use the contact form, your site must be on a live web host with PHP! The form will not work locally! -->
-
-
-            <form name="sentMessage" action="/login" method="POST" id="contactForm" novalidate>
-
-            <%if ( locals.used ){%>
-              <li>
-                     <%= locals.used.show %>
-              </li>
-            <%}%>
-
-
-                <div class="row control-group">
-                    <div class="form-group col-xs-12 floating-label-form-group controls">
-                        <label>帳號</label>
-                        <input type="text" class="text" placeholder="account" id="account" name="account"  required data-validation-required-message="Please enter your account.">
-                        <p class="help-block text-danger"></p>
-                    </div>
-                </div>
-                <div class="row control-group">
-                    <div class="form-group col-xs-12 floating-label-form-group controls">
-                        <label>密碼</label>
-                        <input type="password" class="text" placeholder="Password" id="password" name="password" required data-validation-required-message="Please enter your password.">
-                        <p class="help-block text-danger"></p>
-                    </div>
-                </div>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <!-- Main Content -->
+    <br><br><br><br>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <h2 class="col-md-offset-5">登入</h2>
                 <br>
-                <div id="success"></div>
-                <div class="row">
-                    <div class="form-group col-xs-12">
-                        <button type="submit" class="btn btn-default">送出</button>
-                    </div>
-                </div>
-            </form>
+                <!-- Contact Form - Enter your email address on line 19 of the mail/contact_me.php file to make this form work. -->
+                <!-- WARNING: Some web hosts do not allow emails to be sent through forms to common mail hosts like Gmail or Yahoo. It's recommended that you use a private domain email address! -->
+                <!-- NOTE: To use the contact form, your site must be on a live web host with PHP! The form will not work locally! -->
+
+
+                <form name="sentMessage" action="/login" method="POST" id="contactForm" novalidate>
+
+                    <%if ( locals.used ){%>
+                        <li>
+                            <%= locals.used.show %>
+                        </li>
+                        <%}%>
+
+
+                            <div class="row control-group">
+                                <div class="form-group col-xs-12 col-md-offset-4 floating-label-form-group controls">
+                                    <label>帳號</label>
+                                    <input type="text" class="text" placeholder="account" id="account" name="account" required data-validation-required-message="Please enter your account.">
+                                    <p class="help-block text-danger"></p>
+                                </div>
+                            </div>
+                            <div class="row control-group">
+                                <div class="form-group col-xs-12 col-md-offset-4 floating-label-form-group controls">
+                                    <label>密碼</label>
+                                    <input type="password" class="text" placeholder="Password" id="password" name="password" required data-validation-required-message="Please enter your password.">
+                                    <p class="help-block text-danger"></p>
+                                </div>
+                            </div>
+                            <br>
+                            <div id="success"></div>
+                            <div class="row">
+                                <div class="form-group col-xs-12 col-md-offset-5">
+                                    <button type="submit" class="btn btn-default">送出</button>
+                                </div>
+                            </div>
+                </form>
+            </div>
         </div>
     </div>
-</div>
 
-<hr>
+    <hr>
