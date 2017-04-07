@@ -20,6 +20,10 @@ var WorkList = function(options) {
     this.Miles = options.Miles;
     this.InDate = options.InDate;
     this.ExpectDate = options.ExpectDate;
+    this.situation = options.situation;
+    this.frequency = options.frequency;
+    this.position = options.position;
+    this.note = options.note;
 };
 
 //工單管理--清單
@@ -119,41 +123,42 @@ WorkList.prototype.searchPId = function(cb) {
         });
 }
 
-//Save the top table
-WorkList.prototype.InfoList = function(cb) {
-    console.log("InfoList");
-    console.log("this CarId " + this.CarId);
-    db("worklist")
-        .insert({
-            CarId: this.CarId,
-            Miles: this.Miles,
-            InDate: this.InDate,
-            ExpectDate: this.ExpectDate,
-        })
-        .map(function(row) {
-            //  this.id = row.id;
-            console.log('this ' + this.CarId);
-            this.CarId = row.CarId;
-            this.Miles = row.Miles;
-            this.InDate = row.InDate;
-            this.ExpectDate = row.ExpectDate;
-            return row;
-            console.log('row' + row);
-        })
-        .then(function(result) {
-            console.log('this' + this);
-            cb(null, this);
-        }.bind(this))
-        .catch(function(err) {
-            console.log("INSERT ERROR", err);
-            cb(new GeneralErrors.Database());
-        });
-};
+// //Save the top table
+// WorkList.prototype.InfoList = function(cb) {
+//     console.log("InfoList");
+//     console.log("this CarId " + this.CarId);
+//     db("worklist")
+//         .insert({
+//             CarId: this.CarId,
+//             Miles: this.Miles,
+//             InDate: this.InDate,
+//             ExpectDate: this.ExpectDate,
+//         })
+//         .map(function(row) {
+//             //  this.id = row.id;
+//             console.log('this ' + this.CarId);
+//             this.CarId = row.CarId;
+//             this.Miles = row.Miles;
+//             this.InDate = row.InDate;
+//             this.ExpectDate = row.ExpectDate;
+//             return row;
+//             console.log('row' + row);
+//         })
+//         .then(function(result) {
+//             console.log('this' + this);
+//             cb(null, this);
+//         }.bind(this))
+//         .catch(function(err) {
+//             console.log("INSERT ERROR", err);
+//             cb(new GeneralErrors.Database());
+//         });
+// };
 
 //存Question資料
 WorkList.prototype.QuestionList = function(cb) {
     console.log("QuestionList");
     console.log("this part" + this.Part);
+    console.log("this situation" + this.situation);
     console.log("this Wrong " + this.Wrong);
     console.log("this CarId " + this.CarId);
 
@@ -161,6 +166,10 @@ WorkList.prototype.QuestionList = function(cb) {
         .insert({
             Part: this.Part,
             Wrong: this.Wrong,
+            Situation: this.situation,
+            Frequency: this.frequency,
+            Position: this.position,
+            Note: this.note
         })
         .map(function(row) {
             //  this.id = row.id;
