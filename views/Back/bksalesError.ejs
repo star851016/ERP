@@ -1,51 +1,54 @@
-<link rel='stylesheet' href='/stylesheets/style.css' />
+<% include ../Shared/header %>
 
-<div class="hdl">
-  <a href="/home1"><img src = "./images/home.png"></a>
-</div>
-<div class="hdr">
-  <p class="title">銷貨退回</p>
-</div>
-<form name="sentMessage" action="/bksalesList" method="POST" novalidate>
-  <br><br><br>
-  <div style="text-align:center;">
-    <div style="position:relative;left:50%;margin-left:-250px;">
-      <p style="background-color:#DDDDDD;border-radius:10px;height:200px;width:500px;text-align:center;margin:0px;font-size:40px;">
-          客戶：<%= bksales.CName %><br>銷售額：<%= bksales.TSales %><br>狀態：<%= bksales.Status %>
-      <br>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+
+
+    <div class="hdr">
+        <p class="title">銷貨退回</p>
     </div>
+    <form name="sentMessage" action="/bksalesList" method="POST" novalidate>
+        <br><br><br>
+        <div style="text-align:center;">
+            <div style="position:relative;left:50%;margin-left:-250px;">
+                <p style="background-color:#DDDDDD;border-radius:10px;height:200px;width:500px;text-align:center;margin:0px;font-size:40px;">
+                    客戶：
+                    <%= bksales.CName %><br>銷售額：
+                        <%= bksales.TSales %><br>狀態：
+                            <%= bksales.Status %>
+                                <br>
+            </div>
 
-    <div style="width:100%;">
+            <div style="width:100%;">
 
-      <table >
-        <tr border="1">
-          <th>名稱</th>
-          <th>廠牌</th>
-          <th>規格</th>
-          <th>數量</th>
-          <th>單價</th>
-          <th>小計</th>
-        </tr>
-      <h4  style='color:red' >無此筆銷貨，請重新輸入</h4>
-        <% for(i=0;i<10;i++) { %>
-         <tr class="tr_odd" >
-           <td ><input type="text" class="text1"  name="Sales_PName" value=""></td>
-           <td ><input type="text" class="text1" name="Sales_Types" value=""></td>
-           <td ><input type="text" class="text1"  name="Sales_Specification" value=""></td>
-           <td ><input type="text" class="text1" name="Sales_Quantity" value=""></td>
-           <td><input type="text" class="text1" name="Sales_Price" value=""></td>
-           <td><input type="text" class="text1" name="SubPrice" value=""></td>
-           <input type="hidden"  name="tableList"  value="<%=i%>"></input>
-         </tr>
-         <%  }; %>
-
-
+                <table>
+                    <tr border="1">
+                        <th>名稱</th>
+                        <th>廠牌</th>
+                        <th>規格</th>
+                        <th>數量</th>
+                        <th>單價</th>
+                        <th>小計</th>
+                    </tr>
+                    <h4 style='color:red'>無此筆銷貨，請重新輸入</h4>
+                    <% for(i=0;i<10;i++) { %>
+                        <tr class="tr_odd">
+                            <td><input type="text" class="text1" name="Sales_PName" value=""></td>
+                            <td><input type="text" class="text1" name="Sales_Types" value=""></td>
+                            <td><input type="text" class="text1" name="Sales_Specification" value=""></td>
+                            <td><input type="text" class="text1" name="Sales_Quantity" value=""></td>
+                            <td><input type="text" class="text1" name="Sales_Price" value=""></td>
+                            <td><input type="text" class="text1" name="SubPrice" value=""></td>
+                            <input type="hidden" name="tableList" value="<%=i%>"></input>
+                        </tr>
+                        <%  }; %>
 
 
 
-      </table>
 
 
-  </div>
-    <button id="button" class="button" type="submit" >確認</button>
+                </table>
+
+
+            </div>
+            <button id="button" class="button" type="submit">確認</button>
     </form>

@@ -397,11 +397,14 @@
 
                                     </td>
                                     <div id="SearchPIdWindows" style="display : none">
+                                        <a href="/worklist/bijia"></a>
                                     </div>
                                     <td class="td2"><input type="text" name="PName" class="text2" value=""></td>
                                     <td class="td2"><input type="text" name="MNote" class="text2" value=""></td>
                                     <td class="td2">
-                                        <div id="searchSupplier" style="display : none"></div>
+                                        <div id="searchSupplier" style="display : none">
+
+                                        </div>
                                         <button class="button3" onclick="searchSupplier()">按此選材料行</button>
                                     </td>
                                     <form action="/worklist/saveMat" method="POST" novalidate>
@@ -556,7 +559,7 @@
                             data[i].PName
 
                             +
-                            '</span>')
+                            '</span>' + '</table>')
 
                     });
 

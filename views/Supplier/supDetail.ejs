@@ -1,24 +1,27 @@
-
 <html>
-<link rel='stylesheet' href='/stylesheets/style.css' />
-<body>
-  <div class="hdl">
-    <a href="/home1"><img src = "./images/home.png"></a>
-  </div>
-  <div class="hdr">
-    <p class="title" style="color:rgb(91,155,213);">新增成功</p>
-  </div>
-  <div style="width:100%;">
-    <form name="sentMessage" action="/supplier" method="POST" id="contactForm" novalidate>
-    </div>
-    <br><br><br><br><br><br><br><br>
-<div style="text-align:center;">
-  <div style="position:relative;left:50%;margin-left:-250px;">
-    <p style="background-color:#DDDDDD;border-radius:10px;height:200px;width:500px;text-align:center;margin:0px;font-size:40px;">
-      <%= sup.SName %>有限公司<br>聯絡人：<%= sup.Contact_Person %><br>連絡電話：<%= sup.Phone %>
-    </div>
-    <br>
-    <a href="/sup"><img src = "./images/back.png" style="float:right;"></a>
-  </div>
+<% include ../Shared/header %>
+
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+
+    <body>
+
+        <div class="hdr">
+            <p class="title" style="color:rgb(91,155,213);">新增成功</p>
+        </div>
+        <div style="width:100%;">
+            <form name="sentMessage" action="/supplier" method="POST" id="contactForm" novalidate>
+        </div>
+        <br><br><br><br><br><br><br><br>
+        <div style="text-align:center;">
+            <div style="position:relative;left:50%;margin-left:-250px;">
+                <p style="background-color:#DDDDDD;border-radius:10px;height:200px;width:500px;text-align:center;margin:0px;font-size:40px;">
+                    <%= sup.SName %>有限公司<br>聯絡人：
+                        <%= sup.Contact_Person %><br>連絡電話：
+                            <%= sup.Phone %>
+            </div>
+            <br>
+            <a href="/sup"><img src="./images/back.png" style="float:right;"></a>
+        </div>
     </body>
+
 </html>
