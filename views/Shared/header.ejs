@@ -9,73 +9,63 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <!-- Include all compiled plugins (below), or include individual files as needed -->
 <script src="/javascripts/bootstrap.min.js"></script>
-<div>
-    <% if(member) {%>
-        <nav class="navbar navbar-inverse">
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <ul class="nav navbar-nav">
-                    <li><a href="#">城林</a></li>
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">工單管理</a>
-                        <ul class="dropdown-menu" role="collapse">
-                            <li><a href="/workList">工單列表</a></li>
-                            <li><a href="/addWorkList">新增工單</a></li>
-                        </ul>
-                    </li>
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">基本資料</a>
-                        <ul class="dropdown-menu" role="collapse">
-                            <li><a href="#">客戶</a></li>
-                            <li><a href="#">廠商</a></li>
-                            <li><a href="#">零件</a></li>
-                            <li><a href="#">工資</a></li>
-                            <li><a href="#">車型</a></li>
-                        </ul>
-                    </li>
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">庫存管理</a>
-                        <ul class="dropdown-menu" role="collapse">
-                            <li><a href="#">進貨</a></li>
-                            <li><a href="#">退貨</a></li>
-                            <li><a href="#">庫存表</a></li>
-                        </ul>
-                    </li>
-                    <li><a href="#">會計管理</a></li>
-                    <li><a href="/WorkList/carHistory">車歷卡</li>
 
-                </ul>
-          <li style="float:right;margin: 7.5px">
-              <form action="/register/logout" method="post" class="form1">
-                <style>
-                  #logout {
-                    background: transparent;
-                    color: #9d9d9d;
-                    font-size: 20px;
-                    font-weight: bold;
-                    border : none;
-                    text-transform: uppercase;
-                  }
-                  #logout:hover {
-                    color: white;
-                  }
-                </style>
-                <input id="logout" type="submit" value="Logout" />
-              </form>
-          <li style="float:right;margin: 7.5px -15px">
-            <a href="/login">報表頁</a>
-                    </li>
-                    <li style="float:right;margin: 7.5px">
-                        <a href="/">Welcome, <%= member.name %></a>
-                    </li>
-                    </li>
-                    <% } else {%>
-                        <li style="float:right;">
-                            <a href="/register" style="color:black;">註冊</a>
-                        </li>
-                        <li style="float:right;">
-                            <a href="/login" style="color:black;">登入</a>
-                        </li>
-                        <% } %>
-            </div>
-        </nav>
-</div>
+<body>
+    <div style="font-size:16px;">
+        <% if(member) {%>
+
+            <nav class="navbar navbar-inverse">
+                <div class="container-fluid">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+                        <a class="navbar-brand" href="#">快易修</a>
+                    </div>
+                    <div class="collapse navbar-collapse" id="myNavbar">
+                        <ul class="nav navbar-nav">
+                            <li><a href="/login">首頁</a></li>
+                            <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">工單管理<span class="caret"></span></a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="/workList">工單總表</a></li>
+                                    <li><a href="/addWorkList">新增工單</a></li>
+                                </ul>
+                            </li>
+                            <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">基本資料<span class="caret"></span></a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="#">客戶</a></li>
+                                    <li><a href="#">廠商</a></li>
+                                    <li><a href="#">零件</a></li>
+                                    <li><a href="#">工資</a></li>
+                                    <li><a href="#">車型</a></li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" href="#">庫存管理<span class="caret"></span></a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="#">進貨</a></li>
+                                    <li><a href="#">退貨</a></li>
+                                    <li><a href="#">庫存表</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="#">會計管理</a></li>
+                            <li><a href="/WorkList/carHistory">車歷卡</a></li>
+                        </ul>
+                        <ul class="nav navbar-nav navbar-right">
+                            <li><a href="#">Welcome，<%= member.name %></a></li>
+                            <li><a href="/register/logout"><span class="glyphicon glyphicon-log-out"></span>Logout</a></li>
+                        </ul>
+                        <% } else {%>
+                            <ul class="nav navbar-nav navbar-right">
+                                <li><a href="/register" style="color:black;"><span class="glyphicon glyphicon-user" style="color:black;"></span> Sign Up</a></li>
+                                <li><a href="/login" style="color:black;"><span class="glyphicon glyphicon-log-in"  style="color:black;"></span> Login</a></li>
+                            </ul>
+                            <% } %>
+
+                    </div>
+                </div>
+            </nav>
+    </div>
+</body>

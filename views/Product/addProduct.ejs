@@ -1,27 +1,28 @@
 <html>
-<link rel='stylesheet' href='/stylesheets/style.css' />
-<body>
-  <div class="hdl">
-    <a href="/home1"><img src = "./images/home.png"></a>
-  </div>
-  <div class="hdr">
-    <p class="title">新增商品</p>
-  </div>
-  <br>
-  <div style="width:100%;position:relative;top:10%;">
-    <form name="sentMessage" action="/addProduct" method="POST" id="contactForm" novalidate>
-      <p class="input">商品&nbsp&nbsp&nbsp<input class="text" type="text" name="PName" >&nbsp&nbsp&nbsp</p>
+<% include ../Shared/header %>
 
-      <p class="input">廠牌&nbsp&nbsp&nbsp<input class="text" type="text" name="Types" >&nbsp&nbsp&nbsp</p>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
 
-      <p class="input">規格&nbsp&nbsp&nbsp<input class="text" type="text" name="Specification">&nbsp&nbsp&nbsp</p>
+    <body>
+        <div class="hdr">
+            <p class="title">新增商品</p>
+        </div>
+        <br>
+        <div style="width:100%;position:relative;top:10%;">
+            <form name="sentMessage" action="/addProduct" method="POST" id="contactForm" novalidate>
+                <p class="input">商品&nbsp&nbsp&nbsp<input class="text" type="text" name="PName">&nbsp&nbsp&nbsp</p>
 
-      <p class="input">售價&nbsp&nbsp&nbsp<input class="text" type="text" name="Sales_Price" >&nbsp&nbsp&nbsp</p>
+                <p class="input">廠牌&nbsp&nbsp&nbsp<input class="text" type="text" name="Types">&nbsp&nbsp&nbsp</p>
 
-      <p class="input">安全存量&nbsp&nbsp&nbsp<input class="text" type="text" name="SafeQuantity" >&nbsp&nbsp&nbsp</p>
+                <p class="input">規格&nbsp&nbsp&nbsp<input class="text" type="text" name="Specification">&nbsp&nbsp&nbsp</p>
 
-     <button class="button" type="submit" style="float:center;">新增</button>
-     </form>
-  </div>
-</body>
+                <p class="input">售價&nbsp&nbsp&nbsp<input class="text" type="text" name="Sales_Price">&nbsp&nbsp&nbsp</p>
+
+                <p class="input">安全存量&nbsp&nbsp&nbsp<input class="text" type="text" name="SafeQuantity">&nbsp&nbsp&nbsp</p>
+
+                <button class="button1" type="submit" style="float:center;">新增</button>
+            </form>
+        </div>
+    </body>
+
 </html>

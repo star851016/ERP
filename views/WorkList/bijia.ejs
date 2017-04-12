@@ -1,0 +1,79 @@
+<html>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<link rel='stylesheet' href='/stylesheets/style.css' />
+<link rel='stylesheet' href='/stylesheets/bootstrap.min.css' />
+<link rel="stylesheet" type="text/css" href="/stylesheets/jquery-ui.css" />
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+
+<body>
+    <br><br><br>
+    <div class="container2">
+        <table style="width:100%;height:100px;margin:3px;">
+            <tr>
+                <td class="td">零件:</td>
+                <td class="td2">
+                </td>
+            </tr>
+            <tr>
+                <td class="td">類別:</td>
+                <td class="td2">
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="row">
+        <div class="col-md-6" style="overflow:scroll;height:40%;width:100%;">
+            <table class="table2">
+                <tr>
+                    <th class="th2">名稱</th>
+                    <th class="th2">種類</th>
+                    <th class="th2">成本價</th>
+                    <th class="th2">通訊方式</th>
+                </tr>
+                <tr>
+                    <td class="td0">祥發</td>
+                    <td class="td0">中古</td>
+                    <td class="td0">$20</td>
+                    <td class="td0">
+                        <form action="/worklist/upWorklist" method="GET" novalidate style="float:left;margin:5px;">
+                            <button style="background-color:transparent;border:0px;"><img style="height:40px;" src="../images/images/phone.png"></button>
+                        </form>
+                        <form action="/worklist/delWorkList" method="POST" novalidate style="float:right;margin:5px;">
+                            <button style="background-color:transparent;border:0px;"><img style="height:40px;" src="../images/images/email.png"></a>
+                  </form>
+                </td>
+            </tr>
+        </table>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-6">
+      <table class="table2">
+          <tr>
+              <th class="th2">種類</th>
+              <th class="th2">售價</th>
+              <th class="th2">數量</th>
+              <th class="th2">小計</th>
+              <th class="th2">確認</th>
+          </tr>
+          <tr>
+              <td class="td0">中古</td>
+              <td class="td0">$20</td>
+              <td class="td0">1</td>
+              <td class="td0">$20</td>
+              <td class="td0">
+                  <input type="checkbox" name="order" value="yes">
+              </td>
+          </tr>
+      </table>
+      <form class="form1" style="float:right;">
+          <button class="btn btn-default">儲存</button>
+                        </form>
+        </div>
+    </div>
+</body>
+
+</html>

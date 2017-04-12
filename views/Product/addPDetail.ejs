@@ -1,24 +1,30 @@
-
 <html>
-<link rel='stylesheet' href='/stylesheets/style.css' />
-<body>
-  <div class="hdl">
-    <a href="/home1"><img src = "./images/home.png"></a>
-  </div>
-  <div class="hdr">
-    <p class="title" style="color:rgb(91,155,213);">新增成功</p>
-  </div>
-  <div style="width:100%;">
-    <form name="sentMessage" action="/supplier" method="POST" id="contactForm" novalidate>
-    </div>
-    <br><br><br><br><br>
-<div style="text-align:center;">
-  <div style="position:relative;left:50%;margin-left:-250px;">
-    <p style="background-color:#DDDDDD;border-radius:10px;height:300px;width:500px;text-align:center;margin:0px;font-size:40px;">
-      商品：<%= addProduct.PName %><br>廠牌：<%= addProduct.Types %><br>規格：<%= addProduct.Specification %><br>售價：<%= addProduct.Sales_Price %><br>安全數量：<%= addProduct.SafeQuantity %>
-    </div>
-    <br>
+<% include ../Shared/header %>
 
-  </div>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+
+    <body>
+
+        <div class="hdr">
+            <p class="title" style="color:rgb(91,155,213);">新增成功</p>
+        </div>
+        <div style="width:100%;">
+            <form name="sentMessage" action="/supplier" method="POST" id="contactForm" novalidate>
+        </div>
+        <br><br><br><br><br>
+        <div style="text-align:center;">
+            <div style="position:relative;left:50%;margin-left:-250px;">
+                <p style="background-color:#DDDDDD;border-radius:10px;height:300px;width:500px;text-align:center;margin:0px;font-size:40px;">
+                    商品：
+                    <%= addProduct.PName %><br>廠牌：
+                        <%= addProduct.Types %><br>規格：
+                            <%= addProduct.Specification %><br>售價：
+                                <%= addProduct.Sales_Price %><br>安全數量：
+                                    <%= addProduct.SafeQuantity %>
+            </div>
+            <br>
+
+        </div>
     </body>
+
 </html>

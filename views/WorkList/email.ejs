@@ -1,66 +1,79 @@
 <html>
+
 <head>
-<title>Node.JS Email application</title>
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-<script>
-$(document).ready(function(){
-	var from,to,subject,text;
-	$("#send_email").click(function(){
-		to=$("#to").val();
-		subject=$("#subject").val();
-		text=$("#content").val();
-		$("#message").text("Sending E-mail...Please wait");
-		$.get("http://localhost:3000/server/send",{to:to,subject:subject,text:text},function(data){
-		if(data=="sent")
-		{
-			$("#message").empty().html("<p>Email is been sent at "+to+" . Please check inbox !</p>");
+	<title>E-mail通知</title>
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+	<script>
+		$(document).ready(function() {
+			var from, to, subject, text;
+			$("#send_email").click(function() {
+				to = $("#to").val();
+				subject = $("#subject").val();
+				text = $("#content").val();
+				$("#message").text("Sending E-mail...Please wait");
+				$.get("http://localhost:3000/server/send", {
+					to: to,
+					subject: subject,
+					text: text
+				}, function(data) {
+					if (data == "sent") {
+						$("#message").empty().html("<p>Email is been sent at " + to + " . Please check inbox !</p>");
+					}
+
+				});
+			});
+		});
+	</script>
+	<style>
+		#container {
+			margin-left: 400px;
+			margin-top: 50px;
 		}
 
-});
-	});
-});
-</script>
-<style>
-#container
-{
-	margin-left:400px;
-	margin-top:50px;
-}
-#to,#subject,#content
-{
-	font-family: "Segoe UI";
-	font-size:18px;
-	width:530px;
-}
-h1
-{
-	font-family: "Segoe UI";
-	font-size:40px;
-	color: #3b5998;
-}
-p
-{
-	color:green;
-}
-#send_email
-{
-	font-size:15px;
-	font-family: "Segoe UI";
-}
-#message
-{
-	font-size:18px;
-}
-</style>
+		#to,
+		#subject,
+		#content {
+			font-family: "Segoe UI";
+			font-size: 15px;
+			width: 530px;
+		}
+
+		h1 {
+			font-family: "Segoe UI";
+			font-size: 40px;
+			color: #3b5998;
+		}
+
+		p {
+			color: green;
+			font-size: 15px;
+		}
+
+		#send_email {
+			font-size: 15px;
+			font-family: "Segoe UI";
+			background-color: #3b5998;
+			color: white;
+		}
+
+		#message {
+			font-size: 18px;
+		}
+	</style>
 </head>
+
 <body>
-<div id="container">
-<h1>Mailer In Node.JS</h1>
-<input type="text" id="to" placeholder="Enter E-mail ID where you want to send" value="103306022@nccu.edu.tw"><br>
-<input type="text" id="subject" placeholder="Write Subject" value="ERP"><br>
-<textarea id="content" rows="5" cols="40" placeholder="Write what you want to send" value="success"></textarea><br>
-<button id="send_email">Send Email</button><br>
-<span id="message"></span>
-</div>
+	<div id="container">
+		<h1>通知客戶</h1>
+		<p>收件人:</p>
+		<input type="text" id="to" placeholder="請輸入客戶信箱" value="103306022@nccu.edu.tw">
+		<p>主旨：</p>
+		<input type="text" id="subject" placeholder="信件主旨" value="ERP"><br><br>
+		<textarea id="content" rows="5" cols="40" placeholder="內容..." value="success"></textarea><br>
+		<br>
+		<button id="send_email">Send Email</button><br>
+		<span id="message"></span>
+	</div>
 </body>
+
 </html>
