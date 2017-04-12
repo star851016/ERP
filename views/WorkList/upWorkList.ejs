@@ -5,7 +5,7 @@
     <body>
 
         <div class="hdr">
-            <p class="title">編輯工單1</p>
+            <p class="title">編輯工單</p>
         </div>
         <br><br><br><br>
 
@@ -319,64 +319,12 @@
                                 <div id="SearchPIdWindows" style="display : none">
                                 </div>
                                 <td class="td2"><input type="text" name="PName" class="text2" value="<%= materiallist[j].PName %>"></td>
-
-                              <form action="/worklist/saveMat" method="POST" novalidate>
-                                <td class="td2"><input type="text" name="MNote" class="text2" value="<%= materiallist[j].MNote %>"></td>
-                                <td class="td2">
-                                    <div id="searchSupplier" style="display : none">
-                                      <table class="table1">
-                                          <tr>
-                                              <th class="th">No.</th>
-                                              <th class="th">工作內容</th>
-                                              <th class="th">工 資</th>
-                                              <th class="th">維修人員</th>
-                                              <th class="th">覆驗人員</th>
-                                              <th class="th">備註</th>
-                                              <th class="th" id = "mat" value = ""></th>
-                                          </tr>
-                                          <tr class="tr">
-                                              <td>1</td>
-                                              <td class="td2">
-                                                  <input type="text" class="text3">
-                                              </td>
-                                              <td class="td2"><input type="text" class="text2"></td>
-                                              <td>
-                                                  <select class="selector">
-                                  <option>A</option>
-                                  <option>B</option>
-                                  <option>C</option>
-                                </select>
-                                              </td>
-                                              <td>
-                                                  <select class="selector">
-                                  <option>A</option>
-                                  <option>B</option>
-                                  <option>C</option>
-                                </select>
-                                              </td>
-
-                                              <td class="td2">
-                                                  <input type="text" class="text3">
-                                              </td>
-                                              <td rowspan="2">
-                                                  <form style="margin:5px;">
-                                                      <button class="btn2" style="float:center;">登錄</button>
-                                                      <button class="btn2" style="float:center;">刪除</button>
-                                                  </form>
-                                              </td>
-                                          </tr>
-
-                                      </table>
-                                    </div>
-                                    <button class="button3" onclick="searchSupplier()">按此選材料行</button>
-                                </td>
                                 <form action="/worklist/saveMat" method="POST" novalidate>
                                     <td class="td2"><input type="text" name="MNote" class="text2" value="<%= materiallist[j].MNote %>"></td>
                                     <td class="td2">
                                         <div id="searchSupplier" style="display : none"></div>
                                         <button class="button3" onclick="searchSupplier()">按此選材料行</button>
                                     </td>
-
 
                                     <td class="td2"><input type="text" name="Price" class="text2" value="<%= materiallist[j].Price %>"></td>
                                     <td class="td2"><input type="text" name="MQuantity" class="text2" value="<%= materiallist[j].MQuantity %>"></td>
@@ -409,10 +357,8 @@
                                 </td>
 
                                 <td>
-
                                     <input type="radio" name="impair" value="yes">是<br>
                                     <input type="radio" name="impair" value="no">否<br>
-
                                 </td>
                                 <td>
                                     <input type="checkbox" name="impaired" value="yes">
@@ -559,8 +505,10 @@
 
                         $("#SearchPIdWindows").show()
                         $.each(data, function(i, item) {
-                            $('#SearchPIdWindows').append('</span>'+
+                            $('#SearchPIdWindows').append('<span>' +
                                 data[i].PName
+
+                                +
                                 '</span>')
 
                         });
@@ -611,7 +559,7 @@
                     $("#SearchPIdWindows").show()
 
                     $.each(data, function(i, item) {
-                        $('#mat').append('<span>' +
+                        $('#SearchPIdWindows').append('<span>' +
                             data[i].PName
 
                             +
