@@ -6,20 +6,9 @@ var Update = require('../../models/Supplier');
 var DelSupplier = require('../../models/Supplier');
 var Delete = require('../../models/Supplier');
 
-router.get('/', function(req, res) {
-  if(!req.session.member) {
-    res.redirect('/');
-  }
-  res.render('Supplier/supplier', {
-    supplier : req.session.supplier || null,
-    member : req.session.member || null
-  });
-  //res.render將頁面產生出來顯示
-  //會帶兩個參數 ，第一個是樣板名稱(不含附檔名.ejs)，第二個是傳遞給樣板的資料，帶到畫面上
-  //所有的memeber的值都會被req.session.member || null所取代
-});
 
-router.post('/', function(req, res,next) {
+
+router.get('/', function(req, res,next) {
  var newSupplier = new Supplier({
    SName : req.body.SName,
    Phones : req.body.Phone,

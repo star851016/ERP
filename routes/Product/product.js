@@ -2,18 +2,9 @@ var express = require('express');
 var router = express.Router();
 var Product = require('../../models/Product');
 
-router.get('/', function(req, res) {
-  if(!req.session.member) {
-    res.redirect('/');
-  }
-  res.render('productDetail', {
-    productList : req.session.product || null,
-    member : req.session.member || null
 
-  });
-});
 //未設條件的查詢
-router.post('/', function(req, res,next) {
+router.get('/', function(req, res,next) {
 
  var newProduct = new Product({
    PName : req.body.PName,
