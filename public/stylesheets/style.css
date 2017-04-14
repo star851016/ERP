@@ -443,9 +443,8 @@ table {
     background-color: #ffffff;
     color: #000000;
     position: relative;
-    width: 200px;
+    width: auto;
     height: auto;
-    display: inline;
     border-radius: 5px;
     cursor: pointer;
     padding: 5 20 5 20;

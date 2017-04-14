@@ -63,25 +63,15 @@
         </div>
         <div class="container">
             <p>維修套組:
-                <div class=" btn-group ">
-                    <div class="r">
-                        <input type="radio" name="maintenance" id="0" value="無">
-                        <label for="0">無</label>
-                        <input type="radio" name="maintenance" id="1" value="鈑金">
-                        <label for="1">鈑金</label>
-                        <input type="radio" name="maintenance" id="2" value="烤漆">
-                        <label for="2">烤漆</label>
-                        <input type="radio" name="maintenance" id="3" value="驗車">
-                        <label for="3">驗車</label>
-                        <input type="radio" name="maintenance" id="4" value="小保養">
-                        <label for="4">小保養</label>
-                        <input type="radio" name="maintenance" id="5" value="中保養">
-                        <label for="5">中保養</label>
-                        <input type="radio" name="maintenance" id="6" value="大保養">
-                        <label for="6">大保養</label>
-                        <input type="radio" name="maintenance" id="7" value="行車記錄器">
-                        <label for="7">行車記錄器</label>
-                    </div>
+                <div class="r">
+                    <input type="radio" name="maintenance" id="0" value="無"><label for="0">無</label>
+                    <input type="radio" name="maintenance" id="1" value="鈑金"><label for="1">鈑金</label>
+                    <input type="radio" name="maintenance" id="2" value="烤漆"><label for="2">烤漆</label>
+                    <input type="radio" name="maintenance" id="3" value="驗車"><label for="3">驗車</label>
+                    <input type="radio" name="maintenance" id="4" value="小保養"><label for="4">小保養</label>
+                    <input type="radio" name="maintenance" id="5" value="中保養"><label for="5">中保養</label>
+                    <input type="radio" name="maintenance" id="6" value="大保養"><label for="6">大保養</label>
+                    <input type="radio" name="maintenance" id="7" value="行車記錄器"><label for="7">行車記錄器</label>
                 </div>
             </p>
         </div>
@@ -110,51 +100,7 @@
                         document.theForm.Wrong.length = department[index].length; // 刪除多餘的選項
                     }
                 </script>
-                <!-- <form name="theForm" action="/addWorkList" method="POST"> -->
-                <<<<<<< Updated upstream <div>
-                    <p style="display:inline-block;">情境:
-                        <input type="radio" name="situation" value="冷車時">冷車時
-                        <input type="radio" name="situation" value="啟動時">啟動時
-                        <input type="radio" name="situation" value="熄火時">熄火時
-                    </p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            </div>
-            <div>
-                <p style="display:inline-block;">頻率:
-                    <input type="radio" name="frequency" value="有時">有時
-                    <input type="radio" name="frequency" value="偶爾">偶爾
-                    <input type="radio" name="frequency" value="常常">常常
-                    <input type="radio" name="frequency" value="一直">一直
-                </p>
-            </div>
-            <div>
-                <p style="display:inline-block;">位置:
-                    <input type="checkbox" name="position" value="front">前
-                    <input type="checkbox" name="position" value="back">後
-                    <input type="checkbox" name="position" value="left">左
-                    <input type="checkbox" name="position" value="right">右
-                    <input type="checkbox" name="position" value="inside">內
-                    <input type="checkbox" name="position" value="outside">外
-                    <input type="checkbox" name="position" value="up">上
-                    <input type="checkbox" name="position" value="down">下
-                    <input type="checkbox" name="position" value="駕駛座">駕駛座
-                    <input type="checkbox" name="position" value="副駕駛座">副駕駛座
-                </p>
-            </div>
-            <div>
-                <p style="display:inline-block;">備註:
-                    <input type="text" name="note" class="text4">
-                </p>
-            </div>
-            <table class="problem">
-                <tr>
-                    <th>零件
-                        <th>問題
-                            <th style="background-color:transparent;">
-                </tr>
-                <tr>
-                    <td class="td2">
-                        <select class="selector2" name="Part" size=5 onChange="renew(this.selectedIndex);">
-=======
+
                 <div>
                     <p style="display:inline-block;">情境:
                         <input type="radio" name="condition" value="cold">冷車時
@@ -198,47 +144,46 @@
                     <tr>
                         <td class="td2">
                             <select class="selector2" name="Part" size=5 onChange="renew(this.selectedIndex);">
->>>>>>> Stashed changes
                                     <option value="車燈">車燈
                                         <option value="引擎">引擎
                                 </select>
-                        <td class="td2" style="text-align:center;">
-                            <select class="selector2" name="Wrong" size=5>
+                            <td class="td2" style="text-align:center;">
+                                <select class="selector2" name="Wrong" size=5>
                                         <option value="">
                                     </select>
-                            <td class="td2" style="text-align:center;">
-                                <td align=center>
-                                    <button class="btn1">清空</button>
-                                    <button class="btn1" type="submit">加入</button>
-                </tr>
-            </table>
-            </form>
-            <script>
-                function changeList() {
-                    var x = document.getElementById("Material ").value;
-                    document.getElementById("de ").innerHTML = "You selected: " + x;
+                                <td class="td2" style="text-align:center;">
+                                    <td align=center>
+                                        <button class="btn1">清空</button>
+                                        <button class="btn1" type="submit">加入</button>
+                    </tr>
+                </table>
+                </form>
+                <script>
+                    function changeList() {
+                        var x = document.getElementById("Material ").value;
+                        document.getElementById("de ").innerHTML = "You selected: " + x;
 
-                    $.ajax({
-                        url: "http://localhost:3000/addWorklist ",
-                        dataType: 'html',
-                        type: 'POST',
+                        $.ajax({
+                            url: "http://localhost:3000/addWorklist ",
+                            dataType: 'html',
+                            type: 'POST',
 
-                        success: function(data) {
-                            alert(data);
-                            var x = document.getElementById("Material ").value;
-                            Types = x;
-                        },
+                            success: function(data) {
+                                alert(data);
+                                var x = document.getElementById("Material ").value;
+                                Types = x;
+                            },
 
-                        error: function(xhr, ajaxOptions, thrownError) {
-                            alert(xhr.status);
-                            alert(thrownError);
-                        }
+                            error: function(xhr, ajaxOptions, thrownError) {
+                                alert(xhr.status);
+                                alert(thrownError);
+                            }
 
-                    });
+                        });
 
-                }
-            </script>
-        </div>
+                    }
+                </script>
+            </div>
         </div>
     </body>
 
