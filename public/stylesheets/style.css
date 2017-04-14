@@ -376,6 +376,7 @@ table {
     font-size: 20px;
     height: 50px;
     border: 2px solid gray;
+    text-align: center;
 }
 
 .th3 {
@@ -432,6 +433,30 @@ table {
 .selected {
     color: white;
     background: #1C6DB5;
+}
+
+.r input[type=radio] {
+    visibility: hidden;
+}
+
+.r label {
+    background-color: #ffffff;
+    color: #000000;
+    position: relative;
+    width: 200px;
+    height: auto;
+    display: inline;
+    border-radius: 5px;
+    cursor: pointer;
+    padding: 5 20 5 20;
+    border: 2px #000000 solid;
+    font-weight: normal;
+}
+
+.r input[type=radio]:checked+ label {
+    border: 3px black solid;
+    color: white;
+    background-color: #146BB6;
 }
 
 .input {
