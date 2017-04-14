@@ -50,10 +50,7 @@
                         <td class="td1" colspan="2">
                             <input class="text" type="text" name="ExpectDate" id="OutTime">
                         </td>
-                        <td class="td2" colspan="3" style="width:100%">
-                            <button class="button1">儲存</button>
-                            <button class="button1">刪除</button>
-                        </td>
+
                     </tr>
                     <!-- </form> -->
             </table>
@@ -80,7 +77,6 @@
         </div>
         <div class="container">
             <p>客戶問題:
-                <button class="button1" style="float:right">送出</button>
             </p>
         </div>
         <div class="container">
@@ -137,24 +133,25 @@
                 </div>
                 <table class="problem">
                     <tr>
-                        <th>零件
-                            <th>問題
-                                <th style="background-color:transparent;">
+                        <th>零件</th>
+                        <th>問題</th>
+                        <th style="background-color:transparent;"></th>
                     </tr>
                     <tr>
                         <td class="td2">
-                            <select class="selector2" name="Part" size=5 onChange="renew(this.selectedIndex);">
+                            <select class="selector2" name="Part" size=3 onChange="renew(this.selectedIndex);">
                                     <option value="車燈">車燈
                                         <option value="引擎">引擎
                                 </select>
-                            <td class="td2" style="text-align:center;">
-                                <select class="selector2" name="Wrong" size=5>
-                                        <option value="">
+                        </td>
+                        <td class="td2" style="text-align:center;">
+                            <select class="selector2" name="Wrong" size=3>
+                                        <option value="">請由左方選取零件
                                     </select>
-                                <td class="td2" style="text-align:center;">
-                                    <td align=center>
-                                        <button class="btn1">清空</button>
-                                        <button class="btn1" type="submit">加入</button>
+                        </td>
+                        <td>
+                            <button class="btn1" type="submit">加入</button>
+                        </td>
                     </tr>
                 </table>
                 </form>
