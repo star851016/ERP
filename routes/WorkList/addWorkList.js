@@ -28,11 +28,14 @@ router.get('/', function(req, res) {
 router.post('/', function(req, res, next) {
     console.log('req.body.part' + req.body.Part);
     console.log('req.body.CarId' + req.body.CarId);
+    console.log('req.body.situation' + req.body.situation);
+    console.log('req.body.maintenance' + req.body.maintenance);
     var newQuestion = new Question({
         CarId: req.body.CarId,
         Miles: req.body.Miles,
         InDate: req.body.InDate,
         ExpectDate: req.body.ExpectDate,
+        maintenance: req.body.maintenance,
         situation: req.body.situation,
         frequency: req.body.frequency,
         position: req.body.position,

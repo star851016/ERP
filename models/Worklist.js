@@ -24,6 +24,7 @@ var WorkList = function(options) {
     this.frequency = options.frequency;
     this.position = options.position;
     this.note = options.note;
+    this.maintenance = options.maintenance;
 };
 
 //工單管理--清單
@@ -123,36 +124,6 @@ WorkList.prototype.searchPId = function(cb) {
         });
 }
 
-// //Save the top table
-// WorkList.prototype.InfoList = function(cb) {
-//     console.log("InfoList");
-//     console.log("this CarId " + this.CarId);
-//     db("worklist")
-//         .insert({
-//             CarId: this.CarId,
-//             Miles: this.Miles,
-//             InDate: this.InDate,
-//             ExpectDate: this.ExpectDate,
-//         })
-//         .map(function(row) {
-//             //  this.id = row.id;
-//             console.log('this ' + this.CarId);
-//             this.CarId = row.CarId;
-//             this.Miles = row.Miles;
-//             this.InDate = row.InDate;
-//             this.ExpectDate = row.ExpectDate;
-//             return row;
-//             console.log('row' + row);
-//         })
-//         .then(function(result) {
-//             console.log('this' + this);
-//             cb(null, this);
-//         }.bind(this))
-//         .catch(function(err) {
-//             console.log("INSERT ERROR", err);
-//             cb(new GeneralErrors.Database());
-//         });
-// };
 
 //存Question資料
 WorkList.prototype.QuestionList = function(cb) {
@@ -161,6 +132,8 @@ WorkList.prototype.QuestionList = function(cb) {
     console.log("this situation" + this.situation);
     console.log("this Wrong " + this.Wrong);
     console.log("this CarId " + this.CarId);
+    console.log("this maintenance " + this.maintenance);
+
 
     db("question")
         .insert({
@@ -169,7 +142,8 @@ WorkList.prototype.QuestionList = function(cb) {
             Situation: this.situation,
             Frequency: this.frequency,
             Position: this.position,
-            Note: this.note
+            Note: this.note,
+            Maintenance: this.maintenance
         })
         .map(function(row) {
             //  this.id = row.id;
