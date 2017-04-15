@@ -23,9 +23,7 @@
     <option>維修中</option>
   </select>
                     </td>
-                    <td><a class="btn btn-primary" href="/server">寄e-mail</a></td>
                 </tr>
-
                 <tr>
                     <td class="td">車牌:</td>
                     <td class="td1">
@@ -318,13 +316,13 @@
                                 </td>
 
                                 <td class="td2"><input type="text" name="PName" class="text2" value="<%= materiallist[j].PName %>"></td>
-                                <form action="/worklist/saveMat" method="POST" novalidate>
+
                                     <td class="td2"><input type="text" name="MNote" class="text2" value="<%= materiallist[j].MNote %>"></td>
                                     <td class="td2">
-                                        <div id="searchSupplier" style="display : none"></div>
-                                        <button class="button3" onclick="searchSupplier()">按此選材料行</button>
-                                    </td>
 
+                                        <button class="button3" onclick="searchSupplier(<%= i %>)">按此選材料行</button>
+                                    </td>
+                                  <form action="/worklist/saveMat" method="POST" novalidate>
                                     <td class="td2"><input type="text" name="Price" class="text2" value="<%= materiallist[j].Price %>"></td>
                                     <td class="td2"><input type="text" name="MQuantity" class="text2" value="<%= materiallist[j].MQuantity %>"></td>
 
@@ -405,10 +403,8 @@
                                     <td class="td2"><input type="text" name="PName" class="text2" value=""></td>
                                     <td class="td2"><input type="text" name="MNote" class="text2" value=""></td>
                                     <td class="td2">
-                                        <div id="searchSupplier" style="display : none">
 
-                                        </div>
-                                        <button class="button3" onclick="searchSupplier()">按此選材料行</button>
+                                        <button class="button3" onclick="searchSupplier(<%= i %>)">按此選材料行</button>
                                     </td>
                                     <form action="/worklist/saveMat" method="POST" novalidate>
                                         <td class="td2"><input type="text" name="Price" class="text2" value=""></td>
@@ -495,6 +491,45 @@
           <table id="tableSearchPId" border = "1">
           </table>
         </div>
+        <div id="SearchSupplier"  style="display : none">
+         <div class="row">
+          <div class="col-md-6" style="overflow:scroll;height:40%;width:100%;">
+          <table id="tableSupplier" class="table2">
+              <tr>
+                  <th class="th2">名稱</th>
+                  <th class="th2">種類</th>
+                  <th class="th2">成本價</th>
+                  <th class="th2">通訊方式</th>
+              </tr>
+          </table>
+        </div>
+      </div>
+          <div class="row">
+            <div class="col-md-6">
+              <table class="table2">
+                  <tr>
+                      <th class="th2">種類</th>
+                      <th class="th2">售價</th>
+                      <th class="th2">數量</th>
+                      <th class="th2">小計</th>
+                      <th class="th2">確認</th>
+                  </tr>
+                  <tr>
+                      <td class="td0">中古</td>
+                      <td class="td0">$20</td>
+                      <td class="td0">1</td>
+                      <td class="td0">$20</td>
+                      <td class="td0">
+                          <input type="checkbox" name="order" value="yes">
+                      </td>
+                  </tr>
+              </table>
+              <form class="form1" style="float:right;">
+                  <button class="btn btn-default">儲存</button>
+                                </form>
+                </div>
+            </div>
+        </div>
     </body>
 
     <script>
@@ -503,34 +538,49 @@
 
             $.ajax({
                 url: "http://localhost:3000/worklist/searchPId",
-                data: {
-                    searchPId: searchPId
-                },
+                data: {searchPId: searchPId},
                 type: "get",
                 dataType: 'json',
 
                 success: function(data) {
                     $("#SearchPIdWindows").show()
                     $.each(data, function(i, item) {
-                        $('#tableSearchPId').append('<tr><td>'+data[i].Id+'</td>'+
-                                                        '<td>'+data[i].PName+'</td>')
-
+                        $('#tableSearchPId')
+                        .append('<tr><td>'+data[i].Id+'</td>'+
+                                '<td>'+data[i].PName+'</td></tr>')
                     });
                 },
 
-                error: function() {
-
-                    alert("再接再勵");
-                }
+                error: function() {alert("再接再勵");}
 
             });
+          };
 
-        };
 
+        function searchSupplier(i) {
+          var searchPId = $('#searchPId' + i).val();
 
-        function searchSupplier() {
-            $("#searchSupplier").show()
+          $.ajax({
+              url: "http://localhost:3000/worklist/searchPId",
+              data: {searchPId: searchPId},
+              type: "get",
+              dataType: 'json',
 
+              success: function(data) {
+                    $("#SearchSupplier").show();
+                  $.each(data, function(i, item) {
+                      $('#tableSupplier')
+                      .append('<tr><td class="td0">'+data[i].Id+'</td>'+
+                              '<td class="td0">'+data[i].PName+'</td>'+
+                              '<td class="td0">'+"50"+'</td>'+
+                              '<td class="td0"><a class="btn btn-primary" href="/server">寄e-mail</a></td>'+
+                              '</td></tr>')
+                  });
+              },
+
+              error: function() {alert("再接再勵");}
+
+          });
         };
     </script>
 

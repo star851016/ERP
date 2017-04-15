@@ -27,6 +27,7 @@ var smtpTransport = nodemailer.createTransport({
 /*------------------Routing Started ------------------------*/
 
 router.get('/',function(req,res){
+  
 	res.render('WorkList/email');
 });
 router.get('/send',function(req,res){
