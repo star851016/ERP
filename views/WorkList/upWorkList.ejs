@@ -72,14 +72,25 @@
 
             <p>維修套組:
                 <div class=" btn-group ">
-                    <button class="btn0" id="jQueryColorChange">無</button>
-                    <button class="btn0" id="jQueryColorChange">鈑&nbsp;&nbsp;金</button>
-                    <button class="btn0" id="jQueryColorChange">烤&nbsp;&nbsp;漆</button>
-                    <button class="btn0" id="jQueryColorChange">驗&nbsp;&nbsp;車</button>
-                    <button class="btn0" id="jQueryColorChange">小保養</button>
-                    <button class="btn0" id="jQueryColorChange">中保養</button>
-                    <button class="btn0" id="jQueryColorChange">大保養</button>
-                    <button class="btn0" id="jQueryColorChange">行車記錄器</button>
+                    <button class="btn0" id="jQueryColorChange" value="無">無</button>
+                    <form action="/worklist/quickFix" method="POST" novalidate>
+                    <button class="btn0" name="quickFix" id="jQueryColorChange" value="小保養">小保養</button>
+                    </form>
+                    <form action="/worklist/quickFix" method="POST" novalidate>
+                    <button class="btn0" name="quickFix" id="jQueryColorChange" value="中保養">中保養</button>
+                    </form>
+                    <form action="/worklist/quickFix" method="POST" novalidate>
+                    <button class="btn0" name="quickFix" id="jQueryColorChange" value="大保養">大保養</button>
+                    </form>
+                    <form action="/worklist/quickFix" method="POST" novalidate>
+                    <button class="btn0" name="quickFix" id="jQueryColorChange" value="換輪胎">換輪胎</button>
+                    </form>
+                    <form action="/worklist/quickFix" method="POST" novalidate>
+                    <button class="btn0" name="quickFix" id="jQueryColorChange" value="鈑金">鈑&nbsp;&nbsp;金</button>
+                    </form>
+                    <form action="/worklist/quickFix" method="POST" novalidate>
+                    <button class="btn0" name="quickFix" id="jQueryColorChange" value="烤漆">烤&nbsp;&nbsp;漆</button>
+                    </form>
                 </div>
                 <script>
                     $("button#jQueryColorChange").click(function() {
@@ -315,7 +326,7 @@
 
                                 </td>
 
-                                <td class="td2"><input type="text" name="PName" class="text2" value="<%= materiallist[j].PName %>"></td>
+                                <td class="td2"><input id="PName" type="text" name="PName" class="text2" value="<%= materiallist[j].PName %>"></td>
 
                                     <td class="td2"><input type="text" name="MNote" class="text2" value="<%= materiallist[j].MNote %>"></td>
                                     <td class="td2">
@@ -397,9 +408,7 @@
 
 
                                     </td>
-                                    <div id="SearchPIdWindows" style="display : none">
-                                        <a href="/worklist/bijia"></a>
-                                    </div>
+
                                     <td class="td2"><input type="text" name="PName" class="text2" value=""></td>
                                     <td class="td2"><input type="text" name="MNote" class="text2" value=""></td>
                                     <td class="td2">
@@ -488,8 +497,10 @@
         </form>
         <br><br>
         <div id="SearchPIdWindows" style="display : none">
+          <button class="button1" onclick="closeSearchPId()">關閉</button>
           <table id="tableSearchPId" border = "1">
           </table>
+
         </div>
         <div id="SearchSupplier"  style="display : none">
          <div class="row">
@@ -548,6 +559,7 @@
                         $('#tableSearchPId')
                         .append('<tr><td>'+data[i].Id+'</td>'+
                                 '<td>'+data[i].PName+'</td></tr>')
+
                     });
                 },
 
@@ -581,6 +593,9 @@
               error: function() {alert("再接再勵");}
 
           });
+        };
+        function closeSearchPId(){
+          $("#SearchPIdWindows").hide();
         };
     </script>
 

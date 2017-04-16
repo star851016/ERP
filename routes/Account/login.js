@@ -8,6 +8,7 @@ var used = new Used();
 router.get('/', function(req, res, next) {
   if(req.session.member) {
     res.render('DashBoard/dashboard', {
+      member : req.session.member,
       TSales :  req.session.TSales,
       TPrice :  req.session.TPrice,
       ProductNum : req.session.ProductNum,
@@ -741,6 +742,7 @@ router.post('/', function(req, res, next) {
               req.session.rankList = rankList;
             //  console.log('req.session.rankList'+req.session.rankList);
               res.render('DashBoard/dashboard', {
+                member : req.session.member,
                 TSales :  req.session.TSales,
                 TPrice :  req.session.TPrice,
                 ProductNum : req.session.ProductNum,

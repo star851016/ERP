@@ -194,6 +194,16 @@ router.get('/carHistory', function(req, res, next) {
 
 });
 
+router.post('/quickFix', function(req, res, next) {
+    console.log('quickFix');
+    console.log('req.body.quickFix'+req.body.quickFix);
+    res.render('WorkList/carHistory', {
+
+        member: req.session.member || null
+    });
+
+});
+
 //確定要 update
 router.post('/update', function(req, res,next) {
  var newUpdate = new Update({
