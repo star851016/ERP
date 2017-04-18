@@ -69,37 +69,18 @@
         </div>
 
         <div class="container">
-
             <p>維修套組:
-                <div class=" btn-group ">
-                    <button class="btn0" id="jQueryColorChange" value="無">無</button>
-                    <form action="/worklist/quickFix" method="POST" novalidate>
-                    <button class="btn0" name="quickFix" id="jQueryColorChange" value="小保養">小保養</button>
-                    </form>
-                    <form action="/worklist/quickFix" method="POST" novalidate>
-                    <button class="btn0" name="quickFix" id="jQueryColorChange" value="中保養">中保養</button>
-                    </form>
-                    <form action="/worklist/quickFix" method="POST" novalidate>
-                    <button class="btn0" name="quickFix" id="jQueryColorChange" value="大保養">大保養</button>
-                    </form>
-                    <form action="/worklist/quickFix" method="POST" novalidate>
-                    <button class="btn0" name="quickFix" id="jQueryColorChange" value="換輪胎">換輪胎</button>
-                    </form>
-                    <form action="/worklist/quickFix" method="POST" novalidate>
-                    <button class="btn0" name="quickFix" id="jQueryColorChange" value="鈑金">鈑&nbsp;&nbsp;金</button>
-                    </form>
-                    <form action="/worklist/quickFix" method="POST" novalidate>
-                    <button class="btn0" name="quickFix" id="jQueryColorChange" value="烤漆">烤&nbsp;&nbsp;漆</button>
-                    </form>
+                <div class="r">
+                    <input type="radio" name="maintenance" id="0" value="無"><label for="0">無</label>
+                    <input type="radio" name="maintenance" id="1" value="鈑金"><label for="1">鈑金</label>
+                    <input type="radio" name="maintenance" id="2" value="烤漆"><label for="2">烤漆</label>
+                    <input type="radio" name="maintenance" id="3" value="驗車"><label for="3">驗車</label>
+                    <input type="radio" name="maintenance" id="4" value="小保養"><label for="4">小保養</label>
+                    <input type="radio" name="maintenance" id="5" value="中保養"><label for="5">中保養</label>
+                    <input type="radio" name="maintenance" id="6" value="大保養"><label for="6">大保養</label>
+                    <input type="radio" name="maintenance" id="7" value="行車記錄器"><label for="7">行車記錄器</label>
                 </div>
-                <script>
-                    $("button#jQueryColorChange").click(function() {
-                        $('button').removeClass('selected');
-                        $(this).addClass('selected');
-                    });
-                </script>
             </p>
-
         </div>
 
         <div class="container">
@@ -328,12 +309,12 @@
 
                                 <td class="td2"><input id="PName" type="text" name="PName" class="text2" value="<%= materiallist[j].PName %>"></td>
 
-                                    <td class="td2"><input type="text" name="MNote" class="text2" value="<%= materiallist[j].MNote %>"></td>
-                                    <td class="td2">
+                                <td class="td2"><input type="text" name="MNote" class="text2" value="<%= materiallist[j].MNote %>"></td>
+                                <td class="td2">
 
-                                        <button class="button3" onclick="searchSupplier(<%= i %>)">按此選材料行</button>
-                                    </td>
-                                  <form action="/worklist/saveMat" method="POST" novalidate>
+                                    <button class="button3" onclick="searchSupplier(<%= i %>)">按此選材料行</button>
+                                </td>
+                                <form action="/worklist/saveMat" method="POST" novalidate>
                                     <td class="td2"><input type="text" name="Price" class="text2" value="<%= materiallist[j].Price %>"></td>
                                     <td class="td2"><input type="text" name="MQuantity" class="text2" value="<%= materiallist[j].MQuantity %>"></td>
 
@@ -497,47 +478,47 @@
         </form>
         <br><br>
         <div id="SearchPIdWindows" style="display : none">
-          <button class="button1" onclick="closeSearchPId()">關閉</button>
-          <table id="tableSearchPId" border = "1">
-          </table>
+            <button class="button1" onclick="closeSearchPId()">關閉</button>
+            <table id="tableSearchPId" border="1">
+            </table>
 
         </div>
-        <div id="SearchSupplier"  style="display : none">
-         <div class="row">
-          <div class="col-md-6" style="overflow:scroll;height:40%;width:100%;">
-          <table id="tableSupplier" class="table2">
-              <tr>
-                  <th class="th2">名稱</th>
-                  <th class="th2">種類</th>
-                  <th class="th2">成本價</th>
-                  <th class="th2">通訊方式</th>
-              </tr>
-          </table>
-        </div>
-      </div>
-          <div class="row">
-            <div class="col-md-6">
-              <table class="table2">
-                  <tr>
-                      <th class="th2">種類</th>
-                      <th class="th2">售價</th>
-                      <th class="th2">數量</th>
-                      <th class="th2">小計</th>
-                      <th class="th2">確認</th>
-                  </tr>
-                  <tr>
-                      <td class="td0">中古</td>
-                      <td class="td0">$20</td>
-                      <td class="td0">1</td>
-                      <td class="td0">$20</td>
-                      <td class="td0">
-                          <input type="checkbox" name="order" value="yes">
-                      </td>
-                  </tr>
-              </table>
-              <form class="form1" style="float:right;">
-                  <button class="btn btn-default">儲存</button>
-                                </form>
+        <div id="SearchSupplier" style="display : none">
+            <div class="row">
+                <div class="col-md-6" style="overflow:scroll;height:40%;width:100%;">
+                    <table id="tableSupplier" class="table2">
+                        <tr>
+                            <th class="th2">名稱</th>
+                            <th class="th2">種類</th>
+                            <th class="th2">成本價</th>
+                            <th class="th2">通訊方式</th>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <table class="table2">
+                        <tr>
+                            <th class="th2">種類</th>
+                            <th class="th2">售價</th>
+                            <th class="th2">數量</th>
+                            <th class="th2">小計</th>
+                            <th class="th2">確認</th>
+                        </tr>
+                        <tr>
+                            <td class="td0">中古</td>
+                            <td class="td0">$20</td>
+                            <td class="td0">1</td>
+                            <td class="td0">$20</td>
+                            <td class="td0">
+                                <input type="checkbox" name="order" value="yes">
+                            </td>
+                        </tr>
+                    </table>
+                    <form class="form1" style="float:right;">
+                        <button class="btn btn-default">儲存</button>
+                    </form>
                 </div>
             </div>
         </div>
@@ -549,7 +530,9 @@
 
             $.ajax({
                 url: "http://localhost:3000/worklist/searchPId",
-                data: {searchPId: searchPId},
+                data: {
+                    searchPId: searchPId
+                },
                 type: "get",
                 dataType: 'json',
 
@@ -557,45 +540,52 @@
                     $("#SearchPIdWindows").show()
                     $.each(data, function(i, item) {
                         $('#tableSearchPId')
-                        .append('<tr><td>'+data[i].Id+'</td>'+
-                                '<td>'+data[i].PName+'</td></tr>')
+                            .append('<tr><td>' + data[i].Id + '</td>' +
+                                '<td>' + data[i].PName + '</td></tr>')
 
                     });
                 },
 
-                error: function() {alert("再接再勵");}
+                error: function() {
+                    alert("再接再勵");
+                }
 
             });
-          };
+        };
 
 
         function searchSupplier(i) {
-          var searchPId = $('#searchPId' + i).val();
+            var searchPId = $('#searchPId' + i).val();
 
-          $.ajax({
-              url: "http://localhost:3000/worklist/searchPId",
-              data: {searchPId: searchPId},
-              type: "get",
-              dataType: 'json',
+            $.ajax({
+                url: "http://localhost:3000/worklist/searchPId",
+                data: {
+                    searchPId: searchPId
+                },
+                type: "get",
+                dataType: 'json',
 
-              success: function(data) {
+                success: function(data) {
                     $("#SearchSupplier").show();
-                  $.each(data, function(i, item) {
-                      $('#tableSupplier')
-                      .append('<tr><td class="td0">'+data[i].Id+'</td>'+
-                              '<td class="td0">'+data[i].PName+'</td>'+
-                              '<td class="td0">'+"50"+'</td>'+
-                              '<td class="td0"><a class="btn btn-primary" href="/server">寄e-mail</a></td>'+
-                              '</td></tr>')
-                  });
-              },
+                    $.each(data, function(i, item) {
+                        $('#tableSupplier')
+                            .append('<tr><td class="td0">' + data[i].Id + '</td>' +
+                                '<td class="td0">' + data[i].PName + '</td>' +
+                                '<td class="td0">' + "50" + '</td>' +
+                                '<td class="td0"><a class="btn btn-primary" href="/server">寄e-mail</a></td>' +
+                                '</td></tr>')
+                    });
+                },
 
-              error: function() {alert("再接再勵");}
+                error: function() {
+                    alert("再接再勵");
+                }
 
-          });
+            });
         };
-        function closeSearchPId(){
-          $("#SearchPIdWindows").hide();
+
+        function closeSearchPId() {
+            $("#SearchPIdWindows").hide();
         };
     </script>
 
