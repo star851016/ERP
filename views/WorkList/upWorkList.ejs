@@ -478,50 +478,59 @@
         </form>
         <br><br>
         <div id="SearchPIdWindows" style="display : none">
+            <button class="glyphicon glyphicon-remove" style="background-color:transparent;border:0px transparent;float:right;" onclick="closeSearchPId()"></button>
+
             <div class="container3">
                 <table id="tableSearchPId" class="table2" border="1">
                     <tr>
                         <th class="th2">料號</th>
                         <th class="th2">分類</th>
                 </table>
-                <button class="btn btn-default" onclick="closeSearchPId()">關閉</button>
             </div>
         </div>
         <div id="SearchSupplier" style="display : none">
-            <div class="col-md-6" style="overflow:scroll;height:50%;width:100%;">
-                <table id="tableSupplier" class="table2">
-                    <tr>
-                        <th class="th2">名稱</th>
-                        <th class="th2">種類</th>
-                        <th class="th2">成本價</th>
-                        <th class="th2">通訊方式</th>
-                    </tr>
-                </table>
-            </div>
-            <div class="col-md-6" style="overflow:scroll;height:50%;width:100%;">
-                <table class="table2">
-                    <tr>
-                        <th class="th2">種類</th>
-                        <th class="th2">售價</th>
-                        <th class="th2">數量</th>
-                        <th class="th2">小計</th>
-                        <th class="th2">確認</th>
-                    </tr>
-                    <tr>
-                        <td class="td0">中古</td>
-                        <td class="td0">$20</td>
-                        <td class="td0">1</td>
-                        <td class="td0">$20</td>
-                        <td class="td0">
-                            <input type="checkbox" name="order" value="yes">
-                        </td>
-                    </tr>
-                </table>
-                <br>
-                <form class="form1" style="float:center;">
-                    <button class="btn btn-default">儲存</button>
-                </form>
-                <button class="btn btn-default" onclick="closeSearchSupplier()">關閉</button>
+            <div class="row">
+                <div class="col-md-4" style="overflow:scroll;height:50%;width:45%;">
+                    <h2>比價</h2>
+                    <table id="tableSupplier" class="table2">
+                        <tr>
+                            <th class="th2">名稱</th>
+                            <th class="th2">種類</th>
+                            <th class="th2">成本價</th>
+                            <th class="th2">通訊方式</th>
+                        </tr>
+                    </table>
+                </div>
+                <div class="col-md-4" style="overflow:scroll;height:50%;width:45%;">
+                    <h2>報價</h2>
+                    <table class="table2">
+                        <tr>
+                            <th class="th2">種類</th>
+                            <th class="th2">售價</th>
+                            <th class="th2">數量</th>
+                            <th class="th2">小計</th>
+                            <th class="th2">確認</th>
+                        </tr>
+                        <tr>
+                            <td class="td0">中古</td>
+                            <td class="td0">$20</td>
+                            <td class="td0">1</td>
+                            <td class="td0">$20</td>
+                            <td class="td0">
+                                <input type="checkbox" name="order" value="yes">
+                            </td>
+                        </tr>
+                    </table>
+                    <br>
+                </div>
+                <div class="col-md-4" style="overflow:scroll;height:50%;width:10%;">
+                    <button class="glyphicon glyphicon-remove" style="background-color:transparent;border:0px transparent;float:right;" onclick="closeSearchSupplier()"></button>
+                    <br><br><br><br><br>
+                    <form class="form1" style="float:left;">
+                        <button class="btn btn-default">儲存</button>
+                    </form>
+
+                </div>
             </div>
         </div>
     </body>
