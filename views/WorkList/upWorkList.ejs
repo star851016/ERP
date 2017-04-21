@@ -478,48 +478,49 @@
         </form>
         <br><br>
         <div id="SearchPIdWindows" style="display : none">
-            <button class="button1" onclick="closeSearchPId()">關閉</button>
-            <table id="tableSearchPId" border="1">
-            </table>
-
+            <div class="container3">
+                <table id="tableSearchPId" class="table2" border="1">
+                    <tr>
+                        <th class="th2">料號</th>
+                        <th class="th2">分類</th>
+                </table>
+                <button class="button1" onclick="closeSearchPId()">關閉</button>
+            </div>
         </div>
         <div id="SearchSupplier" style="display : none">
-            <div class="row">
-                <div class="col-md-6" style="overflow:scroll;height:40%;width:100%;">
-                    <table id="tableSupplier" class="table2">
-                        <tr>
-                            <th class="th2">名稱</th>
-                            <th class="th2">種類</th>
-                            <th class="th2">成本價</th>
-                            <th class="th2">通訊方式</th>
-                        </tr>
-                    </table>
-                </div>
+            <div class="col-md-6" style="overflow:scroll;height:50%;width:100%;">
+                <table id="tableSupplier" class="table2">
+                    <tr>
+                        <th class="th2">名稱</th>
+                        <th class="th2">種類</th>
+                        <th class="th2">成本價</th>
+                        <th class="th2">通訊方式</th>
+                    </tr>
+                </table>
             </div>
-            <div class="row">
-                <div class="col-md-6">
-                    <table class="table2">
-                        <tr>
-                            <th class="th2">種類</th>
-                            <th class="th2">售價</th>
-                            <th class="th2">數量</th>
-                            <th class="th2">小計</th>
-                            <th class="th2">確認</th>
-                        </tr>
-                        <tr>
-                            <td class="td0">中古</td>
-                            <td class="td0">$20</td>
-                            <td class="td0">1</td>
-                            <td class="td0">$20</td>
-                            <td class="td0">
-                                <input type="checkbox" name="order" value="yes">
-                            </td>
-                        </tr>
-                    </table>
-                    <form class="form1" style="float:right;">
-                        <button class="btn btn-default">儲存</button>
-                    </form>
-                </div>
+            <div class="col-md-6" style="overflow:scroll;height:50%;width:100%;">
+                <table class="table2">
+                    <tr>
+                        <th class="th2">種類</th>
+                        <th class="th2">售價</th>
+                        <th class="th2">數量</th>
+                        <th class="th2">小計</th>
+                        <th class="th2">確認</th>
+                    </tr>
+                    <tr>
+                        <td class="td0">中古</td>
+                        <td class="td0">$20</td>
+                        <td class="td0">1</td>
+                        <td class="td0">$20</td>
+                        <td class="td0">
+                            <input type="checkbox" name="order" value="yes">
+                        </td>
+                    </tr>
+                </table>
+                <br>
+                <form class="form1" style="float:center;">
+                    <button class="btn btn-default">儲存</button>
+                </form>
             </div>
         </div>
     </body>
@@ -540,8 +541,8 @@
                     $("#SearchPIdWindows").show()
                     $.each(data, function(i, item) {
                         $('#tableSearchPId')
-                            .append('<tr><td>' + data[i].Id + '</td>' +
-                                '<td>' + data[i].PName + '</td></tr>')
+                            .append('<tr><td class="td0">' + data[i].Id + '</td>' +
+                                '<td class="td0">' + data[i].PName + '</td></tr>')
 
                     });
                 },
