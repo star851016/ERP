@@ -484,7 +484,7 @@
                         <th class="th2">料號</th>
                         <th class="th2">分類</th>
                 </table>
-                <button class="button1" onclick="closeSearchPId()">關閉</button>
+                <button class="btn btn-default" onclick="closeSearchPId()">關閉</button>
             </div>
         </div>
         <div id="SearchSupplier" style="display : none">
@@ -521,6 +521,7 @@
                 <form class="form1" style="float:center;">
                     <button class="btn btn-default">儲存</button>
                 </form>
+                <button class="btn btn-default" onclick="closeSearchSupplier()">關閉</button>
             </div>
         </div>
     </body>
@@ -587,6 +588,10 @@
 
         function closeSearchPId() {
             $("#SearchPIdWindows").hide();
+        };
+
+        function closeSearchSupplier() {
+            $("#SearchSupplier").hide();
         };
     </script>
 
