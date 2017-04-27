@@ -391,12 +391,13 @@
                                     </td>
 
                                     <td class="td2"><input type="text" name="PName" class="text2" value=""></td>
+                                    <form action="/worklist/saveMat" method="POST" novalidate>
                                     <td class="td2"><input type="text" name="MNote" class="text2" value=""></td>
                                     <td class="td2">
 
                                         <button class="button3" onclick="searchSupplier(<%= i %>)">按此選材料行</button>
                                     </td>
-                                    <form action="/worklist/saveMat" method="POST" novalidate>
+
                                         <td class="td2"><input type="text" name="Price" class="text2" value=""></td>
                                         <td class="td2"><input type="text" name="MQuantity" class="text2" value=""></td>
 
@@ -412,7 +413,7 @@
 
                                 <tr class="tr">
                                     <td>
-                                        <select class="selector" name="WhoCheck">
+                                        <select class="selector" name="WhoRepair">
                                           <option>A</option>
                                           <option>B</option>
                                           <option>C</option>
@@ -427,10 +428,10 @@
                                     </td>
 
                                     <td>
-                                        <form class="form1" action="" method="get" style="display:inline;">
+
                                             <input type="radio" name="impair" value="yes">是<br>
                                             <input type="radio" name="impair" value="no">否<br>
-                                        </form>
+
                                     </td>
                                     <td>
                                         <input type="checkbox" name="impaired" value="yes">
@@ -549,12 +550,16 @@
 
                 success: function(data) {
                     $("#SearchPIdWindows").show()
+                    html()
                     $.each(data, function(i, item) {
+
                         $('#tableSearchPId')
+
                             .append('<tr><td class="td0">' + data[i].Id + '</td>' +
                                 '<td class="td0">' + data[i].PName + '</td></tr>')
 
                     });
+
                 },
 
                 error: function() {

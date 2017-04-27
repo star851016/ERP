@@ -142,12 +142,14 @@ router.post('/saveMat', function(req, res,next) {
     PName : req.body.PName,
     MNote : req.body.MNote,
     MQuantity : req.body.MQuantity,
+    WhoRepair : req.body.WhoRepair,
+    WhoCheck : req.body.WhoCheck,
     Price : req.body.Price,
     Repair : req.body.impair,
     impaired : req.body.impaired,
     Amount : req.body.Amount
    });
-   console.log(req.body.MQuantity);
+   console.log(req.body.impaired);
    newSaveMat.saveMat();
     req.session.WorkId = req.body.id ;
     res.redirect('/worklist/upWorklist?'+req.session.WorkId);
