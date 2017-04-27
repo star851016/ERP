@@ -483,9 +483,10 @@
 
             <div class="container3">
                 <table id="tableSearchPId" class="table2" border="1">
-                    <tr>
+                    <thead>
                         <th class="th2">料號</th>
                         <th class="th2">分類</th>
+                    </thead>
                 </table>
             </div>
         </div>
@@ -549,14 +550,14 @@
                 dataType: 'json',
 
                 success: function(data) {
-                    $("#SearchPIdWindows").show()
-                    html()
+                    $("#SearchPIdWindows").show();
+                    $('#tableSearchPId tbody').html("");
                     $.each(data, function(i, item) {
 
                         $('#tableSearchPId')
 
-                            .append('<tr><td class="td0">' + data[i].Id + '</td>' +
-                                '<td class="td0">' + data[i].PName + '</td></tr>')
+                            .append('<tbody><td class="td0">' + data[i].Id + '</td>' +
+                                '<td class="td0">' + data[i].PName + '</td></tbody>')
 
                     });
 

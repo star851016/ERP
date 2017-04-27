@@ -74,7 +74,7 @@ router.get('/upWorklist', function(req, res,next) {
    async.series([
      function(done){
        newUpWorklist.find(function(err,upWorklist) {
-
+        
           req.session.upWorklist = upWorklist[0];
           upWorklist[0].InDate = fecha.format(upWorklist[0].InDate, 'YYYY-MM-DD');
           upWorklist[0].CBirthDate = fecha.format(upWorklist[0].CBirthDate, 'YYYY-MM-DD');
