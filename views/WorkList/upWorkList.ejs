@@ -26,7 +26,7 @@
                 </tr>
                 <tr>
                     <td class="td">車牌:</td>
-                    <td class="td1">
+                    <td class="td1" >
                         <%= upWorklist.CarId %>
                     </td>
                     <td class="td">車主:</td>
@@ -71,14 +71,16 @@
         <div class="container">
             <p>維修套組:
                 <div class="r">
+                    <input type="hidden" id="CarId" value="<%= upWorklist.CarId %>" />
                     <input type="radio" name="maintenance" id="0" value="無"><label for="0">無</label>
                     <input type="radio" name="maintenance" id="1" value="鈑金"><label for="1">鈑金</label>
                     <input type="radio" name="maintenance" id="2" value="烤漆"><label for="2">烤漆</label>
                     <input type="radio" name="maintenance" id="3" value="驗車"><label for="3">驗車</label>
-                    <input type="radio" name="maintenance" id="4" value="小保養"><label for="4">小保養</label>
+                    <input type="radio" name="maintenance" id="4" value="小保養" onClick="quickFix()"><label for="4">小保養</label>
                     <input type="radio" name="maintenance" id="5" value="中保養"><label for="5">中保養</label>
                     <input type="radio" name="maintenance" id="6" value="大保養"><label for="6">大保養</label>
                     <input type="radio" name="maintenance" id="7" value="行車記錄器"><label for="7">行車記錄器</label>
+
                 </div>
             </p>
         </div>
@@ -246,17 +248,17 @@
                             <td class="td2"><input type="text" class="text2"></td>
                             <td>
                                 <select class="selector">
-                <option>A</option>
-                <option>B</option>
-                <option>C</option>
-              </select>
+                                  <option>A</option>
+                                  <option>B</option>
+                                  <option>C</option>
+                                </select>
                             </td>
                             <td>
                                 <select class="selector">
-                <option>A</option>
-                <option>B</option>
-                <option>C</option>
-              </select>
+                                  <option>A</option>
+                                  <option>B</option>
+                                  <option>C</option>
+                                </select>
                             </td>
 
                             <td class="td2">
@@ -538,6 +540,36 @@
     </body>
 
     <script>
+
+    function quickFix() {
+        var question  = $('#4').val();
+        var CarId = $('#CarId').val();
+
+        $.ajax({
+            url: "http://localhost:3000/worklist/quickFix",
+            data: {
+                question: question,
+                CarId : CarId
+            },
+            type: "get",
+            dataType: 'json',
+
+            success: function(data) {
+              alert(data[0].MatId);
+
+            },
+
+            error: function() {
+
+                alert(CarId);
+                alert("再接再勵");
+            }
+
+        });
+    };
+
+
+
         function searchPId(i) {
             var searchPId = $('#searchPId' + i).val();
 
