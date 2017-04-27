@@ -25,6 +25,7 @@ var WorkList = function(options) {
     this.position = options.position;
     this.note = options.note;
     this.maintenance = options.maintenance;
+    this.Question = options.Question;
 };
 
 //工單管理--清單
@@ -76,10 +77,10 @@ WorkList.prototype.find = function(cb) {
     }
     //在工單總表點編輯--材料登錄
 WorkList.prototype.materiallist = function(cb) {
-
+        console.log("this.id"+this.id);
         db.select('materiallist.Id', 'materiallist.MatId', 'materiallist.MQuantity', 'materiallist.Amount', 'materiallist.Price', 'materiallist.WhoFix', 'materiallist.WhoCheck', 'materiallist.Fix', 'materiallist.Finished', 'materiallist.MNote', 'product.PName')
             .from('materiallist')
-            .innerJoin('worklist', 'materiallist.WorkId', '=', 'materiallist.WorkId')
+            .innerJoin('worklist', 'materiallist.WorkId', '=', 'worklist.WorkId')
             .innerJoin('product', 'materiallist.Id', '=', 'product.Id')
             .where('worklist.WorkId', this.id)
             .then(function(materiallist) {
@@ -91,6 +92,29 @@ WorkList.prototype.materiallist = function(cb) {
                 cb(new GeneralErrors.Database());
             });
     }
+
+    //快速套組
+WorkList.prototype.QuickFix = function(cb) {
+        console.log("this.Question"+this.Question);
+        WorkId = db.table('worklist').first('WorkId').where('CarId', this.CarId).where('Question', 小保養)
+      // console.log('WorkId'+WorkId);
+
+        db.select('materiallist.Id', 'materiallist.MatId', 'materiallist.MQuantity', 'materiallist.Amount', 'materiallist.Price', 'materiallist.WhoFix', 'materiallist.WhoCheck', 'materiallist.Fix', 'materiallist.Finished', 'materiallist.MNote')
+
+            .from('materiallist')
+            .innerJoin('worklist', 'materiallist.WorkId', '=', 'worklist.WorkId')
+            .where('worklist.WorkId', WorkId)
+            .then(function(materiallist) {
+                cb(null, materiallist);
+            }.bind(this))
+            .catch(function(err) {
+
+                console.log("materiallist find", err);
+                cb(new GeneralErrors.Database());
+            });
+    }
+
+
     //每一筆材料登錄儲存
 WorkList.prototype.saveMat = function(cb) {
     console.log(this.MQuantity);

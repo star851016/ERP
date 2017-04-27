@@ -7,6 +7,7 @@ var Update = require('../../models/Worklist');
 var DelWorklist = require('../../models/Worklist');
 var Delete = require('../../models/Worklist');
 var SaveMat = require('../../models/Worklist');
+var QuickFix = require('../../models/Worklist');
 
 var dateFormat = require('dateformat');
 var fecha = require('fecha');
@@ -70,50 +71,32 @@ router.get('/upWorklist', function(req, res,next) {
   var newUpWorklist = new UpWorklist({
     id : req.query.WorkId || req.session.WorkId
    });
+    newUpWorklist.find(function(err,upWorklist) {
+      if(err) {
+          next(err);
+      } else {
 
-   async.series([
-     function(done){
-       newUpWorklist.find(function(err,upWorklist) {
-        
-          req.session.upWorklist = upWorklist[0];
-          upWorklist[0].InDate = fecha.format(upWorklist[0].InDate, 'YYYY-MM-DD');
-          upWorklist[0].CBirthDate = fecha.format(upWorklist[0].CBirthDate, 'YYYY-MM-DD');
-          console.log('upWorklist'+upWorklist[0].WorkId);
+        upWorklist[0].InDate = fecha.format(upWorklist[0].InDate, 'YYYY-MM-DD');
+        // upWorklist[0].CBirthDate = fecha.format(upWorklist[0].CBirthDate, 'YYYY-MM-DD');
+        console.log('upWorklist'+upWorklist[0].WorkId);
+          newUpWorklist.materiallist(function(err,materiallist) {
+            if(err) {
+              next(err);
+            } else {
+
+                res.render('WorkList/upWorkList', {
+                  status : req.session.status || null,
+                  upWorklist : upWorklist[0],
+                  materiallist : materiallist ,
+                  member : req.session.member || null
+                });
+            }
+          });
+        }
      })
-   done()
 
- },function(done){
-   newUpWorklist.materiallist(function(err,materiallist) {
-     if(err) {
-       next(err);
-     } else {
-         console.log('materiallist done');
-         res.render('WorkList/upWorkList', {
-           status : req.session.status || null,
-           upWorklist : req.session.upWorklist,
-           materiallist : materiallist ,
-           member : req.session.member || null
-         });
-     }
-   });
-   done()
 
- }
- ]
-),function(err){
-   if(err) {
-     res.status = err.code;
-     next();
-   } else {
 
-     res.render('WorkList/upWorkList', {
-
-       upWorklist : req.session.upWorklist,
-       materiallist : req.session.materiallist,
-       member : req.session.member || null
-     });
-   }
- }
 });
 
 //儲存客戶資料
@@ -132,6 +115,32 @@ router.post('/saveCustomer', function(req, res,next) {
      }
    });
 });
+
+//快速套組
+router.get('/quickFix', function(req, res,next) {
+  console.log('quickFix');
+  console.log('req.query.question'+req.query.question);
+   console.log('CarId'+req.query.CarId);
+  var newQuickFix = new QuickFix({
+      Question : req.query.question,
+      CarId : req.query.CarId
+   });
+   newQuickFix.QuickFix(function(err,materiallist) {
+     if(err) {
+       next(err);
+     } else {
+       console.log('QuickFix');
+       console.log('materiallist'+materiallist[0]);
+       console.log(materiallist[0].MatId);
+       res.json(materiallist);
+        //  res.render('WorkList/upWorkList', {
+        //    materiallist : materiallist,
+        //    member : req.session.member || null
+        //  });
+     }
+   });
+});
+
 
 //儲存材料登錄--每一筆
 router.post('/saveMat', function(req, res,next) {
