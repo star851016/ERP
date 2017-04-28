@@ -6,24 +6,39 @@
     <body>
 
         <div class="hdr">
-            <p class="title" style="color:rgb(91,155,213);">新增成功</p>
+            <p class="title">新增成功</p>
         </div>
         <div style="width:100%;">
             <form name="sentMessage" action="/supplier" method="POST" id="contactForm" novalidate>
         </div>
         <br><br><br><br><br>
-        <div style="text-align:center;">
-            <div style="position:relative;left:50%;margin-left:-250px;">
-                <p style="background-color:#DDDDDD;border-radius:10px;height:300px;width:500px;text-align:center;margin:0px;font-size:40px;">
-                    商品：
-                    <%= addProduct.PName %><br>廠牌：
-                        <%= addProduct.Types %><br>規格：
-                            <%= addProduct.Specification %><br>售價：
-                                <%= addProduct.Sales_Price %><br>安全數量：
-                                    <%= addProduct.SafeQuantity %>
+        <div class="col-md-12">
+            <div style="background-color:#FCFCEB;border-radius:5px;height:auto;width:50%;right:25%;left:25%;text-align:center;">
+                <p>商品：
+                    <%= addProduct.PName %>
+                </p>
+                <br>
+                <p>廠牌：
+                    <%= addProduct.Types %>
+                </p>
+                <br>
+                <p>規格：
+                    <%= addProduct.Specification %>
+                </p>
+                <br>
+                <p>售價：
+                    <%= addProduct.Sales_Price %>
+                </p>
+                <br>
+                <p>安全數量：
+                    <%= addProduct.SafeQuantity %>
+                </p>
             </div>
-            <br>
-
+        </div>
+        <br><br>
+        <div class="col-md-12">
+            <button class="btn btn-default" onclick="location.href='/addProduct'" style="float:center;">繼續新增</button>
+            <button class="btn btn-default" onclick="location.href='/productDetail'" style="float:center;">回列表</button>
         </div>
     </body>
 
