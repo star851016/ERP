@@ -43,16 +43,16 @@ router.post('/', function(req, res, next) {
         Part: req.body.Part,
         Wrong: req.body.Wrong
     });
-    newQuestion.QuestionList(function(err, QuestionList) {
-        // if(err){
-        //   next(err);
-        // }else{
-        //   console.log('Q1List'+Q1List);
-        //   console.log('Q1List'+Q1List[0].Q1_Mat);
+
+    newQuestion.QuestionList(function(err, WorklistID) {
+        req.session.worklist2 = WorklistID;
         console.log(req.body.theForm);
-        res.render('WorkList/addWorkList', {
-            //  Q1List : Q1List,
-            member: req.session.member || null
+
+        newQuestion.QuestionList(function(err, QuestionList) {
+            res.render('WorkList/addWorkList', {
+                //  Q1List : Q1List,
+                member: req.session.member || null
+            });
         });
     });
 });

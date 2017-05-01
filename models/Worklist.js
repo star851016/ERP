@@ -148,40 +148,14 @@ WorkList.prototype.searchPId = function(cb) {
 
 //存Question資料
 WorkList.prototype.QuestionList = function(cb) {
+    var WorklistID;
+
     console.log("QuestionList");
     console.log("this part" + this.Part);
     console.log("this situation" + this.situation);
     console.log("this Wrong " + this.Wrong);
     console.log("this CarId " + this.CarId);
     console.log("this maintenance " + this.maintenance);
-
-
-    db("question")
-        .insert({
-            Part: this.Part,
-            Wrong: this.Wrong,
-            Situation: this.situation,
-            Frequency: this.frequency,
-            Position: this.position,
-            Note: this.note,
-            Maintenance: this.maintenance
-        })
-        .map(function(row) {
-            //  this.id = row.id;
-            console.log('this' + this.Part);
-            this.Part = row.Part;
-            this.Wrong = row.Wrong;
-            return row;
-            console.log('row' + row);
-        })
-        .then(function(result) {
-            console.log('this' + this);
-            cb(null, this);
-        }.bind(this))
-        .catch(function(err) {
-            console.log("INSERT ERROR", err);
-            cb(new GeneralErrors.Database());
-        });
 
     db("worklist")
         .insert({
@@ -197,6 +171,36 @@ WorkList.prototype.QuestionList = function(cb) {
             this.Miles = row.Miles;
             this.InDate = row.InDate;
             this.ExpectDate = row.ExpectDate;
+            return row;
+            console.log('row' + row);
+        })
+        .then(function(result) {
+            console.log('this' + this);
+            cb(null, this);
+            WorklistID = result;
+            console.log('work_Id'+WorklistID);
+            cb(null, worklistID);
+        }.bind(this))
+        .catch(function(err) {
+            console.log("INSERT ERROR", err);
+            cb(new GeneralErrors.Database());
+        });
+
+         db("question")
+        .insert({
+            Part: this.Part,
+            Wrong: this.Wrong,
+            Situation: this.situation,
+            Frequency: this.frequency,
+            Position: this.position,
+            Note: this.note,
+            Maintenance: this.maintenance
+        })
+        .map(function(row) {
+            //  this.id = row.id;
+            console.log('this' + this.Part);
+            this.Part = row.Part;
+            this.Wrong = row.Wrong;
             return row;
             console.log('row' + row);
         })
