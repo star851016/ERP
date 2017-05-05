@@ -44,19 +44,16 @@ router.post('/', function(req, res, next) {
         Wrong: req.body.Wrong
     });
 
-    newQuestion.InfoList(function(err, InfoList) {
+    newQuestion.InfoList(function(err, WorkId) {
         console.log(req.body.theForm);
-        res.render('WorkList/addWorkList', {
-            //  Q1List : Q1List,
-            member: req.session.member || null
-        });
+
 //待修
-        // req.session.InfoList = InfoList;
-        // console.log('req.session.InfoList '+req.session.InfoList);
+        req.session.WorkId = WorkId;
+        console.log('req.session.WorkId '+req.session.WorkId);
 
         // newQuestion.QuestionList(req.session.InfoList, function(err, QuestionList) {
-        newQuestion.QuestionList(function(err, QuestionList) {
-            console.log(req.body.theForm);
+        newQuestion.QuestionList(req.session.WorkId,function(err) {
+            // console.log(req.body.theForm);
             res.render('WorkList/addWorkList', {
                 //  Q1List : Q1List,
                 member: req.session.member || null
