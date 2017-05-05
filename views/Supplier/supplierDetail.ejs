@@ -10,24 +10,25 @@
         <div class="hdr">
             <p class="title">查詢</p>
         </div>
-        <div style="width:100%;">
-            <form name="sentMessage" action="/supplierDetail" method="POST" id="product" novalidate>
-
-                <div style="width:90%;">
-                    <br><br><br>
-                    <p style="font-weight:bold;display:inline;">依名稱&nbsp</p>
-                    <select class="selector0" name="SName">
-      <option class="options" >--請選擇--</option>
-      <% supplierList.forEach(function(supplier) { %>
-      <option class="options"><%= supplier.SName %></option>
-    <%  }); %>
-    </select>
-                    <button id="button" class="button1" type="submit">查詢</button>
+        <br><br><br><br>
+        <div class="col-md-10">
+            <form class="form-inline" name="sentMessage" action="/supplierDetail" method="POST" id="product" novalidate>
+                <div class="form-group">
+                    <label for="SName">依名稱</label>
+                    <select id="SName" class="form-control" name="SName">
+         <option class="options">請選擇</option>
+         <% supplierList.forEach(function(supplier) { %>
+        <option class="options"><%= supplier.SName %></option>
+          <%  }); %>
+      </select>
                 </div>
-
+                <button id="button" class="btn btn-default" type="submit">查詢</button>
             </form>
         </div>
-        <br>
+        <div class="col-md-2">
+            <button class="btn btn-primary" onclick="location.href='/sup'" style="float:right">新增廠商</button>
+        </div>
+        <br><br>
         <div style="width:100%;overflow:scroll;height:500px;">
             <table class="table2">
                 <tr>

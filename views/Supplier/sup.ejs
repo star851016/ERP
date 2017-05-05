@@ -7,15 +7,32 @@
             <p class="title">新增廠商</p>
         </div>
         <br><br><br><br>
-        <div style="width:100%;position:relative;top:10%;">
+        <div class="col-md-12">
             <form name="sentMessage" action="/sup" method="POST" id="contactForm" novalidate>
-                <p class="input">新增廠商&nbsp&nbsp&nbsp<input class="text" type="text" name="SName">&nbsp&nbsp&nbsp</p>
-
-                <p class="input">聯絡人&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input class="text" type="text" name="Contact_Person">&nbsp&nbsp&nbsp</p>
-
-                <p class="input">連絡電話&nbsp&nbsp&nbsp<input class="text" type="text" name="Phone">&nbsp&nbsp&nbsp</p>
-                <br><br>
-                <button class="button1" type="submit" style="float:center;">新增</button>
+                <table class="table table-bordered">
+                    <tr>
+                        <th class="th2">廠商名稱</th>
+                        <th class="th2">聯絡人</th>
+                        <th class="th2">電話1</th>
+                        <th class="th2">電話2</th>
+                        <th class="th2">傳真</th>
+                        <th class="th2">統一編號</th>
+                    </tr>
+                    <tr>
+                        <td class="td0"><input type="text" class="form-control" name="SName"></td>
+                        <td class="td0"><input type="text" class="form-control" name="Contact_Person"></td>
+                        <td class="td0"><input type="text" class="form-control" name="Tell1"></td>
+                        <td class="td0"><input type="text" class="form-control" name="Tell2"></td>
+                        <td class="td0"><input type="text" class="form-control" name="Fax"></td>
+                        <td class="td0"><input type="text" class="form-control" name="UniformNum"></td>
+                    </tr>
+                    <tr>
+                        <th class="th2">地址</th>
+                        <td class="td0" colspan="5"><input type="text" class="form-control" name="Addr"></td>
+                    </tr>
+                </table>
+                <button class="btn btn-default" type="submit" style="float:center;">新增</button>
+                <button class="btn btn-default" onclick="location.href='/supplierDetail'" style="float:center;">取消</button>
             </form>
         </div>
     </body>
