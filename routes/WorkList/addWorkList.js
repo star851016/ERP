@@ -26,40 +26,45 @@ router.get('/', function(req, res) {
 
 //抓到part
 router.post('/', function(req, res, next) {
-            console.log('req.body.part' + req.body.Part);
-            console.log('req.body.CarId' + req.body.CarId);
-            console.log('req.body.situation' + req.body.situation);
-            console.log('req.body.maintenance' + req.body.maintenance);
-            var newQuestion = new Question({
-                CarId: req.body.CarId,
-                Miles: req.body.Miles,
-                InDate: req.body.InDate,
-                ExpectDate: req.body.ExpectDate,
-                maintenance: req.body.maintenance,
-                situation: req.body.situation,
-                frequency: req.body.frequency,
-                position: req.body.position,
-                note: req.body.note,
-                Part: req.body.Part,
-                Wrong: req.body.Wrong
+    console.log('req.body.part' + req.body.Part);
+    console.log('req.body.CarId' + req.body.CarId);
+    console.log('req.body.situation' + req.body.situation);
+    console.log('req.body.maintenance' + req.body.maintenance);
+    var newQuestion = new Question({
+        CarId: req.body.CarId,
+        Miles: req.body.Miles,
+        InDate: req.body.InDate,
+        ExpectDate: req.body.ExpectDate,
+        maintenance: req.body.maintenance,
+        situation: req.body.situation,
+        frequency: req.body.frequency,
+        position: req.body.position,
+        note: req.body.note,
+        Part: req.body.Part,
+        Wrong: req.body.Wrong
+    });
+
+    newQuestion.InfoList(function(err, InfoList) {
+        console.log(req.body.theForm);
+        res.render('WorkList/addWorkList', {
+            //  Q1List : Q1List,
+            member: req.session.member || null
+        });
+//待修
+        // req.session.InfoList = InfoList;
+        // console.log('req.session.InfoList '+req.session.InfoList);
+
+        // newQuestion.QuestionList(req.session.InfoList, function(err, QuestionList) {
+        newQuestion.QuestionList(function(err, QuestionList) {
+            console.log(req.body.theForm);
+            res.render('WorkList/addWorkList', {
+                //  Q1List : Q1List,
+                member: req.session.member || null
             });
+        });
 
-            newQuestion.InfoList(function(err, WorklistID) {
-                    if (err) {
-                        next(err);
-                    } else {
-                        req.session.worklist2 = WorklistID;
-                        console.log('req.body.theForm '+req.body.theForm);
-
-                        newQuestion.QuestionList(req.session.worklist2, function(err) {
-                            res.render('WorkList/addWorkList', {
-                                //  Q1List : Q1List,
-                                member: req.session.member || null
-                            });
-                        });
-                    };
-                    });
-            });
+    });
+});
 
 
-        module.exports = router;
+module.exports = router;
