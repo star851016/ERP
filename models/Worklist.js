@@ -145,11 +145,11 @@ WorkList.prototype.searchPId = function(cb) {
         });
 }
 
-
 //存Info資料
 WorkList.prototype.InfoList = function(cb) {
     console.log("InfoList");
     console.log("this CarId " + this.CarId);
+    console.log("this InDate " + this.InDate);
 
     db("worklist")
         .insert({
@@ -169,9 +169,8 @@ WorkList.prototype.InfoList = function(cb) {
             console.log('row' + row);
         })
         .then(function(result) {
-            WorkListID = result;
-            console.log('WorklistID'+WorklistID);
-            cb(null, WorklistID);
+            console.log('this' + this);
+            cb(null, this);
         }.bind(this))
         .catch(function(err) {
             console.log("INSERT ERROR", err);
@@ -180,24 +179,26 @@ WorkList.prototype.InfoList = function(cb) {
 };
 
 //存Question資料
-WorkList.prototype.QuestionList = function(WorklistID, cb) {
+// WorkList.prototype.QuestionList = function(WorklistID, cb) {
+WorkList.prototype.QuestionList = function(cb) {
     console.log("QuestionList");
+    // console.log("this WorklistID" + this.WorklistID);
     console.log("this part" + this.Part);
-    console.log("this situation" + this.situation);
+    console.log("this situation " + this.situation);
     console.log("this Wrong " + this.Wrong);
     console.log("this maintenance " + this.maintenance);
-    console.log('WorklistID ' + WorklistID);
 
-         db("question")
+
+    db("question")
         .insert({
+            // WorklistID: WorklistID,
             Part: this.Part,
             Wrong: this.Wrong,
             Situation: this.situation,
             Frequency: this.frequency,
             Position: this.position,
             Note: this.note,
-            Maintenance: this.maintenance,
-            WorklistID: WorklistID
+            Maintenance: this.maintenance
         })
         .map(function(row) {
             //  this.id = row.id;
@@ -207,9 +208,9 @@ WorkList.prototype.QuestionList = function(WorklistID, cb) {
             return row;
             console.log('row' + row);
         })
-        .then(function(question) {
-            console.log('this ' + question);
-            cb(null, question);
+        .then(function(result) {
+            console.log('this' + this);
+            cb(null, this);
         }.bind(this))
         .catch(function(err) {
             console.log("INSERT ERROR", err);
