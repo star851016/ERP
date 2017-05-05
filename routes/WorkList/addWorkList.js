@@ -43,17 +43,23 @@ router.post('/', function(req, res, next) {
         Part: req.body.Part,
         Wrong: req.body.Wrong
     });
-    newQuestion.QuestionList(function(err, QuestionList) {
-        // if(err){
-        //   next(err);
-        // }else{
-        //   console.log('Q1List'+Q1List);
-        //   console.log('Q1List'+Q1List[0].Q1_Mat);
+
+    newQuestion.InfoList(function(err, WorkId) {
         console.log(req.body.theForm);
-        res.render('WorkList/addWorkList', {
-            //  Q1List : Q1List,
-            member: req.session.member || null
+
+//待修
+        req.session.WorkId = WorkId;
+        console.log('req.session.WorkId '+req.session.WorkId);
+
+        // newQuestion.QuestionList(req.session.InfoList, function(err, QuestionList) {
+        newQuestion.QuestionList(req.session.WorkId,function(err) {
+            // console.log(req.body.theForm);
+            res.render('WorkList/addWorkList', {
+                //  Q1List : Q1List,
+                member: req.session.member || null
+            });
         });
+
     });
 });
 

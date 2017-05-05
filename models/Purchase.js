@@ -175,6 +175,7 @@ Purchase.prototype.savePro = function(table,cb){
 
 
   var Pur_Id;
+  //產生id
    db("product")
     .insert({
       PName : Pur_PName,
@@ -202,6 +203,7 @@ Purchase.prototype.savePurList = function(table,Pur_Id,Pro_Id,cb){
    Pur_Quantity = this.Pur_Quantity[table];
    Pur_Price = this.Pur_Price[table];
    SubPrice = this.SubPrice[table];
+   //使用id
    db("purchaseList")
     .insert({
       Pur_Id : Pur_Id,
