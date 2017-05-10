@@ -202,7 +202,7 @@ router.post('/fixModel', function(req, res, next) {
             upWorklist[0].InDate = fecha.format(upWorklist[0].InDate, 'YYYY-MM-DD');
             // upWorklist[0].CBirthDate = fecha.format(upWorklist[0].CBirthDate, 'YYYY-MM-DD');
             console.log('upWorklist'+upWorklist[0].WorkId);
-            newFixModel.insertModel(materiallist,function(err){
+          
 
               res.render('WorkList/upWorkList', {
                 status : req.session.status || null,
@@ -210,7 +210,7 @@ router.post('/fixModel', function(req, res, next) {
                 materiallist : materiallist ,
                 member : req.session.member || null
               });
-            })
+
 
 
             }
