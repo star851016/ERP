@@ -143,26 +143,26 @@ WorkList.prototype.fixModel = function(cb) {
 
 };
 //快速保養套組 輸入至新工單
-WorkList.prototype.insertModel = function(materiallist,cb) {
-  console.log('model/insertModel');
-    db.("materiallist")
-        .insert({
-            WorkId: ,
-            Id: this.Miles,
-            MQuantity: this.InDate,
-            Price: this.ExpectDate,
-            Amount:,
-            MNote:
-        })
-        .then(function(materiallist) {
-            cb(null, materiallist);
-        }.bind(this))
-        .catch(function(err) {
-            console.log("fixModel", err);
-            cb(new GeneralErrors.Database());
-        });
-
-};
+//WorkList.prototype.insertModel = function(materiallist,cb) {
+//   console.log('model/insertModel');
+//     db.("materiallist")
+//         .insert({
+//             WorkId: ,
+//             Id: ,
+//             MQuantity: this.InDate,
+//             Price: this.ExpectDate,
+//             Amount:,
+//             MNote:
+//         })
+//         .then(function(materiallist) {
+//             cb(null, materiallist);
+//         }.bind(this))
+//         .catch(function(err) {
+//             console.log("fixModel", err);
+//             cb(new GeneralErrors.Database());
+//         });
+//
+// };
 
 //存Info資料
 WorkList.prototype.InfoList = function(cb) {
