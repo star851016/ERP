@@ -72,15 +72,18 @@
             <p>維修套組:
                 <div class="r">
                     <input type="hidden" id="CarId" value="<%= upWorklist.CarId %>" />
-                    <input type="radio" name="maintenance" id="0" value="無"><label for="0">無</label>
-                    <input type="radio" name="maintenance" id="1" value="鈑金"><label for="1">鈑金</label>
-                    <input type="radio" name="maintenance" id="2" value="烤漆"><label for="2">烤漆</label>
-                    <input type="radio" name="maintenance" id="3" value="驗車"><label for="3">驗車</label>
-                    <input type="radio" name="maintenance" id="4" value="小保養" onClick="quickFix()"><label for="4">小保養</label>
-                    <input type="radio" name="maintenance" id="5" value="中保養"><label for="5">中保養</label>
-                    <input type="radio" name="maintenance" id="6" value="大保養"><label for="6">大保養</label>
-                    <input type="radio" name="maintenance" id="7" value="行車記錄器"><label for="7">行車記錄器</label>
+                    <form action="/worklist/fixModel" method="POST" novalidate>
 
+
+                    <button class="btn0" id="jQueryColorChange">無</button>
+                     <button class="btn0" id="jQueryColorChange">鈑&nbsp;&nbsp;金</button>
+                     <button class="btn0" id="jQueryColorChange">烤&nbsp;&nbsp;漆</button>
+                     <button class="btn0" id="jQueryColorChange">驗&nbsp;&nbsp;車</button>
+                     <button class="btn0" id="jQueryColorChange" name="fixModel" value="小保養">小保養</button>
+                     <button class="btn0" id="jQueryColorChange">中保養</button>
+                     <button class="btn0" id="jQueryColorChange">大保養</button>
+                     <button class="btn0" id="jQueryColorChange">行車記錄器</button>
+                    </form>
                 </div>
             </p>
         </div>
@@ -540,12 +543,12 @@
     </body>
 
     <script>
-        function quickFix() {
+        function fixModel() {
             var question = $('#4').val();
             var CarId = $('#CarId').val();
 
             $.ajax({
-                url: "http://localhost:3000/worklist/quickFix",
+                url: "http://localhost:3000/worklist/fixModel",
                 data: {
                     question: question,
                     CarId: CarId
@@ -554,7 +557,7 @@
                 dataType: 'json',
 
                 success: function(data) {
-                    alert(data[0].MatId);
+                    alert(data[0].Id);
 
                 },
 
@@ -570,6 +573,7 @@
 
 
         function searchPId(i) {
+          
             var searchPId = $('#searchPId' + i).val();
 
             $.ajax({

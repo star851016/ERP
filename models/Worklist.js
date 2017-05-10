@@ -90,27 +90,6 @@ WorkList.prototype.materiallist = function(cb) {
             });
     }
 
-    //快速套組
-WorkList.prototype.QuickFix = function(cb) {
-        console.log("this.Question"+this.Question);
-        WorkId = db.table('worklist').first('WorkId').where('CarId', this.CarId).where('Question', 小保養)
-      // console.log('WorkId'+WorkId);
-
-        db.select('materiallist.Id', 'materiallist.MatId', 'materiallist.MQuantity', 'materiallist.Amount', 'materiallist.Price', 'materiallist.WhoFix', 'materiallist.WhoCheck', 'materiallist.Fix', 'materiallist.Finished', 'materiallist.MNote')
-
-            .from('materiallist')
-            .innerJoin('worklist', 'materiallist.WorkId', '=', 'worklist.WorkId')
-            .where('worklist.WorkId', WorkId)
-            .then(function(materiallist) {
-                cb(null, materiallist);
-            }.bind(this))
-            .catch(function(err) {
-
-                console.log("materiallist find", err);
-                cb(new GeneralErrors.Database());
-            });
-    }
-
 
     //每一筆材料登錄儲存
 WorkList.prototype.saveMat = function(cb) {
@@ -144,6 +123,46 @@ WorkList.prototype.searchPId = function(cb) {
             cb(new GeneralErrors.Database());
         });
 }
+
+//保養套組
+WorkList.prototype.fixModel = function(cb) {
+  console.log('model/fixModel');
+    db.select('product.PName','materiallist.Id', 'materiallist.MQuantity', 'materiallist.Amount', 'materiallist.Price', 'materiallist.MNote')
+        .from('materiallist')
+        .innerJoin('product', 'materiallist.Id', '=', 'product.Id')
+        .innerJoin('worklist', 'materiallist.WorkId', '=', 'worklist.WorkId')
+        .where('worklist.Question', 'like', '小保養')
+        .then(function(materiallist) {
+          console.log('materiallist[0].Id'+materiallist[0].Id);
+            cb(null, materiallist);
+        }.bind(this))
+        .catch(function(err) {
+            console.log("fixModel", err);
+            cb(new GeneralErrors.Database());
+        });
+
+};
+//快速保養套組 輸入至新工單
+WorkList.prototype.insertModel = function(materiallist,cb) {
+  console.log('model/insertModel');
+    db.("materiallist")
+        .insert({
+            WorkId: ,
+            Id: this.Miles,
+            MQuantity: this.InDate,
+            Price: this.ExpectDate,
+            Amount:,
+            MNote:
+        })
+        .then(function(materiallist) {
+            cb(null, materiallist);
+        }.bind(this))
+        .catch(function(err) {
+            console.log("fixModel", err);
+            cb(new GeneralErrors.Database());
+        });
+
+};
 
 //存Info資料
 WorkList.prototype.InfoList = function(cb) {

@@ -7,7 +7,7 @@ var Update = require('../../models/Worklist');
 var DelWorklist = require('../../models/Worklist');
 var Delete = require('../../models/Worklist');
 var SaveMat = require('../../models/Worklist');
-var QuickFix = require('../../models/Worklist');
+var FixModel = require('../../models/Worklist');
 
 var dateFormat = require('dateformat');
 var fecha = require('fecha');
@@ -75,7 +75,7 @@ router.get('/upWorklist', function(req, res,next) {
       if(err) {
           next(err);
       } else {
-
+        req.session.WorkId = req.query.WorkId;
         upWorklist[0].InDate = fecha.format(upWorklist[0].InDate, 'YYYY-MM-DD');
         // upWorklist[0].CBirthDate = fecha.format(upWorklist[0].CBirthDate, 'YYYY-MM-DD');
         console.log('upWorklist'+upWorklist[0].WorkId);
@@ -116,30 +116,6 @@ router.post('/saveCustomer', function(req, res,next) {
    });
 });
 
-//快速套組
-router.get('/quickFix', function(req, res,next) {
-  console.log('quickFix');
-  console.log('req.query.question'+req.query.question);
-   console.log('CarId'+req.query.CarId);
-  var newQuickFix = new QuickFix({
-      Question : req.query.question,
-      CarId : req.query.CarId
-   });
-   newQuickFix.QuickFix(function(err,materiallist) {
-     if(err) {
-       next(err);
-     } else {
-       console.log('QuickFix');
-       console.log('materiallist'+materiallist[0]);
-       console.log(materiallist[0].MatId);
-       res.json(materiallist);
-        //  res.render('WorkList/upWorkList', {
-        //    materiallist : materiallist,
-        //    member : req.session.member || null
-        //  });
-     }
-   });
-});
 
 
 //儲存材料登錄--每一筆
@@ -205,12 +181,41 @@ router.get('/carHistory', function(req, res, next) {
 
 });
 
-router.post('/quickFix', function(req, res, next) {
-    console.log('quickFix');
-    console.log('req.body.quickFix'+req.body.quickFix);
-    res.render('WorkList/carHistory', {
+//維修套組
+router.post('/fixModel', function(req, res, next) {
+    console.log('fixModel');
+    console.log('req.body.fixModel'+req.body.fixModel);
+    console.log('req.session.WorkId'+req.session.WorkId);
+    var newFixModel = new FixModel({
+      id : req.session.WorkId,
+      fixModel : req.body.fixModel
+     });
+    newFixModel.fixModel(function(err,materiallist) {
+      console.log('materiallist[0].PName'+materiallist[0].PName);
+      if(err) {
+        next(err);
+      } else {
+        newFixModel.find(function(err,upWorklist) {
+          if(err) {
+              next(err);
+          } else {
+            upWorklist[0].InDate = fecha.format(upWorklist[0].InDate, 'YYYY-MM-DD');
+            // upWorklist[0].CBirthDate = fecha.format(upWorklist[0].CBirthDate, 'YYYY-MM-DD');
+            console.log('upWorklist'+upWorklist[0].WorkId);
+            newFixModel.insertModel(materiallist,function(err){
 
-        member: req.session.member || null
+              res.render('WorkList/upWorkList', {
+                status : req.session.status || null,
+                upWorklist : upWorklist[0],
+                materiallist : materiallist ,
+                member : req.session.member || null
+              });
+            })
+
+
+            }
+         });
+      }
     });
 
 });
