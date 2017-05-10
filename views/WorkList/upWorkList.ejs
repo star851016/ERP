@@ -75,16 +75,22 @@
                     <form action="/worklist/fixModel" method="POST" novalidate>
 
 
-                    <button class="btn0" id="jQueryColorChange">無</button>
-                     <button class="btn0" id="jQueryColorChange">鈑&nbsp;&nbsp;金</button>
-                     <button class="btn0" id="jQueryColorChange">烤&nbsp;&nbsp;漆</button>
-                     <button class="btn0" id="jQueryColorChange">驗&nbsp;&nbsp;車</button>
-                     <button class="btn0" id="jQueryColorChange" name="fixModel" value="小保養">小保養</button>
-                     <button class="btn0" id="jQueryColorChange">中保養</button>
-                     <button class="btn0" id="jQueryColorChange">大保養</button>
-                     <button class="btn0" id="jQueryColorChange">行車記錄器</button>
+                        <button class="btn0" id="jQueryColorChange">無</button>
+                        <button class="btn0" id="jQueryColorChange">鈑&nbsp;&nbsp;金</button>
+                        <button class="btn0" id="jQueryColorChange">烤&nbsp;&nbsp;漆</button>
+                        <button class="btn0" id="jQueryColorChange">驗&nbsp;&nbsp;車</button>
+                        <button class="btn0" id="jQueryColorChange" name="fixModel" value="小保養">小保養</button>
+                        <button class="btn0" id="jQueryColorChange">中保養</button>
+                        <button class="btn0" id="jQueryColorChange">大保養</button>
+                        <button class="btn0" id="jQueryColorChange">行車記錄器</button>
                     </form>
                 </div>
+                <script>
+                    $("button#jQueryColorChange").click(function() {
+                        $('button').removeClass('selected');
+                        $(this).addClass('selected');
+                    });
+                </script>
             </p>
         </div>
 
@@ -591,8 +597,8 @@
 
                         $('#tableSearchPId')
 
-                        .append('<tbody><td class="td0">' + data[i].Id + '</td>' +
-                            '<td class="td0">' + data[i].PName + '</td></tbody>')
+                            .append('<tbody><td class="td0">' + data[i].Id + '</td>' +
+                                '<td class="td0">' + data[i].PName + '</td></tbody>')
 
                     });
 

@@ -1,0 +1,65 @@
+<html>
+<% include ../Shared/header %>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+
+    <body>
+        <div class="hdr">
+            <p class="title">新增客戶</p>
+        </div>
+        <br><br><br><br>
+        <div class="col-md-12">
+            <form name="sentMessage" action="/sup" method="POST" id="contactForm" novalidate>
+                <table class="table table-bordered">
+                    <tr>
+                        <th class="th2">車牌</th>
+                        <th class="th2">車主</th>
+                        <th class="th2" rowspan="2">車輛型式</th>
+                        <th class="th2">排氣量</th>
+                        <th class="th2">車身碼</th>
+                        <th class="th2">出廠年份</th>
+                    </tr>
+                    <tr>
+                        <td class="td0"><input type="text" class="form-control" name="CarID"></td>
+                        <td class="td0"><input type="text" class="form-control" name="CName"></td>
+                        <td class="td0"><input type="text" class="form-control" name="BrandID"></td>
+                        <td class="td0"><input type="text" class="form-control" name="TypeID"></td>
+                        <td class="td0"><input type="text" class="form-control" name="cc"></td>
+                        <td class="td0"><input type="text" class="form-control" name="CarBodyNum"></td>
+                        <td class="td0"><input type="text" class="form-control" name="YrOfManu"></td>
+                    </tr>
+                    <tr>
+                        <th class="th2">聯絡人</th>
+                        <th class="th2">電話1</th>
+                        <th class="th2">電話2</th>
+                        <th class="th2">統一編號</th>
+                        <th class="th2">生日</th>
+                    </tr>
+                    <tr>
+                        <td class="td0"><input type="text" class="form-control" name="Contact_Person"></td>
+                        <td class="td0"><input type="text" class="form-control" name="Tell1"></td>
+                        <td class="td0"><input type="text" class="form-control" name="Tell2"></td>
+                        <td class="td0"><input type="text" class="form-control" name="UniformNum"></td>
+                        <td class="td0">
+                            <input class="text" type="text" name="EndTime" id="date_CBirthDate">
+                            <link rel="stylesheet" type="text/css" href="/stylesheets/jquery-ui.css" />
+                            <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+                            <script type="text/javascript" src="/javascripts/jquery-ui-datepicker.js"></script>
+                            <script type="text/javascript">
+                                $(function() {
+                                    $("#date_CBirthDate").datepicker();
+                                });
+                            </script>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th class="th2">地址</th>
+                        <td class="td0" colspan="5"><input type="text" class="form-control" name="Addr"></td>
+                    </tr>
+                </table>
+                <button class="btn btn-default" type="submit" style="float:center;">新增</button>
+                <button class="btn btn-default" onclick="location.href='/supplierDetail'" style="float:center;">取消</button>
+            </form>
+        </div>
+    </body>
+
+</html>

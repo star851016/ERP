@@ -5,12 +5,18 @@
     <div class="hdr">
         <p class="title">進貨</p>
     </div>
-    <form name="sentMessage" action="/purchase" method="POST" novalidate>
-        <br><br><br>
-        <p class="input">供應商<input type="text" class="text" name="SName" value="祥發"></p>
-        <p class="input">總額<input type="text" class="text" name="TPrice" value="20000"></p>
-        <p class="input">狀態<input type="text" class="text" name="Status" value="已訂貨"></p>
-        <div style="width:100%;">
-        </div>
-        <button id="button" class="btn btn-default" type="submit">確認</button>
-    </form>
+    <br><br><br>
+    <div style="width:50%;margin-left:25%;margin-left:25%">
+        <form name="sentMessage" action="/purchase" method="POST" novalidate>
+            <div class="form-group">
+                <label for="SName" style="float:left;">供應商</label>
+                <input type="text" class="form-control" id="SName" placeholder="廠商" name="SName">
+            </div>
+            <div class="form-group">
+                <label for="TPrice" style="float:left;">總額</label>
+                <input type="text" class="form-control" id="TPrice" placeholder="金額" name="TPrice">
+            </div>
+            <br>
+            <button id="button" class="btn btn-default" type="submit">確認</button>
+        </form>
+    </div>

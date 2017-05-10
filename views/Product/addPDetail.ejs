@@ -12,8 +12,8 @@
             <form name="sentMessage" action="/supplier" method="POST" id="contactForm" novalidate>
         </div>
         <br><br><br><br><br>
-        <div class="col-md-12">
-            <div style="background-color:#FCFCEB;border-radius:5px;height:auto;width:50%;right:25%;left:25%;text-align:center;">
+        <div style="width:50%;margin-left:25%;margin-right:25%;">
+            <div style="background-color:#FCFCEB;border-radius:5px;height:auto;right:25%;left:25%;width:100%;text-align:center;">
                 <p>商品：
                     <%= addProduct.PName %>
                 </p>
@@ -24,6 +24,9 @@
                 <br>
                 <p>廠牌：
                     <%= addProduct.Types %>
+                </p>
+                <p>廠牌：
+                    <%= addProduct.Quantity %>
                 </p>
                 <br>
                 <p>進價：
