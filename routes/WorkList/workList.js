@@ -67,7 +67,7 @@ router.post('/', function(req, res,next) {
 
 //編輯點進去 去找該列的資料
 router.get('/upWorklist', function(req, res,next) {
-  // console.log('req.query.WorkId'+req.query.WorkId);
+  console.log('req.session.WorkId'+req.session.WorkId);
   var newUpWorklist = new UpWorklist({
     id : req.query.WorkId || req.session.WorkId
    });
@@ -75,7 +75,10 @@ router.get('/upWorklist', function(req, res,next) {
       if(err) {
           next(err);
       } else {
-        req.session.WorkId = req.query.WorkId;
+        if(req.session.WorkId == ""){
+          req.session.WorkId = req.query.WorkId;
+        }
+
         upWorklist[0].InDate = fecha.format(upWorklist[0].InDate, 'YYYY-MM-DD');
         // upWorklist[0].CBirthDate = fecha.format(upWorklist[0].CBirthDate, 'YYYY-MM-DD');
         console.log('upWorklist'+upWorklist[0].WorkId);
@@ -135,9 +138,16 @@ router.post('/saveMat', function(req, res,next) {
     impaired : req.body.impaired,
     Amount : req.body.Amount
    });
-   console.log(req.body.MQuantity);
+   console.log(req.body.MatId);
+    if(req.body.MatId == "undefined"){
+      console.log("insertMat");
+      newSaveMat.insertMat(req.body.WorkId,function(err){
 
-   newSaveMat.saveMat();
+      });
+    }else{
+      newSaveMat.saveMat();
+    };
+
     req.session.WorkId = req.body.WorkId ;
     res.redirect('/worklist/upWorklist?'+req.session.WorkId);
 

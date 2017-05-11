@@ -89,6 +89,24 @@ WorkList.prototype.materiallist = function(cb) {
                 cb(new GeneralErrors.Database());
             });
     }
+    //新增材料登錄
+    WorkList.prototype.insertMat = function(WorkId,cb) {
+
+        db.from('materiallist')
+            .insert({
+                WorkId : WorkId,
+                MatId : 31,
+                Id : "ruv",
+                MQuantity: this.MQuantity,
+                Price: this.Price,
+                Amount: this.Amount,
+                MNote: this.MNote
+            })
+            .catch(function(err) {
+                console.log("insertMat find", err);
+                cb(new GeneralErrors.Database());
+            });
+    }
 
 
     //每一筆材料登錄更新
