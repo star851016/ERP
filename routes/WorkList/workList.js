@@ -67,7 +67,7 @@ router.post('/', function(req, res,next) {
 
 //編輯點進去 去找該列的資料
 router.get('/upWorklist', function(req, res,next) {
-  console.log('req.query.WorkId'+req.query.WorkId);
+  // console.log('req.query.WorkId'+req.query.WorkId);
   var newUpWorklist = new UpWorklist({
     id : req.query.WorkId || req.session.WorkId
    });
@@ -121,8 +121,9 @@ router.post('/saveCustomer', function(req, res,next) {
 //儲存材料登錄--每一筆
 router.post('/saveMat', function(req, res,next) {
   console.log('saveMat');
+  console.log(req.body.WorkId);
   var newSaveMat = new SaveMat({
-    WorkId : req.body.id,
+    WorkId : req.body.WorkId,
     id : req.body.MatId,
     PName : req.body.PName,
     MNote : req.body.MNote,
@@ -134,9 +135,10 @@ router.post('/saveMat', function(req, res,next) {
     impaired : req.body.impaired,
     Amount : req.body.Amount
    });
-   console.log(req.body.impaired);
+   console.log(req.body.MQuantity);
+
    newSaveMat.saveMat();
-    req.session.WorkId = req.body.id ;
+    req.session.WorkId = req.body.WorkId ;
     res.redirect('/worklist/upWorklist?'+req.session.WorkId);
 
 });
@@ -195,6 +197,14 @@ router.post('/fixModel', function(req, res, next) {
       if(err) {
         next(err);
       } else {
+        req.session.materiallist = materiallist;
+          for(i=0;i<materiallist.length;i++){
+            newFixModel.insertNewMaterial(req.session.WorkId,req.session.materiallist[i],function(err,materiallist){
+
+            });
+            i = i+1;
+            console.log(i);
+          };
         newFixModel.find(function(err,upWorklist) {
           if(err) {
               next(err);
@@ -202,7 +212,7 @@ router.post('/fixModel', function(req, res, next) {
             upWorklist[0].InDate = fecha.format(upWorklist[0].InDate, 'YYYY-MM-DD');
             // upWorklist[0].CBirthDate = fecha.format(upWorklist[0].CBirthDate, 'YYYY-MM-DD');
             console.log('upWorklist'+upWorklist[0].WorkId);
-          
+
 
               res.render('WorkList/upWorkList', {
                 status : req.session.status || null,

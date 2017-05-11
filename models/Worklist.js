@@ -91,16 +91,16 @@ WorkList.prototype.materiallist = function(cb) {
     }
 
 
-    //每一筆材料登錄儲存
+    //每一筆材料登錄更新
 WorkList.prototype.saveMat = function(cb) {
     console.log(this.MQuantity);
     db.from('materiallist')
         .where('MatId', this.id)
         .update({
-            MQuantity: this.MQuantity,
-            Price: this.Price,
-            Amount: this.Amount,
-            MNote: this.MNote
+            MQuantity: this.MQuantity
+            // Price: this.Price,
+            // Amount: this.Amount,
+            // MNote: this.MNote
         })
         .catch(function(err) {
             console.log("saveMat find", err);
@@ -142,7 +142,24 @@ WorkList.prototype.fixModel = function(cb) {
         });
 
 };
+//每一筆材料登錄新增
+WorkList.prototype.insertNewMaterial = function(WorkId,materiallist,cb) {
+console.log('materiallist.MQuantity'+materiallist.MQuantity);
+    db.from('materiallist')
 
+        .insert({
+            WorkId : WorkId,
+            Id : materiallist.Id,
+            MQuantity: materiallist.MQuantity,
+            Price: materiallist.Price,
+            Amount: materiallist.Amount,
+            MNote: materiallist.MNote
+        })
+        .catch(function(err) {
+            console.log("insertNewMaterial find", err);
+            cb(new GeneralErrors.Database());
+        });
+}
 
 
 //存Info資料
