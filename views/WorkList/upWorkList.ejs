@@ -311,7 +311,7 @@
                                     <%= i %>
                                 </td>
                                 <td class="td2">
-                                  <form action="/worklist/saveMat" method="POST" novalidate>
+
                                     <input id="searchPId<%= i %>" type="text" class="text2" name="PId" value="<%= materiallist[j].Id %>">
                                     <button class="button2" onClick="searchPId(<%= i %>)">&darr;</button>
 
@@ -325,7 +325,7 @@
 
                                     <button class="button3" onclick="searchSupplier(<%= i %>)">按此選材料行</button>
                                 </td>
-
+                                <form action="/worklist/saveMat" method="POST" novalidate>
                                     <td class="td2"><input type="text" name="Price" class="text2" value="<%= materiallist[j].Price %>"></td>
                                     <td class="td2"><input type="text" name="MQuantity" class="text2" value="<%= materiallist[j].MQuantity %>"></td>
 
@@ -402,13 +402,13 @@
                                     </td>
 
                                     <td class="td2"><input type="text" name="PName" class="text2" value=""></td>
-                                    <form action="/worklist/saveMat" method="POST" novalidate>
+
                                         <td class="td2"><input type="text" name="MNote" class="text2" value=""></td>
                                         <td class="td2">
 
                                             <button class="button3" onclick="searchSupplier(<%= i %>)">按此選材料行</button>
                                         </td>
-
+                                          <form action="/worklist/saveMat" method="POST" novalidate>
                                         <td class="td2"><input type="text" name="Price" class="text2" value=""></td>
                                         <td class="td2"><input type="text" name="MQuantity" class="text2" value=""></td>
 
@@ -549,32 +549,7 @@
     </body>
 
     <script>
-        function fixModel() {
-            var question = $('#4').val();
-            var CarId = $('#CarId').val();
 
-            $.ajax({
-                url: "http://localhost:3000/worklist/fixModel",
-                data: {
-                    question: question,
-                    CarId: CarId
-                },
-                type: "get",
-                dataType: 'json',
-
-                success: function(data) {
-                    alert(data[0].Id);
-
-                },
-
-                error: function() {
-
-                    alert(CarId);
-                    alert("再接再勵");
-                }
-
-            });
-        };
 
 
 
