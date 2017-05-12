@@ -10,6 +10,7 @@ var WorkList = function(options) {
     this.CName = options.CName;
     this.carBrand = options.carBrand;
     this.carType = options.carType;
+    this.PId = options.PId,
     this.MQuantity = options.MQuantity;
     this.Price = options.Price;
     this.Amount = options.Amount;
@@ -95,8 +96,7 @@ WorkList.prototype.materiallist = function(cb) {
         db.from('materiallist')
             .insert({
                 WorkId : WorkId,
-                MatId : 31,
-                Id : "ruv",
+                Id : this.PId,
                 MQuantity: this.MQuantity,
                 Price: this.Price,
                 Amount: this.Amount,
