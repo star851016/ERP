@@ -1,0 +1,93 @@
+<% include ../Shared/header %>
+
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <div class="hdr">
+        <p class="title">結帳登記</p>
+    </div>
+    <div class="container2" style="overflow-x:auto;">
+        <table style="width:100%;height:100px;margin:3px;">
+            <tr>
+                <td class="td">收款日期</td>
+                <td class="td2">
+                    <input class="text0" type="text" name="ReceiveDate" id="ReceiveDate">
+                </td>
+                <td class="td">車主:</td>
+                <td class="td2">
+                    <form class="form1" action="/customer" method="POST" novalidate>
+                        <input class="text0" type="text">
+                    </form>
+                </td>
+            </tr>
+            <tr>
+                <td class="td">工單號碼:</td>
+                <td class="td2">
+                    <form class="form1" action="/worklist" method="POST" novalidate>
+                        <input class="text0" type="text">
+                    </form>
+                </td>
+                <td class="td">車牌:</td>
+                <td class="td2">
+                    <form class="form1" action="/worklist" method="POST" novalidate>
+                        <input class="text0" type="text">
+                    </form>
+                </td>
+                <td class="td2" colspan="3" style="width:100%">
+                    <form class="form1" style="float:left;">
+                        <button style="background-color:transparent;border:0px;"><img style="height:40px;" src="../images/images/search.png"></a>
+                    </form>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <form name="sentMessage" action="/purchase" method="POST" novalidate>
+        <br><br><br>
+        <div style="text-align:center;">
+            <div style="position:relative;left:50%;margin-left:-250px;">
+                <p style="background-color:#DDDDDD;border-radius:10px;height:200px;width:500px;text-align:center;margin:0px;font-size:40px;">
+                    供應商：
+                    <%= purchase.SName %><br>總額：
+                        <%= purchase.TPrice %><br>狀態：
+                            <%= purchase.Status %>
+            </div>
+            <br>
+        </div>
+
+        <div style="width:100%;">
+
+            <table>
+                <tr border="1">
+                    <th>名稱</th>
+                    <th>廠牌</th>
+                    <th>規格</th>
+                    <th>數量</th>
+                    <th>單價</th>
+                    <th>小計</th>
+                </tr>
+
+
+                <% for(i=0;i<10;i++) { %>
+                    <tr class="tr_odd">
+                        <td>
+                            <%=purchaseList.Pur_PName[i] %>
+                        </td>
+                        <td>
+                            <%= purchaseList.Pur_Types[i] %>
+                        </td>
+                        <td>
+                            <%= purchaseList.Pur_Specification[i] %>
+                        </td>
+                        <td>
+                            <%= purchaseList.Pur_Quantity[i] %>
+                        </td>
+                        <td>
+                            <%= purchaseList.Pur_Price[i] %>
+                        </td>
+                        <td>
+                            <%= purchaseList.SubPrice[i] %>
+                        </td>
+                    </tr>
+                    <%  }; %>
+            </table>
+        </div>
+
+    </form>

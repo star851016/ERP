@@ -64,13 +64,16 @@
 
 <body>
 	<div id="container">
-		<h1>訂貨囉囉囉囉囉</h1>
+		<h1>訂貨</h1>
 		<p>收件人:</p>
 		<input type="text" id="to" placeholder="請輸入客戶信箱" value="103306022@nccu.edu.tw">
 		<p>主旨：</p>
 		<input type="text" id="subject" placeholder="信件主旨" value="ERP"><br><br>
-		<textarea id="content" rows="5" cols="40" placeholder="內容..." value="success"></textarea><br>
+		<textarea id="content" rows="5" cols="40" placeholder="內容..." value="success">
+		</textarea><br>
 		<br>
+		<p>請選擇上傳的檔案：</p>
+		<p><input type="file"></p>
 		<button id="send_email">Send Email</button><br>
 		<span id="message"></span>
 	</div>
