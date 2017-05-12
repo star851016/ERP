@@ -144,12 +144,16 @@ WorkList.prototype.searchPId = function(cb) {
 
 //保養套組
 WorkList.prototype.fixModel = function(cb) {
+  console.log(this.CarId);
   console.log('model/fixModel');
     db.select('product.PName','materiallist.Id', 'materiallist.MQuantity', 'materiallist.Amount', 'materiallist.Price', 'materiallist.MNote')
         .from('materiallist')
         .innerJoin('product', 'materiallist.Id', '=', 'product.Id')
         .innerJoin('worklist', 'materiallist.WorkId', '=', 'worklist.WorkId')
-        .where('worklist.Question', 'like', '小保養')
+        .where({
+          'worklist.Question' : '小保養',
+          'worklist.CarId' : this.CarId
+        })
         .then(function(materiallist) {
           console.log('materiallist[0].Id'+materiallist[0].Id);
             cb(null, materiallist);

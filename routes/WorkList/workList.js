@@ -75,9 +75,10 @@ router.get('/upWorklist', function(req, res,next) {
       if(err) {
           next(err);
       } else {
-        if(req.session.WorkId == ""){
+        // if(req.session.WorkId == ""){
           req.session.WorkId = req.query.WorkId;
-        }
+
+        // }
 
         upWorklist[0].InDate = fecha.format(upWorklist[0].InDate, 'YYYY-MM-DD');
         // upWorklist[0].CBirthDate = fecha.format(upWorklist[0].CBirthDate, 'YYYY-MM-DD');
@@ -88,6 +89,7 @@ router.get('/upWorklist', function(req, res,next) {
             } else {
 
                 res.render('WorkList/upWorkList', {
+
                   status : req.session.status || null,
                   upWorklist : upWorklist[0],
                   materiallist : materiallist ,
@@ -199,7 +201,9 @@ router.post('/fixModel', function(req, res, next) {
     console.log('fixModel');
     console.log('req.body.fixModel'+req.body.fixModel);
     console.log('req.session.WorkId'+req.session.WorkId);
+    console.log('req.body.CarId'+req.body.CarId);
     var newFixModel = new FixModel({
+      CarId : req.body.CarId,
       id : req.session.WorkId,
       fixModel : req.body.fixModel
      });
@@ -208,13 +212,18 @@ router.post('/fixModel', function(req, res, next) {
       if(err) {
         next(err);
       } else {
-        req.session.materiallist = materiallist;
+        // var length = fixList.length - 1 ;
+        // console.log('length'+length);
+        req.session.fixList =materiallist;
+        console.log(req.session.fixList);
           for(i=0;i<materiallist.length;i++){
-            newFixModel.insertNewMaterial(req.session.WorkId,req.session.materiallist[i],function(err,materiallist){
+            console.log(i);
+            newFixModel.insertNewMaterial(req.session.WorkId,req.session.fixList[i],function(err,materiallist){
 
             });
+
             i = i+1;
-            console.log(i);
+
           };
         newFixModel.find(function(err,upWorklist) {
           if(err) {
@@ -224,13 +233,21 @@ router.post('/fixModel', function(req, res, next) {
             // upWorklist[0].CBirthDate = fecha.format(upWorklist[0].CBirthDate, 'YYYY-MM-DD');
             console.log('upWorklist'+upWorklist[0].WorkId);
 
+            newFixModel.materiallist(function(err,materiallist) {
+              if(err) {
+                next(err);
+              } else {
 
-              res.render('WorkList/upWorkList', {
-                status : req.session.status || null,
-                upWorklist : upWorklist[0],
-                materiallist : materiallist ,
-                member : req.session.member || null
-              });
+                  res.render('WorkList/upWorkList', {
+
+                    status : req.session.status || null,
+                    upWorklist : upWorklist[0],
+                    materiallist : materiallist ,
+                    member : req.session.member || null
+                  });
+              }
+            });
+
 
 
 
