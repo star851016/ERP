@@ -124,10 +124,11 @@ router.post('/saveCustomer', function(req, res,next) {
 //儲存材料登錄--每一筆
 router.post('/saveMat', function(req, res,next) {
   console.log('saveMat');
-  console.log(req.body.WorkId);
+  console.log('req.body.PId'+req.body.PId);
   var newSaveMat = new SaveMat({
     WorkId : req.body.WorkId,
     id : req.body.MatId,
+    PId : req.body.PId,
     PName : req.body.PName,
     MNote : req.body.MNote,
     MQuantity : req.body.MQuantity,
