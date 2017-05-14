@@ -410,7 +410,7 @@
 
                                     </td>
 
-                                    <td class="td2"><input type="text" name="PName" class="text2"></td>
+                                    <td class="td2"><input type="text" id="addPName" name="PName" class="text2"></td>
 
                                     <td class="td2"><input type="text" name="MNote" class="text2"></td>
                                     <td class="td2">
@@ -565,7 +565,7 @@
         function searchPId(i) {
 
             var searchPId = $('#searchPId' + i).val();
-
+            var num  = i ;
             $.ajax({
                 url: "http://localhost:3000/worklist/searchPId",
                 data: {
@@ -581,8 +581,8 @@
 
                         $('#tableSearchPId')
 
-                            .append('<tbody><td class="td0">' + data[i].Id + '</td>' +
-                                '<td class="td0">' + data[i].PName + '</td></tbody>')
+                            .append('<tr onclick="setValue(\'' + data[i].Id + '\',\'' + data[i].PName + '\',\'' + num + '\')"><td class="td0" >' + data[i].Id + '</td>' +
+                                '<td class="td0">' + data[i].PName + '</td></tr>')
 
                     });
 
@@ -595,6 +595,11 @@
             });
         };
 
+        function setValue(Id,value,num){
+          $("#searchPId" + num).val(Id);
+          $("#addPName").val(value);
+          $("#SearchPIdWindows").hide();
+        };
 
         function searchSupplier(i) {
             var searchPId = $('#searchPId' + i).val();
