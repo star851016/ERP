@@ -310,17 +310,12 @@
                                 </td>
                                 <td class="td2">
                                     <input id="searchPId<%= i %>" type="text" class="text2" name="PId" value="<%= materiallist[j].Id %>">
-                                    <button class="button2" onClick="searchPId(<%= i %>)">&darr;</button>
-                                    <button class="btn btn-info btn-lg" data-toggle="modal" data-target="#searchPId" onClick="searchPId(<%= i %>)">Open Modal</button>
                                 </td>
 
                                 <td class="td2"><input id="PName" type="text" name="PName" class="text2" value="<%= materiallist[j].PName %>"></td>
 
                                 <td class="td2"><input type="text" name="MNote" class="text2" value="<%= materiallist[j].MNote %>"></td>
                                 <td class="td2">
-
-                                    <button class="button3" onclick="searchSupplier(<%= i %>)">按此選材料行</button>
-                                    <button class="btn btn-info btn-lg" data-toggle="modal" data-target="#searchSupplier" onClick="searchSupplier(<%= i %>)">Open Modal</button>
                                 </td>
 
 
@@ -400,7 +395,6 @@
                                     <td class="td2">
 
                                         <input id="searchPId<%= i %>" type="text" class="text2" name="PId">
-                                        <button class="button2" onClick="searchPId(<%= i %>)">&darr;</button>
 
 
                                     </td>
@@ -410,7 +404,7 @@
                                     <td class="td2"><input type="text" name="MNote" class="text2"></td>
                                     <td class="td2">
 
-                                        <button class="button3" onclick="searchSupplier(<%= i %>)">按此選材料行</button>
+                                        <button class="button3" data-toggle="modal" data-target="#searchSupplier" onClick="searchSupplier(<%= i %>)">按此選材料行</button>
                                     </td>
                                     <form action="/worklist/saveMat" method="POST" novalidate>
 
