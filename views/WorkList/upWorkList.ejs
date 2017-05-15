@@ -71,12 +71,8 @@
         <div class="container">
             <p>維修套組:
                 <div class="r">
-
-
-
                     <input type="hidden" id="CarId" value="<%= upWorklist.CarId %>" />
                     <form action="/worklist/fixModel" method="POST" novalidate>
-
                         <button class="btn0" id="jQueryColorChange">無</button>
                         <button class="btn0" id="jQueryColorChange">鈑&nbsp;&nbsp;金</button>
                         <button class="btn0" id="jQueryColorChange">烤&nbsp;&nbsp;漆</button>
@@ -313,11 +309,28 @@
                                     <%= i %>
                                 </td>
                                 <td class="td2">
-
                                     <input id="searchPId<%= i %>" type="text" class="text2" name="PId" value="<%= materiallist[j].Id %>">
                                     <button class="button2" onClick="searchPId(<%= i %>)">&darr;</button>
-
-
+                                    <button class="btn btn-info btn-lg" data-toggle="modal" data-target="#searchPId" onClick="searchPId(<%= i %>)">Open Modal</button>
+                                    <!-- Modal -->
+                                    <div id="searchPId" class="modal fade" role="dialog">
+                                        <div class="modal-dialog">
+                                            <!-- Modal content-->
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <table id="tableSearchPId" class="table2" border="1">
+                                                        <thead>
+                                                            <th class="th2">料號</th>
+                                                            <th class="th2">分類</th>
+                                                        </thead>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </td>
 
                                 <td class="td2"><input id="PName" type="text" name="PName" class="text2" value="<%= materiallist[j].PName %>"></td>
@@ -326,6 +339,58 @@
                                 <td class="td2">
 
                                     <button class="button3" onclick="searchSupplier(<%= i %>)">按此選材料行</button>
+                                    <button class="btn btn-info btn-lg" data-toggle="modal" data-target="#searchSupplier" onClick="searchSupplier(<%= i %>)">Open Modal</button>
+                                    <!-- Modal -->
+                                    <div id="searchSupplier" class="modal fade" role="dialog">
+
+                                        <!-- Modal content-->
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="row">
+                                                <div class="col-md-4" style="height:100%;width:45%;">
+                                                    <h2>比價</h2>
+                                                    <table id="tableSupplier" class="table2">
+                                                        <thead>
+                                                            <th class="th2">名稱</th>
+                                                            <th class="th2">種類</th>
+                                                            <th class="th2">成本價</th>
+                                                            <th class="th2">通訊方式</th>
+                                                        </thead>
+                                                    </table>
+                                                </div>
+                                                <div class="col-md-4" style="height:100%;width:45%;">
+                                                    <h2>報價</h2>
+                                                    <table class="table2">
+                                                        <tr>
+                                                            <th class="th2">種類</th>
+                                                            <th class="th2">售價</th>
+                                                            <th class="th2">數量</th>
+                                                            <th class="th2">小計</th>
+                                                            <th class="th2">確認</th>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="td0">中古</td>
+                                                            <td class="td0">$20</td>
+                                                            <td class="td0">1</td>
+                                                            <td class="td0">$20</td>
+                                                            <td class="td0">
+                                                                <input type="checkbox" name="order" value="yes">
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                    <br>
+                                                </div>
+                                                <div class="col-md-4" style="height:50%;width:10%;">
+                                                    <br><br><br><br><br>
+                                                    <form class="form1" style="float:left;">
+                                                        <button class="btn btn-default">儲存</button>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </td>
 
 
@@ -502,70 +567,13 @@
             <button class="button1">結帳交車</button>
         </form>
         <br><br>
-        <div id="SearchPIdWindows" style="display : none">
-            <button class="glyphicon glyphicon-remove" style="background-color:transparent;border:0px transparent;float:right;" onclick="closeSearchPId()"></button>
-
-            <div class="container3">
-                <table id="tableSearchPId" class="table2" border="1">
-                    <thead>
-                        <th class="th2">料號</th>
-                        <th class="th2">分類</th>
-                    </thead>
-                </table>
-            </div>
-        </div>
-        <div id="SearchSupplier" style="display : none">
-            <div class="row">
-                <div class="col-md-4" style="height:100%;width:45%;">
-                    <h2>比價</h2>
-                    <table id="tableSupplier" class="table2">
-                        <thead>
-                            <th class="th2">名稱</th>
-                            <th class="th2">種類</th>
-                            <th class="th2">成本價</th>
-                            <th class="th2">通訊方式</th>
-                        </thead>
-                    </table>
-                </div>
-                <div class="col-md-4" style="height:100%;width:45%;">
-                    <h2>報價</h2>
-                    <table class="table2">
-                        <tr>
-                            <th class="th2">種類</th>
-                            <th class="th2">售價</th>
-                            <th class="th2">數量</th>
-                            <th class="th2">小計</th>
-                            <th class="th2">確認</th>
-                        </tr>
-                        <tr>
-                            <td class="td0">中古</td>
-                            <td class="td0">$20</td>
-                            <td class="td0">1</td>
-                            <td class="td0">$20</td>
-                            <td class="td0">
-                                <input type="checkbox" name="order" value="yes">
-                            </td>
-                        </tr>
-                    </table>
-                    <br>
-                </div>
-                <div class="col-md-4" style="height:50%;width:10%;">
-                    <button class="glyphicon glyphicon-remove" style="background-color:transparent;border:0px transparent;float:right;" onclick="closeSearchSupplier()"></button>
-                    <br><br><br><br><br>
-                    <form class="form1" style="float:left;">
-                        <button class="btn btn-default">儲存</button>
-                    </form>
-
-                </div>
-            </div>
-        </div>
     </body>
 
     <script>
         function searchPId(i) {
 
             var searchPId = $('#searchPId' + i).val();
-            var num  = i ;
+            var num = i;
             $.ajax({
                 url: "http://localhost:3000/worklist/searchPId",
                 data: {
@@ -595,10 +603,10 @@
             });
         };
 
-        function setValue(Id,value,num){
-          $("#searchPId" + num).val(Id);
-          $("#addPName").val(value);
-          $("#SearchPIdWindows").hide();
+        function setValue(Id, value, num) {
+            $("#searchPId" + num).val(Id);
+            $("#addPName").val(value);
+            $("#SearchPIdWindows").hide();
         };
 
         function searchSupplier(i) {
