@@ -1,93 +1,111 @@
 <% include ../Shared/header %>
 
     <link rel='stylesheet' href='/stylesheets/style.css' />
-    <div class="hdr">
-        <p class="title">結帳登記</p>
-    </div>
-    <div class="container2" style="overflow-x:auto;">
-        <table style="width:100%;height:100px;margin:3px;">
-            <tr>
-                <td class="td">收款日期</td>
-                <td class="td2">
-                    <input class="text0" type="text" name="ReceiveDate" id="ReceiveDate">
-                </td>
-                <td class="td">車主:</td>
-                <td class="td2">
-                    <form class="form1" action="/customer" method="POST" novalidate>
-                        <input class="text0" type="text">
-                    </form>
-                </td>
-            </tr>
-            <tr>
-                <td class="td">工單號碼:</td>
-                <td class="td2">
-                    <form class="form1" action="/worklist" method="POST" novalidate>
-                        <input class="text0" type="text">
-                    </form>
-                </td>
-                <td class="td">車牌:</td>
-                <td class="td2">
-                    <form class="form1" action="/worklist" method="POST" novalidate>
-                        <input class="text0" type="text">
-                    </form>
-                </td>
-                <td class="td2" colspan="3" style="width:100%">
-                    <form class="form1" style="float:left;">
-                        <button style="background-color:transparent;border:0px;"><img style="height:40px;" src="../images/images/search.png"></a>
+    <script>
+        $('input[name="optionsRadios"]').on('change', function() {
+            if ($(this).val() == 'update') {
+
+                //change to "show update"
+                $("#cont").text("現金支付");
+
+            } else {
+
+                $("#cont").text("信用卡");
+            }
+        });
+    </script>
+
+    <body>
+        <div class="hdr">
+            <p class="title">結帳登記</p>
+        </div>
+        <div class="container2" style="overflow-x:auto;">
+            <table style="width:100%;height:100px;margin:3px;">
+                <tr>
+                    <td class="td">收款日期</td>
+                    <td class="td2">
+                        <input class="text0" type="text" name="ReceiveDate" id="ReceiveDate">
+                    </td>
+                    <td class="td">車主:</td>
+                    <td class="td2">
+                        <form class="form1" action="/customer" method="POST" novalidate>
+                            <input class="text0" type="text">
+                        </form>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="td">工單號碼:</td>
+                    <td class="td2">
+                        <form class="form1" action="/worklist" method="POST" novalidate>
+                            <input class="text0" type="text">
+                        </form>
+                    </td>
+                    <td class="td">車牌:</td>
+                    <td class="td2">
+                        <form class="form1" action="/worklist" method="POST" novalidate>
+                            <input class="text0" type="text">
+                        </form>
+                    </td>
+                    <td class="td2" colspan="3" style="width:100%">
+                        <form class="form1" style="float:left;">
+                            <button style="background-color:transparent;border:0px;"><img style="height:40px;" src="../images/images/search.png"></a>
                     </form>
                 </td>
             </tr>
         </table>
     </div>
-    <form name="sentMessage" action="/purchase" method="POST" novalidate>
-        <br><br><br>
-        <div style="text-align:center;">
-            <div style="position:relative;left:50%;margin-left:-250px;">
-                <p style="background-color:#DDDDDD;border-radius:10px;height:200px;width:500px;text-align:center;margin:0px;font-size:40px;">
-                    供應商：
-                    <%= purchase.SName %><br>總額：
-                        <%= purchase.TPrice %><br>狀態：
-                            <%= purchase.Status %>
-            </div>
-            <br>
-        </div>
+    <div class="container">
 
-        <div style="width:100%;">
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>No.</th>
+        <th><image src='../public/images/images/cash.png'></th>
+        <th>完成日期</th>
+        <th>工單號碼</th>
+        <th>車牌</th>
+        <th>零件金額</th>
+        <th>工資金額</th>
+        <th>小計</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>1</td>
+        <td><image src='../public/images/images/creditcard.png'></td>
+        <td>2017/04/28</td>
+        <td>20170428001</td>
+        <td>ABCD-87</td>
+        <td>1000</td>
+        <td>1000</td>
+        <td>2000</td>
+      </tr>
+      <tr>
+        <td>2</td>
+        <td></td>
+        <td>2017/04/28</td>
+        <td>20170428002</td>
+        <td>ABCD-87</td>
+        <td>1000</td>
+        <td>1000</td>
+        <td>2000</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="container">
+  <label class="radio inline">
+      <input id="up_radio" type="radio" name="optionsRadios" value="cash" checked>
+      現金
+  </label>
 
-            <table>
-                <tr border="1">
-                    <th>名稱</th>
-                    <th>廠牌</th>
-                    <th>規格</th>
-                    <th>數量</th>
-                    <th>單價</th>
-                    <th>小計</th>
-                </tr>
+  <label class="radio inline">
+      <input id="ov_radio" type="radio" name="optionsRadios" value="creditcard">
+      信用卡
+  </label>
 
-
-                <% for(i=0;i<10;i++) { %>
-                    <tr class="tr_odd">
-                        <td>
-                            <%=purchaseList.Pur_PName[i] %>
-                        </td>
-                        <td>
-                            <%= purchaseList.Pur_Types[i] %>
-                        </td>
-                        <td>
-                            <%= purchaseList.Pur_Specification[i] %>
-                        </td>
-                        <td>
-                            <%= purchaseList.Pur_Quantity[i] %>
-                        </td>
-                        <td>
-                            <%= purchaseList.Pur_Price[i] %>
-                        </td>
-                        <td>
-                            <%= purchaseList.SubPrice[i] %>
-                        </td>
-                    </tr>
-                    <%  }; %>
-            </table>
-        </div>
-
-    </form>
+  <p id="cont">
+  </p>
+  <p>應收金額:<input type="text" class="receivable"></p>
+</div>
+</body>

@@ -1,8 +1,13 @@
 <html>
+<link rel='stylesheet' href='/stylesheets/style.css' />
+<link rel='stylesheet' href='/stylesheets/bootstarp.min.css'>
 
 <head>
 	<title>E-mail通知</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+	<script src="/javascripts/bootstrap.min.js"></script>
 	<script>
 		$(document).ready(function() {
 			var from, to, subject, text;
@@ -24,58 +29,79 @@
 			});
 		});
 	</script>
-	<style>
-		#container {
-			margin-left: 400px;
-			margin-top: 50px;
-		}
-
-		#to,
-		#subject,
-		#content {
-			font-family: "Segoe UI";
-			font-size: 15px;
-			width: 530px;
-		}
-
-		h1 {
-			font-family: "Segoe UI";
-			font-size: 40px;
-			color: #3b5998;
-		}
-
-		p {
-			color: green;
-			font-size: 15px;
-		}
-
-		#send_email {
-			font-size: 15px;
-			font-family: "Segoe UI";
-			background-color: #3b5998;
-			color: white;
-		}
-
-		#message {
-			font-size: 18px;
-		}
-	</style>
 </head>
+<style>
+	#container {
+		margin-left: 400px;
+		margin-top: 50px;
+	}
+
+	#to,
+	#subject,
+	#content {
+		font: 20px "Microsoft JhengHei", "Lucida Grande", Helvetica, Arial, sans-serif;
+		font-size: 15px;
+		width: 530px;
+		text-align: left;
+	}
+
+	h1 {
+		font: 20px "Microsoft JhengHei", "Lucida Grande", Helvetica, Arial, sans-serif;
+		font-size: 40px;
+		color: #3b5998;
+	}
+
+	p {
+		color: black;
+		font-size: 15px;
+		font: 20px "Microsoft JhengHei", "Lucida Grande", Helvetica, Arial, sans-serif;
+		text-align: left;
+		font-weight: bold;
+	}
+
+	#send_email {
+		font-size: 14px;
+		font-family: "Microsoft JhengHei", "Lucida Grande", Helvetica, Arial, sans-serif;
+		background-color: #3b5998;
+		color: white;
+		height: 30px;
+	}
+
+	#message {
+		font-size: 18px;
+	}
+</style>
 
 <body>
-	<div id="container">
-		<h1>訂貨</h1>
-		<p>收件人:</p>
-		<input type="text" id="to" placeholder="請輸入客戶信箱" value="103306022@nccu.edu.tw">
-		<p>主旨：</p>
-		<input type="text" id="subject" placeholder="信件主旨" value="ERP"><br><br>
-		<textarea id="content" rows="5" cols="40" placeholder="內容..." value="success">
+	<div class="container-fluid">
+		<div class="hdr">
+			<p class="title">發送訂貨通知</p>
+		</div>
+		<br><br><br><br>
+		<div style="width:50%;margin-left:25%">
+			<p>收件人:</p>
+			<input type="text" id="to" placeholder="請輸入客戶信箱" value="103306022@nccu.edu.tw">
+			<p>主旨：</p>
+			<input type="text" id="subject" placeholder="信件主旨" value="城林汽修廠訂貨通知">
+			<p>信件內容：</p>
+			<textarea id="content" rows="10" cols="50" placeholder="內容..." value="success">
+您好:
+	本公司(城林汽車) 欲向您訂購以下商品:
+			品名: 機油
+			規格:5W50
+			數量:100瓶
+	若您收到此信，並確認可出貨請回信通知，如有任何問題請盡速與我聯繫，謝謝您。
+
+城林汽車
+02-8262-6441
+0988-638-431
+新北市土城區中華路二段32之一號
+聯絡人:詹小姐
 		</textarea><br>
-		<br>
-		<p>請選擇上傳的檔案：</p>
-		<p><input type="file"></p>
-		<button id="send_email">Send Email</button><br>
-		<span id="message"></span>
+			<br>
+			<button id="send_email">發送訂貨信件</button><br>
+			<span id="message"></span>
+		</div>
 	</div>
 </body>
 
