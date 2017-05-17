@@ -80,7 +80,7 @@
                         <button class="btn0" id="jQueryColorChange" name="fixModel" value="小保養">小保養</button>
                         <button class="btn0" id="jQueryColorChange">中保養</button>
                         <button class="btn0" id="jQueryColorChange">大保養</button>
-                        <button class="btn0" id="jQueryColorChange">行車記錄器</button>
+                        
                     </form>
                 </div>
                 <script>
@@ -471,17 +471,17 @@
 
                 <div id="tab4" class="tab_content">
                     <div class="container" style="float:center;">
-                        <p>工資金額:<input type="text" class="tax"></p>
-                        <p>零件金額:<input type="text" class="tax"></p>
-                        <p>稅前金額:<input type="text" class="tax"></p>
+                        <p>工資金額:<input type="text" class="tax" value="$0"></p>
+                        <p>零件金額:<input type="text" class="tax" value="$2950"></p>
+                        <p>稅前金額:<input type="text" class="tax" value="$2950"></p>
                         <form class="form1" action="" method="get" style="display:inline;">
                             <input type="radio" name="tax" value="no"><span>不要稅金</span>
                             <input type="radio" name="tax" value="yes"><span>要稅金:</span>
-                            <input type="text" class="tax">%
+                            <input type="text" class="tax" value="5">%
                         </form>
                         </span>
-                        <p>稅金:<input type="text" class="tax"></p>
-                        <p>總金額:<input type="text" class="tax"></p>
+                        <p>稅金:<input type="text" class="tax" value="$150"></p>
+                        <p>總金額:<input type="text" class="tax" value="$2100"></p>
                         <form class="form1" style="float:right;">
                             <button class="button1">結帳交車</button>
                         </form>
@@ -524,11 +524,46 @@
                         <h2>比價</h2>
                         <table id="tableSupplier" class="table2">
                             <thead>
-                                <th class="th2">名稱</th>
+                                <th class="th2">廠商</th>
                                 <th class="th2">種類</th>
                                 <th class="th2">成本價</th>
                                 <th class="th2">通訊方式</th>
                             </thead>
+                            <tr>
+                                <td class="td0">薪宇</td>
+                                <td class="td0">正廠</td>
+                                <td class="td0">$1200</td>
+                                <td class="td0"><a class="btn btn-primary" href="/server">寄e-mail</a></td>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="td0">泰順</td>
+                                <td class="td0">副廠</td>
+                                <td class="td0">$800</td>
+                                <td class="td0"><a class="btn btn-primary" href="/server">寄e-mail</a></td>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="td0">弘毅</td>
+                                <td class="td0">中古</td>
+                                <td class="td0">$600</td>
+                                <td class="td0"><a class="btn btn-primary" href="/server">寄e-mail</a></td>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="td0">祥發</td>
+                                <td class="td0">正廠</td>
+                                <td class="td0">$1500</td>
+                                <td class="td0"><a class="btn btn-primary" href="/server">寄e-mail</a></td>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="td0">聚新</td>
+                                <td class="td0">中古</td>
+                                <td class="td0">$500</td>
+                                <td class="td0"><a class="btn btn-primary" href="/server">寄e-mail</a></td>
+                                </td>
+                            </tr>
                         </table>
                     </div>
                     <div class="col-md-5">
@@ -542,8 +577,26 @@
                                 <th class="th2">確認</th>
                             </tr>
                             <tr>
-                                <td class="td0">中古</td>
+                                <td class="td0">正廠</td>
+                                <td class="td0">$2000</td>
+                                <td class="td0">1</td>
+                                <td class="td0">$2000</td>
+                                <td class="td0">
+                                    <input type="checkbox" name="order" value="yes">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="td0">副廠</td>
+                                <td class="td0">$1500</td>
+                                <td class="td0">1</td>
                                 <td class="td0">$20</td>
+                                <td class="td0">
+                                    <input type="checkbox" name="order" value="yes">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="td0">中古</td>
+                                <td class="td0">$1000</td>
                                 <td class="td0">1</td>
                                 <td class="td0">$20</td>
                                 <td class="td0">
@@ -617,15 +670,8 @@
 
                 success: function(data) {
                     $("#SearchSupplier").show();
-                    $('#tableSupplier tbody').html("");
-                    $.each(data, function(i, item) {
-                        $('#tableSupplier')
-                            .append('<tr><td class="td0">' + data[i].Id + '</td>' +
-                                '<td class="td0">' + data[i].PName + '</td>' +
-                                '<td class="td0">' + "50" + '</td>' +
-                                '<td class="td0"><a class="btn btn-primary" href="/server">寄e-mail</a></td>' +
-                                '</td></tr>')
-                    });
+
+
                 },
 
                 error: function() {
