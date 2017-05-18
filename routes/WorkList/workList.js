@@ -213,7 +213,7 @@ router.post('/fixModel', function(req, res, next) {
         next(err);
       } else {
         // var length = fixList.length - 1 ;
-        // console.log('length'+length);
+        console.log('materiallist.length'+materiallist.length);
         req.session.fixList =materiallist;
         console.log(req.session.fixList);
           for(i=0;i<materiallist.length;i++){
@@ -222,8 +222,7 @@ router.post('/fixModel', function(req, res, next) {
 
             });
 
-            i = i+1;
-
+          
           };
         newFixModel.find(function(err,upWorklist) {
           if(err) {

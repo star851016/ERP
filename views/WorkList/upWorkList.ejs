@@ -71,8 +71,9 @@
         <div class="container">
             <p>維修套組:
                 <div class="r">
-                    <input type="hidden" id="CarId" value="<%= upWorklist.CarId %>" />
+
                     <form action="/worklist/fixModel" method="POST" novalidate>
+                      <input type="hidden" name="CarId" value="<%= upWorklist.CarId %>" >
                         <button class="btn0" id="jQueryColorChange">無</button>
                         <button class="btn0" id="jQueryColorChange">鈑&nbsp;&nbsp;金</button>
                         <button class="btn0" id="jQueryColorChange">烤&nbsp;&nbsp;漆</button>
