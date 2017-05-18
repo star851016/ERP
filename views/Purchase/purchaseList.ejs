@@ -4,7 +4,7 @@
 
 
     <div class="hdr">
-        <p class="title">進貨</p>
+        <p class="title">進貨明細</p>
     </div>
     <form name="sentMessage" action="/purchaseList" method="POST" novalidate>
         <br><br><br>
@@ -19,40 +19,40 @@
             <br>
         </div>
 
-        <table>
-            <tr border="1">
-                <th>名稱</th>
-                <th>廠牌</th>
-                <th>規格</th>
-                <th>數量</th>
-                <th>單價</th>
-                <th>小計</th>
+        <table class="table table-bordered">
+            <tr>
+                <th class="th2">名稱</th>
+                <th class="th2">廠牌</th>
+                <th class="th2">規格</th>
+                <th class="th2">數量</th>
+                <th class="th2">單價</th>
+                <th class="th2">小計</th>
             </tr>
 
             <% for(i=0;i<10;i++) { %>
-                <tr class="tr_odd">
-                    <td><select class="text1" name="Pur_PName" onchange="PName.submit()">
+                <tr>
+                    <td class="td0"><select class="text1" name="Pur_PName" onchange="PName.submit()">
              <option class="options" ></option>
              <% PNameList.forEach(function(PName) { %>
              <option class="options"><%= PName.PName %></option>
               <%  }); %>
           </select></td>
-                    <td><select class="text1" name="Pur_Types">
+                    <td class="td0"><select class="text1" name="Pur_Types">
             <option class="options" ></option>
             <% TypesList.forEach(function(Types) { %>
            <option class="options"><%= Types.Types %></option>
              <%  }); %>
         </select></td>
-                    <td><select class="text1" name="Pur_Specification">
+                    <td class="td0"><select class="text1" name="Pur_Specification">
             <option class="options" ></option>
             <% SpecificationList.forEach(function(Specification) { %>
            <option class="options"><%= Specification.Specification %></option>
              <%  }); %>
 
         </select></td>
-                    <td><input type="text" class="text1" name="Pur_Quantity"></td>
-                    <td><input type="text" class="text1" name="Pur_Price"></td>
-                    <td><input type="text" class="text1" name="SubPrice"></td>
+                    <td class="td0"><input type="text" class="text1" name="Pur_Quantity"></td>
+                    <td class="td0"><input type="text" class="text1" name="Pur_Price"></td>
+                    <td class="td0"><input type="text" class="text1" name="SubPrice"></td>
                     <input type="hidden" name="tableList" value="<%=i%>"></input>
                 </tr>
                 <%  }; %>

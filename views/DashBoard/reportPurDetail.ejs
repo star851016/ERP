@@ -26,46 +26,34 @@
         <div style="width:100%;">
 
         </div>
-        <table style="position:relative;margin:1px auto;">
-            <tr border="1">
-                <th>進貨日期</th>
-                <th>進貨單號</th>
-                <th>廠商</th>
-                <th>產品</th>
-                <th>廠牌</th>
-                <th>規格</th>
-                <th>數量</th>
-                <th>單價</th>
-                <th>小計</th>
+        <table class="table table-bordered">
+            <tr>
+                <th class="th2">名稱</th>
+                <th class="th2">廠牌</th>
+                <th class="th2">規格</th>
+                <th class="th2">數量</th>
+                <th class="th2">單價</th>
+                <th class="th2">小計</th>
             </tr>
 
             <% checkPurchase.forEach(function(purchase) { %>
-                <tr class="tr_odd">
-                    <td>
-                        <%= purchase.CreateTime %>
-                    </td>
-                    <td>
-                        <%= purchase.Pur_Id %>
-                    </td>
-                    <td>
-                        <%= purchase.SName %>
-                    </td>
-                    <td>
+                <tr>
+                    <td class="td0">
                         <%= purchase.PName %>
                     </td>
-                    <td>
+                    <td class="td0">
                         <%= purchase.Types %>
                     </td>
-                    <td>
+                    <td class="td0">
                         <%= purchase.Specification %>
                     </td>
-                    <td>
+                    <td class="td0">
                         <%= purchase.Quantity %>
                     </td>
-                    <td>
+                    <td class="td0">
                         <%= purchase.Price%>
                     </td>
-                    <td>
+                    <td class="td0">
                         <%= purchase.SubPrice%>
                     </td>
                 </tr>
