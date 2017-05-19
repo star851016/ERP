@@ -4,7 +4,7 @@ var AddProduct = require('../../models/Product');
 
 router.get('/', function(req, res) {
   if(!req.session.member) {
-    res.redirect('/');
+    // res.redirect('/');
   }
   res.render('Product/addProduct', {
     addProduct : req.session.addProduct || null,

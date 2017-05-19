@@ -15,18 +15,18 @@ router.get('/', function(req, res) {
 });
 
 router.post('/', function(req, res,next) {
-  console.log('req'+req.body.id);
+  console.log('req'+req.body.Id);
   console.log('upProduct');
  var newUpProduct = new UpProduct({
-   id : req.body.id
+   Id : req.body.Id
   });
-  console.log(req.body.id);
+  console.log(req.body.Id);
   newUpProduct.find(function(err,upProduct) {
 
     if(err) {
       next(err);
     } else {
-      if(newUpProduct.id!='')
+      if(newUpProduct.Id!='')
       {
         newUpProduct.differentPName(function(err,PNameList){
           if(err){
@@ -71,7 +71,7 @@ router.post('/', function(req, res,next) {
 
 router.post('/update', function(req, res,next) {
  var newUpdate = new Update({
-   id : req.body.id,
+   Id : req.body.Id,
    PName : req.body.PName,
    Types : req.body.Types,
    Specification : req.body.Specification,

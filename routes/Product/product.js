@@ -7,6 +7,7 @@ var Product = require('../../models/Product');
 router.get('/', function(req, res, next) {
 
     var newProduct = new Product({
+        Id : req.body.Id,
         PName: req.body.PName,
         Specification: req.body.Specification,
         Types: req.body.Types,
@@ -17,6 +18,7 @@ router.get('/', function(req, res, next) {
         if (err) {
             next(err);
         } else {
+          console.log('productList[0].Id'+productList[3].Id);
             if (newProduct.PName != '') {
                 newProduct.differentPName(function(err, PNameList) {
                     if (err) {

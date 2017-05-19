@@ -23,10 +23,10 @@
             </div>
             <br>
             <form name="sentMessage" action="/delProduct/delete" method="POST" novalidate>
-                <input type="hidden" name="id" value="<%= delProduct.id %>" />
+                <input type="hidden" name="Id" value="<%= delProduct.Id %>" />
                 <button class="button" type="submit" style="float:center;">刪除</button>
             </form>
-            <button class="button" type="submit" style="float:center;" onclick="location.href='/productDetail'">取消</button>
+            <button class="button" type="submit" style="float:center;" onclick="location.href='/product'">取消</button>
             <a href="/sup"><img src="./images/back.png" style="float:right;"></a>
         </div>
     </body>

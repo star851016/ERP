@@ -13,7 +13,7 @@
                 <div class="form-group">
                     <label for="PName">依名稱</label>
                     <select id="PName" class="form-control" name="PName">
-       <option class="options">請選擇</option>
+       <option class="options">---請選擇---</option>
        <% PNameList.forEach(function(PName) { %>
       <option class="options"><%= PName.PName %></option>
         <%  }); %>
@@ -21,8 +21,8 @@
                 </div>
                 <div class="form-group">
                     <label for="Types">依廠牌</label>
-                    <select id="Types" class="form-control" name="Types" onchange="myFunction()">
-        <option class="options">請選擇</option>
+                    <select id="Types" class="form-control" name="Types">
+        <option class="options">---請選擇---</option>
         <% TypesList.forEach(function(Types) { %>
        <option class="options"><%= Types.Types %></option>
          <%  }); %>
@@ -31,7 +31,7 @@
                 <div class="form-group">
                     <label for="Specification">依規格</label>
                     <select id="Specification" class="form-control" name="Specification">
-    <option class="options">請選擇</option>
+    <option class="options">---請選擇---</option>
     <% SpecificationList.forEach(function(Specification) { %>
    <option class="options"><%= Specification.Specification %></option>
      <%  }); %>
@@ -72,11 +72,11 @@
                         </td>
                         <td style="width:150px;">
                             <form action="/upProduct" method="POST" novalidate style="float:left;margin:5px;">
-                                <input type="hidden" name="id" value="<%= product.id %>" />
+                                <input type="hidden" name="Id" value="<%= product.Id %>" />
                                 <button id="button" class="btn1" type="submit">編輯</button>
                             </form>
                             <form action="/delProduct" method="POST" novalidate style="float:right;margin:5px;">
-                                <input type="hidden" name="id" value="<%= product.id %>" />
+                                <input type="hidden" name="Id" value="<%= product.Id %>" />
                                 <button id="button" class="btn1" type="submit">刪除</button>
                             </form>
                         </td>

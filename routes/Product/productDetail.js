@@ -35,6 +35,7 @@ router.post('/', function(req, res,next) {
    Types : req.body.Types,
    Supplier_Name : req.body.Supplier_Name
   });
+  console.log('req.body.PName'+req.body.PName);
   if(req.body.Specification == '---請選擇---' ){
 
     if(req.body.Types == '---請選擇---'){
@@ -59,7 +60,7 @@ router.post('/', function(req, res,next) {
                         if(err){
                           next(err);
                         }else{
-                              console.log(SpecificationDropdownList);
+                              
                           req.session.product = newProduct;
                           res.render('Product/productDetail', {
                              productList : productList,
@@ -249,7 +250,7 @@ router.post('/', function(req, res,next) {
           }
         }
       });
-        console.log('testD'+req.body.Types);
+
     }
 
 

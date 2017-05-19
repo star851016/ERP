@@ -14,15 +14,17 @@ router.get('/', function(req, res) {
 });
 
 router.post('/', function(req, res,next) {
+  console.log('get');
  var newDelProduct = new DelProduct({
-   id : req.body.id
+   Id : req.body.Id
   });
+  console.log('req.body.Id'+req.body.Id);
   newDelProduct.find(function(err,delProduct) {
 
     if(err) {
       next(err);
     } else {
-      if(newDelProduct.id!='')
+      if(newDelProduct.Id!='')
       {
         req.session.delProduct = newDelProduct;
           res.render('Product/delProduct', {
@@ -43,9 +45,9 @@ router.post('/', function(req, res,next) {
 });
 
 router.post('/delete', function(req, res,next) {
-  console.log('req.body.id'+req.body.id);
+  console.log('req.body.Id'+req.body.Id);
  var newDelProduct = new DelProduct({
-    id : req.body.id,
+    Id : req.body.Id,
    PName : req.body.PName,
    Types : req.body.Types,
    Specification : req.body.Specification,

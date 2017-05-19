@@ -2,7 +2,7 @@ var db = require('../libs/db');
 var GeneralErrors = require('../errors/GeneralErrors');
 
 var Product = function(options) {
-  this.id = options.id;
+  this.Id = options.Id;
   this.PName = options.PName;
   this.Specification = options.Specification;
   this.Quantity = options.Quantity ;
@@ -21,7 +21,7 @@ Product.prototype.save = function (cb) {
         Sales_Price : this.Sales_Price
       })
       .map(function(row) {
-        //  this.id = row.id;
+        //  this.Id = row.Id;
         console.log('this'+this.PName);
           this.PName = row.PName;
           this.Types = row.Types;
@@ -43,7 +43,7 @@ Product.prototype.save = function (cb) {
 Product.prototype.update = function(cb){
   db("product")
     .where({
-      id : this.id
+      Id : this.Id
     })
     .update({
       PName : this.PName,
@@ -61,10 +61,10 @@ Product.prototype.update = function(cb){
 }
 Product.prototype.delete = function (cb) {
   console.log('delete');
-  console.log('id'+this.id);
+  console.log('Id'+this.Id);
     db("product")
       .where({
-        id : this.id
+        Id : this.Id
       })
       .del()
       .then(function(result) {
@@ -78,25 +78,15 @@ Product.prototype.delete = function (cb) {
 
 
 Product.prototype.check = function(cb){
-  db.select('product.PName', 'product.id','product.Quantity',
+  db.select('product.PName', 'product.Id','product.Quantity',
                    'product.Specification','product.Types')
             .from('product')
-            //.innerJoin('purchase','product.id','=','purchase.Product_Id')
-            .map(function(row) {
-              //this.id = row.id;
-              this.PName = row.PName;
-              this.Specification = row.Specification;
-              this.Quantity = row.Quantity ;
-              this.Types = row.Types;
-            //  this.Supplier_Name = row.Supplier_Name;
-                return row;
-              //console.log('row'+row);
-            })
+
+
             .then(function(productList) {
-              this.id = productList[0].id;
+              this.Id = productList[0].Id;
               this.PName = productList[0].PName;
-              //console.log('productList'+productList[0].id);
-              //console.log('productList'+productList);
+
               cb(null, productList);
             }.bind(this)
           )
@@ -107,22 +97,22 @@ Product.prototype.check = function(cb){
 }
 
 Product.prototype.find = function(cb){
-  console.log('hihi'+this.id);
-  db.select('product.PName', 'product.id','product.Quantity',
+  console.log('hihi'+this.Id);
+  db.select('product.PName', 'product.Id','product.Quantity',
                    'product.Specification','product.Types')
             .from('product')
-            //.innerJoin('purchase','product.id','=','purchase.Product_Id')
+            //.innerJoin('purchase','product.Id','=','purchase.Product_Id')
             .where({
-            id : this.id
+            Id : this.Id
 
          })
             .then(function(upProduct) {
-              this.id = upProduct[0].id;
+              this.Id = upProduct[0].Id;
               this.PName = upProduct[0].PName;
               this.Specification = upProduct[0].Specification;
               this.Quantity =upProduct[0].Quantity;
               this.Types = upProduct[0].Types;
-              console.log('productList'+upProduct[0].id);
+              console.log('productList'+upProduct[0].Id);
               //console.log('productList'+upProduct);
               cb(null, upProduct);
             }.bind(this)
@@ -182,7 +172,7 @@ Product.prototype.differentTypes = function(cb){
 
 Product.prototype.checkA = function (cb) {
       console.log('product');
-      db.select('product.PName', 'product.id','product.Quantity',
+      db.select('product.PName', 'product.Id','product.Quantity',
                        'product.Specification','product.Types')
                 .from('product')
 
@@ -191,7 +181,7 @@ Product.prototype.checkA = function (cb) {
 
      })
       .map(function(row) {
-      //  this.id = row.id;
+      //  this.Id = row.Id;
         this.PName = row.PName;
         this.Specification = row.Specification;
         this.Quantity = row.Quantity ;
@@ -212,16 +202,16 @@ Product.prototype.checkA = function (cb) {
 };
 Product.prototype.checkB = function (cb) {
       console.log('product');
-      db.select('product.PName', 'product.id','product.Quantity',
+      db.select('product.PName', 'product.Id','product.Quantity',
                        'product.Specification','product.Types')
                 .from('product')
-                //.innerJoin('purchase','product.id','=','purchase.Product_Id')
+                //.innerJoin('purchase','product.Id','=','purchase.Product_Id')
      .where({
        PName : this.PName,
        Types : this.Types,
      })
       .map(function(row) {
-      //  this.id = row.id;
+      //  this.Id = row.Id;
         this.PName = row.PName;
         this.Specification = row.Specification;
         this.Quantity = row.Quantity ;
@@ -241,17 +231,17 @@ Product.prototype.checkB = function (cb) {
 };
 Product.prototype.checkC = function (cb) {
       console.log('product');
-      db.select('product.PName', 'product.id','product.Quantity',
+      db.select('product.PName', 'product.Id','product.Quantity',
                        'product.Specification','product.Types')
                 .from('product')
-                //.innerJoin('purchase','product.id','=','purchase.Product_Id')
+                //.innerJoin('purchase','product.Id','=','purchase.Product_Id')
      .where({
        PName : this.PName,
        Specification : this.Specification,
 
      })
       .map(function(row) {
-      //  this.id = row.id;
+      //  this.Id = row.Id;
         this.PName = row.PName;
         this.Specification = row.Specification;
         this.Quantity = row.Quantity ;
@@ -271,17 +261,17 @@ Product.prototype.checkC = function (cb) {
 };
 Product.prototype.checkD = function (cb) {
       console.log('product');
-      db.select('product.PName', 'product.id','product.Quantity',
+      db.select('product.PName', 'product.Id','product.Quantity',
                        'product.Specification','product.Types')
                 .from('product')
-                //.innerJoin('purchase','product.id','=','purchase.Product_Id')
+                //.innerJoin('purchase','product.Id','=','purchase.Product_Id')
      .where({
        PName : this.PName,
        Specification : this.Specification,
        Types : this.Types,
      })
       .map(function(row) {
-      //  this.id = row.id;
+      //  this.Id = row.Id;
         this.PName = row.PName;
         this.Specification = row.Specification;
         this.Quantity = row.Quantity ;
