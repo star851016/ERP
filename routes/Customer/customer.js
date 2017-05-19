@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var Customer = require('../../models/Customer');
+var async = require('async');
 
 router.get('/', function(req, res) {
   if(!req.session.member) {
@@ -84,4 +85,97 @@ router.post('/addCustomer', function(req, res) {
   });
 
 });
+
+//編輯
+router.post('/upCustomer', function(req, res) {
+  if(!req.session.member) {
+  //  res.redirect('/');
+  }
+  var newCustomer = new Customer({
+      ID : req.body.ID
+  });
+  newCustomer.upCustomer(function(err,upCustomer){
+
+      res.render('Customer/upCustomer', {
+
+        upCustomer : upCustomer[0],
+        member : req.session.member || null
+      });
+
+
+  });
+    });
+
+    //更新
+    router.post('/update', function(req, res) {
+      if(!req.session.member) {
+      //  res.redirect('/');
+      }
+      var newCustomer = new Customer({
+        ID : req.body.ID,
+        CarId : req.body.CarId,
+        CName: req.body.CName,
+        Contact_Person : req.body.Contact_Person,
+        Tell1: req.body.Tell1,
+        UniformNum: req.body.UniformNum
+      });
+      newCustomer.updateCus(function(err){
+
+          res.redirect('/customer');
+
+
+      });
+        });
+        //編輯
+    router.post('/delCustomer', function(req, res) {
+      if(!req.session.member) {
+          //  res.redirect('/');
+          }
+      var newCustomer = new Customer({
+          ID : req.body.ID
+      });
+      newCustomer.upCustomer(function(err,delCustomer){
+
+          res.render('Customer/delCustomer', {
+
+            delCustomer : delCustomer[0],
+            member : req.session.member || null
+          });
+
+
+      });
+    });
+    //確定刪除--刪車
+    router.post('/delete', function(req, res) {
+      if(!req.session.member) {
+      //  res.redirect('/');
+      }
+      var newCustomer = new Customer({
+        ID : req.body.ID,
+        CarId : req.body.CarId
+      });
+      console.log('req.body.CarId'+req.body.CarId);
+      async.series([
+       function(done){
+         newCustomer.deleteCar(function(err,result){
+          //  res.redirect('/customer');
+             done()
+         });
+
+       }
+       ,function(done){
+         newCustomer.deleteCus(function(err,result){
+
+             res.redirect('/customer');
+
+
+         });
+             done()
+
+         }
+     ])
+
+
+    });
+
 module.exports = router;

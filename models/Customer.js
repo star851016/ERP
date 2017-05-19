@@ -5,6 +5,7 @@ var GeneralErrors = require('../errors/GeneralErrors');
 
 
 var Customer = function(options) {
+  this.ID = options.ID,
   this.CarId = options.CarId;
   this.CName = options.CName;
   this.BrandID = options.BrandID,
@@ -62,6 +63,21 @@ Customer.prototype.find = function(cb) {
     })
 }
 
+//客戶編輯
+Customer.prototype.upCustomer = function(cb) {
+  console.log('this.ID'+this.ID);
+  db.select()
+    .from('customer')
+    .innerJoin('car', 'customer.ID', '=', 'car.ID')
+    .where('customer.ID', this.ID)
+    .then(function(upCustomer) {
+        cb(null, upCustomer);
+    })
+    .catch(function(err) {
+      cb(err);
+    })
+}
+
 //新增客戶 車主
 Customer.prototype.saveCustomer = function(cb) {
   db.from('customer')
@@ -105,4 +121,57 @@ Customer.prototype.saveCar = function(ID,cb) {
       });
 }
 
+//編輯客戶
+Customer.prototype.updateCus = function(cb) {
+  db.from('customer')
+      .update({
+        CName: this.CName,
+        Contact_Person : this.Contact_Person,
+        Tell1: this.Tell1,
+        UniformNum: this.UniformNum
+      })
+      .where('customer.ID', this.ID)
+      .then(function(ID){
+        cb(null, ID);
+      })
+      .catch(function(err) {
+          console.log("updateCus ERROR", err);
+          cb(new GeneralErrors.Database());
+      });
+}
+//刪除車
+Customer.prototype.deleteCar = function(cb) {
+  console.log('deleteCar');
+  console.log('this.CarId'+this.CarId);
+
+  db("car")
+  .where({
+      CarId : this.CarId
+    })
+      .del()
+      .then(function(result) {
+        cb(null, this);
+      }.bind(this))
+      .catch(function(err) {
+          console.log("deleteCar ERROR", err);
+          cb(new GeneralErrors.Database());
+      });
+}
+//刪除客戶
+Customer.prototype.deleteCus = function(cb) {
+  console.log('this.ID'+this.ID);
+  console.log('deleteCus');
+  db("customer")
+      .where({
+          ID : this.ID
+        })
+      .del()
+      .then(function(result) {
+        cb(null, this);
+      }.bind(this))
+      .catch(function(err) {
+          console.log("deleteCus ERROR", err);
+          cb(new GeneralErrors.Database());
+      });
+}
 module.exports = Customer;

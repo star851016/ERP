@@ -1,0 +1,33 @@
+<html>
+<% include ../Shared/header %>
+
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+
+    <body>
+
+        <div class="hdr">
+            <p class="title">編輯客戶</p>
+        </div>
+        <br><br><br><br>
+        <div style="width:100%;position:relative;top:10%;">
+            <form name="sentMessage" action="/customer/update" method="POST" id="contactForm" novalidate>
+                <p class="input">客戶&nbsp&nbsp&nbsp<input class="text" type="text" name="CName" value=<%= upCustomer.CName %>>&nbsp&nbsp&nbsp</p>
+
+                <p class="input">車牌&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input class="text" type="text" name="CarId" value=<%= upCustomer.CarId %>>&nbsp&nbsp&nbsp</p>
+
+                <p class="input">聯絡人&nbsp&nbsp&nbsp<input class="text" type="text" name="Contact_Person" value=<%= upCustomer.Contact_Person %>>&nbsp&nbsp&nbsp</p>
+
+                <p class="input">電話&nbsp&nbsp&nbsp<input class="text" type="text" name="Tell1" value=<%= upCustomer.Tell1 %>>&nbsp&nbsp&nbsp</p>
+
+                <p class="input">統編&nbsp&nbsp&nbsp<input class="text" type="text" name="UniformNum" value=<%= upCustomer.UniformNum %>>&nbsp&nbsp&nbsp</p>
+                <br><br>
+                <input type="hidden" name="ID" value="<%= upCustomer.ID %>" />
+                <button class="button" type="submit" style="float:center;">更新</button>
+            </form>
+
+            <button class="button" style="float:center;" onclick="location.href='/customer'">放棄</button>
+
+        </div>
+    </body>
+
+</html>
