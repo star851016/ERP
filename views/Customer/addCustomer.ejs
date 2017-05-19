@@ -8,18 +8,19 @@
         </div>
         <br><br><br><br>
         <div class="col-md-12">
-            <form name="sentMessage" action="/addCustomer" method="POST" id="contactForm" novalidate>
+            <form name="sentMessage" action="/customer/addCustomer" method="POST" id="contactForm" novalidate>
                 <table class="table table-bordered">
                     <tr>
                         <th class="th2">車牌</th>
                         <th class="th2">車主</th>
-                        <th class="th2" rowspan="2">車輛型式</th>
+                        <th class="th2" >車輛品牌</th>
+                        <th class="th2" >車輛型式</th>
                         <th class="th2">排氣量</th>
                         <th class="th2">車身碼</th>
                         <th class="th2">出廠年份</th>
                     </tr>
                     <tr>
-                        <td class="td0"><input type="text" class="form-control" name="CarID"></td>
+                        <td class="td0"><input type="text" class="form-control" name="CarId"></td>
                         <td class="td0"><input type="text" class="form-control" name="CName"></td>
                         <td class="td0"><input type="text" class="form-control" name="BrandID"></td>
                         <td class="td0"><input type="text" class="form-control" name="TypeID"></td>
@@ -40,7 +41,7 @@
                         <td class="td0"><input type="text" class="form-control" name="Tell2"></td>
                         <td class="td0"><input type="text" class="form-control" name="UniformNum"></td>
                         <td class="td0">
-                            <input class="text" type="text" name="EndTime" id="date_CBirthDate">
+                            <input class="text" type="text" name="CBirthDate" id="CBirthDate">
                             <link rel="stylesheet" type="text/css" href="/stylesheets/jquery-ui.css" />
                             <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
                             <script type="text/javascript" src="/javascripts/jquery-ui-datepicker.js"></script>
