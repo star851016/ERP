@@ -222,7 +222,7 @@ router.post('/fixModel', function(req, res, next) {
 
             });
 
-          
+
           };
         newFixModel.find(function(err,upWorklist) {
           if(err) {
@@ -254,6 +254,20 @@ router.post('/fixModel', function(req, res, next) {
          });
       }
     });
+
+});
+
+//結帳登記
+router.post('/billsRegister', function(req, res,next) {
+
+  console.log('billsRegister');
+  res.render('Accounting/billsregister', {
+
+    status : req.session.status || null,
+
+    member : req.session.member || null
+  });
+
 
 });
 
