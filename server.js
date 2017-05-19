@@ -37,6 +37,7 @@ var addWorkList= require('./routes/WorkList/addWorkList');
 var server= require('./routes/WorkList/Server');
 var customer = require('./routes/Customer/customer');
 var addCustomer = require('./routes/Customer/addCustomer');
+var accounting = require('./routes/Accounting/accounting');
 
 var app = express();
 
@@ -84,6 +85,7 @@ app.use('/addWorkList',addWorkList);
 app.use('/server',server);
 app.use('/customer',customer);
 app.use('/addCustomer',addCustomer);
+app.use('/accounting',accounting);
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   var err = new Error('Not Found');
