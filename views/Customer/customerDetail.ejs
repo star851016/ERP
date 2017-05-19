@@ -11,15 +11,15 @@
     </div>
     <div style="width:100%;">
         <button class="button1" onclick="location.href='/addCustomer'" style="float:right;display:inline;">新增客戶</button>
-        <form name="sentMessage" action="/" method="POST" id="product" novalidate>
+        <form name="sentMessage" action="/customer" method="POST" id="product" novalidate>
 
             <div style="width:90%;">
                 <br><br><br>
                 <p style="font-weight:bold;display:inline;">依名稱&nbsp</p>
-                <select class="selector0" name="SName">
+                <select class="selector0" name="CName">
       <option class="options" >---請選擇---</option>
-      <% customerList.forEach(function(customer) { %>
-      <option class="options"><%= supplier.SName %></option>
+      <% cNameList.forEach(function(customer) { %>
+      <option class="options"><%= customer.CName %></option>
     <%  }); %>
     </select>
                 <button id="button" class="button1" type="submit">查詢</button>
@@ -44,24 +44,25 @@
                         <%= customer.CName %>
                     </td>
                     <td class="td3">
+                      <%= customer.CarId %>
+                    </td>
+                    <td class="td3">
+
                         <%= customer.Contact_Person %>
                     </td>
                     <td class="td3">
-                        <%=  %>
-                    </td>
-                    <td class="td3">
-                        <%= customer.Phone %>
+                        <%= customer.Tell1 %>
                     </td>
                     <td class="td3">
                         <%= customer.UniformNum %>
                     </td>
                     <td class="td3">
                         <form class="form1" action="/supplier/upSupplier" method="POST" novalidate>
-                            <input type="hidden" name="id" value="<%= supplier.id %>" />
+                            <input type="hidden" name="id" value="<%= customer.ID %>" />
                             <button id="button" class="btn2" type="submit">編輯</button>
                         </form>
                         <form class="form1" action="/supplier/delSupplier" method="POST" novalidate>
-                            <input type="hidden" name="id" value="<%= supplier.id %>" />
+                            <input type="hidden" name="id" value="<%= customer.ID %>" />
                             <button id="button" class="btn2" type="submit">刪除</button>
                         </form>
                     </td>
