@@ -57,12 +57,12 @@
                         <%= customer.UniformNum %>
                     </td>
                     <td class="td3">
-                        <form class="form1" action="/supplier/upSupplier" method="POST" novalidate>
-                            <input type="hidden" name="id" value="<%= customer.ID %>" />
+                        <form class="form1" action="/customer/upCustomer" method="POST" novalidate>
+                            <input type="hidden" name="ID" value="<%= customer.ID %>" />
                             <button id="button" class="btn2" type="submit">編輯</button>
                         </form>
-                        <form class="form1" action="/supplier/delSupplier" method="POST" novalidate>
-                            <input type="hidden" name="id" value="<%= customer.ID %>" />
+                        <form class="form1" action="/customer/delCustomer" method="POST" novalidate>
+                            <input type="hidden" name="ID" value="<%= customer.ID %>" />
                             <button id="button" class="btn2" type="submit">刪除</button>
                         </form>
                     </td>
