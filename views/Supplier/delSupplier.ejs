@@ -18,7 +18,7 @@
                     公司：
                     <%= delSupplier.SName %><br>聯絡人：
                         <%= delSupplier.Contact_Person %><br>電話：
-                            <%= delSupplier.Phone %>
+                            <%= delSupplier.Tell1 %>
 
             </div>
             <br>
@@ -26,7 +26,7 @@
                 <input type="hidden" name="id" value="<%= delSupplier.id %>" />
                 <button class="button" type="submit" style="float:center;">刪除</button>
             </form>
-            <button class="button" type="submit" style="float:center;" onclick="location.href='/productDetail'">取消</button>
+            <button class="button" type="submit" style="float:center;" onclick="location.href='/supplier'">取消</button>
             <a href="/sup"><img src="./images/back.png" style="float:right;"></a>
         </div>
     </body>

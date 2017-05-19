@@ -11,7 +11,7 @@ var Delete = require('../../models/Supplier');
 router.get('/', function(req, res,next) {
  var newSupplier = new Supplier({
    SName : req.body.SName,
-   Phones : req.body.Phone,
+   Tell1s : req.body.Tell1,
    Contact_Person : req.body.Contact_Person
   });
   newSupplier.check(function(err,supplierList) {
@@ -20,7 +20,7 @@ router.get('/', function(req, res,next) {
     } else {
       console.log('supplierList'+supplierList[0].SName);
         console.log('supplierList'+supplierList[1].SName);
-          console.log('supplierList'+supplierList[1].Phone);
+          console.log('supplierList'+supplierList[1].Tell1);
       if(newSupplier.SName!='')
       {
       res.render('Supplier/supplierDetail', {
@@ -52,9 +52,10 @@ router.post('/upSupplier', function(req, res,next) {
     } else {
       if(newUpSupplier.id!='')
       {
-        console.log('upSupplier.SName'+upSupplier.SName);
+
         req.session.upSupplier = newUpSupplier;
         res.render('Supplier/upSupplier', {
+            member : req.session.member || null,
           upSupplier : req.session.upSupplier || null
           });
     } else {
@@ -71,7 +72,7 @@ router.post('/update', function(req, res,next) {
  var newUpdate = new Update({
    id : req.body.id,
    SName : req.body.SName,
-   Phone : req.body.Phone,
+   Tell1 : req.body.Tell1,
    Contact_Person : req.body.Contact_Person
   });
           newUpdate.update(function(err) {
@@ -90,11 +91,13 @@ router.post('/update', function(req, res,next) {
                     {
                     req.session.update = newUpdate;
                     res.render('Supplier/supplierDetail', {
+                      member : req.session.member || null,
                        supplierList : supplierList
                     });
                   } else {
                         req.session.update = null;
                           res.render('Supplier/supplierDetail', {
+                            member : req.session.member || null,
                             SName : null
                           });
                     }
@@ -123,11 +126,13 @@ router.post('/delSupplier', function(req, res,next) {
       {
         req.session.delSupplier = newDelSupplier;
         res.render('Supplier/delSupplier', {
+          member : req.session.member || null,
         delSupplier : req.session.delSupplier || null
         });
     } else {
       req.session.delSupplier = newDelSupplier;
       res.render('Supplier/delSupplier', {
+        member : req.session.member || null,
       delSupplier :  null
       });
       }
@@ -141,7 +146,7 @@ router.post('/delete', function(req, res,next) {
  var newDelete = new Delete({
     id : req.body.id,
    SName : req.body.SName,
-   Phone : req.body.Phone,
+   Tell1 : req.body.Tell1,
    Contact_Person : req.body.Contact_Person
   });
   newDelete.del(function(err) {
@@ -159,12 +164,14 @@ router.post('/delete', function(req, res,next) {
             {
             req.session.delete = newDelete;
             res.render('Supplier/supplierDetail', {
+              member : req.session.member || null,
                supplierList : supplierList
 
             });
           } else {
                 req.session.delete = null;
                   res.render('Supplier/supplierDetail', {
+                    member : req.session.member || null,
                     SName : null
                   });
             }
@@ -173,6 +180,7 @@ router.post('/delete', function(req, res,next) {
     } else {
           req.session.delete = null;
             res.render('Supplier/supplierDetail', {
+              member : req.session.member || null,
               SName : null
             });
       }

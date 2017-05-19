@@ -4,7 +4,7 @@ var GeneralErrors = require('../errors/GeneralErrors');
 var Supplier = function(options) {
   this.id = options.id;
   this.SName = options.SName;
-  this.Phone = options.Phone;
+  this.Tell1 = options.Tell1;
   this.Contact_Person = options.Contact_Person ;
 };
 //check 不設條件
@@ -30,7 +30,7 @@ Supplier.prototype.find = function(cb){
             .then(function(upSupplier) {
               this.id = upSupplier[0].id;
               this.SName = upSupplier[0].SName;
-              this.Phone = upSupplier[0].Phone;
+              this.Tell1 = upSupplier[0].Tell1;
               this.Contact_Person = upSupplier[0].Contact_Person;
               console.log('upSupplier'+upSupplier);
               console.log('upSupplier[0].SName'+upSupplier[0].SName);
@@ -53,7 +53,7 @@ Supplier.prototype.get = function(cb){
          //  this.id = row.id;
            this.SName = row.SName;
            this.Contact_Person = row.Contact_Person;
-           this.Phone= row.Phone ;
+           this.Tell1= row.Tell1 ;
            //this.Supplier_Name = row.Supplier_Name;
              return row;
             // console.log('row'+row);
@@ -61,7 +61,7 @@ Supplier.prototype.get = function(cb){
             .then(function(SupplierList) {
               // this.id = upSupplier[0].id;
               // this.SName = upSupplier[0].SName;
-              // this.Phone = upSupplier[0].Phone;
+              // this.Tell1 = upSupplier[0].Tell1;
               // this.Contact_Person = upSupplier[0].Contact_Person;
               console.log('SupplierList'+SupplierList);
               // console.log('upSupplier[0].SName'+upSupplier[0].SName);
@@ -80,7 +80,7 @@ Supplier.prototype.update = function(cb){
     })
     .update({
       SName : this.SName,
-      Phone : this.Phone,
+      Tell1 : this.Tell1,
       Contact_Person : this.Contact_Person
     })
     .then(function() {
@@ -111,14 +111,14 @@ Supplier.prototype.save = function (cb) {
     db("supplier")
       .insert({
         SName : this.SName,
-        Phone : this.Phone,
+        Tell1 : this.Tell1,
         Contact_Person : this.Contact_Person
       })
       .map(function(row) {
         //  this.id = row.id;
         console.log('this'+this.SName);
           this.SName = row.SName;
-          this.Phone = row.Phone;
+          this.Tell1 = row.Tell1;
           this.Contact_Person = row.Contact_Person;
             return row;
           console.log('row'+row);

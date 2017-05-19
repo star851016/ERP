@@ -4,7 +4,7 @@ var Sup = require('../../models/Supplier');
 
 router.get('/', function(req, res) {
   if(!req.session.member) {
-    res.redirect('/');
+    // res.redirect('/');
   }
   res.render('Supplier/sup', {
     sup : req.session.sup || null,

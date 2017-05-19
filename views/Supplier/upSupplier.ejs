@@ -10,17 +10,17 @@
         <br><br><br><br>
         <div style="width:100%;position:relative;top:10%;">
             <form name="sentMessage" action="/supplier/update" method="POST" id="contactForm" novalidate>
-                <p class="input">公司&nbsp&nbsp&nbsp<input class="text" type="text" name="SName" value=<%=u pSupplier.SName %>>&nbsp&nbsp&nbsp</p>
+                <p class="input">公司&nbsp&nbsp&nbsp<input class="text" type="text" name="SName" value=<%= upSupplier.SName %>>&nbsp&nbsp&nbsp</p>
 
-                <p class="input">聯絡人&nbsp&nbsp&nbsp<input class="text" type="text" name="Contact_Person" value=<%=u pSupplier.Contact_Person %>>&nbsp&nbsp&nbsp</p>
+                <p class="input">聯絡人&nbsp&nbsp&nbsp<input class="text" type="text" name="Contact_Person" value=<%= upSupplier.Contact_Person %>>&nbsp&nbsp&nbsp</p>
 
-                <p class="input">電話&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input class="text" type="text" name="Phone" value=<%=u pSupplier.Phone %>>&nbsp&nbsp&nbsp</p>
+                <p class="input">電話&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input class="text" type="text" name="Tell1" value=<%= upSupplier.Tell1 %>>&nbsp&nbsp&nbsp</p>
                 <br><br>
-                <input type="hidden" name="id" value="<%= upSupplier.id %>" />
+                <input type="hidden" name="id" value="<%= upSupplier.id %>" >
                 <button class="button" type="submit" style="float:center;">更新</button>
             </form>
 
-            <button class="button" style="float:center;" onclick="location.href='/productDetail'">放棄</button>
+            <button class="button" style="float:center;" onclick="location.href='/supplier'">放棄</button>
 
         </div>
     </body>
