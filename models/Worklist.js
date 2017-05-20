@@ -57,13 +57,14 @@ WorkList.prototype.find = function(cb) {
                 'car.cc', 'car.EngineNum', 'car.CarBodyNum', 'car.YrOfManu',
                 'carbrand.carBrand', 'cartype.carType', 'wagelist.WContect',
                 'wagelist.Wages', 'wagelist.WhoFix', 'wagelist.WhoCheck',
-                'wagelist.WNote')
+                'wagelist.WNote','question.Part','question.Wrong')
             .from('car')
             .innerJoin('customer', 'car.ID', '=', 'customer.ID')
             .innerJoin('worklist', 'car.CarId', '=', 'worklist.CarId')
             .innerJoin('carbrand', 'car.BrandID', '=', 'carbrand.ID')
             .innerJoin('cartype', 'car.TypeID', '=', 'cartype.ID')
             .innerJoin('wagelist', 'wagelist.WorkId', '=', 'worklist.WorkId')
+            .innerJoin('question', 'question.WorklistID', '=', 'worklist.WorkId')
             .where('worklist.WorkId', this.id)
             .then(function(upWorklist) {
                 cb(null, upWorklist);
@@ -198,7 +199,22 @@ console.log('materiallist.MQuantity'+materiallist.MQuantity);
             cb(new GeneralErrors.Database());
         });
 }
+//編輯工單之客戶問題
+WorkList.prototype.getQuestion = function(cb) {
+    console.log("this.id"+this.id);
+    db.select()
+        .from('question')
+        .innerJoin('worklist', 'question.WorkId', '=', 'worklist.WorkId')
+        .where('worklist.WorkId', this.id)
+        .then(function(questionlist) {
+            cb(null, questionlist);
+        }.bind(this))
+        .catch(function(err) {
 
+            console.log("getQuestion ERROR", err);
+            cb(new GeneralErrors.Database());
+        });
+}
 
 //存Info資料
 WorkList.prototype.InfoList = function(cb) {
