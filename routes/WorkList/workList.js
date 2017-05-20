@@ -36,6 +36,19 @@ router.get('/', function(req, res) {
       });
 });
 
+//列印結帳單
+router.get('/printBill', function(req, res) {
+  if(!req.session.member) {
+    // res.redirect('/');
+  }
+
+        res.render('WorkList/Bill', {
+
+            member : req.session.member || null
+          });
+
+});
+
 router.post('/', function(req, res,next) {
  var newWorklist = new Worklist({
    SName : req.body.SName,
