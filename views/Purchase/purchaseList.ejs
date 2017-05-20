@@ -7,56 +7,62 @@
         <p class="title">進貨明細</p>
     </div>
     <form name="sentMessage" action="/purchaseList" method="POST" novalidate>
-        <br><br><br>
-        <div style="text-align:center;">
-            <div style="position:relative;left:50%;margin-left:-250px;">
-                <p style="background-color:#DDDDDD;border-radius:10px;height:200px;width:500px;text-align:center;margin:0px;font-size:40px;">
-                    供應商：
-                    <%= purchase.SName %><br>總額：
-                        <%= purchase.TPrice %><br>
+        <div style="text-align:center;width:100%">
+            <div style="position:relative;left:25%;width:25%;">
+                <div style="background-color:#F6F8F1;border-radius:2px;height:80px;width:100%;text-align:left;margin:0px;padding-left:20px;padding-top:8px;">
+                    <span>供應商：</span>
+                    <span>
+                        <%= purchase.SName %>
+                    </span>
+                    <br>
+                    <span>總&nbsp&nbsp&nbsp額：</span>
+                    <span>
+                        <%= purchase.TPrice %>
+                    </span>
+                    <br>
+                </div>
+                <br>
             </div>
-            <br>
-        </div>
 
-        <table class="table table-bordered">
-            <tr>
-                <th class="th2">名稱</th>
-                <th class="th2">廠牌</th>
-                <th class="th2">規格</th>
-                <th class="th2">數量</th>
-                <th class="th2">單價</th>
-                <th class="th2">小計</th>
-            </tr>
-
-            <% for(i=0;i<10;i++) { %>
+            <table class="table table-bordered" style="text-align:center;">
                 <tr>
-                    <td class="td0"><select class="text1" name="Pur_PName" onchange="PName.submit()">
+                    <th class="th2">名稱</th>
+                    <th class="th2">廠牌</th>
+                    <th class="th2">規格</th>
+                    <th class="th2">數量</th>
+                    <th class="th2">單價</th>
+                    <th class="th2">小計</th>
+                </tr>
+
+                <% for(i=0;i<10;i++) { %>
+                    <tr>
+                        <td class="td0"><select class="form-control" name="Pur_PName" onchange="PName.submit()">
              <option class="options" ></option>
              <% PNameList.forEach(function(PName) { %>
              <option class="options"><%= PName.PName %></option>
               <%  }); %>
           </select></td>
-                    <td class="td0"><select class="text1" name="Pur_Types">
+                        <td class="td0"><select class="form-control" name="Pur_Types">
             <option class="options" ></option>
             <% TypesList.forEach(function(Types) { %>
            <option class="options"><%= Types.Types %></option>
              <%  }); %>
         </select></td>
-                    <td class="td0"><select class="text1" name="Pur_Specification">
+                        <td class="td0"><select class="form-control" name="Pur_Specification">
             <option class="options" ></option>
             <% SpecificationList.forEach(function(Specification) { %>
            <option class="options"><%= Specification.Specification %></option>
              <%  }); %>
 
         </select></td>
-                    <td class="td0"><input type="text" class="text1" name="Pur_Quantity"></td>
-                    <td class="td0"><input type="text" class="text1" name="Pur_Price"></td>
-                    <td class="td0"><input type="text" class="text1" name="SubPrice"></td>
-                    <input type="hidden" name="tableList" value="<%=i%>"></input>
-                </tr>
-                <%  }; %>
-        </table>
+                        <td class="td0"><input type="text" class="text1" name="Pur_Quantity"></td>
+                        <td class="td0"><input type="text" class="text1" name="Pur_Price"></td>
+                        <td class="td0"><input type="text" class="text1" name="SubPrice"></td>
+                        <input type="hidden" name="tableList" value="<%=i%>"></input>
+                    </tr>
+                    <%  }; %>
+            </table>
 
         </div>
-        <button id="button" class="button" type="submit">確認</button>
+        <button id="button" class="button1" type="submit">確認</button>
     </form>

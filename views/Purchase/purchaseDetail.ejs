@@ -2,58 +2,62 @@
 
     <link rel='stylesheet' href='/stylesheets/style.css' />
 
+    <body>
+        <div class="hdr">
+            <p class="title">進貨成功</p>
+        </div>
+        <form name="sentMessage" action="/purchase" method="POST" novalidate>
+            <div style="text-align:center;width:100%">
+                <div style="position:relative;left:25%;width:25%;">
+                    <div style="background-color:#F6F8F1;border-radius:2px;height:80px;width:100%;text-align:left;margin:0px;padding-left:20px;padding-top:8px;">
+                        <span>供應商：</span>
+                        <span>
+                          <%= purchase.SName %>
+                      </span>
+                        <br>
+                        <span>總&nbsp&nbsp&nbsp額：</span>
+                        <span>
+                          <%= purchase.TPrice %>
+                      </span>
+                        <br>
+                    </div>
+                    <br>
+                </div>
 
-    <div class="hdr">
-        <p class="title">進貨</p>
-    </div>
-    <form name="sentMessage" action="/purchase" method="POST" novalidate>
-        <br><br><br>
-        <div style="text-align:center;">
-            <div style="position:relative;left:50%;margin-left:-250px;">
-                <p style="background-color:#DDDDDD;border-radius:10px;height:200px;width:500px;text-align:center;margin:0px;font-size:40px;">
-                    供應商：
-                    <%= purchase.SName %><br>總額：
-                        <%= purchase.TPrice %><br>
+                <div class="container-fluid">
+                    <table class="table table-bordered" style="text-align:center;">
+                        <tr>
+                            <th class="th2">名稱</th>
+                            <th class="th2">廠牌</th>
+                            <th class="th2">規格</th>
+                            <th class="th2">數量</th>
+                            <th class="th2">單價</th>
+                            <th class="th2">小計</th>
+                        </tr>
+                        <% for(i=0;i<10;i++) { %>
+                            <tr>
+                                <td class="td0">
+                                    <%=purchaseList.Pur_PName[i] %>
+                                </td>
+                                <td class="td0">
+                                    <%= purchaseList.Pur_Types[i] %>
+                                </td>
+                                <td class="td0">
+                                    <%= purchaseList.Pur_Specification[i] %>
+                                </td>
+                                <td class="td0">
+                                    <%= purchaseList.Pur_Quantity[i] %>
+                                </td>
+                                <td class="td0">
+                                    <%= purchaseList.Pur_Price[i] %>
+                                </td>
+                                <td class="td0">
+                                    <%= purchaseList.SubPrice[i] %>
+                                </td>
+                            </tr>
+                            <%  }; %>
+                    </table>
+                </div>
             </div>
-            <br>
-        </div>
-
-        <div style="width:100%;">
-
-            <table>
-                <tr border="1">
-                    <th>名稱</th>
-                    <th>廠牌</th>
-                    <th>規格</th>
-                    <th>數量</th>
-                    <th>單價</th>
-                    <th>小計</th>
-                </tr>
-
-
-                <% for(i=0;i<10;i++) { %>
-                    <tr class="tr_odd">
-                        <td>
-                            <%=purchaseList.Pur_PName[i] %>
-                        </td>
-                        <td>
-                            <%= purchaseList.Pur_Types[i] %>
-                        </td>
-                        <td>
-                            <%= purchaseList.Pur_Specification[i] %>
-                        </td>
-                        <td>
-                            <%= purchaseList.Pur_Quantity[i] %>
-                        </td>
-                        <td>
-                            <%= purchaseList.Pur_Price[i] %>
-                        </td>
-                        <td>
-                            <%= purchaseList.SubPrice[i] %>
-                        </td>
-                    </tr>
-                    <%  }; %>
-            </table>
-        </div>
-
-    </form>
+        </form>
+    </body>
