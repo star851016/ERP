@@ -2,6 +2,7 @@ var db = require('../libs/db');
 var GeneralErrors = require('../errors/GeneralErrors');
 
 var WorkList = function(options) {
+    this.MatId = options.MatId;
     this.id = options.id;
     this.CarId = options.CarId;
     this.Miles = options.Miles;
@@ -124,6 +125,21 @@ WorkList.prototype.saveMat = function(cb) {
             console.log("saveMat find", err);
             cb(new GeneralErrors.Database());
         });
+}
+
+//每一筆材料登錄刪除
+WorkList.prototype.delMat = function(cb) {
+console.log(this.MatId);
+db.from('materiallist')
+    .where('MatId', this.MatId)
+    .del()
+    .then(function(result) {
+        cb(null, this);
+    }.bind(this))
+    .catch(function(err) {
+        console.log("delMat ERROR", err);
+        cb(new GeneralErrors.Database());
+    });
 }
 
 //searchPId

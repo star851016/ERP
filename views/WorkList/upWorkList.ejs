@@ -372,8 +372,9 @@
 
                                     <button class="button1" style="float:center;">登錄</button>
                                     </form>
-                                    <form action="/delProduct" method="POST" novalidate>
-
+                                    <form action="/worklist/delMat" method="POST" novalidate>
+                                      <input type="hidden" name="WorkId" value="<%= upWorklist.WorkId %>" />
+                                        <input type="hidden" id="MatId" name="MatId" value="<%= materiallist[j].MatId %>" />
                                         <button class="button1" style="float:center;">刪除</button>
                                     </form>
                                 </td>

@@ -185,6 +185,19 @@ router.post('/addMat', function(req, res,next) {
 
 });
 
+//刪除 材料登錄
+router.post('/delMat', function(req, res,next) {
+  console.log('delMat function');
+  console.log('MatId'+req.body.MatId);
+  var newWorklist = new Worklist({
+    MatId : req.body.MatId
+   });
+   req.session.WorkId = req.body.WorkId ;
+   newWorklist.delMat(function(err) {
+    res.redirect('/worklist/upWorklist?'+req.session.WorkId);
+  });
+});
+
 
 //carhistory車歷卡
 router.get('/carHistory', function(req, res, next) {
