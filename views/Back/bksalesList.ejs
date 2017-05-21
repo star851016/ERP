@@ -1,60 +1,64 @@
 <% include ../Shared/header %>
     <link rel='stylesheet' href='/stylesheets/style.css' />
     <div class="hdr">
-        <p class="title">銷貨退回</p>
+        <p class="title">銷貨退回明細</p>
     </div>
     <form name="sentMessage" action="/bksalesList" method="POST" novalidate>
-        <br><br><br>
-        <div style="text-align:center;">
-            <div style="position:relative;left:50%;margin-left:-250px;">
-                <p style="background-color:#DDDDDD;border-radius:10px;height:auto;width:300px;text-align:center;margin:0px;">
-                    客戶：
-                    <%= bksales.CName %><br>總額：
-                        <%= bksales.TSales %><br>狀態：
-                            <%= bksales.Status %>
+        <div style="text-align:center;width:100%">
+            <div style="position:relative;left:30%;width:25%;">
+                <div style="background-color:#F6F8F1;border-radius:2px;height:80px;width:100%;text-align:left;margin:0px;padding-left:20px;padding-top:8px;">
+                    <span>客戶：</span>
+                    <span>
+                  <%= bksales.CName %>
+              </span>
+                    <br>
+                    <span>總&nbsp&nbsp&nbsp額：</span>
+                    <span>
+                  <%= bksales.TSales %>
+              </span>
+                    <br>
+                </div>
+                <br>
             </div>
-            <br>
-        </div>
 
-        <table class="table table-bordered">
-            <tr>
-                <th class="th2">名稱</th>
-                <th class="th2">廠牌</th>
-                <th class="th2">規格</th>
-                <th class="th2">數量</th>
-                <th class="th2">單價</th>
-                <th class="th2">小計</th>
-            </tr>
-
-            <% for(i=0;i<10;i++) { %>
+            <table class="table table-bordered" style="text-align:center;">
                 <tr>
-                    <td class="td0"><select class="text1" name="bk_PName" onchange="PName.submit()">
+                    <th class="th2">名稱</th>
+                    <th class="th2">廠牌</th>
+                    <th class="th2">規格</th>
+                    <th class="th2">數量</th>
+                    <th class="th2">單價</th>
+                    <th class="th2">小計</th>
+                </tr>
+
+                <% for(i=0;i<10;i++) { %>
+                    <tr>
+                        <td class="td0"><select class="form-control" name="bk_PName" onchange="PName.submit()">
              <option class="options" ></option>
              <% PNameList.forEach(function(PName) { %>
              <option class="options"><%= PName.PName %></option>
               <%  }); %>
           </select></td>
-                    <td class="td0"><select class="text1" name="bk_Types">
+                        <td class="td0"><select class="form-control" name="bk_Types">
             <option class="options" ></option>
             <% TypesList.forEach(function(Types) { %>
            <option class="options"><%= Types.Types %></option>
              <%  }); %>
         </select></td>
-                    <td class="td0"><select class="text1" name="bk_Specification">
+                        <td class="td0"><select class="form-control" name="bk_Specification">
             <option class="options" ></option>
             <% SpecificationList.forEach(function(Specification) { %>
            <option class="options"><%= Specification.Specification %></option>
              <%  }); %>
         </select></td>
-                    <td class="td0"><input type="text" class="text1" name="bk_Quantity" value=""></td>
-                    <td class="td0"><input type="text" class="text1" name="bk_Price" value=""></td>
-                    <td class="td0"><input type="text" class="text1" name="bkSubPrice" value=""></td>
-                    <input type="hidden" name="tableList" value="<%=i%>"></input>
-                </tr>
-                <%  }; %>
+                        <td class="td0"><input type="text" class="text1" name="bk_Quantity" value=""></td>
+                        <td class="td0"><input type="text" class="text1" name="bk_Price" value=""></td>
+                        <td class="td0"><input type="text" class="text1" name="bkSubPrice" value=""></td>
+                        <input type="hidden" name="tableList" value="<%=i%>"></input>
+                    </tr>
+                    <%  }; %>
 
-        </table>
-
+            </table>
         </div>
-        <button id="button" class="btn btn-info" type="submit">確認</button>
+        <button id="button" class="button1" type="submit">確認</button>
     </form>

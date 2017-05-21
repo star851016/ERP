@@ -1,5 +1,54 @@
-<body>
-    <div class="hdr">
-        <p class="title">營業查詢</p>
-    </div>
-</body>
+<% include ../Shared/header %>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+
+    <body>
+        <div class="hdr">
+            <p class="title">營業查詢</p>
+        </div>
+        <div style="text-align:center;width:100%">
+            <div style="position:relative;left:30%;width:25%;">
+                <div style="background-color:#F6F8F1;border-radius:2px;height:80px;width:100%;text-align:left;margin:0px;padding-left:20px;padding-top:8px;">
+                    <span>客&nbsp&nbsp&nbsp戶：</span>
+                    <span>
+                    ???
+                </span>
+                    <br>
+                    <span>總&nbsp&nbsp&nbsp額：</span>
+                    <span>
+                    ???
+                </span>
+                    <br>
+                </div>
+                <br>
+            </div>
+
+            <table class="table table-bordered" style="text-align:center;">
+                <tr>
+                    <th class="th2">完工日期</th>
+                    <th class="th2">進場日期</th>
+                    <th class="th2">車主</th>
+                    <th class="th2">車牌</th>
+                    <th class="th2">稅前總額</th>
+                    <th class="th2">稅後總額</th>
+                </tr>
+                <tr>
+                    <td class="td0">20170521</td>
+                    <td class="td0">20160520</td>
+                    <td class="td0">我好帥</td>
+                    <td class="td0">ABC-1234</td>
+                    <td class="td0">1000</td>
+                    <td class="td0">1200</td>
+                </tr>
+                <tr>
+                    <th class="th2">工單號碼</th>
+                    <td class="td0">20160520001</td>
+                    <th class="th2">車主電話</th>
+                    <td class="td0">0900000000</td>
+                    <th class="th2">折扣</th>
+                    <td class="td0">50</td>
+                </tr>
+            </table>
+
+        </div>
+        <button id="button" class="button1" type="submit" style="float:right;">回上頁</button>
+    </body>

@@ -5,12 +5,18 @@
     <div class="hdr">
         <p class="title">銷貨退回</p>
     </div>
-    <form name="sentMessage" action="/bksales" method="POST" novalidate>
-        <br><br><br>
-        <p class="input">客戶<input type="text" class="text" name="CName" value="財宇機械"></p>
-        <p class="input">總額<input type="text" class="text" name="TSales" value="2000"></p>
-        <p class="input">狀態<input type="text" class="text" name="Status" value="已處理"></p>
-        <div style="width:100%;">
-        </div>
-        <button id="button" class="button" type="submit">確認</button>
-    </form>
+    <br><br><br>
+    <div style="width:50%;margin-left:25%;margin-left:25%">
+        <form name="sentMessage" action="/bksales" method="POST" novalidate>
+            <div class="form-group">
+                <label for="CName" style="float:left;">客戶</label>
+                <input type="text" class="form-control" id="CName" placeholder="客戶" name="CName" value="財宇機械">
+            </div>
+            <div class="form-group">
+                <label for="TSales" style="float:left;">總額</label>
+                <input type="text" class="form-control" id="TSales" placeholder="總額" name="TSales" value="2000">
+            </div>
+            <br>
+            <button id="button" class="btn btn-default" type="submit">確認</button>
+        </form>
+    </div>
