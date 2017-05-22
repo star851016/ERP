@@ -1,23 +1,44 @@
 <% include ../Shared/header %>
     <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel="stylesheet" type="text/css" href="/stylesheets/jquery-ui.css" />
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+    <script type="text/javascript" src="/javascripts/jquery-ui-datepicker.js"></script>
+    <script type="text/javascript">
+        $(function() {
+            $("#fromTime").datepicker();
+        });
+    </script>
+    <script type="text/javascript">
+        $(function() {
+            $("#toTime").datepicker();
+        });
+    </script>
 
     <body>
         <div class="hdr">
             <p class="title">營業查詢</p>
         </div>
+        <br><br><br>
         <div style="text-align:center;width:100%">
-            <div style="position:relative;left:30%;width:25%;">
-                <div style="background-color:#F6F8F1;border-radius:2px;height:80px;width:100%;text-align:left;margin:0px;padding-left:20px;padding-top:8px;">
-                    <span>客&nbsp&nbsp&nbsp戶：</span>
-                    <span>
-                    ???
-                </span>
-                    <br>
-                    <span>總&nbsp&nbsp&nbsp額：</span>
-                    <span>
-                    ???
-                </span>
-                    <br>
+            <div style="position:relative;width:90%;">
+                <div style="background-color:#F6F8F1;border-radius:2px;height:100px;width:100%;text-align:left;margin:0px;padding-left:20px;padding-top:8px;">
+                    <form>
+                        <span>客&nbsp&nbsp&nbsp戶：</span>
+                        <input type="text" class="underline" size="5" placeholder="請輸入姓名">&nbsp&nbsp&nbsp
+                        <label class="checkbox-inline">
+                        <input type="checkbox" value="clear">查已結清
+                      </label>
+                        <label class="checkbox-inline">
+                        <input type="checkbox" value="unclear">查未結清
+                      </label> <br><br>
+                        <span>查詢時段：</span>
+                        <span class="glyphicon glyphicon-calendar"></span>
+                        <input class="text0" type="text" name="fromTime" id="fromTime">
+                        <span>至</span>
+                        <span class="glyphicon glyphicon-calendar"></span>
+                        <input class="text0" type="text" name="toTime" id="toTime">
+                        <button style="background-color:transparent;border:0px;"><img style="height:30px;" src="../images/images/search.png"></a>
+                    </form>
                 </div>
                 <br>
             </div>
