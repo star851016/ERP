@@ -272,6 +272,25 @@ WorkList.prototype.bill = function(cb) {
                         cb(new GeneralErrors.Database());
                     });
             }
+            //材料登錄之比價
+            WorkList.prototype.searchSupplier = function(searchPId,cb) {
+
+                    db.select()
+                        .from('compare')
+                        .innerJoin('product', 'compare.MatId', '=', 'product.Id')
+                        .innerJoin('supplier', 'compare.Sid', '=', 'supplier.id')
+                        .where('product.Id', searchPId)
+                        .then(function(result) {
+
+                          cb(null,Amount);
+                            })
+                        .catch(function(err) {
+
+                            console.log("searchSupplier ERROR", err);
+                            cb(new GeneralErrors.Database());
+                        });
+                }
+
 
 //存Info資料
 WorkList.prototype.InfoList = function(cb) {

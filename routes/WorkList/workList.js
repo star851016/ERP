@@ -197,6 +197,23 @@ router.get('/searchPId', function(req, res,next) {
   });
 });
 
+//材料行查詢
+router.get('/searchSupplier', function(req, res,next) {
+  console.log('searchSupplier function');
+  console.log('searchPId'+req.query.searchPId);
+  var newSearchPId = new SearchPId({
+    id : req.query.searchPId
+   });
+
+   newSearchPId.searchSupplier(req.query.searchPId,function(err,SupList) {
+     if(err) {
+       next(err);
+     } else {
+         res.json(SupList);
+    }
+  });
+});
+
 //新增材料登錄--每一筆
 router.post('/addMat', function(req, res,next) {
   var status = "add";

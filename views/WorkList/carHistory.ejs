@@ -52,28 +52,44 @@
               <th class="th2">完工日</th>
                 <th class="th2">工單號碼</th>
                   <th class="th2">進廠里程</th>
-                    <th class="th2">更多</th>
+                    <th class="th2">料號</th>
+                      <th class="th2">名稱</th>
+                        <th class="th2">單價</th>
+                          <th class="th2">數量</th>
+                            <th class="th2">小計</th>
                             </tr>
                             <%
 
-                            worklist.forEach(function(car) {
+                            for(var i = 0; i < worklist.length; i++){
+                             %>
 
-                              %>
                             <tr>
-                              <td class="td0" ><%= car.OutDate %></td>
-                              <td class="td0" ><%= car.WorkId %></td>
-                              <td class="td0" ><%= car.Miles %></td>
-
-                              <td class="td0">
-                                <form action="/worklist/carHistoryDetail" method="POST" novalidate style="float:left;margin:5px;">
-                                    <input type="hidden" name="WorkId" value="<%= car.WorkId %>" />
-                                    <button style="background-color:transparent;border:0px;"><img style="height:40px;" src="../images/images/edit.png"></button>
-                                </form>
-                              </td>
+                              <td class="td0" rowspan="3"><%= worklist[i].OutDate %></td>
+                              <td class="td0" rowspan="3"><%= worklist[i].WorkId %></td>
+                              <td class="td0" rowspan="3"><%= worklist[i].Miles %></td>
+                            <%  }; %>
+                              <td class="td0">料號</td>
+                              <td class="td0">品名</td>
+                              <td class="td0">單價</td>
+                              <td class="td0">數量</td>
+                              <td class="td0">小計</td>
 
                             </tr>
-                            <%  }); %>
 
+                            <tr>
+                              <td class="td0">料號</td>
+                              <td class="td0">品名</td>
+                              <td class="td0">單價</td>
+                              <td class="td0">數量</td>
+                              <td class="td0">小計</td>
+                            </tr>
+                            <tr>
+                              <td class="td0">料號</td>
+                              <td class="td0">品名</td>
+                              <td class="td0">單價</td>
+                              <td class="td0">數量</td>
+                              <td class="td0">小計</td>
+                            </tr>
                             </table>
                           </div>
 

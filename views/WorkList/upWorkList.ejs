@@ -683,7 +683,7 @@
                 dataType: 'json',
 
                 success: function(data) {
-                    $("#SearchPIdWindows").show();
+                    $("#SearchPId").show();
                     $('#tableSearchPId tbody').html("");
                     $.each(data, function(i, item) {
 
@@ -706,14 +706,14 @@
         function setValue(Id, value, num) {
             $("#searchPId" + num).val(Id);
             $("#addPName").val(value);
-            $("#SearchPIdWindows").hide();
+            $("#SearchPId").hide();
         };
 
         function searchSupplier(i) {
             var searchPId = $('#searchPId' + i).val();
 
             $.ajax({
-                url: "http://localhost:3000/worklist/searchPId",
+                url: "http://localhost:3000/worklist/searchSupplier",
                 data: {
                     searchPId: searchPId
                 },
@@ -722,7 +722,15 @@
 
                 success: function(data) {
                     $("#SearchSupplier").show();
+                    $('#tableSupplier tbody').html("");
+                    $.each(data, function(i, item) {
 
+                        $('#tableSupplier')
+
+                            .append('<tr onclick="setValue(\'' + data[i].SName + '\',\'' + data[i].PName + '\',\'' + num + '\')"><td class="td0" >' + data[i].Pur_Price + '</td>' +
+                                '<td class="td0">' + data[i].Email + '</td></tr>')
+
+                    });
 
                 },
 
