@@ -8,19 +8,26 @@
             <p class="title">編輯廠商</p>
         </div>
         <br><br><br><br>
-        <div style="width:100%;position:relative;top:10%;">
+        <div style="width:50%;margin-left:25%;margin-left:25%">
             <form name="sentMessage" action="/supplier/update" method="POST" id="contactForm" novalidate>
-                <p class="input">公司&nbsp&nbsp&nbsp<input class="text" type="text" name="SName" value=<%= upSupplier.SName %>>&nbsp&nbsp&nbsp</p>
-
-                <p class="input">聯絡人&nbsp&nbsp&nbsp<input class="text" type="text" name="Contact_Person" value=<%= upSupplier.Contact_Person %>>&nbsp&nbsp&nbsp</p>
-
-                <p class="input">電話&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input class="text" type="text" name="Tell1" value=<%= upSupplier.Tell1 %>>&nbsp&nbsp&nbsp</p>
+                <div class=" form-group ">
+                    <label for="SName" style="float:left;">公司</label>
+                    <input type="text" class="form-control" id="SName" placeholder="公司" name="SName" value=<%=upSupplier.SName %>>
+                </div>
+                <div class=" form-group ">
+                    <label for="Contact_Person" style="float:left;">聯絡人</label>
+                    <input type="text" class="form-control" id="Contact_Person" placeholder="聯絡人" name="Contact_Person" value=<%=upSupplier.Contact_Person %>>
+                </div>
+                <div class=" form-group ">
+                    <label for="Tell1" style="float:left;">電話</label>
+                    <input type="text" class="form-control" id="Tell1" placeholder="電話" name="Tell1" value=<%=upSupplier.Tell1 %>>
+                </div>
                 <br><br>
-                <input type="hidden" name="id" value="<%= upSupplier.id %>" >
-                <button class="button" type="submit" style="float:center;">更新</button>
+                <input type="hidden" name="id" value="<%= upSupplier.id %>">
+                <button class="btn btn-default" type="submit" style="float:center;">更新</button>
             </form>
 
-            <button class="button" style="float:center;" onclick="location.href='/supplier'">放棄</button>
+            <button class="btn btn-default" style="float:center;" onclick="location.href='/supplier'">放棄</button>
 
         </div>
     </body>

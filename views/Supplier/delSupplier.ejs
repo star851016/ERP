@@ -5,29 +5,31 @@
 
     <body>
         <div class="hdr">
-            <p class="title" style="color:rgb(91,155,213);">刪除廠商</p>
+            <p class="title">刪除廠商</p>
         </div>
-        <div style="width:100%;">
-
-        </div>
-        <br><br><br><br><br><br><br><br>
-        <div style="text-align:center;">
-
-            <div style="position:relative;left:50%;margin-left:-250px;">
-                <p style="background-color:#DDDDDD;border-radius:10px;height:200px;width:500px;text-align:center;margin:0px;font-size:40px;">
-                    公司：
-                    <%= delSupplier.SName %><br>聯絡人：
-                        <%= delSupplier.Contact_Person %><br>電話：
-                            <%= delSupplier.Tell1 %>
-
+        <br><br><br>
+        <div style="text-align:center;width:100%">
+            <div style="position:relative;left:25%;width:50%;right:25%;">
+                <form name="sentMessage" action="/supplier/delete" method="POST" novalidate>
+                    <div style="background-color:#F6F8F1;border-radius:2px;height:auto;width:100%;text-align:left;margin:0px;padding-left:20px;padding-top:8px;">
+                        <span>公司：</span>
+                        <span>
+                  <%= delSupplier.SName %></span>
+                        <br>
+                        <span>聯絡人：</span>
+                        <span>
+                  <%= delSupplier.Contact_Person %>
+                </span><br>
+                        <span>電話：</span>
+                        <span>
+                <%= delSupplier.Tell1 %>
+              </span><br>
+                    </div>
             </div>
-            <br>
-            <form name="sentMessage" action="/supplier/delete" method="POST" novalidate>
-                <input type="hidden" name="id" value="<%= delSupplier.id %>" />
-                <button class="button" type="submit" style="float:center;">刪除</button>
+            <input type="hidden" name="id" value="<%= delSupplier.id %>" />
+            <button class="btn btn-default" type="submit" style="float:center;">刪除</button>
             </form>
-            <button class="button" type="submit" style="float:center;" onclick="location.href='/supplier'">取消</button>
-            <a href="/sup"><img src="./images/back.png" style="float:right;"></a>
+            <button class="btn btn-default" type="submit" style="float:center;" onclick="location.href='/supplier'">取消</button>
         </div>
     </body>
 

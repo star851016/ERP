@@ -5,30 +5,36 @@
 
     <body>
         <div class="hdr">
-            <p class="title" style="color:rgb(91,155,213);">刪除商品</p>
+            <p class="title">刪除商品</p>
         </div>
-        <div style="width:100%;">
-
-        </div>
-        <br><br><br><br><br><br><br><br>
-        <div style="text-align:center;">
-            <div style="position:relative;left:50%;margin-left:-250px;">
-                <p style="background-color:#DDDDDD;border-radius:10px;height:200px;width:500px;text-align:center;margin:0px;font-size:40px;">
-                    商品：
-                    <%= delProduct.PName %><br>廠牌：
-                        <%= delProduct.Types %><br>規格：
-                            <%= delProduct.Specification %><br>數量：
-                                <%= delProduct.Quantity %>
-
+        <br><br><br>
+        <div style="text-align:center;width:100%">
+            <div style="position:relative;left:25%;width:50%;right:25%;">
+                <form name="sentMessage" action="/delProduct/delete" method="POST" novalidate>
+                    <div style="background-color:#F6F8F1;border-radius:2px;height:auto;width:100%;text-align:left;margin:0px;padding-left:20px;padding-top:8px;">
+                        <span>商品：</span>
+                        <span>
+                  <%= delProduct.PName %></span>
+                        <br>
+                        <span>廠牌：</span>
+                        <span>
+                  <%= delProduct.Types %>
+                  </span><br>
+                        <span>規格：</span>
+                        <span>
+                  <%= delProduct.Specification %>
+                  </span><br>
+                        <span>數量：</span>
+                        <span>
+              <%= delProduct.Quantity %>
+              </span><br>
+                    </div>
+                    <br>
+                    <input type="hidden" name="Id" value="<%= delProduct.Id %>" />
+                    <button class="btn btn-default" type="submit" style="float:center;">刪除</button>
+                </form>
+                <button class="btn btn-default" type="submit" style="float:center;" onclick="location.href='/product'">取消</button>
             </div>
-            <br>
-            <form name="sentMessage" action="/delProduct/delete" method="POST" novalidate>
-                <input type="hidden" name="Id" value="<%= delProduct.Id %>" />
-                <button class="button" type="submit" style="float:center;">刪除</button>
-            </form>
-            <button class="button" type="submit" style="float:center;" onclick="location.href='/product'">取消</button>
-            <a href="/sup"><img src="./images/back.png" style="float:right;"></a>
-        </div>
     </body>
 
 </html>
