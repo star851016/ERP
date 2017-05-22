@@ -17,7 +17,7 @@ router.get('/', function(req, res) {
      if(err){
         next(err);
      }else{
-       console.log('worklist[0].OutDate'+worklist[0].OutDate);
+      
        for(i=0;i<worklist.length;i++){
          console.log(i);
           worklist[i].OutDate = fecha.format(worklist[i].OutDate, 'YYYY-MM-DD');

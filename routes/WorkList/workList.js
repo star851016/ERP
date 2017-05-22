@@ -239,9 +239,32 @@ router.get('/carHistory', function(req, res, next) {
               console.log(i);
                worklist[i].OutDate = fecha.format(worklist[i].OutDate, 'YYYY-MM-DD');
               };
-            
+
             res.render('WorkList/carHistory', {
                 worklist : worklist,
+                member: req.session.member || null
+            });
+           }
+        });
+
+
+});
+
+//carhistory車歷卡
+router.post('/carHistoryDetail', function(req, res, next) {
+    console.log('carHistoryDetail');
+    var newWorklist = new Worklist({
+      WorkId : req.body.WorkId
+     });
+   console.log('req.body.WorkId'+req.body.WorkId);
+       newWorklist.carHistoryDetail(req.body.WorkId,function(err,materiallist){
+          if(err){
+             next(err);
+          }else{
+            // console.log('materiallist'+materiallist[0]);
+            // console.log('materiallist'+materiallist[0].Id);
+            res.render('WorkList/carHistoryDetail', {
+                materiallist : materiallist,
                 member: req.session.member || null
             });
            }

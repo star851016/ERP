@@ -243,11 +243,10 @@ WorkList.prototype.bill = function(cb) {
                 .from('car')
                 .innerJoin('customer', 'car.ID', '=', 'customer.ID')
                 .innerJoin('worklist', 'car.CarId', '=', 'worklist.CarId')
-                .innerJoin('materiallist', 'materiallist.WorkId', '=', 'materiallist.WorkId')
-                .innerJoin('product', 'product.Id', '=', 'materiallist.Id')
+
                 .where('car.CarId', '5566-TY')
                 .then(function(worklist) {
-                  
+
                     cb(null, worklist);
                 }.bind(this))
                 .catch(function(err) {
@@ -256,6 +255,23 @@ WorkList.prototype.bill = function(cb) {
                     cb(new GeneralErrors.Database());
                 });
         }
+        //車歷卡細節
+        WorkList.prototype.carHistoryDetail = function(WorkId,cb) {
+              console.log('this.id' + WorkId);
+                db.select()
+                    .from('materiallist')
+                    .innerJoin('product', 'product.Id', '=', 'materiallist.Id')
+                    .where('materiallist.WorkId', WorkId)
+                    .then(function(materiallist) {
+
+                        cb(null, materiallist);
+                    }.bind(this))
+                    .catch(function(err) {
+
+                        console.log("carHistory ERROR", err);
+                        cb(new GeneralErrors.Database());
+                    });
+            }
 
 //存Info資料
 WorkList.prototype.InfoList = function(cb) {
