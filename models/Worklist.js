@@ -25,6 +25,14 @@ var WorkList = function(options) {
     this.note = options.note;
     this.maintenance = options.maintenance;
     this.Question = options.Question;
+    this.WageTotal = options.WageTotal,
+    this.MaterialTotal = options.MaterialTotal,
+    this.PreTaxAmount = options.PreTaxAmount,
+    this.Tax = options.Tax,
+    this.AccountReceivable = options.AccountReceivable,
+    this.RealReceive = options.RealReceive,
+    this.discount  = options.discount,
+    this.WorkId = options.WorkId
 };
 
 //工單管理--清單
@@ -216,7 +224,7 @@ WorkList.prototype.getQuestion = function(cb) {
         });
 }
 
-//結算交車
+//列印帳單
 WorkList.prototype.bill = function(cb) {
         console.log('this.id' + this.id);
         db.select(db.raw('SUM(materiallist.Amount) as Amount'))
@@ -235,7 +243,27 @@ WorkList.prototype.bill = function(cb) {
                 cb(new GeneralErrors.Database());
             });
     }
+    //結算交車 存到資料庫
+    WorkList.prototype.saveWorklist = function(cb) {
 
+        db.from('worklist')
+            .insert({
+              WageTotal : this.WageTotal,
+              MaterialTotal : this.MaterialTotal,
+              PreTaxAmount : this.PreTaxAmount,
+              Tax : this.Tax,
+              AccountReceivable : this.AccountReceivable,
+              RealReceive : this.RealReceive,
+              discount : this.discount,
+
+            })
+            
+            .where('worklist.WorkId', this.WorkId)
+            .catch(function(err) {
+                console.log("saveWorklist ", err);
+                cb(new GeneralErrors.Database());
+            });
+    }
     //車歷卡
     WorkList.prototype.carHistory = function(cb) {
             // console.log('this.id' + this.id);

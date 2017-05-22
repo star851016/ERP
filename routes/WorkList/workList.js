@@ -377,8 +377,23 @@ router.post('/fixModel', function(req, res, next) {
 router.post('/billsRegister', function(req, res,next) {
 
   console.log('billsRegister');
-    res.redirect('/worklist');
 
+
+    var newSearchPId = new SearchPId({
+      WageTotal : req.body.WageAmount,
+      MaterialTotal : req.body.Amount,
+      PreTaxAmount : req.body.PreTaxAmount,
+      Tax : req.body.Tax,
+      AccountReceivable : req.body.AccountReceivable,
+      RealReceive : req.body.RealReceive,
+      discount : req.body.discount,
+      WorkId : req.body.WorkId,
+      CarId : req.body.CarId
+     });
+
+     newSearchPId.saveWorklist(function(err) {
+          res.redirect('/worklist');
+    });
 
 });
 

@@ -476,9 +476,11 @@
                 <div id="tab4" class="tab_content">
                     <div class="container" style="float:center;">
                       <form action="/worklist/billsRegister" method="POST" novalidate>
-                        <p>工資金額:<input type="text" class="tax" value="$0"></p>
-                        <p>零件金額:<input id="Amount" type="text" class="tax" value="$<%= Amount %>"></p>
-                        <p>稅前金額:<input id="BTax" type="text" class="tax" value="<%= Amount %>"></p>
+                          <input type="hidden" name="WorkId" value="<%= upWorklist.WorkId %>" />
+                            <input type="hidden" name="CarId" value="<%= upWorklist.CarId %>" />
+                        <p>工資金額:<input type="text" name="WageAmount" class="tax" value="$0"></p>
+                        <p>零件金額:<input id="Amount" name="Amount" type="text" class="tax" value="<%= Amount %>"></p>
+                        <p>稅前金額:<input id="BTax" name="PreTaxAmount" type="text" class="tax" value="<%= Amount %>"></p>
 
                             <input type="radio" name="tax" checked="checked" value="no"><span>不要稅金</span>
                             <input type="radio" name="tax" value="yes"><span>要稅金:</span>
@@ -486,10 +488,10 @@
 
                         </span>
 
-                        <p>稅金:<input id="tax" type="text" class="tax" value="$0"></p>
-                        <p>應收總金額:<input id="AR" type="text" class="tax" value="<%= Amount %>"></p>
-                        <p>實收總金額:<input type="text" class="tax" value="$"></p>
-                        <p>折價:<input type="text" class="tax" value="$0"></p>
+                        <p>稅金:<input id="tax" name="Tax" type="text" class="tax" value="0"></p>
+                        <p>應收總金額:<input id="AR" name="AccountReceivable" type="text" class="tax" value="<%= Amount %>"></p>
+                        <p>實收總金額:<input type="text" name="RealReceive" class="tax" value=""></p>
+                        <p>折價:<input type="text" name="discount" class="tax" value=""></p>
                         <label class="radio inline">
                             <input id="up_radio" type="radio" name="optionsRadios" value="cash" checked>
                             現金
