@@ -289,7 +289,29 @@ router.post('/carHistoryDetail', function(req, res, next) {
 
 
 });
+//車歷卡 車牌搜尋
+router.post('/carHistorySearch', function(req, res,next) {
 
+  var newSearchPId = new SearchPId({
+    CarId : req.body.CarId
+   });
+   console.log('CarId'+req.body.CarId);
+   newSearchPId.carHistorySearch(req.body.CarId,function(err,worklist) {
+     if(err) {
+       next(err);
+     } else {
+       for(i=0;i<worklist.length;i++){
+         console.log(i);
+          worklist[i].OutDate = fecha.format(worklist[i].OutDate, 'YYYY-MM-DD');
+         };
+
+       res.render('WorkList/carHistory', {
+           worklist : worklist,
+           member: req.session.member || null
+       });
+    }
+  });
+});
 //維修套組
 router.post('/fixModel', function(req, res, next) {
     console.log('fixModel');

@@ -255,6 +255,25 @@ WorkList.prototype.bill = function(cb) {
                     cb(new GeneralErrors.Database());
                 });
         }
+        //車歷卡 車牌搜尋
+        WorkList.prototype.carHistorySearch = function(CarId,cb) {
+              console.log('CarId' + CarId);
+                db.select()
+                    .from('car')
+                    .innerJoin('customer', 'car.ID', '=', 'customer.ID')
+                    .innerJoin('worklist', 'car.CarId', '=', 'worklist.CarId')
+
+                    .where('car.CarId', CarId)
+                    .then(function(worklist) {
+
+                        cb(null, worklist);
+                    }.bind(this))
+                    .catch(function(err) {
+
+                        console.log("carHistory ERROR", err);
+                        cb(new GeneralErrors.Database());
+                    });
+            }
         //車歷卡細節
         WorkList.prototype.carHistoryDetail = function(WorkId,cb) {
               console.log('this.id' + WorkId);
