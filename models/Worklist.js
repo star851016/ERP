@@ -235,7 +235,27 @@ WorkList.prototype.bill = function(cb) {
                 cb(new GeneralErrors.Database());
             });
     }
-    
+
+    //車歷卡
+    WorkList.prototype.carHistory = function(cb) {
+            // console.log('this.id' + this.id);
+            db.select()
+                .from('car')
+                .innerJoin('customer', 'car.ID', '=', 'customer.ID')
+                .innerJoin('worklist', 'car.CarId', '=', 'worklist.CarId')
+                .innerJoin('materiallist', 'materiallist.WorkId', '=', 'materiallist.WorkId')
+                .innerJoin('product', 'product.Id', '=', 'materiallist.Id')
+                .where('car.CarId', '5566-TY')
+                .then(function(worklist) {
+                  
+                    cb(null, worklist);
+                }.bind(this))
+                .catch(function(err) {
+
+                    console.log("carHistory ERROR", err);
+                    cb(new GeneralErrors.Database());
+                });
+        }
 
 //存Info資料
 WorkList.prototype.InfoList = function(cb) {

@@ -58,16 +58,24 @@
                           <th class="th2">數量</th>
                             <th class="th2">小計</th>
                             </tr>
+                            <%
+
+                            for(var i = 0; i < worklist.length; i++){
+                             %>
+
                             <tr>
-                              <td class="td0" rowspan="3"></td>
-                              <td class="td0" rowspan="3"></td>
-                              <td class="td0" rowspan="3"></td>
+                              <td class="td0" rowspan="3"><%= worklist[i].OutDate %></td>
+                              <td class="td0" rowspan="3"><%= worklist[i].WorkId %></td>
+                              <td class="td0" rowspan="3"><%= worklist[i].Miles %></td>
+                            <%  }; %>
                               <td class="td0">料號</td>
                               <td class="td0">品名</td>
                               <td class="td0">單價</td>
                               <td class="td0">數量</td>
                               <td class="td0">小計</td>
+
                             </tr>
+
                             <tr>
                               <td class="td0">料號</td>
                               <td class="td0">品名</td>

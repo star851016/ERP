@@ -225,10 +225,28 @@ router.post('/delMat', function(req, res,next) {
 //carhistory車歷卡
 router.get('/carHistory', function(req, res, next) {
     console.log('carhistory');
-    res.render('WorkList/carHistory', {
+    var newWorklist = new Worklist({
+      SName : req.body.SName,
+      Phones : req.body.Phone,
+      Contact_Person : req.body.Contact_Person
+     });
 
-        member: req.session.member || null
-    });
+       newWorklist.carHistory(function(err,worklist){
+          if(err){
+             next(err);
+          }else{
+            for(i=0;i<worklist.length;i++){
+              console.log(i);
+               worklist[i].OutDate = fecha.format(worklist[i].OutDate, 'YYYY-MM-DD');
+              };
+            
+            res.render('WorkList/carHistory', {
+                worklist : worklist,
+                member: req.session.member || null
+            });
+           }
+        });
+
 
 });
 
