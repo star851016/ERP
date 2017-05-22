@@ -22,7 +22,7 @@
         <div style="text-align:center;width:100%">
             <div style="position:relative;width:90%;">
                 <div style="background-color:#F6F8F1;border-radius:2px;height:100px;width:100%;text-align:left;margin:0px;padding-left:20px;padding-top:8px;">
-                    <form>
+                    <form name="sentMessage" action="/accounting/findWorklist" method="POST" novalidate>
                         <span>客&nbsp&nbsp&nbsp戶：</span>
                         <input type="text" class="underline" size="5" placeholder="請輸入姓名">&nbsp&nbsp&nbsp
                         <label class="checkbox-inline">
@@ -46,28 +46,24 @@
             <table class="table table-bordered" style="text-align:center;">
                 <tr>
                     <th class="th2">完工日期</th>
-                    <th class="th2">進場日期</th>
-                    <th class="th2">車主</th>
-                    <th class="th2">車牌</th>
-                    <th class="th2">稅前總額</th>
-                    <th class="th2">稅後總額</th>
-                </tr>
-                <tr>
-                    <td class="td0">20170521</td>
-                    <td class="td0">20160520</td>
-                    <td class="td0">我好帥</td>
-                    <td class="td0">ABC-1234</td>
-                    <td class="td0">1000</td>
-                    <td class="td0">1200</td>
-                </tr>
-                <tr>
                     <th class="th2">工單號碼</th>
-                    <td class="td0">20160520001</td>
+                    <th class="th2">車牌</th>
+                    <th class="th2">車主</th>
                     <th class="th2">車主電話</th>
-                    <td class="td0">0900000000</td>
-                    <th class="th2">折扣</th>
-                    <td class="td0">50</td>
+                    <th class="th2">實收總額</th>
+                    <th class="th2">應收總額</th>
                 </tr>
+            <% worklist.forEach(function(car) { %>
+                <tr>
+                    <td class="td0"><%= car.OutDate %></td>
+                    <td class="td0"><%= car.WorkId %></td>
+                    <td class="td0"><%= car.CarId %></td>
+                    <td class="td0"><%= car.CName %></td>
+                    <td class="td0"><%= car.Tell1 %></td>
+                    <td class="td0"><%= car.RealReceive %></td>
+                    <td class="td0"><%= car.AccountReceivable %></td>
+                </tr>
+            <%  }); %>
             </table>
 
         </div>

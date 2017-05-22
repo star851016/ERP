@@ -235,7 +235,7 @@ WorkList.prototype.bill = function(cb) {
                 cb(new GeneralErrors.Database());
             });
     }
-
+    
 
 //存Info資料
 WorkList.prototype.InfoList = function(cb) {

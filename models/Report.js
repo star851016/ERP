@@ -2,12 +2,52 @@ var db = require('../libs/db');
 var GeneralErrors = require('../errors/GeneralErrors');
 
 var Report = function(options) {
-//  this.id = options.id,
-  //this.Time = options.CreateTime
+  this.fromTime = options.fromTime,
+  this.toTime = options.toTime
+
+};
+//營業查詢 未設定條件
+Report.prototype.checkAllWorklist = function(cb) {
+    var subquery = db.select('CarId').from('worklist');
+
+    db.select('customer.CName','customer.Tell1', 'worklist.WorkId', 'worklist.CarId', 'worklist.Status','worklist.RealReceive','worklist.AccountReceivable','worklist.OutDate')
+        .from('car')
+        .innerJoin('customer', 'car.ID', '=', 'customer.ID')
+        .innerJoin('worklist', 'car.CarId', '=', 'worklist.CarId')
+        .whereIn('worklist.Status', ['維修完', '已結帳'])
+        .whereIn('car.CarId', subquery)
+
+    .then(function(worklist) {
+            cb(null, worklist);
+        }.bind(this))
+        .catch(function(err) {
+            console.log("checkAllWorklist ALL", err);
+            cb(new GeneralErrors.Database());
+        });
 
 };
 
+//營業查詢 設定時間條件
+Report.prototype.checkTimeWorklist = function(fromTime,toTime,cb) {
+  console.log('fromTime'+fromTime);
+    var subquery = db.select('CarId').from('worklist');
 
+    db.select('customer.CName','customer.Tell1', 'worklist.WorkId', 'worklist.CarId', 'worklist.Status','worklist.RealReceive','worklist.AccountReceivable','worklist.OutDate')
+        .from('car')
+        .innerJoin('customer', 'car.ID', '=', 'customer.ID')
+        .innerJoin('worklist', 'car.CarId', '=', 'worklist.CarId')
+        .whereIn('worklist.Status', ['維修完', '已結帳'])
+        .whereIn('car.CarId', subquery)
+        .whereBetween('worklist.OutDate', [fromTime, toTime])
+    .then(function(worklist) {
+            cb(null, worklist);
+        }.bind(this))
+        .catch(function(err) {
+            console.log("checkAllWorklist ALL", err);
+            cb(new GeneralErrors.Database());
+        });
+
+};
 
 //查詢今日進貨
 Report.prototype.checkTodayPur = function (cb,Pur_PName) {
