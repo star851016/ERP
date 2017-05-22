@@ -287,12 +287,7 @@ router.post('/fixModel', function(req, res, next) {
 router.post('/billsRegister', function(req, res,next) {
 
   console.log('billsRegister');
-  res.render('Accounting/billsregister', {
-
-    status : req.session.status || null,
-
-    member : req.session.member || null
-  });
+    res.redirect('/worklist');
 
 
 });

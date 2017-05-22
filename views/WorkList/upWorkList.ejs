@@ -486,9 +486,32 @@
 
                         </span>
                         <p>稅金:<input type="text" class="tax" value="$150"></p>
-                        <p>總金額:<input type="text" class="tax" value="$2100"></p>
+                        <p>應收總金額:<input type="text" class="tax" value="$2100"></p>
+                        <p>實收總金額:<input type="text" class="tax" value="$2100"></p>
+                        <p>折價:<input type="text" class="tax" value="$0"></p>
+                        <label class="radio inline">
+                            <input id="up_radio" type="radio" name="optionsRadios" value="cash" checked>
+                            現金
+                        </label>
 
-                            <button class="button1">結帳交車</button>
+                        <label class="radio inline">
+                            <input id="ov_radio" type="radio" name="optionsRadios" value="creditcard">
+                            信用卡
+                        </label>
+
+                            <script>
+                                $('input[name="optionsRadios"]').on('change', function() {
+                                    if ($(this).val() == 'update') {
+
+                                        //change to "show update"
+                                        $("#cont").text("現金支付");
+
+                                    } else {
+
+                                        $("#cont").text("信用卡");
+                                    }
+                                });
+                            </script>
                         </form>
                           <button class="button1" onclick="location.href='/worklist/printBill'">列印帳單</button>
                         <br><br>
