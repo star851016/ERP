@@ -1,76 +1,75 @@
-<!DOCTYPE html>
 <html>
-<link rel='stylesheet' href='/stylesheets/style.css' />
+<% include ../Shared/header %>
 
-<body>
-    <div>
-        <% include ../Shared/header %>
-    </div>
-    <div class="hdr">
-        <p class="title">查詢</p>
-    </div>
-    <div style="width:100%;">
-        <button class="button1" onclick="location.href='/addCustomer'" style="float:right;display:inline;">新增客戶</button>
-        <form name="sentMessage" action="/customer" method="POST" id="product" novalidate>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
 
-            <div style="width:90%;">
-                <br><br><br>
-                <p style="font-weight:bold;display:inline;">依名稱&nbsp</p>
-                <select class="selector0" name="CName">
-      <option class="options" >---請選擇---</option>
-      <% cNameList.forEach(function(customer) { %>
-      <option class="options"><%= customer.CName %></option>
-    <%  }); %>
-    </select>
-                <button id="button" class="button1" type="submit">查詢</button>
-            </div>
-
-        </form>
-    </div>
-    <br>
-    <div style="width:100%;overflow:scroll;height:500px;">
-        <table class="table2">
-            <tr>
-                <th class="th3">客戶名稱</th>
-                <th class="th3">車牌</th>
-                <th class="th3">聯絡人</th>
-                <th class="th3">電話</th>
-                <th class="th3">統一編號</th>
-                <th class="th3">編輯/刪除</th>
-            </tr>
-            <% customerList.forEach(function(customer) { %>
-                <tr class="tr_search">
-                    <td class="td3" rowspan="2" style="font-weight:bold;font-size:24px;">
-                        <%= customer.CName %>
-                    </td>
-                    <td class="td3">
-                      <%= customer.CarId %>
-                    </td>
-                    <td class="td3">
-
-                        <%= customer.Contact_Person %>
-                    </td>
-                    <td class="td3">
-                        <%= customer.Tell1 %>
-                    </td>
-                    <td class="td3">
-                        <%= customer.UniformNum %>
-                    </td>
-                    <td class="td3">
-                        <form class="form1" action="/customer/upCustomer" method="POST" novalidate>
-                            <input type="hidden" name="ID" value="<%= customer.ID %>" />
-                            <button id="button" class="btn2" type="submit">編輯</button>
-                        </form>
-                        <form class="form1" action="/customer/delCustomer" method="POST" novalidate>
-                            <input type="hidden" name="ID" value="<%= customer.ID %>" />
-                            <button id="button" class="btn2" type="submit">刪除</button>
-                        </form>
-                    </td>
+    <body>
+        <div>
+        </div>
+        <div class="hdr">
+            <p class="title">查詢</p>
+        </div>
+        <br><br><br><br>
+        <div class="col-md-10">
+            <form class="form-inline" name="sentMessage" action="/customer" method="POST" id="product" novalidate>
+                <div class="form-group">
+                    <label for="CName">依名稱</label>
+                    <select id="CName" class="form-control" name="CName">
+         <option class="options">請選擇</option>
+         <% cNameList.forEach(function(customer) { %>
+        <option class="options"><%= customer.CName %></option>
+          <%  }); %>
+      </select>
+                </div>
+                <button id="button" class="btn btn-default" type="submit">查詢</button>
+            </form>
+        </div>
+        <div class="col-md-2">
+            <button class="btn btn-primary" onclick="location.href='/addCustomer'" style="float:right">新增客戶</button>
+        </div>
+        <br><br>
+        <div style="width:100%;overflow:scroll;height:500px;">
+            <table class="table2">
+                <tr>
+                    <th class="th3">客戶名稱</th>
+                    <th class="th3">車牌</th>
+                    <th class="th3">聯絡人</th>
+                    <th class="th3">電話</th>
+                    <th class="th3">統一編號</th>
+                    <th class="th3">編輯/刪除</th>
                 </tr>
-                <%  }); %>
-        </table>
-    </div>
+                <% customerList.forEach(function(customer) { %>
+                    <tr class="tr_search">
+                        <td class="td3" style="font-weight:bold;font-size:24px;">
+                            <%= customer.CName %>
+                        </td>
+                        <td class="td3">
+                            <%= customer.CarId %>
+                        </td>
+                        <td class="td3">
+                            <%= customer.Contact_Person %>
+                        </td>
+                        <td class="td3">
+                            <%= customer.Tell1 %>
+                        </td>
+                        <td class="td3">
+                            <%= customer.UniformNum %>
+                        </td>
+                        <td class="td3">
+                            <form class="form1" action="/customer/upCustomer" method="POST" novalidate>
+                                <input type="hidden" name="ID" value="<%= customer.ID %>" />
+                                <button id="button" class="btn2" type="submit">編輯</button>
+                            </form>
+                            <form class="form1" action="/customer/delCustomer" method="POST" novalidate>
+                                <input type="hidden" name="ID" value="<%= customer.ID %>" />
+                                <button id="button" class="btn2" type="submit">刪除</button>
+                            </form>
+                        </td>
+                    </tr>
+                    <%  }); %>
+            </table>
+        </div>
 
-</body>
+    </body>
 
 </html>

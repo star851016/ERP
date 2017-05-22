@@ -48,7 +48,8 @@
 }
 
 .ui-helper-clearfix {
-    display: none;
+    display: inline-block;
+    ;
 }
 
 

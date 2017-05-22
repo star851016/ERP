@@ -30,31 +30,31 @@
                     </tr>
                     <tr>
                         <th class="th2">聯絡人</th>
-                        <th class="th2">電話1</th>
-                        <th class="th2">電話2</th>
+                        <th class="th2" colspan="2">電話1</th>
+                        <th class="th2" colspan="2">電話2</th>
                         <th class="th2">統一編號</th>
                         <th class="th2">生日</th>
                     </tr>
                     <tr>
                         <td class="td0"><input type="text" class="form-control" name="Contact_Person"></td>
-                        <td class="td0"><input type="text" class="form-control" name="Tell1"></td>
-                        <td class="td0"><input type="text" class="form-control" name="Tell2"></td>
+                        <td class="td0" colspan="2"><input type="text" class="form-control" name="Tell1"></td>
+                        <td class="td0" colspan="2"><input type="text" class="form-control" name="Tell2"></td>
                         <td class="td0"><input type="text" class="form-control" name="UniformNum"></td>
                         <td class="td0">
-                            <input class="text" type="text" name="CBirthDate" id="CBirthDate">
+                            <input class="form-control" type="text" name="CBirthDate" id="CBirthDate">
                             <link rel="stylesheet" type="text/css" href="/stylesheets/jquery-ui.css" />
                             <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
                             <script type="text/javascript" src="/javascripts/jquery-ui-datepicker.js"></script>
                             <script type="text/javascript">
                                 $(function() {
-                                    $("#date_CBirthDate").datepicker();
+                                    $("#CBirthDate").datepicker();
                                 });
                             </script>
                         </td>
                     </tr>
                     <tr>
                         <th class="th2">地址</th>
-                        <td class="td0" colspan="5"><input type="text" class="form-control" name="Addr"></td>
+                        <td class="td0" colspan="6"><input type="text" class="form-control" name="Addr"></td>
                     </tr>
                 </table>
                 <button class="btn btn-default" type="submit" style="float:center;">新增</button>
