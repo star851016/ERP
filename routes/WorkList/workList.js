@@ -37,14 +37,15 @@ router.get('/', function(req, res) {
 });
 
 //列印結帳單
-router.get('/printBill', function(req, res) {
+router.post('/printBill', function(req, res) {
   if(!req.session.member) {
     // res.redirect('/');
   }
 
         res.render('WorkList/Bill', {
-
-            member : req.session.member || null
+          upWorklist : req.session.upWorkList,
+          materiallist : req.session.materiallist ,
+          member : req.session.member || null
           });
 
 });
@@ -96,16 +97,18 @@ router.get('/upWorklist', function(req, res,next) {
         upWorklist[0].InDate = fecha.format(upWorklist[0].InDate, 'YYYY-MM-DD');
         // upWorklist[0].CBirthDate = fecha.format(upWorklist[0].CBirthDate, 'YYYY-MM-DD');
         console.log('upWorklist'+upWorklist[0].WorkId);
+        req.session.upWorkList = upWorklist[0];
           newUpWorklist.materiallist(function(err,materiallist) {
             if(err) {
               next(err);
             } else {
 
+              req.session.materiallist = materiallist;
                 res.render('WorkList/upWorkList', {
 
                   status : req.session.status || null,
-                  upWorklist : upWorklist[0],
-                  materiallist : materiallist ,
+                  upWorklist : req.session.upWorkList,
+                  materiallist : req.session.materiallist ,
                   member : req.session.member || null
                 });
             }

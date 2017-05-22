@@ -514,7 +514,10 @@
                                 });
                             </script>
                         </form>
-                          <button class="button1" onclick="location.href='/worklist/printBill'">列印帳單</button>
+                          <form action="/worklist/printBill" method="POST" novalidate>
+                              <input type="hidden" name="WorkId" value="<%= upWorklist.WorkId %>" />
+                          <button class="button1" >列印帳單</button>
+                        </form>
                         <br><br>
                     </div>
                 </div>
