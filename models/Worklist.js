@@ -216,6 +216,27 @@ WorkList.prototype.getQuestion = function(cb) {
         });
 }
 
+//結算交車
+WorkList.prototype.bill = function(cb) {
+        console.log('this.id' + this.id);
+        db.select(db.raw('SUM(materiallist.Amount) as Amount'))
+            .from('worklist')
+            .innerJoin('materiallist', 'materiallist.WorkId', '=', 'worklist.WorkId')
+            .where('worklist.WorkId', this.id)
+            .then(function(result) {
+              Amount = result[0].Amount;
+              console.log('Amount'+Amount);
+              console.log(Amount);
+              cb(null,Amount);
+                })
+            .catch(function(err) {
+
+                console.log("Bill ERROR", err);
+                cb(new GeneralErrors.Database());
+            });
+    }
+
+
 //存Info資料
 WorkList.prototype.InfoList = function(cb) {
     console.log("InfoList");

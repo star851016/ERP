@@ -45,6 +45,7 @@ router.post('/printBill', function(req, res) {
         res.render('WorkList/Bill', {
           upWorklist : req.session.upWorkList,
           materiallist : req.session.materiallist ,
+          Amount : req.session.Amount,
           member : req.session.member || null
           });
 
@@ -102,16 +103,22 @@ router.get('/upWorklist', function(req, res,next) {
             if(err) {
               next(err);
             } else {
-
               req.session.materiallist = materiallist;
-                res.render('WorkList/upWorkList', {
+                newUpWorklist.bill(function(err,Amount) {
 
-                  status : req.session.status || null,
-                  upWorklist : req.session.upWorkList,
-                  materiallist : req.session.materiallist ,
-                  member : req.session.member || null
-                });
+                      req.session.Amount =Amount;
+                      console.log('Amount'+Amount);
+                        res.render('WorkList/upWorkList', {
+
+                          status : req.session.status || null,
+                          upWorklist : req.session.upWorkList,
+                          materiallist : req.session.materiallist ,
+                          Amount : req.session.Amount,
+                          member : req.session.member || null
+                        });
+                })
             }
+
           });
         }
      })

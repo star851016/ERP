@@ -477,17 +477,17 @@
                     <div class="container" style="float:center;">
                       <form action="/worklist/billsRegister" method="POST" novalidate>
                         <p>工資金額:<input type="text" class="tax" value="$0"></p>
-                        <p>零件金額:<input type="text" class="tax" value="$2950"></p>
-                        <p>稅前金額:<input type="text" class="tax" value="$2950"></p>
+                        <p>零件金額:<input type="text" class="tax" value="$<%= Amount %>"></p>
+                        <p>稅前金額:<input type="text" class="tax" value="$<%= Amount %>"></p>
 
                             <input type="radio" name="tax" value="no"><span>不要稅金</span>
                             <input type="radio" name="tax" value="yes"><span>要稅金:</span>
                             <input type="text" class="tax" value="5">%
 
                         </span>
-                        <p>稅金:<input type="text" class="tax" value="$150"></p>
-                        <p>應收總金額:<input type="text" class="tax" value="$2100"></p>
-                        <p>實收總金額:<input type="text" class="tax" value="$2100"></p>
+                        <p>稅金:<input id=tax type="text" class="tax" value="$0"></p>
+                        <p>應收總金額:<input id=AR type="text" class="tax" value="$<%= Amount %>"></p>
+                        <p>實收總金額:<input type="text" class="tax" value="$"></p>
                         <p>折價:<input type="text" class="tax" value="$0"></p>
                         <label class="radio inline">
                             <input id="up_radio" type="radio" name="optionsRadios" value="cash" checked>
