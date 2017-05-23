@@ -1,86 +1,134 @@
-<body>
-  <div class="hdr">
-      <p class="title">結帳單</p>
-  </div>
-  <br><br><br><br>
+<html>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <div class="container" style="overflow-x:auto;">
-      <table style="width:100%">
-          <tr>
-              <td class="td">工單號碼:</td>
-              <td class="td1">
-                  <%= upWorklist.WorkId %>
-              </td>
-          </tr>
-          <tr>
-              <td class="td">車牌:</td>
-              <td class="td1">
-                <%= upWorklist.CarId %>
-              </td>
-              <td class="td">車主: </td>
-              <td class="td1">
-                 <%= upWorklist.CName %>
-              </td>
-              <td class="td">地址: </td>
-              <td class="td1">
-                 <%= upWorklist.Address %>
-              </td>
-              <td class="td">電話: </td>
-              <td class="td1">
-                 <%= upWorklist.Tell1 %>
-              </td>
-              <td class="td">車型:</td>
-              <td class="td1">
-                <%= upWorklist.carBrand %>&nbsp
-                    <%= upWorklist.carType %>
-              </td>
-              <td class="td">里程數:
-                  <td class="td1"><%= upWorklist.Miles %>
-                    </td>
-          </tr>
-          <tr>
-              <th class="th">No.</th>
-              <th class="th">工作內容</th>
-              <th class="th">工 資</th>
-          </tr>
-          <tr class="tr">
-              <td>1</td>
-              <td class="td2">
-                  查修費
-              </td>
-              <td class="td2">$300</td>
-          </tr>
-          <%  var i = 1 ;
+<link rel='stylesheet' href='/stylesheets/bootstrap.min.css' />
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="/javascripts/bootstrap.min.js"></script>
+
+<body>
+    <div class="container-fluid">
+        <br>
+        <h1 style="float:right;">結帳單</h1>
+        <p>城林汽車修配廠<br> 236 新北市土城區中華路二段32-1號<br> TEL:02-82616441 0988-638-431<br> FAX:02-22744418 統編:19430493
+    </div>
+    <div class="container" style="width:100%;">
+        <table class="table table-bordered">
+            <tr>
+                <th>委修單編號</th>
+                <td>
+                    <%= upWorklist.WorkId %>
+                </td>
+                <th>車型:</th>
+                <td>
+                    <%= upWorklist.carBrand %>&nbsp
+                        <%= upWorklist.carType %>
+                </td>
+                <th>車牌</th>
+                <td>
+                    <%= upWorklist.CarId %>
+                </td>
+                <th>里程數:</th>
+                <td>
+                    <%= upWorklist.Miles %>
+                </td>
+            </tr>
+            <tr>
+                <th>車主: </th>
+                <td>
+                    <%= upWorklist.CName %>
+                </td>
+                <th>電話: </th>
+                <td>
+                    <%= upWorklist.Tell1 %>
+                </td>
+                <th>地址: </th>
+                <td colspan="3">
+                    <%= upWorklist.Address %>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="col-lg-6">
+        <table class="table table-bordered">
+            <tr>
+                <th>No.</th>
+                <th>委修工作內容</th>
+                <th>工 資</th>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>
+                    查修費
+                </td>
+                <td>$300</td>
+            </tr>
+        </table>
+    </div>
+    <div class="col-lg-6">
+        <table class="table table-bordered">
+
+            <%  var i = 1 ;
 
           for(var j = 0; j < materiallist.length; j++){
            %>
-          <tr class="tr">
-              <th class="th">No.</th>
-              <th class="th">品 名</th>
-              <th class="th">註 記</th>
-              <th class="th">售 價</th>
-              <th class="th">數 量</th>
-              <th class="th">小 計</th>
-          </tr>
-          <tr class="tr">
-              <td rowspan="3">1</td>
-              <td class="td2"><%= materiallist[j].PName %></td>
-              <td class="td2"><%= materiallist[j].MNote %></td>
-              <td class="td2"><%= materiallist[j].Price %></td>
-              <td class="td2"><%= materiallist[j].MQuantity %></td>
-              <td class="td2"><%= materiallist[j].Amount %></td>
+                <tr>
+                    <th>No.</th>
+                    <th>品 名</th>
+                    <th>註 記</th>
+                    <th>售 價</th>
+                    <th>數 量</th>
+                    <th>小 計</th>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>
+                        <%= materiallist[j].PName %>
+                    </td>
+                    <td>
+                        <%= materiallist[j].MNote %>
+                    </td>
+                    <td>
+                        <%= materiallist[j].Price %>
+                    </td>
+                    <td>
+                        <%= materiallist[j].MQuantity %>
+                    </td>
+                    <td>
+                        <%= materiallist[j].Amount %>
+                    </td>
+                </tr>
+                <%  i++}; %>
+        </table>
 
-          </tr>
-        <%  i++}; %>
-          <p>工資金額:1000</p>
-          <p>零件金額:$<%= Amount %></p>
-          <p>稅前金額:<input type="text" class="tax" value="$2950"></p>
-          <p>稅金:<input type="text" class="tax" value="$150"></p>
-          <p>應收總金額:<input type="text" class="tax" value="$2100"></p>
-          <p>實收總金額:<input type="text" class="tax" value="$2100"></p>
-
-    <div class="hdr">
-
-          <button class="button1" onclick="window.print()">列印</button>
+    </div>
+    <div class="col-lg-6">
+        <table class="table table-bordered">
+            <tr>
+                <th>工資金額</th>
+                <td>1000</td>
+                <th>零件金額</th>
+                <td>$
+                    <%= Amount %>
+                </td>
+            </tr>
+            <tr>
+                <th>稅前金額</th>
+                <td>$2950</td>
+                <th>稅金</th>
+                <td>$150</td>
+                <th>應收總金額</th>
+                <td>$2100</td>
+                <th>實收總金額</th>
+                <td>$2100</td>
+            </tr>
+        </table>
+        <button class="button1" onclick="window.print()">列印</button>
+    </div>
+    <div class="container" style="float:right;width:200px;height:80px;border:1px solid black;">
+        <p style="text-align:left;">委修人簽章</p>
     </div>
 </body>
