@@ -12,7 +12,7 @@ var WorkList = function(options) {
     this.carBrand = options.carBrand;
     this.carType = options.carType;
     this.PId = options.PId,
-    this.MQuantity = options.MQuantity;
+        this.MQuantity = options.MQuantity;
     this.Price = options.Price;
     this.Amount = options.Amount;
     this.MNote = options.MNote;
@@ -26,13 +26,13 @@ var WorkList = function(options) {
     this.maintenance = options.maintenance;
     this.Question = options.Question;
     this.WageTotal = options.WageTotal,
-    this.MaterialTotal = options.MaterialTotal,
-    this.PreTaxAmount = options.PreTaxAmount,
-    this.Tax = options.Tax,
-    this.AccountReceivable = options.AccountReceivable,
-    this.RealReceive = options.RealReceive,
-    this.discount  = options.discount,
-    this.WorkId = options.WorkId
+        this.MaterialTotal = options.MaterialTotal,
+        this.PreTaxAmount = options.PreTaxAmount,
+        this.Tax = options.Tax,
+        this.AccountReceivable = options.AccountReceivable,
+        this.RealReceive = options.RealReceive,
+        this.discount = options.discount,
+        this.WorkId = options.WorkId
 };
 
 //工單管理--清單
@@ -43,10 +43,10 @@ WorkList.prototype.WorkList = function(cb) {
         .from('car')
         .innerJoin('customer', 'car.ID', '=', 'customer.ID')
         .innerJoin('worklist', 'car.CarId', '=', 'worklist.CarId')
-        .whereIn('worklist.Status', ['未確認', '已交車'])
+        .whereIn('worklist.Status', ['未確認', '未查修', , '維修中'])
         .whereIn('car.CarId', subquery)
 
-    .then(function(worklist) {
+        .then(function(worklist) {
             cb(null, worklist);
         }.bind(this))
         .catch(function(err) {
@@ -57,69 +57,69 @@ WorkList.prototype.WorkList = function(cb) {
 };
 //點編輯 找出detail--工單明細
 WorkList.prototype.find = function(cb) {
-        console.log('this.id' + this.id);
-        db.select('worklist.WorkId', 'worklist.CarId', 'worklist.Miles',
-                'worklist.Status', 'worklist.InDate', 'customer.Tell1',
-                'customer.Tell2', 'customer.Address', 'customer.Contact_Person',
-                'customer.UniformNum', 'customer.CBirthDate', 'customer.CName',
-                'car.cc', 'car.EngineNum', 'car.CarBodyNum', 'car.YrOfManu',
-                'carbrand.carBrand', 'cartype.carType', 'wagelist.WContect',
-                'wagelist.Wages', 'wagelist.WhoFix', 'wagelist.WhoCheck',
-                'wagelist.WNote','question.Part','question.Wrong')
-            .from('car')
-            .innerJoin('customer', 'car.ID', '=', 'customer.ID')
-            .innerJoin('worklist', 'car.CarId', '=', 'worklist.CarId')
-            .innerJoin('carbrand', 'car.BrandID', '=', 'carbrand.ID')
-            .innerJoin('cartype', 'car.TypeID', '=', 'cartype.ID')
-            .innerJoin('wagelist', 'wagelist.WorkId', '=', 'worklist.WorkId')
-            .innerJoin('question', 'question.WorklistID', '=', 'worklist.WorkId')
-            .where('worklist.WorkId', this.id)
-            .then(function(upWorklist) {
-                cb(null, upWorklist);
-            }.bind(this))
-            .catch(function(err) {
+    console.log('this.id' + this.id);
+    db.select('worklist.WorkId', 'worklist.CarId', 'worklist.Miles',
+            'worklist.Status', 'worklist.InDate', 'customer.Tell1',
+            'customer.Tell2', 'customer.Address', 'customer.Contact_Person',
+            'customer.UniformNum', 'customer.CBirthDate', 'customer.CName',
+            'car.cc', 'car.EngineNum', 'car.CarBodyNum', 'car.YrOfManu',
+            'carbrand.carBrand', 'cartype.carType', 'wagelist.WContect',
+            'wagelist.Wages', 'wagelist.WhoFix', 'wagelist.WhoCheck',
+            'wagelist.WNote', 'question.Part', 'question.Wrong')
+        .from('car')
+        .innerJoin('customer', 'car.ID', '=', 'customer.ID')
+        .innerJoin('worklist', 'car.CarId', '=', 'worklist.CarId')
+        .innerJoin('carbrand', 'car.BrandID', '=', 'carbrand.ID')
+        .innerJoin('cartype', 'car.TypeID', '=', 'cartype.ID')
+        .innerJoin('wagelist', 'wagelist.WorkId', '=', 'worklist.WorkId')
+        .innerJoin('question', 'question.WorklistID', '=', 'worklist.WorkId')
+        .where('worklist.WorkId', this.id)
+        .then(function(upWorklist) {
+            cb(null, upWorklist);
+        }.bind(this))
+        .catch(function(err) {
 
-                console.log("WorkList find", err);
-                cb(new GeneralErrors.Database());
-            });
-    }
-    //在工單總表點編輯--材料登錄
+            console.log("WorkList find", err);
+            cb(new GeneralErrors.Database());
+        });
+}
+//在工單總表點編輯--材料登錄
 WorkList.prototype.materiallist = function(cb) {
-        console.log("this.id"+this.id);
-        db.select('materiallist.Id', 'materiallist.MatId', 'materiallist.MQuantity', 'materiallist.Amount', 'materiallist.Price', 'materiallist.WhoFix', 'materiallist.WhoCheck', 'materiallist.Fix', 'materiallist.Finished', 'materiallist.MNote', 'product.PName')
-            .from('materiallist')
-            .innerJoin('worklist', 'materiallist.WorkId', '=', 'worklist.WorkId')
-            .innerJoin('product', 'materiallist.Id', '=', 'product.Id')
-            .where('worklist.WorkId', this.id)
-            .then(function(materiallist) {
-                cb(null, materiallist);
-            }.bind(this))
-            .catch(function(err) {
+    console.log("this.id" + this.id);
+    db.select('materiallist.Id', 'materiallist.MatId', 'materiallist.MQuantity', 'materiallist.Amount', 'materiallist.Price', 'materiallist.WhoFix', 'materiallist.WhoCheck', 'materiallist.Fix', 'materiallist.Finished', 'materiallist.MNote', 'product.PName')
+        .from('materiallist')
+        .innerJoin('worklist', 'materiallist.WorkId', '=', 'worklist.WorkId')
+        .innerJoin('product', 'materiallist.Id', '=', 'product.Id')
+        .where('worklist.WorkId', this.id)
+        .then(function(materiallist) {
+            cb(null, materiallist);
+        }.bind(this))
+        .catch(function(err) {
 
-                console.log("materiallist find", err);
-                cb(new GeneralErrors.Database());
-            });
-    }
-    //新增材料登錄
-    WorkList.prototype.insertMat = function(WorkId,cb) {
+            console.log("materiallist find", err);
+            cb(new GeneralErrors.Database());
+        });
+}
+//新增材料登錄
+WorkList.prototype.insertMat = function(WorkId, cb) {
 
-        db.from('materiallist')
-            .insert({
-                WorkId : WorkId,
-                Id : this.PId,
-                MQuantity: this.MQuantity,
-                Price: this.Price,
-                Amount: this.Amount,
-                MNote: this.MNote
-            })
-            .catch(function(err) {
-                console.log("insertMat find", err);
-                cb(new GeneralErrors.Database());
-            });
-    }
+    db.from('materiallist')
+        .insert({
+            WorkId: WorkId,
+            Id: this.PId,
+            MQuantity: this.MQuantity,
+            Price: this.Price,
+            Amount: this.Amount,
+            MNote: this.MNote
+        })
+        .catch(function(err) {
+            console.log("insertMat find", err);
+            cb(new GeneralErrors.Database());
+        });
+}
 
 
-    //每一筆材料登錄更新
+//每一筆材料登錄更新
 WorkList.prototype.saveMat = function(cb) {
     console.log(this.MQuantity);
     db.from('materiallist')
@@ -138,17 +138,17 @@ WorkList.prototype.saveMat = function(cb) {
 
 //每一筆材料登錄刪除
 WorkList.prototype.delMat = function(cb) {
-console.log(this.MatId);
-db.from('materiallist')
-    .where('MatId', this.MatId)
-    .del()
-    .then(function(result) {
-        cb(null, this);
-    }.bind(this))
-    .catch(function(err) {
-        console.log("delMat ERROR", err);
-        cb(new GeneralErrors.Database());
-    });
+    console.log(this.MatId);
+    db.from('materiallist')
+        .where('MatId', this.MatId)
+        .del()
+        .then(function(result) {
+            cb(null, this);
+        }.bind(this))
+        .catch(function(err) {
+            console.log("delMat ERROR", err);
+            cb(new GeneralErrors.Database());
+        });
 }
 
 //searchPId
@@ -169,18 +169,18 @@ WorkList.prototype.searchPId = function(cb) {
 
 //保養套組
 WorkList.prototype.fixModel = function(cb) {
-  console.log(this.CarId);
-  console.log('model/fixModel');
-    db.select('product.PName','materiallist.Id', 'materiallist.MQuantity', 'materiallist.Amount', 'materiallist.Price', 'materiallist.MNote')
+    console.log(this.CarId);
+    console.log('model/fixModel');
+    db.select('product.PName', 'materiallist.Id', 'materiallist.MQuantity', 'materiallist.Amount', 'materiallist.Price', 'materiallist.MNote')
         .from('materiallist')
         .innerJoin('product', 'materiallist.Id', '=', 'product.Id')
         .innerJoin('worklist', 'materiallist.WorkId', '=', 'worklist.WorkId')
         .where({
-          'worklist.Question' : '小保養',
-          'worklist.CarId' : this.CarId
+            'worklist.Question': '小保養',
+            'worklist.CarId': this.CarId
         })
         .then(function(materiallist) {
-          console.log('materiallist[0].Id'+materiallist[0].Id);
+            console.log('materiallist[0].Id' + materiallist[0].Id);
             cb(null, materiallist);
         }.bind(this))
         .catch(function(err) {
@@ -190,13 +190,13 @@ WorkList.prototype.fixModel = function(cb) {
 
 };
 //每一筆材料登錄新增
-WorkList.prototype.insertNewMaterial = function(WorkId,materiallist,cb) {
-console.log('materiallist.MQuantity'+materiallist.MQuantity);
+WorkList.prototype.insertNewMaterial = function(WorkId, materiallist, cb) {
+    console.log('materiallist.MQuantity' + materiallist.MQuantity);
     db.from('materiallist')
 
         .insert({
-            WorkId : WorkId,
-            Id : materiallist.Id,
+            WorkId: WorkId,
+            Id: materiallist.Id,
             MQuantity: materiallist.MQuantity,
             Price: materiallist.Price,
             Amount: materiallist.Amount,
@@ -209,7 +209,7 @@ console.log('materiallist.MQuantity'+materiallist.MQuantity);
 }
 //編輯工單之客戶問題
 WorkList.prototype.getQuestion = function(cb) {
-    console.log("this.id"+this.id);
+    console.log("this.id" + this.id);
     db.select()
         .from('question')
         .innerJoin('worklist', 'question.WorkId', '=', 'worklist.WorkId')
@@ -226,117 +226,117 @@ WorkList.prototype.getQuestion = function(cb) {
 
 //列印帳單
 WorkList.prototype.bill = function(cb) {
-        console.log('this.id' + this.id);
-        db.select(db.raw('SUM(materiallist.Amount) as Amount'))
-            .from('worklist')
-            .innerJoin('materiallist', 'materiallist.WorkId', '=', 'worklist.WorkId')
-            .where('worklist.WorkId', this.id)
-            .then(function(result) {
-              Amount = result[0].Amount;
-              console.log('Amount'+Amount);
-              console.log(Amount);
-              cb(null,Amount);
-                })
-            .catch(function(err) {
+    console.log('this.id' + this.id);
+    db.select(db.raw('SUM(materiallist.Amount) as Amount'))
+        .from('worklist')
+        .innerJoin('materiallist', 'materiallist.WorkId', '=', 'worklist.WorkId')
+        .where('worklist.WorkId', this.id)
+        .then(function(result) {
+            Amount = result[0].Amount;
+            console.log('Amount' + Amount);
+            console.log(Amount);
+            cb(null, Amount);
+        })
+        .catch(function(err) {
 
-                console.log("Bill ERROR", err);
-                cb(new GeneralErrors.Database());
-            });
-    }
-    //結算交車 存到資料庫
-    WorkList.prototype.saveWorklist = function(cb) {
+            console.log("Bill ERROR", err);
+            cb(new GeneralErrors.Database());
+        });
+}
+//結算交車 存到資料庫
+WorkList.prototype.saveWorklist = function(cb) {
 
-        db.from('worklist')
-            .insert({
-              WageTotal : this.WageTotal,
-              MaterialTotal : this.MaterialTotal,
-              PreTaxAmount : this.PreTaxAmount,
-              Tax : this.Tax,
-              AccountReceivable : this.AccountReceivable,
-              RealReceive : this.RealReceive,
-              discount : this.discount,
+    db.from('worklist')
+        .insert({
+            WageTotal: this.WageTotal,
+            MaterialTotal: this.MaterialTotal,
+            PreTaxAmount: this.PreTaxAmount,
+            Tax: this.Tax,
+            AccountReceivable: this.AccountReceivable,
+            RealReceive: this.RealReceive,
+            discount: this.discount,
 
-            })
-            
-            .where('worklist.WorkId', this.WorkId)
-            .catch(function(err) {
-                console.log("saveWorklist ", err);
-                cb(new GeneralErrors.Database());
-            });
-    }
-    //車歷卡
-    WorkList.prototype.carHistory = function(cb) {
-            // console.log('this.id' + this.id);
-            db.select()
-                .from('car')
-                .innerJoin('customer', 'car.ID', '=', 'customer.ID')
-                .innerJoin('worklist', 'car.CarId', '=', 'worklist.CarId')
+        })
 
-                .where('car.CarId', '5566-TY')
-                .then(function(worklist) {
+        .where('worklist.WorkId', this.WorkId)
+        .catch(function(err) {
+            console.log("saveWorklist ", err);
+            cb(new GeneralErrors.Database());
+        });
+}
+//車歷卡
+WorkList.prototype.carHistory = function(cb) {
+    // console.log('this.id' + this.id);
+    db.select()
+        .from('car')
+        .innerJoin('customer', 'car.ID', '=', 'customer.ID')
+        .innerJoin('worklist', 'car.CarId', '=', 'worklist.CarId')
 
-                    cb(null, worklist);
-                }.bind(this))
-                .catch(function(err) {
+        .where('car.CarId', '5566-TY')
+        .then(function(worklist) {
 
-                    console.log("carHistory ERROR", err);
-                    cb(new GeneralErrors.Database());
-                });
-        }
-        //車歷卡 車牌搜尋
-        WorkList.prototype.carHistorySearch = function(CarId,cb) {
-              console.log('CarId' + CarId);
-                db.select()
-                    .from('car')
-                    .innerJoin('customer', 'car.ID', '=', 'customer.ID')
-                    .innerJoin('worklist', 'car.CarId', '=', 'worklist.CarId')
+            cb(null, worklist);
+        }.bind(this))
+        .catch(function(err) {
 
-                    .where('car.CarId', CarId)
-                    .then(function(worklist) {
+            console.log("carHistory ERROR", err);
+            cb(new GeneralErrors.Database());
+        });
+}
+//車歷卡 車牌搜尋
+WorkList.prototype.carHistorySearch = function(CarId, cb) {
+    console.log('CarId' + CarId);
+    db.select()
+        .from('car')
+        .innerJoin('customer', 'car.ID', '=', 'customer.ID')
+        .innerJoin('worklist', 'car.CarId', '=', 'worklist.CarId')
 
-                        cb(null, worklist);
-                    }.bind(this))
-                    .catch(function(err) {
+        .where('car.CarId', CarId)
+        .then(function(worklist) {
 
-                        console.log("carHistory ERROR", err);
-                        cb(new GeneralErrors.Database());
-                    });
-            }
-        //車歷卡細節
-        WorkList.prototype.carHistoryDetail = function(WorkId,cb) {
-              console.log('this.id' + WorkId);
-                db.select()
-                    .from('materiallist')
-                    .innerJoin('product', 'product.Id', '=', 'materiallist.Id')
-                    .where('materiallist.WorkId', WorkId)
-                    .then(function(materiallist) {
+            cb(null, worklist);
+        }.bind(this))
+        .catch(function(err) {
 
-                        cb(null, materiallist);
-                    }.bind(this))
-                    .catch(function(err) {
+            console.log("carHistory ERROR", err);
+            cb(new GeneralErrors.Database());
+        });
+}
+//車歷卡細節
+WorkList.prototype.carHistoryDetail = function(WorkId, cb) {
+    console.log('this.id' + WorkId);
+    db.select()
+        .from('materiallist')
+        .innerJoin('product', 'product.Id', '=', 'materiallist.Id')
+        .where('materiallist.WorkId', WorkId)
+        .then(function(materiallist) {
 
-                        console.log("carHistory ERROR", err);
-                        cb(new GeneralErrors.Database());
-                    });
-            }
-            //材料登錄之比價
-            WorkList.prototype.searchSupplier = function(searchPId,cb) {
+            cb(null, materiallist);
+        }.bind(this))
+        .catch(function(err) {
 
-                    db.select()
-                        .from('compare')
-                        .innerJoin('product', 'compare.MatId', '=', 'product.Id')
-                        .innerJoin('supplier', 'compare.Sid', '=', 'supplier.id')
-                        .where('product.Id', searchPId)
-                        .then(function(result) {
+            console.log("carHistory ERROR", err);
+            cb(new GeneralErrors.Database());
+        });
+}
+//材料登錄之比價
+WorkList.prototype.searchSupplier = function(searchPId, cb) {
 
-                          cb(null,Amount);
-                            })
-                        .catch(function(err) {
+    db.select()
+        .from('compare')
+        .innerJoin('product', 'compare.Id', '=', 'product.Id')
+        .innerJoin('supplier', 'compare.Sid', '=', 'supplier.id')
+        .where('product.Id', searchPId)
+        .then(function(result) {
 
-                            console.log("searchSupplier ERROR", err);
-                            cb(new GeneralErrors.Database());
-                        });
-                }
+            cb(null, Amount);
+        })
+        .catch(function(err) {
+
+            console.log("searchSupplier ERROR", err);
+            cb(new GeneralErrors.Database());
+        });
+}
 
 
 //存Info資料
@@ -352,10 +352,10 @@ WorkList.prototype.InfoList = function(cb) {
             InDate: this.InDate,
             ExpectDate: this.ExpectDate,
         })
-        .then(function(result){
-        WorkId = result;
-        console.log('WorkId'+WorkId);
-          cb(null, WorkId);
+        .then(function(result) {
+            WorkId = result;
+            console.log('WorkId' + WorkId);
+            cb(null, WorkId);
         })
         .catch(function(err) {
             console.log("INSERT ERROR", err);
@@ -365,7 +365,7 @@ WorkList.prototype.InfoList = function(cb) {
 
 //存Question資料
 // WorkList.prototype.QuestionList = function(WorklistID, cb) {
-WorkList.prototype.QuestionList = function(WorkId,cb) {
+WorkList.prototype.QuestionList = function(WorkId, cb) {
     console.log("QuestionList");
     console.log("WorklistID" + WorkId);
     console.log("this part" + this.Part);

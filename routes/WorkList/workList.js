@@ -15,227 +15,227 @@ var async = require('async');
 
 
 router.get('/', function(req, res) {
-  if(!req.session.member) {
-    res.redirect('/');
-  }
-  var newWorklist = new Worklist({
-    SName : req.body.SName,
-    Phones : req.body.Phone,
-    Contact_Person : req.body.Contact_Person
-   });
+    if (!req.session.member) {
+        res.redirect('/');
+    }
+    var newWorklist = new Worklist({
+        SName: req.body.SName,
+        Phones: req.body.Phone,
+        Contact_Person: req.body.Contact_Person
+    });
 
-     newWorklist.WorkList(function(err,worklist){
-        if(err){
-           next(err);
-        }else{
-        res.render('WorkList/workList', {
-            worklist : worklist,
-            member : req.session.member || null
-          });
-         }
-      });
+    newWorklist.WorkList(function(err, worklist) {
+        if (err) {
+            next(err);
+        } else {
+            res.render('WorkList/workList', {
+                worklist: worklist,
+                member: req.session.member || null
+            });
+        }
+    });
 });
 
 //列印結帳單
 router.post('/printBill', function(req, res) {
-  if(!req.session.member) {
-    // res.redirect('/');
-  }
+    if (!req.session.member) {
+        // res.redirect('/');
+    }
 
-        res.render('WorkList/Bill', {
-          upWorklist : req.session.upWorkList,
-          materiallist : req.session.materiallist ,
-          Amount : req.session.Amount,
-          member : req.session.member || null
-          });
+    res.render('WorkList/Bill', {
+        upWorklist: req.session.upWorkList,
+        materiallist: req.session.materiallist,
+        Amount: req.session.Amount,
+        member: req.session.member || null
+    });
 
 });
 
-router.post('/', function(req, res,next) {
- var newWorklist = new Worklist({
-   SName : req.body.SName,
-   Phones : req.body.Phone,
-   Contact_Person : req.body.Contact_Person
-  });
+router.post('/', function(req, res, next) {
+    var newWorklist = new Worklist({
+        SName: req.body.SName,
+        Phones: req.body.Phone,
+        Contact_Person: req.body.Contact_Person
+    });
 
-  newWorklist.check(function(err,workList) {
-    if(err) {
-      next(err);
-    } else {
-      newWorklist.CarIdList(function(err,CarIdList){
-        console.log('CarIdList Function');
-        if(err){
-          next(err);
-        }else{
-          console.log('CarIdList cb'+CarIdList);
-          //req.session.CarIdList = CarIdList[0];
-          res.render('WorkList/workList', {
-            workList : workList,
-            CarIdList : CarIdList,
-            member : req.session.member || null
-          });
+    newWorklist.check(function(err, workList) {
+        if (err) {
+            next(err);
+        } else {
+            newWorklist.CarIdList(function(err, CarIdList) {
+                console.log('CarIdList Function');
+                if (err) {
+                    next(err);
+                } else {
+                    console.log('CarIdList cb' + CarIdList);
+                    //req.session.CarIdList = CarIdList[0];
+                    res.render('WorkList/workList', {
+                        workList: workList,
+                        CarIdList: CarIdList,
+                        member: req.session.member || null
+                    });
+                }
+            });
         }
-      });
-    }
-  });
+    });
 });
 
 //編輯點進去 去找該列的資料
-router.get('/upWorklist', function(req, res,next) {
-  console.log('req.session.WorkId'+req.session.WorkId);
-  var newUpWorklist = new UpWorklist({
-    id : req.query.WorkId || req.session.WorkId
-   });
-    newUpWorklist.find(function(err,upWorklist) {
-      if(err) {
-          next(err);
-      } else {
-        // if(req.session.WorkId == ""){
-          req.session.WorkId = req.query.WorkId;
+router.get('/upWorklist', function(req, res, next) {
+    console.log('req.session.WorkId' + req.session.WorkId);
+    var newUpWorklist = new UpWorklist({
+        id: req.query.WorkId || req.session.WorkId
+    });
+    newUpWorklist.find(function(err, upWorklist) {
+        if (err) {
+            next(err);
+        } else {
+            // if(req.session.WorkId == ""){
+            req.session.WorkId = req.query.WorkId;
 
-        // }
+            // }
 
-        upWorklist[0].InDate = fecha.format(upWorklist[0].InDate, 'YYYY-MM-DD');
-        // upWorklist[0].CBirthDate = fecha.format(upWorklist[0].CBirthDate, 'YYYY-MM-DD');
-        console.log('upWorklist'+upWorklist[0].WorkId);
-        req.session.upWorkList = upWorklist[0];
-          newUpWorklist.materiallist(function(err,materiallist) {
-            if(err) {
-              next(err);
-            } else {
-              req.session.materiallist = materiallist;
-                newUpWorklist.bill(function(err,Amount) {
+            upWorklist[0].InDate = fecha.format(upWorklist[0].InDate, 'YYYY-MM-DD');
+            // upWorklist[0].CBirthDate = fecha.format(upWorklist[0].CBirthDate, 'YYYY-MM-DD');
+            console.log('upWorklist' + upWorklist[0].WorkId);
+            req.session.upWorkList = upWorklist[0];
+            newUpWorklist.materiallist(function(err, materiallist) {
+                if (err) {
+                    next(err);
+                } else {
+                    req.session.materiallist = materiallist;
+                    newUpWorklist.bill(function(err, Amount) {
 
-                      req.session.Amount =Amount;
-                      console.log('Amount'+Amount);
+                        req.session.Amount = Amount;
+                        console.log('Amount' + Amount);
                         res.render('WorkList/upWorkList', {
 
-                          status : req.session.status || null,
-                          upWorklist : req.session.upWorkList,
-                          materiallist : req.session.materiallist ,
-                          Amount : req.session.Amount,
-                          member : req.session.member || null
+                            status: req.session.status || null,
+                            upWorklist: req.session.upWorkList,
+                            materiallist: req.session.materiallist,
+                            Amount: req.session.Amount,
+                            member: req.session.member || null
                         });
-                })
-            }
+                    })
+                }
 
-          });
+            });
         }
-     })
+    })
 
 
 
 });
 
 //儲存客戶資料
-router.post('/saveCustomer', function(req, res,next) {
-  var newSaveCustomer = new SaveCustomer({
+router.post('/saveCustomer', function(req, res, next) {
+    var newSaveCustomer = new SaveCustomer({
 
-   });
-   newSaveCustomer.saveCustomer(function(err) {
-     if(err) {
-       next(err);
-     } else {
-         res.render('WorkList/upWorkList', {
+    });
+    newSaveCustomer.saveCustomer(function(err) {
+        if (err) {
+            next(err);
+        } else {
+            res.render('WorkList/upWorkList', {
 
-           member : req.session.member || null
-         });
-     }
-   });
+                member: req.session.member || null
+            });
+        }
+    });
 });
 
 
 
 //儲存材料登錄--每一筆
-router.post('/saveMat', function(req, res,next) {
-  console.log('saveMat');
-  console.log('req.body.PId'+req.body.PId);
-  var newSaveMat = new SaveMat({
-    WorkId : req.body.WorkId,
-    id : req.body.MatId,
-    PId : req.body.PId,
-    PName : req.body.PName,
-    MNote : req.body.MNote,
-    MQuantity : req.body.MQuantity,
-    WhoRepair : req.body.WhoRepair,
-    WhoCheck : req.body.WhoCheck,
-    Price : req.body.Price,
-    Repair : req.body.impair,
-    impaired : req.body.impaired,
-    Amount : req.body.Amount
-   });
-   console.log(req.body.MatId);
-    if(req.body.MatId == "undefined"){
-      console.log("insertMat");
-      newSaveMat.insertMat(req.body.WorkId,function(err){
+router.post('/saveMat', function(req, res, next) {
+    console.log('saveMat');
+    console.log('req.body.PId' + req.body.PId);
+    var newSaveMat = new SaveMat({
+        WorkId: req.body.WorkId,
+        id: req.body.MatId,
+        PId: req.body.PId,
+        PName: req.body.PName,
+        MNote: req.body.MNote,
+        MQuantity: req.body.MQuantity,
+        WhoRepair: req.body.WhoRepair,
+        WhoCheck: req.body.WhoCheck,
+        Price: req.body.Price,
+        Repair: req.body.impair,
+        impaired: req.body.impaired,
+        Amount: req.body.Amount
+    });
+    console.log(req.body.MatId);
+    if (req.body.MatId == "undefined") {
+        console.log("insertMat");
+        newSaveMat.insertMat(req.body.WorkId, function(err) {
 
-      });
-    }else{
-      newSaveMat.saveMat();
+        });
+    } else {
+        newSaveMat.saveMat();
     };
 
-    req.session.WorkId = req.body.WorkId ;
-    res.redirect('/worklist/upWorklist?'+req.session.WorkId);
+    req.session.WorkId = req.body.WorkId;
+    res.redirect('/worklist/upWorklist?' + req.session.WorkId);
 
 });
 
 
 //料號查詢
-router.get('/searchPId', function(req, res,next) {
-  console.log('searchPId function');
-  console.log('searchPId'+req.query.searchPId);
-  var newSearchPId = new SearchPId({
-    id : req.query.searchPId
-   });
+router.get('/searchPId', function(req, res, next) {
+    console.log('searchPId function');
+    console.log('searchPId' + req.query.searchPId);
+    var newSearchPId = new SearchPId({
+        id: req.query.searchPId
+    });
 
-   newSearchPId.searchPId(function(err,PIdList) {
-     if(err) {
-       next(err);
-     } else {
-         res.json(PIdList);
-    }
-  });
+    newSearchPId.searchPId(function(err, PIdList) {
+        if (err) {
+            next(err);
+        } else {
+            res.json(PIdList);
+        }
+    });
 });
 
 //材料行查詢
-router.get('/searchSupplier', function(req, res,next) {
-  console.log('searchSupplier function');
-  console.log('searchPId'+req.query.searchPId);
-  var newSearchPId = new SearchPId({
-    id : req.query.searchPId
-   });
+router.get('/searchSupplier', function(req, res, next) {
+    console.log('searchSupplier function');
+    console.log('searchPId' + req.query.searchPId);
+    var newSearchPId = new SearchPId({
+        id: req.query.searchPId
+    });
 
-   newSearchPId.searchSupplier(req.query.searchPId,function(err,SupList) {
-     if(err) {
-       next(err);
-     } else {
-         res.json(SupList);
-    }
-  });
+    newSearchPId.searchSupplier(req.query.searchPId, function(err, SupList) {
+        if (err) {
+            next(err);
+        } else {
+            res.json(SupList);
+        }
+    });
 });
 
 //新增材料登錄--每一筆
-router.post('/addMat', function(req, res,next) {
-  var status = "add";
-  req.session.status = status;
-  console.log('addMat');
-  console.log(req.body.id);
-  req.session.WorkId = req.body.id ;
-   res.redirect('/worklist/upWorklist?'+req.session.WorkId);
+router.post('/addMat', function(req, res, next) {
+    var status = "add";
+    req.session.status = status;
+    console.log('addMat');
+    console.log(req.body.id);
+    req.session.WorkId = req.body.id;
+    res.redirect('/worklist/upWorklist?' + req.session.WorkId);
 
 });
 
 //刪除 材料登錄
-router.post('/delMat', function(req, res,next) {
-  console.log('delMat function');
-  console.log('MatId'+req.body.MatId);
-  var newWorklist = new Worklist({
-    MatId : req.body.MatId
-   });
-   req.session.WorkId = req.body.WorkId ;
-   newWorklist.delMat(function(err) {
-    res.redirect('/worklist/upWorklist?'+req.session.WorkId);
-  });
+router.post('/delMat', function(req, res, next) {
+    console.log('delMat function');
+    console.log('MatId' + req.body.MatId);
+    var newWorklist = new Worklist({
+        MatId: req.body.MatId
+    });
+    req.session.WorkId = req.body.WorkId;
+    newWorklist.delMat(function(err) {
+        res.redirect('/worklist/upWorklist?' + req.session.WorkId);
+    });
 });
 
 
@@ -243,26 +243,26 @@ router.post('/delMat', function(req, res,next) {
 router.get('/carHistory', function(req, res, next) {
     console.log('carhistory');
     var newWorklist = new Worklist({
-      SName : req.body.SName,
-      Phones : req.body.Phone,
-      Contact_Person : req.body.Contact_Person
-     });
+        SName: req.body.SName,
+        Phones: req.body.Phone,
+        Contact_Person: req.body.Contact_Person
+    });
 
-       newWorklist.carHistory(function(err,worklist){
-          if(err){
-             next(err);
-          }else{
-            for(i=0;i<worklist.length;i++){
-              console.log(i);
-               worklist[i].OutDate = fecha.format(worklist[i].OutDate, 'YYYY-MM-DD');
-              };
+    newWorklist.carHistory(function(err, worklist) {
+        if (err) {
+            next(err);
+        } else {
+            for (i = 0; i < worklist.length; i++) {
+                console.log(i);
+                worklist[i].OutDate = fecha.format(worklist[i].OutDate, 'YYYY-MM-DD');
+            };
 
             res.render('WorkList/carHistory', {
-                worklist : worklist,
+                worklist: worklist,
                 member: req.session.member || null
             });
-           }
-        });
+        }
+    });
 
 
 });
@@ -271,228 +271,224 @@ router.get('/carHistory', function(req, res, next) {
 router.post('/carHistoryDetail', function(req, res, next) {
     console.log('carHistoryDetail');
     var newWorklist = new Worklist({
-      WorkId : req.body.WorkId
-     });
-   console.log('req.body.WorkId'+req.body.WorkId);
-       newWorklist.carHistoryDetail(req.body.WorkId,function(err,materiallist){
-          if(err){
-             next(err);
-          }else{
+        WorkId: req.body.WorkId
+    });
+    console.log('req.body.WorkId' + req.body.WorkId);
+    newWorklist.carHistoryDetail(req.body.WorkId, function(err, materiallist) {
+        if (err) {
+            next(err);
+        } else {
             // console.log('materiallist'+materiallist[0]);
             // console.log('materiallist'+materiallist[0].Id);
             res.render('WorkList/carHistoryDetail', {
-                materiallist : materiallist,
+                materiallist: materiallist,
                 member: req.session.member || null
             });
-           }
-        });
+        }
+    });
 
 
 });
 //車歷卡 車牌搜尋
-router.post('/carHistorySearch', function(req, res,next) {
+router.post('/carHistorySearch', function(req, res, next) {
 
-  var newSearchPId = new SearchPId({
-    CarId : req.body.CarId
-   });
-   console.log('CarId'+req.body.CarId);
-   newSearchPId.carHistorySearch(req.body.CarId,function(err,worklist) {
-     if(err) {
-       next(err);
-     } else {
-       for(i=0;i<worklist.length;i++){
-         console.log(i);
-          worklist[i].OutDate = fecha.format(worklist[i].OutDate, 'YYYY-MM-DD');
-         };
+    var newSearchPId = new SearchPId({
+        CarId: req.body.CarId
+    });
+    console.log('CarId' + req.body.CarId);
+    newSearchPId.carHistorySearch(req.body.CarId, function(err, worklist) {
+        if (err) {
+            next(err);
+        } else {
+            for (i = 0; i < worklist.length; i++) {
+                console.log(i);
+                worklist[i].OutDate = fecha.format(worklist[i].OutDate, 'YYYY-MM-DD');
+            };
 
-       res.render('WorkList/carHistory', {
-           worklist : worklist,
-           member: req.session.member || null
-       });
-    }
-  });
+            res.render('WorkList/carHistory', {
+                worklist: worklist,
+                member: req.session.member || null
+            });
+        }
+    });
 });
 //維修套組
 router.post('/fixModel', function(req, res, next) {
     console.log('fixModel');
-    console.log('req.body.fixModel'+req.body.fixModel);
-    console.log('req.session.WorkId'+req.session.WorkId);
-    console.log('req.body.CarId'+req.body.CarId);
+    console.log('req.body.fixModel' + req.body.fixModel);
+    console.log('req.session.WorkId' + req.session.WorkId);
+    console.log('req.body.CarId' + req.body.CarId);
     var newFixModel = new FixModel({
-      CarId : req.body.CarId,
-      id : req.session.WorkId,
-      fixModel : req.body.fixModel
-     });
-    newFixModel.fixModel(function(err,materiallist) {
-      console.log('materiallist[0].PName'+materiallist[0].PName);
-      if(err) {
-        next(err);
-      } else {
-        // var length = fixList.length - 1 ;
-        console.log('materiallist.length'+materiallist.length);
-        req.session.fixList =materiallist;
-        console.log(req.session.fixList);
-          for(i=0;i<materiallist.length;i++){
-            console.log(i);
-            newFixModel.insertNewMaterial(req.session.WorkId,req.session.fixList[i],function(err,materiallist){
+        CarId: req.body.CarId,
+        id: req.session.WorkId,
+        fixModel: req.body.fixModel
+    });
+    newFixModel.fixModel(function(err, materiallist) {
+        console.log('materiallist[0].PName' + materiallist[0].PName);
+        if (err) {
+            next(err);
+        } else {
+            // var length = fixList.length - 1 ;
+            console.log('materiallist.length' + materiallist.length);
+            req.session.fixList = materiallist;
+            console.log(req.session.fixList);
+            for (i = 0; i < materiallist.length; i++) {
+                console.log(i);
+                newFixModel.insertNewMaterial(req.session.WorkId, req.session.fixList[i], function(err, materiallist) {
 
+                });
+
+
+            };
+            newFixModel.find(function(err, upWorklist) {
+                if (err) {
+                    next(err);
+                } else {
+                    upWorklist[0].InDate = fecha.format(upWorklist[0].InDate, 'YYYY-MM-DD');
+                    // upWorklist[0].CBirthDate = fecha.format(upWorklist[0].CBirthDate, 'YYYY-MM-DD');
+                    console.log('upWorklist' + upWorklist[0].WorkId);
+
+                    newFixModel.materiallist(function(err, materiallist) {
+                        if (err) {
+                            next(err);
+                        } else {
+
+                            res.render('WorkList/upWorkList', {
+
+                                status: req.session.status || null,
+                                upWorklist: upWorklist[0],
+                                materiallist: materiallist,
+                                member: req.session.member || null
+                            });
+                        }
+                    });
+
+
+
+
+                }
             });
-
-
-          };
-        newFixModel.find(function(err,upWorklist) {
-          if(err) {
-              next(err);
-          } else {
-            upWorklist[0].InDate = fecha.format(upWorklist[0].InDate, 'YYYY-MM-DD');
-            // upWorklist[0].CBirthDate = fecha.format(upWorklist[0].CBirthDate, 'YYYY-MM-DD');
-            console.log('upWorklist'+upWorklist[0].WorkId);
-
-            newFixModel.materiallist(function(err,materiallist) {
-              if(err) {
-                next(err);
-              } else {
-
-                  res.render('WorkList/upWorkList', {
-
-                    status : req.session.status || null,
-                    upWorklist : upWorklist[0],
-                    materiallist : materiallist ,
-                    member : req.session.member || null
-                  });
-              }
-            });
-
-
-
-
-            }
-         });
-      }
+        }
     });
 
 });
 
 //結帳登記
-router.post('/billsRegister', function(req, res,next) {
+router.post('/billsRegister', function(req, res, next) {
 
-  console.log('billsRegister');
+    console.log('billsRegister');
 
 
     var newSearchPId = new SearchPId({
-      WageTotal : req.body.WageAmount,
-      MaterialTotal : req.body.Amount,
-      PreTaxAmount : req.body.PreTaxAmount,
-      Tax : req.body.Tax,
-      AccountReceivable : req.body.AccountReceivable,
-      RealReceive : req.body.RealReceive,
-      discount : req.body.discount,
-      WorkId : req.body.WorkId,
-      CarId : req.body.CarId
-     });
+        WageTotal: req.body.WageAmount,
+        MaterialTotal: req.body.Amount,
+        PreTaxAmount: req.body.PreTaxAmount,
+        Tax: req.body.Tax,
+        AccountReceivable: req.body.AccountReceivable,
+        RealReceive: req.body.RealReceive,
+        discount: req.body.discount,
+        WorkId: req.body.WorkId,
+        CarId: req.body.CarId
+    });
 
-     newSearchPId.saveWorklist(function(err) {
-          res.redirect('/worklist');
+    newSearchPId.saveWorklist(function(err) {
+        res.redirect('/worklist');
     });
 
 });
 
 //確定要 update
-router.post('/update', function(req, res,next) {
- var newUpdate = new Update({
-   id : req.body.id,
-   SName : req.body.SName,
-   Phone : req.body.Phone,
-   Contact_Person : req.body.Contact_Person
-  });
-          newUpdate.update(function(err) {
-            console.log('update');
-            if(err) {
-              next(err);
-            } else {
-               if(newUpdate.SName!='')
-              {
-                newUpdate.check(function(err,WorklistList) {
-                  console.log('check');
-                  if(err) {
-                    next(err);
-                  } else {
-                    if(newUpdate.SName !='')
-                    {
-                    req.session.update = newUpdate;
-                    res.render('Worklist/WorklistDetail', {
-                       WorklistList : WorklistList,
-                       member : req.session.member || null
-                    });
-                  } else {
-                        req.session.update = null;
-                          res.render('Worklist/WorklistDetail', {
-                            SName : null,
-                            member : req.session.member || null
-                          });
+router.post('/update', function(req, res, next) {
+    var newUpdate = new Update({
+        id: req.body.id,
+        SName: req.body.SName,
+        Phone: req.body.Phone,
+        Contact_Person: req.body.Contact_Person
+    });
+    newUpdate.update(function(err) {
+        console.log('update');
+        if (err) {
+            next(err);
+        } else {
+            if (newUpdate.SName != '') {
+                newUpdate.check(function(err, WorklistList) {
+                    console.log('check');
+                    if (err) {
+                        next(err);
+                    } else {
+                        if (newUpdate.SName != '') {
+                            req.session.update = newUpdate;
+                            res.render('Worklist/WorklistDetail', {
+                                WorklistList: WorklistList,
+                                member: req.session.member || null
+                            });
+                        } else {
+                            req.session.update = null;
+                            res.render('Worklist/WorklistDetail', {
+                                SName: null,
+                                member: req.session.member || null
+                            });
+                        }
                     }
-                  }
                 });
             } else {
-                  req.session.update = null;
-              }
+                req.session.update = null;
             }
-          });
+        }
+    });
 
 
 
 });
 //點刪除 要find資料
-router.post('/delWorkList', function(req, res,next) {
- res.render('WorkList/delWorkList');
+router.post('/delWorkList', function(req, res, next) {
+    res.render('WorkList/delWorkList');
 
 });
 
-router.post('/delete', function(req, res,next) {
-  console.log('req.body.id'+req.body.id);
- var newDelete = new Delete({
-    id : req.body.id,
-   SName : req.body.SName,
-   Phone : req.body.Phone,
-   Contact_Person : req.body.Contact_Person
-  });
-  newDelete.del(function(err) {
-    if(err) {
-      next(err);
-    } else {
-      if(newDelete.SName!='')
-      {
-        newDelete.check(function(err,WorklistList) {
-          console.log('check');
-          if(err) {
+router.post('/delete', function(req, res, next) {
+    console.log('req.body.id' + req.body.id);
+    var newDelete = new Delete({
+        id: req.body.id,
+        SName: req.body.SName,
+        Phone: req.body.Phone,
+        Contact_Person: req.body.Contact_Person
+    });
+    newDelete.del(function(err) {
+        if (err) {
             next(err);
-          } else {
-            if(newDelete.SName !='')
-            {
-            req.session.delete = newDelete;
-            res.render('Worklist/WorklistDetail', {
-               WorklistList : WorklistList,
-               member : req.session.member || null
+        } else {
+            if (newDelete.SName != '') {
+                newDelete.check(function(err, WorklistList) {
+                    console.log('check');
+                    if (err) {
+                        next(err);
+                    } else {
+                        if (newDelete.SName != '') {
+                            req.session.delete = newDelete;
+                            res.render('Worklist/WorklistDetail', {
+                                WorklistList: WorklistList,
+                                member: req.session.member || null
 
-            });
-          } else {
+                            });
+                        } else {
+                            req.session.delete = null;
+                            res.render('Worklist/WorklistDetail', {
+                                SName: null,
+                                member: req.session.member || null
+                            });
+                        }
+                    }
+                });
+            } else {
                 req.session.delete = null;
-                  res.render('Worklist/WorklistDetail', {
-                    SName : null,
-                    member : req.session.member || null
-                  });
+                res.render('Worklist/WorklistDetail', {
+                    SName: null,
+                    member: req.session.member || null
+                });
             }
-          }
-        });
-    } else {
-          req.session.delete = null;
-            res.render('Worklist/WorklistDetail', {
-              SName : null,
-              member : req.session.member || null
-            });
-      }
-    }
-  });
+        }
+    });
 });
 module.exports = dateFormat;
 module.exports = router;
