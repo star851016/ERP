@@ -73,7 +73,7 @@
                 <div class="r">
 
                     <form action="/worklist/fixModel" method="POST" novalidate>
-                      <input type="hidden" name="CarId" value="<%= upWorklist.CarId %>" >
+                        <input type="hidden" name="CarId" value="<%= upWorklist.CarId %>">
                         <button class="btn0" id="jQueryColorChange">無</button>
                         <button class="btn0" id="jQueryColorChange">鈑&nbsp;&nbsp;金</button>
                         <button class="btn0" id="jQueryColorChange">烤&nbsp;&nbsp;漆</button>
@@ -310,9 +310,9 @@
                                     <%= i %>
                                 </td>
                                 <td class="td2">
-                                  <form id="saveMat" action="/worklist/saveMat" method="POST" novalidate>
-                                    <input id="searchPId<%= i %>" type="text" class="text2" name="PId" value="<%= materiallist[j].Id %>">
-                                    <button class="button2" data-toggle="modal" data-target="#searchPId" onClick="searchPId(<%= i %>)" type="button">&darr;</button>
+                                    <form id="saveMat" action="/worklist/saveMat" method="POST" novalidate>
+                                        <input id="searchPId<%= i %>" type="text" class="text2" name="PId" value="<%= materiallist[j].Id %>">
+                                        <button class="button2" data-toggle="modal" data-target="#searchPId" onClick="searchPId(<%= i %>)" type="button">&darr;</button>
                                 </td>
 
                                 <td class="td2"><input id="PName" type="text" name="PName" class="text2" value="<%= materiallist[j].PName %>"></td>
@@ -324,11 +324,11 @@
 
 
 
-                                    <input id="PName" type="hidden" name="PName" class="text2" value="<%= materiallist[j].PName %>">
-                                    <input type="hidden" name="MNote" class="text2" value="<%= materiallist[j].MNote %>">
+                                <input id="PName" type="hidden" name="PName" class="text2" value="<%= materiallist[j].PName %>">
+                                <input type="hidden" name="MNote" class="text2" value="<%= materiallist[j].MNote %>">
 
-                                    <td class="td2"><input type="text" name="Price" class="text2" value="<%= materiallist[j].Price %>"></td>
-                                    <td class="td2"><input type="text" id="MQuantity" name="MQuantity" class="text2" value="<%= materiallist[j].MQuantity %>"></td>
+                                <td class="td2"><input type="text" name="Price" class="text2" value="<%= materiallist[j].Price %>"></td>
+                                <td class="td2"><input type="text" id="MQuantity" name="MQuantity" class="text2" value="<%= materiallist[j].MQuantity %>"></td>
 
                             </tr>
                             <tr class="tr">
@@ -373,7 +373,7 @@
                                     <button class="button1" style="float:center;">登錄</button>
                                     </form>
                                     <form action="/worklist/delMat" method="POST" novalidate>
-                                      <input type="hidden" name="WorkId" value="<%= upWorklist.WorkId %>" />
+                                        <input type="hidden" name="WorkId" value="<%= upWorklist.WorkId %>" />
                                         <input type="hidden" id="MatId" name="MatId" value="<%= materiallist[j].MatId %>" />
                                         <button class="button1" style="float:center;">刪除</button>
                                     </form>
@@ -399,10 +399,10 @@
                                     </td>
                                     <td class="td2">
 
-                                      <form action="/worklist/saveMat" method="POST" novalidate>
+                                        <form action="/worklist/saveMat" method="POST" novalidate>
 
-                                        <input id="searchPId<%= i %>" type="text" class="text2" name="PId">
-                                        <button class="button2" data-toggle="modal" data-target="#searchPId" onClick="searchPId(<%= i %>)" type="button">&darr;</button>
+                                            <input id="searchPId<%= i %>" type="text" class="text2" name="PId">
+                                            <button class="button2" data-toggle="modal" data-target="#searchPId" onClick="searchPId(<%= i %>)" type="button">&darr;</button>
 
 
                                     </td>
@@ -412,12 +412,12 @@
                                     <td class="td2"><input type="text" name="MNote" class="text2"></td>
                                     <td class="td2">
 
-                                        <button class="button3" data-toggle="modal" data-target="#searchSupplier" onClick="searchSupplier(<%= i %>)"  type="button">按此選材料行</button>
+                                        <button class="button3" data-toggle="modal" data-target="#searchSupplier" onClick="searchSupplier(<%= i %>)" type="button">按此選材料行</button>
                                     </td>
 
 
-                                        <td class="td2"><input type="text" name="Price" class="text2"></td>
-                                        <td class="td2"><input type="text" name="MQuantity" class="text2"></td>
+                                    <td class="td2"><input type="text" name="Price" class="text2"></td>
+                                    <td class="td2"><input type="text" name="MQuantity" class="text2"></td>
 
                                 </tr>
                                 <tr class="tr">
@@ -475,6 +475,7 @@
 
                 <div id="tab4" class="tab_content">
                     <div class="container" style="float:center;">
+
                       <form action="/worklist/billsRegister" method="POST" novalidate>
                           <input type="hidden" name="WorkId" value="<%= upWorklist.WorkId %>" />
                             <input type="hidden" name="CarId" value="<%= upWorklist.CarId %>" />
@@ -486,43 +487,45 @@
                             <input type="radio" name="tax" value="yes"><span>要稅金:</span>
                             <input type="text" class="tax" value="5">%
 
-                        </span>
+                            </span>
+
 
                         <p>稅金:<input id="tax" name="Tax" type="text" class="tax" value="0"></p>
                         <p>應收總金額:<input id="AR" name="AccountReceivable" type="text" class="tax" value="<%= Amount %>"></p>
                         <p>實收總金額:<input type="text" name="RealReceive" class="tax" value=""></p>
                         <p>折價:<input type="text" name="discount" class="tax" value=""></p>
                         <label class="radio inline">
+
                             <input id="up_radio" type="radio" name="optionsRadios" value="cash" checked>
                             現金
                         </label>
 
-                        <label class="radio inline">
+                            <label class="radio inline">
                             <input id="ov_radio" type="radio" name="optionsRadios" value="creditcard">
                             信用卡
                         </label>
-                        <script>
-                        $(document).ready(function() {
+                            <script>
+                                $(document).ready(function() {
 
-                              $('input:radio[name=tax]').change(function() {
-                                 var BTax = $("#BTax").val();
+                                    $('input:radio[name=tax]').change(function() {
+                                        var BTax = $("#BTax").val();
 
 
-                                 var Tax = parseInt(BTax) * 0.05 ;
-                                Tax = parseInt(Tax);
-                                 var ATax = BTax*1 + parseInt(Tax)*1 ;
+                                        var Tax = parseInt(BTax) * 0.05;
+                                        Tax = parseInt(Tax);
+                                        var ATax = BTax * 1 + parseInt(Tax) * 1;
 
-                                  if (this.value == 'yes') {
-                                     $("#tax").val(Tax);
-                                      $("#AR").val(ATax);
-                                  }else if (this.value == 'yes') {
-                                    $("#tax").val("0");
-                                     $("#AR").val(BTax);
-                                  }
-                              });
-                          });
-                        </script>
-                            <button class="button1" >儲存收款</button>
+                                        if (this.value == 'yes') {
+                                            $("#tax").val(Tax);
+                                            $("#AR").val(ATax);
+                                        } else if (this.value == 'yes') {
+                                            $("#tax").val("0");
+                                            $("#AR").val(BTax);
+                                        }
+                                    });
+                                });
+                            </script>
+                            <button class="button1">儲存收款</button>
                             <script>
                                 $('input[name="optionsRadios"]').on('change', function() {
                                     if ($(this).val() == 'update') {
@@ -537,9 +540,9 @@
                                 });
                             </script>
                         </form>
-                          <form action="/worklist/printBill" method="POST" novalidate>
-                              <input type="hidden" name="WorkId" value="<%= upWorklist.WorkId %>" />
-                          <button class="button1" >列印帳單</button>
+                        <form action="/worklist/printBill" method="POST" novalidate>
+                            <input type="hidden" name="WorkId" value="<%= upWorklist.WorkId %>" />
+                            <button class="button1">列印帳單</button>
                         </form>
                         <br><br>
                     </div>
@@ -691,8 +694,8 @@
 
                         $('#tableSearchPId')
 
-                            .append('<tr onclick="setValue(\'' + data[i].Id + '\',\'' + data[i].PName + '\',\'' + num + '\')"><td class="td0" >' + data[i].Id + '</td>' +
-                                '<td class="td0">' + data[i].PName + '</td></tr>')
+                        .append('<tr onclick="setValue(\'' + data[i].Id + '\',\'' + data[i].PName + '\',\'' + num + '\')"><td class="td0" >' + data[i].Id + '</td>' +
+                            '<td class="td0">' + data[i].PName + '</td></tr>')
 
                     });
 
@@ -729,8 +732,8 @@
 
                         $('#tableSupplier')
 
-                            .append('<tr onclick="setValue(\'' + data[i].SName + '\',\'' + data[i].PName + '\',\'' + num + '\')"><td class="td0" >' + data[i].Pur_Price + '</td>' +
-                                '<td class="td0">' + data[i].Email + '</td></tr>')
+                        .append('<tr onclick="setValue(\'' + data[i].SName + '\',\'' + data[i].PName + '\',\'' + num + '\')"><td class="td0" >' + data[i].Pur_Price + '</td>' +
+                            '<td class="td0">' + data[i].Email + '</td></tr>')
 
                     });
 
