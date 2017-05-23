@@ -26,33 +26,35 @@
         <br><br><br>
 
         <br><br>
-        <div class="container3"style="overflow-x:auto;">
+        <div class="container3" style="overflow-x:auto;">
 
-          <table class="table2">
-            <tr>
-              <th class="th2">料號</th>
-                <th class="th2">名稱</th>
-                  <th class="th2">數量</th>
-
-                            </tr>
-                            <%
+            <table class="table2">
+                <tr>
+                    <th class="th2">料號</th>
+                    <th class="th2">名稱</th>
+                    <th class="th2">數量</th>
+                </tr>
+                <%
 
                             materiallist.forEach(function(car) {
 
                               %>
-                            <tr>
-                              <td class="td0" ><%= car.Id %></td>
-                              <td class="td0" ><%= car.PName %></td>
-                              <td class="td0" ><%= car.MQuantity %></td>
+                    <tr>
+                        <td class="td0">
+                            <%= car.Id %>
+                        </td>
+                        <td class="td0">
+                            <%= car.PName %>
+                        </td>
+                        <td class="td0">
+                            <%= car.MQuantity %>
+                        </td>
+                    </tr>
+                    <%  }); %>
 
+            </table>
+        </div>
 
-
-                            </tr>
-                            <%  }); %>
-
-                            </table>
-                          </div>
-
-</body>
+    </body>
 
 </html>

@@ -397,6 +397,13 @@ table {
     width: 10%;
 }
 
+.tdcar {
+    width: 10%;
+    color: black;
+    background-color: #FCFCEB;
+    border: 2px solid gray;
+}
+
 .td0 {
     width: 100px;
     color: black;
