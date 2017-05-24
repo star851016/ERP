@@ -52,7 +52,8 @@
             </tr>
         </table>
     </div>
-    <div class="col-lg-6">
+    <div class="col-sm-6">
+        <p>工資</p>
         <table class="table table-bordered">
             <tr>
                 <th>No.</th>
@@ -66,9 +67,14 @@
                 </td>
                 <td>$300</td>
             </tr>
+            <tr>
+                <th colspan="2" style="text-align:right;">工資總額</th>
+                <td>1000</td>
+            </tr>
         </table>
     </div>
-    <div class="col-lg-6">
+    <div class="col-sm-6">
+        <p>材料</p>
         <table class="table table-bordered">
 
             <%  var i = 1 ;
@@ -102,19 +108,17 @@
                     </td>
                 </tr>
                 <%  i++}; %>
+                    <tr>
+                        <th colspan="5" style="text-align:right;">零件總額</th>
+                        <td>$
+                            <%= Amount %>
+                        </td>
+                    </tr>
         </table>
 
     </div>
-    <div class="col-lg-6">
+    <div class="col-sm-12">
         <table class="table table-bordered">
-            <tr>
-                <th>工資金額</th>
-                <td>1000</td>
-                <th>零件金額</th>
-                <td>$
-                    <%= Amount %>
-                </td>
-            </tr>
             <tr>
                 <th>稅前金額</th>
                 <td>$2950</td>
@@ -127,6 +131,13 @@
             </tr>
         </table>
         <button class="button1" onclick="window.print()">列印</button>
+    </div>
+    <br><br>
+    <div class="col-sm-12" style="float:left;width:500px;height:200px;border:1px solid black;">
+        <p>車主注意事項:</p><br>
+        <p>一、委修車輛如遇天災人禍或其他不可抗力或不可歸責於承修一方之過失而發生損失時，承修廠概不負責。</p><br>
+        <p>二、委修項目如有瑕疵，委修人可於三日內回廠檢修，委修人於車輛送修日起六個月內未清償修護費用取回車輛視同拋棄， 本廠得以將車輛自行處理充其修護費用。
+        </p>
     </div>
     <div class="container" style="float:right;width:200px;height:80px;border:1px solid black;">
         <p style="text-align:left;">委修人簽章</p>
