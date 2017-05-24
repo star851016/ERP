@@ -90,10 +90,9 @@ router.get('/upWorklist', function(req, res, next) {
         if (err) {
             next(err);
         } else {
-            // if(req.session.WorkId == ""){
-            req.session.WorkId = req.query.WorkId;
+            if(req.session.WorkId != ""){
+              console.log('req.session.WorkId不等於空的');
 
-            // }
 
             upWorklist[0].InDate = fecha.format(upWorklist[0].InDate, 'YYYY-MM-DD');
             // upWorklist[0].CBirthDate = fecha.format(upWorklist[0].CBirthDate, 'YYYY-MM-DD');
@@ -120,6 +119,36 @@ router.get('/upWorklist', function(req, res, next) {
                 }
 
             });
+          }else {
+            console.log('req.session.WorkId等於空的');
+              req.session.WorkId = req.query.WorkId;
+              console.log('req.session.WorkId'+req.session.WorkId);
+              upWorklist[0].InDate = fecha.format(upWorklist[0].InDate, 'YYYY-MM-DD');
+              // upWorklist[0].CBirthDate = fecha.format(upWorklist[0].CBirthDate, 'YYYY-MM-DD');
+              console.log('upWorklist' + upWorklist[0].WorkId);
+              req.session.upWorkList = upWorklist[0];
+              newUpWorklist.materiallist(function(err, materiallist) {
+                  if (err) {
+                      next(err);
+                  } else {
+                      req.session.materiallist = materiallist;
+                      newUpWorklist.bill(function(err, Amount) {
+
+                          req.session.Amount = Amount;
+                          console.log('Amount' + Amount);
+                          res.render('WorkList/upWorkList', {
+
+                              status: req.session.status || null,
+                              upWorklist: req.session.upWorkList,
+                              materiallist: req.session.materiallist,
+                              Amount: req.session.Amount,
+                              member: req.session.member || null
+                          });
+                      })
+                  }
+
+              });
+            }
         }
     })
 
@@ -173,8 +202,9 @@ router.post('/saveMat', function(req, res, next) {
     } else {
         newSaveMat.saveMat();
     };
-
+    console.log('req.body.WorkId'+req.body.WorkId);
     req.session.WorkId = req.body.WorkId;
+    console.log('req.session.WorkId'+req.session.WorkId);
     res.redirect('/worklist/upWorklist?' + req.session.WorkId);
 
 });
