@@ -706,6 +706,9 @@
             $("#searchPId" + num).val(Id);
             $("#addPName").val(value);
             $("#searchPId").hide();
+            $("[data-dismiss=modal]").trigger({
+                type: "click"
+            });
         };
 
         function searchSupplier(i) {
@@ -721,15 +724,6 @@
 
                 success: function(data) {
                     $("#SearchSupplier").show();
-                    $('#tableSupplier tbody').html("");
-                    $.each(data, function(i, item) {
-
-                        $('#tableSupplier')
-
-                        .append('<tr onclick="setValue(\'' + data[i].SName + '\',\'' + data[i].PName + '\',\'' + num + '\')"><td class="td0" >' + data[i].Pur_Price + '</td>' +
-                            '<td class="td0">' + data[i].Email + '</td></tr>')
-
-                    });
 
                 },
 
