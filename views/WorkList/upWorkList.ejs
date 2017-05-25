@@ -478,17 +478,20 @@
                         <form action="/worklist/billsRegister" method="POST" novalidate>
                             <input type="hidden" name="WorkId" value="<%= upWorklist.WorkId %>" />
                             <input type="hidden" name="CarId" value="<%= upWorklist.CarId %>" />
-                            <p>工資金額:<input type="text" name="WageAmount" class="tax" value="$0"></p>
-                            <p>零件金額:<input id="Amount" name="Amount" type="text" class="tax" value="<%= Amount %>"></p>
-                            <p>稅前金額:<input id="BTax" name="PreTaxAmount" type="text" class="tax" value="<%= Amount %>"></p>
+                            <span>工資金額:<input type="text" name="WageAmount" class="text2" value="$0"></span>
+                            <span>零件金額:<input id="Amount" name="Amount" type="text" class="text2" value="$<%= Amount %>"></span>
+                            <br>
+                            <span>稅前金額:<input id="BTax" name="PreTaxAmount" type="text" class="text2" value="$<%= Amount %>"></span>
+                            <br>
                             <input type="radio" name="tax" checked="checked" value="no"><span>不要稅金</span>
                             <input type="radio" name="tax" value="yes"><span>要稅金:</span>
-                            <input type="text" class="tax" value="5">%
+                            <input type="text" class="text2" value="5">%
                             </span>
-                            <p>稅金:<input id="tax" name="Tax" type="text" class="tax" value="0"></p>
-                            <p>應收總金額:<input id="AR" name="AccountReceivable" type="text" class="tax" value="<%= Amount %>"></p>
-                            <p>實收總金額:<input type="text" name="RealReceive" class="tax" value=""></p>
-                            <p>折價:<input type="text" name="discount" class="tax" value=""></p>
+                            <p>稅金:<input id="tax" name="Tax" type="text" class="text2" value="$0"></p>
+                            <span>應收總金額:<input id="AR" name="AccountReceivable" type="text" class="text2" value="$<%= Amount %>"></span>
+                            <span>實收總金額:<input type="text" name="RealReceive" class="text2" value="$"></span>
+                            <span>折價:<input type="text" name="discount" class="text2" value="$"></span>
+                            <br>
                             <label class="radio-inline">
                             <input id="up_radio" type="radio" name="optionsRadios" value="cash" checked>
                             現金
