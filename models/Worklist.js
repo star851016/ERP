@@ -321,15 +321,15 @@ WorkList.prototype.carHistoryDetail = function(WorkId, cb) {
 }
 //材料登錄之比價
 WorkList.prototype.searchSupplier = function(searchPId, cb) {
-
-    db.select()
+    console.log(searchPId);
+    db.select('compare.Pur_Price','supplier.SName','compare.compareId')
         .from('compare')
         .innerJoin('product', 'compare.Id', '=', 'product.Id')
         .innerJoin('supplier', 'compare.Sid', '=', 'supplier.id')
         .where('product.Id', searchPId)
         .then(function(result) {
 
-            cb(null, Amount);
+            cb(null, result);
         })
         .catch(function(err) {
 

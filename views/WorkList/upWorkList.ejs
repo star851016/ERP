@@ -629,9 +629,9 @@
                             </tr>
                             <tr>
                                 <td class="td0">正廠</td>
-                                <td class="td0">$2000</td>
+                                <td class="td0">$2500</td>
                                 <td class="td0">1</td>
-                                <td class="td0">$2000</td>
+                                <td class="td0">$2500</td>
                                 <td class="td0">
                                     <input type="checkbox" name="order" value="yes">
                                 </td>
@@ -640,7 +640,7 @@
                                 <td class="td0">副廠</td>
                                 <td class="td0">$1500</td>
                                 <td class="td0">1</td>
-                                <td class="td0">$20</td>
+                                <td class="td0">$1500</td>
                                 <td class="td0">
                                     <input type="checkbox" name="order" value="yes">
                                 </td>
@@ -649,7 +649,7 @@
                                 <td class="td0">中古</td>
                                 <td class="td0">$1000</td>
                                 <td class="td0">1</td>
-                                <td class="td0">$20</td>
+                                <td class="td0">$1000</td>
                                 <td class="td0">
                                     <input type="checkbox" name="order" value="yes">
                                 </td>
@@ -689,14 +689,14 @@
                         $('#tableSearchPId')
 
                         .append('<tr onclick="setValue(\'' + data[i].Id + '\',\'' + data[i].PName + '\',\'' + num + '\')"><td class="td0" >' + data[i].Id + '</td>' +
-                            '<td class="td0">' + data[i].PName + '</td></tr>')
+                             '<td class="td0">' + data[i].PName + '</td></tr>')
 
                     });
 
                 },
 
                 error: function() {
-                    alert("再接再勵");
+
                 }
 
             });
@@ -713,7 +713,7 @@
 
         function searchSupplier(i) {
             var searchPId = $('#searchPId' + i).val();
-
+            var num = i;
             $.ajax({
                 url: "http://localhost:3000/worklist/searchSupplier",
                 data: {
@@ -728,7 +728,7 @@
                 },
 
                 error: function() {
-                    alert("再接再勵");
+                  
                 }
 
             });
