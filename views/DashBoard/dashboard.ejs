@@ -1,5 +1,4 @@
 <% include ../Shared/header %>
-
     <!-- Bootstrap Core CSS -->
     <link href='/stylesheets/bootstrap.min.css' rel="stylesheet">
 
@@ -18,131 +17,14 @@
     <script src="/javascripts/bootstrap.min.js"></script>
 
     <body>
-
-        <div id="wrapper">
-
-            <!-- Navigation -->
-            <div class="navbar-default sidebar" role="navigation">
-                <div class="sidebar-nav navbar-collapse">
-                    <ul class="nav" id="side-menu">
-                        <br><br>
-                        <li>
-                            <a href="home1"><i class="fa fa-dashboard fa-fw"></i> 功能主頁</a>
-                        </li>
-                        <li>
-                            <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i>廠商資料<span class="fa arrow"></span></a>
-                            <ul class="nav nav-second-level">
-                                <li>
-                                    <a href="sup">新增</a>
-                                </li>
-                                <li>
-                                    <form action="/supplier" method="post" class="fa fa-dashboard fa-fw">
-                                        <style media="screen">
-                                            #logout {
-                                                background: transparent;
-                                                color: #337ab7;
-                                                margin-top: 8px;
-                                                border: none;
-                                                margin-right: 4px;
-                                                text-transform: uppercase;
-                                                font-size: 14px;
-                                                letter-spacing: 1px;
-                                            }
-
-                                            #logout:hover {
-                                                color: #ddd;
-                                            }
-                                        </style>
-                                        <input id="logout" type="submit" value="     查詢" />
-                                    </form>
-                                </li>
-                            </ul>
-                            <!-- /.nav-second-level -->
-                        </li>
-                        <li>
-                            <a href="#"><i class="fa fa-sitemap fa-fw"></i> 產品資料<span class="fa arrow"></span></a>
-                            <ul class="nav nav-second-level">
-                                <li>
-                                    <a href="/addProduct">新增</a>
-                                </li>
-                                <li>
-                                    <form action="/product" method="post" class="fa fa-dashboard fa-fw">
-                                        <style media="screen">
-                                            #logout {
-                                                background: transparent;
-                                                color: #337ab7;
-                                                margin-top: 8px;
-                                                border: none;
-                                                margin-right: 4px;
-                                                text-transform: uppercase;
-                                                font-size: 14px;
-                                                letter-spacing: 1px;
-                                            }
-
-                                            #logout:hover {
-                                                color: #ddd;
-                                            }
-                                        </style>
-                                        <input id="logout" type="submit" value="     查詢" />
-                                    </form>
-                                </li>
-
-                            </ul>
-                            <!-- /.nav-second-level -->
-                        </li>
-
-                        <li>
-                            <a href="purchase"><i class="fa fa-table fa-fw"></i> 進貨</a>
-                        </li>
-                        <li>
-                            <a href="sales"><i class="fa fa-edit fa-fw"></i> 銷貨</a>
-                        </li>
-                        <li>
-                            <a href="#"><i class="fa fa-wrench fa-fw"></i> 退貨<span class="fa arrow"></span></a>
-                            <ul class="nav nav-second-level">
-                                <li>
-                                    <a href="bkpurchase">進貨退回</a>
-                                </li>
-                                <li>
-                                    <a href="bksales">銷貨退回</a>
-                                </li>
-                            </ul>
-                            <!-- /.nav-second-level -->
-                        </li>
-                        <li>
-                            <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i>其他<span class="fa arrow"></span></a>
-                            <ul class="nav nav-second-level">
-                                <li>
-                                    <a href="/report">進貨日報表</a>
-                                </li>
-                            </ul>
-                            <!-- /.nav-second-level -->
-                        </li>
-                        <li>
-                            <form action="/register/logout" method="post" class="fa fa-dashboard fa-fw">
-                                <style media="screen">
-                                    #logout {
-                                        background: transparent;
-                                        color: #337ab7;
-                                        margin-top: 8px;
-                                        border: none;
-                                        margin-right: 4px;
-                                        text-transform: uppercase;
-                                        font-size: 14px;
-                                        letter-spacing: 1px;
-                                    }
-
-                                    #logout:hover {
-                                        color: #ddd;
-                                    }
-                                </style>
-                                <input id="logout" type="submit" value="  登出" />
-                            </form>
-                        </li>
-                    </ul>
+        <div id="page-wrapper">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h1 class="page-header">Dashboard</h1>
                 </div>
-                <!-- /.sidebar-collapse -->
+                <!-- /.col-lg-12 -->
             </div>
+
             <!-- /.navbar-static-side -->
             </nav>
 
@@ -165,10 +47,7 @@
                                         $183514
                                         <%=TSales %>
                                     </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+
                     <div class="col-lg-3 col-md-6">
                         <div class="panel panel-green">
                             <div class="panel-heading">
@@ -179,10 +58,6 @@
                                         $95689
                                         <%=TPrice %>
                                     </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                     <div class="col-lg-3 col-md-6">
                         <div class="panel panel-yellow">
                             <div class="panel-heading">
@@ -192,150 +67,144 @@
 
                                         $87825</div>
                                 </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6">
-                        <div class="panel panel-red">
-                            <div class="panel-heading">
-                                <div class="row">
-                                    <div class="huge">&nbsp今日工單數 :</div>
-                                    <div class="huge" style="text-align:right">
+                <div class="col-lg-3 col-md-6">
+                    <div class="panel panel-red">
+                        <div class="panel-heading">
+                            <div class="row">
+                                <div class="huge">&nbsp今日工單數 :</div>
+                                <div class="huge" style="text-align:right">
 
-                                        5(單)</div>
-                                </div>
+                                    5(單)</div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <!-- /.row -->
-                <div class="row">
-                    <div class="col-lg-8">
-                        <div class="panel panel-default">
-                            <div class="panel-heading">
-                                <i class="fa fa-bar-chart-o fa-fw"></i> 主產品銷額趨勢
-                            </div>
-                            <!-- /.panel-heading -->
-                            <div class="panel-body">
-                                <div id="morris-area-chart"></div>
-                            </div>
-                            <!-- /.panel-body -->
-                        </div>
-                        <!-- /.panel -->
-                        <div class="panel panel-default">
-                            <div class="panel-heading">
-                                <i class="fa fa-bar-chart-o fa-fw"></i> 廠商進貨額排行 &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-                                &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp 各年進銷額比較圖
-                            </div>
-                            <!-- /.panel-heading -->
-                            <div class="panel-body">
-                                <div class="row">
-                                    <div class="col-lg-4">
-                                        <div class="table-responsive">
-                                            <table class="table table-bordered table-hover table-striped">
-                                                <thead>
-                                                    <tr>
-                                                        <th>名次</th>
-                                                        <th>廠商</th>
-                                                        <th>進貨額</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-
-                                                    <%  var i = 1 ;
-                                              rankList.forEach(function(rank) { %>
-                                                        <tr>
-
-                                                            <td>
-                                                                <%= i %>
-                                                            </td>
-
-                                                            <td>
-                                                                <%= rank.SName %>
-                                                            </td>
-
-                                                            <td>$
-                                                                <%= rank.TPrice %>
-                                                            </td>
-                                                        </tr>
-                                                        <%  i++ }); %>
-
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                        <!-- /.table-responsive -->
-                                    </div>
-                                    <!-- /.col-lg-4 (nested) -->
-                                    <div class="col-lg-8">
-                                        <div id="morris-bar-chart"></div>
-                                    </div>
-                                    <!-- /.col-lg-8 (nested) -->
-                                </div>
-                                <!-- /.row -->
-                            </div>
-                            <!-- /.panel-body -->
-                        </div>
-
-                        <!-- /.panel -->
-                    </div>
-                    <!-- /.col-lg-8 -->
-                    <div class="col-lg-4">
-                        <div class="panel panel-default">
-                            <div class="panel-heading">
-                                <i class="fa fa-bell fa-fw"></i> 庫存警示
-                            </div>
-                            <!-- /.panel-heading -->
-                            <div class="panel-body">
-                                <div class="list-group">
-                                    <% stockList.forEach(function(stock) { %>
-                                        <a class="list-group-item">
-                                            <i class="fa fa-comment fa-fw"></i>
-                                            <%= stock.PName %>/
-                                                <%= stock.Types %>/
-                                                    <%= stock.Specification %>
-                                                        <span class="pull-right text-muted small"><em><%= stock.Quantity %></em>
-                                    </span>
-                                        </a>
-                                        <%  }); %>
-
-
-                                </div>
-                                <!-- /.list-group -->
-
-                            </div>
-                            <!-- /.panel-body -->
-                        </div>
-                        <!-- /.panel -->
-                        <div class="panel panel-default">
-                            <div class="panel-heading">
-                                <i class="fa fa-bar-chart-o fa-fw"></i> 獲利分配圖
-                            </div>
-                            <div class="panel-body">
-                                <div id="morris-donut-chart"></div>
-                            </div>
-                            <!-- /.panel-body -->
-                        </div>
-
-                        <!-- /.panel .chat-panel -->
-                    </div>
-                    <!-- /.col-lg-4 -->
-                </div>
-                <!-- /.row -->
             </div>
-            <!-- /#page-wrapper -->
+            <!-- /.row -->
+            <div class="row">
+                <div class="col-lg-8">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <i class="fa fa-bar-chart-o fa-fw"></i> 主產品銷額趨勢
+                        </div>
+                        <!-- /.panel-heading -->
+                        <div class="panel-body">
+                            <div id="morris-area-chart"></div>
+                        </div>
+                        <!-- /.panel-body -->
+                    </div>
+                    <!-- /.panel -->
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <i class="fa fa-bar-chart-o fa-fw"></i> 廠商進貨額排行 &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                            &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp 各年進銷額比較圖
+                        </div>
+                        <!-- /.panel-heading -->
+                        <div class="panel-body">
+                            <div class="row">
+                                <div class="col-lg-4">
+                                    <div class="table-responsive">
+                                        <table class="table table-bordered table-hover table-striped">
+                                            <thead>
+                                                <tr>
+                                                    <th>名次</th>
+                                                    <th>廠商</th>
+                                                    <th>進貨額</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+
+                                                <%  var i = 1 ;
+                                              rankList.forEach(function(rank) { %>
+                                                    <tr>
+
+                                                        <td>
+                                                            <%= i %>
+                                                        </td>
+
+                                                        <td>
+                                                            <%= rank.SName %>
+                                                        </td>
+
+                                                        <td>$
+                                                            <%= rank.TPrice %>
+                                                        </td>
+                                                    </tr>
+                                                    <%  i++ }); %>
+
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <!-- /.table-responsive -->
+                                </div>
+                                <!-- /.col-lg-4 (nested) -->
+                                <div class="col-lg-8">
+                                    <div id="morris-bar-chart"></div>
+                                </div>
+                                <!-- /.col-lg-8 (nested) -->
+                            </div>
+                            <!-- /.row -->
+                        </div>
+                        <!-- /.panel-body -->
+                    </div>
+
+                    <!-- /.panel -->
+                </div>
+                <!-- /.col-lg-8 -->
+                <div class="col-lg-4">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <i class="fa fa-bell fa-fw"></i> 庫存警示
+                        </div>
+                        <!-- /.panel-heading -->
+                        <div class="panel-body">
+                            <div class="list-group">
+                                <% stockList.forEach(function(stock) { %>
+                                    <a class="list-group-item">
+                                        <i class="fa fa-comment fa-fw"></i>
+                                        <%= stock.PName %>/
+                                            <%= stock.Types %>/
+                                                <%= stock.Specification %>
+                                                    <span class="pull-right text-muted small"><em><%= stock.Quantity %></em>
+                                    </span>
+                                    </a>
+                                    <%  }); %>
+
+
+                            </div>
+                            <!-- /.list-group -->
+
+                        </div>
+                        <!-- /.panel-body -->
+                    </div>
+                    <!-- /.panel -->
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <i class="fa fa-bar-chart-o fa-fw"></i> 獲利分配圖
+                        </div>
+                        <div class="panel-body">
+                            <div id="morris-donut-chart"></div>
+                        </div>
+                        <!-- /.panel-body -->
+                    </div>
+
+                    <!-- /.panel .chat-panel -->
+                </div>
+                <!-- /.col-lg-4 -->
+            </div>
+            <!-- /.row -->
+        </div>
+        <!-- /#page-wrapper -->
 
         </div>
         <!-- /#wrapper -->
 
         <!-- jQuery -->
         <script src="/javascripts/jquery.min.js"></script>
-
         <!-- Bootstrap Core JavaScript -->
         <script src="/javascripts/bootstrap.min.js"></script>
-
         <!-- Metis Menu Plugin JavaScript -->
         <script src="/javascripts/metisMenu.min.js"></script>
-
         <!-- Morris Charts JavaScript -->
         <script src="/javascripts/raphael-min.js"></script>
         <script src="/javascripts/morris.min.js"></script>
@@ -450,11 +319,6 @@
                     hideHover: 'auto',
                     resize: true
                 });
-
-
-
-
-
 
             });
         </script>
