@@ -1,19 +1,18 @@
 <html>
 <% include ../Shared/header %>
-
     <link rel='stylesheet' href='/stylesheets/style.css' />
     <link rel="stylesheet" type="text/css" href="/stylesheets/jquery-ui.css" />
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
     <script type="text/javascript" src="/javascripts/jquery-ui-datepicker.js"></script>
     <script type="text/javascript">
-        $(function() {
-            $("#OutTime").datepicker();
-        });
+    $(function() {
+        $("#OutTime").datepicker();
+    });
     </script>
     <script type="text/javascript">
-        $(function() {
-            $("#InTime").datepicker();
-        });
+    $(function() {
+        $("#InTime").datepicker();
+    });
     </script>
 
     <body>
@@ -50,7 +49,6 @@
                         <td class="td1" colspan="2">
                             <input class="text" type="text" name="ExpectDate" id="OutTime">
                         </td>
-
                     </tr>
                     <!-- </form> -->
             </table>
@@ -61,14 +59,20 @@
         <div class="container">
             <p>維修套組:
                 <div class="r">
-                    <input type="radio" name="maintenance" id="0" value="無"><label for="0">無</label>
-                    <input type="radio" name="maintenance" id="1" value="鈑金"><label for="1">鈑金</label>
-                    <input type="radio" name="maintenance" id="2" value="烤漆"><label for="2">烤漆</label>
-                    <input type="radio" name="maintenance" id="3" value="驗車"><label for="3">驗車</label>
-                    <input type="radio" name="maintenance" id="4" value="小保養"><label for="4">小保養</label>
-                    <input type="radio" name="maintenance" id="5" value="中保養"><label for="5">中保養</label>
-                    <input type="radio" name="maintenance" id="6" value="大保養"><label for="6">大保養</label>
-
+                    <input type="radio" name="maintenance" id="0" value="無">
+                    <label for="0">無</label>
+                    <input type="radio" name="maintenance" id="1" value="鈑金">
+                    <label for="1">鈑金</label>
+                    <input type="radio" name="maintenance" id="2" value="烤漆">
+                    <label for="2">烤漆</label>
+                    <input type="radio" name="maintenance" id="3" value="驗車">
+                    <label for="3">驗車</label>
+                    <input type="radio" name="maintenance" id="4" value="小保養">
+                    <label for="4">小保養</label>
+                    <input type="radio" name="maintenance" id="5" value="中保養">
+                    <label for="5">中保養</label>
+                    <input type="radio" name="maintenance" id="6" value="大保養">
+                    <label for="6">大保養</label>
                 </div>
             </p>
         </div>
@@ -86,17 +90,16 @@
             <p>新增問題:</p>
             <div class="container" style="overflow:scroll;height:60%;width:100%;">
                 <script>
-                    department = new Array();
-                    department[0] = ["閃燈", "破了"]; // 資訊系
-                    department[1] = ["熄火", "故障"]; // 電機系
+                department = new Array();
+                department[0] = ["風量小", "不冷", "熱風", "有聲音", "沒風", "按鈕壞"]; // 資訊系
+                department[1] = ["熄火", "故障"]; // 電機系
 
-                    function renew(index) {
-                        for (var i = 0; i < department[index].length; i++)
-                            document.theForm.Wrong.options[i] = new Option(department[index][i], department[index][i]); // 設定新選項
-                        document.theForm.Wrong.length = department[index].length; // 刪除多餘的選項
-                    }
+                function renew(index) {
+                    for (var i = 0; i < department[index].length; i++)
+                        document.theForm.Wrong.options[i] = new Option(department[index][i], department[index][i]); // 設定新選項
+                    document.theForm.Wrong.length = department[index].length; // 刪除多餘的選項
+                }
                 </script>
-
                 <div>
                     <p style="display:inline-block;">情境:
                         <input type="radio" name="situation" value="cold">冷車時
@@ -140,14 +143,22 @@
                     <tr>
                         <td class="td2">
                             <select class="selector2" name="Part" size=3 onChange="renew(this.selectedIndex);">
-                                    <option value="車燈">車燈
-                                        <option value="引擎">引擎
-                                </select>
+                                <option value="冷氣">冷氣</option>
+                                <option value="手煞車">手煞車</option>
+                                <option value="輪胎">輪胎</option>
+                                <option value="安全帶">安全帶帶</option>
+                                <option value="點菸器">點菸器</option>
+                                <option value="避震器">避震器</option>
+                                <option value="驗車">驗車</option>
+                                <option value="儀表板">儀表板</option>
+                                <option value="倒車燈">倒車燈</option>
+                                <option value="雨刷">雨刷</option>
+                            </select>
                         </td>
                         <td class="td2" style="text-align:center;">
                             <select class="selector2" name="Wrong" size=3>
-                                        <option value="">請由左方選取零件
-                                    </select>
+                                <option value="">請由左方選取零件
+                            </select>
                         </td>
                         <td>
                             <button class="btn1" type="submit">加入</button>
@@ -156,29 +167,29 @@
                 </table>
                 </form>
                 <script>
-                    function changeList() {
-                        var x = document.getElementById("Material ").value;
-                        document.getElementById("de ").innerHTML = "You selected: " + x;
+                function changeList() {
+                    var x = document.getElementById("Material ").value;
+                    document.getElementById("de ").innerHTML = "You selected: " + x;
 
-                        $.ajax({
-                            url: "http://localhost:3000/addWorklist ",
-                            dataType: 'html',
-                            type: 'POST',
+                    $.ajax({
+                        url: "http://localhost:3000/addWorklist ",
+                        dataType: 'html',
+                        type: 'POST',
 
-                            success: function(data) {
-                                alert(data);
-                                var x = document.getElementById("Material ").value;
-                                Types = x;
-                            },
+                        success: function(data) {
+                            alert(data);
+                            var x = document.getElementById("Material ").value;
+                            Types = x;
+                        },
 
-                            error: function(xhr, ajaxOptions, thrownError) {
-                                alert(xhr.status);
-                                alert(thrownError);
-                            }
+                        error: function(xhr, ajaxOptions, thrownError) {
+                            alert(xhr.status);
+                            alert(thrownError);
+                        }
 
-                        });
+                    });
 
-                    }
+                }
                 </script>
             </div>
         </div>
