@@ -235,14 +235,14 @@ router.get('/searchSupplier', function(req, res, next) {
         id: req.query.searchPId
     });
 
-    // newSearchPId.searchSupplier(req.query.searchPId, function(err, SupList) {
-    //     if (err) {
-    //         next(err);
-    //     } else {
-    //       console.log('SupList'+SupList[0].Pur_Price);
-            // res.json(SupList);
-    //     }
-    // });
+    newSearchPId.searchSupplier(req.query.searchPId, function(err, SupList) {
+        if (err) {
+            next(err);
+        } else {
+          console.log('SupList'+SupList[0].Pur_Price);
+            res.json(SupList);
+        }
+    });
 });
 
 //新增材料登錄--每一筆

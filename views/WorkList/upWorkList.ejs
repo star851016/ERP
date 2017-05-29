@@ -726,11 +726,19 @@
 
                 success: function(data) {
                     $("#SearchSupplier").show();
+                    $('#tableSupplier tbody').html("");
+                   $.each(data, function(i, item) {
 
+                       $('#tableSupplier')
+
+                       .append('<tr><td class="td0" >' + data[i].SName + '</td>'+'<td class="td0" >' + '正廠' + '</td>' + '<td class="td0" >' + data[i].Pur_Price + '</td>'+
+                           '<td class="td0">' + '<a class="btn btn-primary" href="/server">寄e-mail</a>' + '</td></tr>')
+
+                   });
                 },
 
                 error: function() {
-                  
+
                 }
 
             });
