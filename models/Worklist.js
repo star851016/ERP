@@ -59,13 +59,17 @@ WorkList.prototype.WorkList = function(cb) {
 WorkList.prototype.find = function(cb) {
     console.log('this.id' + this.id);
     db.select('worklist.WorkId', 'worklist.CarId', 'worklist.Miles',
-            'worklist.Status', 'worklist.InDate', 'customer.Tell1',
+            'worklist.Status', 'worklist.InDate',
+            'customer.Tell1',
             'customer.Tell2', 'customer.Address', 'customer.Contact_Person',
             'customer.UniformNum', 'customer.CBirthDate', 'customer.CName',
             'car.cc', 'car.EngineNum', 'car.CarBodyNum', 'car.YrOfManu',
-            'carbrand.carBrand', 'cartype.carType', 'wagelist.WContect',
+             'carbrand.carBrand', 'cartype.carType',
+              'wagelist.WContect',
             'wagelist.Wages', 'wagelist.WhoFix', 'wagelist.WhoCheck',
-            'wagelist.WNote', 'question.Part', 'question.Wrong')
+            'wagelist.WNote',
+            'question.Part', 'question.Wrong'
+          )
         .from('car')
         .innerJoin('customer', 'car.ID', '=', 'customer.ID')
         .innerJoin('worklist', 'car.CarId', '=', 'worklist.CarId')
@@ -75,6 +79,7 @@ WorkList.prototype.find = function(cb) {
         .innerJoin('question', 'question.WorklistID', '=', 'worklist.WorkId')
         .where('worklist.WorkId', this.id)
         .then(function(upWorklist) {
+          console.log('upWorklist[0]'+upWorklist[0]);
             cb(null, upWorklist);
         }.bind(this))
         .catch(function(err) {
