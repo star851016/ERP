@@ -160,30 +160,38 @@ router.post('/saveCustomer', function(req, res, next) {
 //儲存材料登錄--每一筆
 router.post('/saveMat', function(req, res, next) {
     console.log('saveMat');
-    console.log('req.body.PId' + req.body.PId);
+    console.log('req.body.MNote' + req.body.MNote[0]);
     var newSaveMat = new SaveMat({
         WorkId: req.body.WorkId,
         id: req.body.MatId,
         PId: req.body.PId,
         PName: req.body.PName,
-        MNote: req.body.MNote,
+        MNote: req.body.MNote[0],
         MQuantity: req.body.MQuantity,
-        WhoRepair: req.body.WhoRepair,
+        WhoFix: req.body.WhoFix,
         WhoCheck: req.body.WhoCheck,
         Price: req.body.Price,
-        Repair: req.body.impair,
-        impaired: req.body.impaired,
+
+        // Fix: req.body.impair,
+        // Finished: req.body.impaired,
         Amount: req.body.Amount
     });
+    console.log('req.body.WhoFix'+req.body.WhoFix);
     console.log(req.body.MatId);
-    if (req.body.MatId == "undefined") {
-        console.log("insertMat");
-        newSaveMat.insertMat(req.body.WorkId, function(err) {
+    // newSaveMat.findEmployee(function(err,EmployeeIdList){
+    //   req.session.EmployeeIdFix = EmployeeIdList[0].EmployeeIdFix;
+    //   req.session.EmployeeIdCheck = EmployeeIdList[0].EmployeeIdCheck;
+      if (req.body.MatId == "undefined") {
+          console.log("insertMat");
+          newSaveMat.insertMat(req.body.WorkId, function(err) {
 
-        });
-    } else {
-        newSaveMat.saveMat();
-    };
+          });
+      } else {
+          newSaveMat.saveMat();
+      };
+    // });
+
+
     // console.log('req.body.WorkId'+req.body.WorkId);
     // req.session.WorkId = req.body.WorkId;
     // console.log('req.session.WorkId'+req.session.WorkId);

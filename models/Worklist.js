@@ -11,11 +11,15 @@ var WorkList = function(options) {
     this.CName = options.CName;
     this.carBrand = options.carBrand;
     this.carType = options.carType;
-    this.PId = options.PId,
-        this.MQuantity = options.MQuantity;
+    this.PId = options.PId;
+    this.MQuantity = options.MQuantity;
     this.Price = options.Price;
     this.Amount = options.Amount;
     this.MNote = options.MNote;
+    this.Fix = options.Fix ;
+    this.Finished = options.Finished;
+    this.WhoFix = options.WhoFix;
+    this.WhoCheck = options.WhoCheck;
     this.Part = options.Part;
     this.Wrong = options.Wrong;
     this.ExpectDate = options.ExpectDate;
@@ -60,7 +64,8 @@ WorkList.prototype.find = function(cb) {
     console.log('this.id' + this.id);
     db.select('worklist.WorkId', 'worklist.CarId', 'worklist.Miles',
             'worklist.Status', 'worklist.InDate','worklist.Question',
-            'worklist.ExpectDate', 'customer.Tell1',
+            'worklist.ExpectDate',
+            'customer.Tell1',
             'customer.Tell2', 'customer.Address', 'customer.Contact_Person',
             'customer.UniformNum', 'customer.CBirthDate', 'customer.CName',
             'car.cc', 'car.EngineNum', 'car.CarBodyNum', 'car.YrOfManu',
@@ -77,9 +82,12 @@ WorkList.prototype.find = function(cb) {
         .innerJoin('cartype', 'car.TypeID', '=', 'cartype.ID')
         .innerJoin('wagelist', 'wagelist.WorkId', '=', 'worklist.WorkId')
         .innerJoin('question', 'question.WorklistID', '=', 'worklist.WorkId')
+        
+
         .where('worklist.WorkId', this.id)
         .then(function(upWorklist) {
           console.log('upWorklist[0]'+upWorklist[0]);
+
             cb(null, upWorklist);
         }.bind(this))
         .catch(function(err) {
@@ -91,10 +99,17 @@ WorkList.prototype.find = function(cb) {
 //在工單總表點編輯--材料登錄
 WorkList.prototype.materiallist = function(cb) {
     console.log("this.id" + this.id);
-    db.select('materiallist.Id', 'materiallist.MatId', 'materiallist.MQuantity', 'materiallist.Amount', 'materiallist.Price', 'materiallist.WhoFix', 'materiallist.WhoCheck', 'materiallist.Fix', 'materiallist.Finished', 'materiallist.MNote', 'product.PName')
+    db.select('materiallist.Id', 'materiallist.MatId', 'materiallist.MQuantity',
+              'materiallist.Amount', 'materiallist.Price', 'materiallist.WhoFix',
+               'materiallist.WhoCheck', 'materiallist.Fix', 'materiallist.Finished',
+               'materiallist.MNote', 'product.PName'
+              //  ,'s1.EName AS ENameFix','s2.EName AS ENameCheck'
+             )
         .from('materiallist')
         .innerJoin('worklist', 'materiallist.WorkId', '=', 'worklist.WorkId')
         .innerJoin('product', 'materiallist.Id', '=', 'product.Id')
+        // .innerJoin('employee AS s1','s1.EmployeeId', '=', 'materiallist.WhoFix')
+        // .innerJoin('employee AS s2','s2.EmployeeId', '=', 'materiallist.WhoCheck')
         .where('worklist.WorkId', this.id)
         .then(function(materiallist) {
             cb(null, materiallist);
@@ -120,17 +135,38 @@ console.log('WorkId'+WorkId);
             cb(new GeneralErrors.Database());
         });
 }
+//找員工Id
+WorkList.prototype.findEmployee = function(cb) {
+
+    db.select('s1.EmployeeId AS EmployeeIdFix','s2.EmployeeId AS EmployeeIdCheck')
+        .from('materiallist')
+        .innerJoin('employee AS s1','s1.EmployeeId', '=', 'materiallist.WhoFix')
+        .innerJoin('employee AS s2','s2.EmployeeId', '=', 'materiallist.WhoCheck')
+        .where('worklist.WorkId', this.WhoFix)
+        .then(function(materiallist) {
+            cb(null, materiallist);
+        }.bind(this))
+        .catch(function(err) {
+
+            console.log("materiallist find", err);
+            cb(new GeneralErrors.Database());
+        });
+}
 //新增材料登錄
 WorkList.prototype.insertMat = function(WorkId, cb) {
 
     db.from('materiallist')
         .insert({
             WorkId: WorkId,
-            Id: this.PId,
-            MQuantity: this.MQuantity,
-            Price: this.Price,
-            Amount: this.Amount,
-            MNote: this.MNote
+            Id: this.PId || null ,
+            MQuantity: this.MQuantity || null  ,
+            Price: this.Price || null ,
+            Amount: this.Amount || null ,
+            MNote: this.MNote || null ,
+            Fix : this.Fix || null ,
+            Finished : this.Finished || null ,
+            WhoFix : this.WhoFix || null ,
+            WhoCheck : this.WhoCheck || null
         })
         .catch(function(err) {
             console.log("insertMat find", err);
@@ -142,13 +178,24 @@ WorkList.prototype.insertMat = function(WorkId, cb) {
 //每一筆材料登錄更新
 WorkList.prototype.saveMat = function(cb) {
     console.log(this.MQuantity);
+    console.log(this.WhoFix);
+    console.log(this.WhoCheck);
+    console.log(this.Amount);
+    console.log(this.MNote);
     db.from('materiallist')
+
         .where('MatId', this.id)
+
         .update({
-            MQuantity: this.MQuantity
-            // Price: this.Price,
-            // Amount: this.Amount,
-            // MNote: this.MNote
+            MQuantity: this.MQuantity  ,
+            Price: this.Price  ,
+            Amount: this.Amount  ,
+             MNote: this.MNote ,
+            WhoFix: this.WhoFix ,
+            WhoCheck: this.WhoCheck
+            // Fix: this.Fix,
+            // Finished : this.Finished
+
         })
         .catch(function(err) {
             console.log("saveMat find", err);
