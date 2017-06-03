@@ -156,6 +156,20 @@ a {
     font-size: 16px;
 }
 
+.text7 {
+    width: 60px;
+    height: 30px;
+    font-size: 14px;
+    margin: 2 2 2 2;
+}
+
+.text8 {
+    width: 50px;
+    height: 30px;
+    font-size: 14px;
+    margin: 2 2 2 2;
+}
+
 .tax {
     width: 100px;
     height: 30px;
@@ -725,10 +739,10 @@ ul.level2 li.ssubmenu:hover {
 #SearchSupplier {
     position: fixed;
     top: 20%;
-    left: 15%;
-    right: 15%;
-    width: 70%;
-    height: 300px;
+    left: 8%;
+    right: 8%;
+    width: 84%;
+    height: 400px;
     background: #E7F3E8;
     z-index: 2;
 }
