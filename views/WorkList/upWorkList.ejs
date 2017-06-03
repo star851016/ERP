@@ -50,15 +50,7 @@
                     </td>
                     <td class="td">預計出廠:</td>
                     <td class="td1" colspan="3">
-                        <input class="text" type="text" name="EndTime" id="date_5">
-                        <link rel="stylesheet" type="text/css" href="/stylesheets/jquery-ui.css" />
-                        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
-                        <script type="text/javascript" src="/javascripts/jquery-ui-datepicker.js"></script>
-                        <script type="text/javascript">
-                            $(function() {
-                                $("#date_5").datepicker();
-                            });
-                        </script>
+                        <%= upWorklist.ExpectDate %>
                     </td>
                 </tr>
             </table>
@@ -99,8 +91,7 @@
 
         <div class="container">
             <p>客戶問題:
-                <input class="text2" value="<%= upWorklist.Part %>"></td>&nbsp;➜
-                <input class="text2" value="<%= upWorklist.Wrong %>"></td>&nbsp;
+                <%= upWorklist.Question %>
 
             </p>
         </div>

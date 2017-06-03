@@ -59,8 +59,8 @@ WorkList.prototype.WorkList = function(cb) {
 WorkList.prototype.find = function(cb) {
     console.log('this.id' + this.id);
     db.select('worklist.WorkId', 'worklist.CarId', 'worklist.Miles',
-            'worklist.Status', 'worklist.InDate',
-            'customer.Tell1',
+            'worklist.Status', 'worklist.InDate','worklist.Question',
+            'worklist.ExpectDate', 'customer.Tell1',
             'customer.Tell2', 'customer.Address', 'customer.Contact_Person',
             'customer.UniformNum', 'customer.CBirthDate', 'customer.CName',
             'car.cc', 'car.EngineNum', 'car.CarBodyNum', 'car.YrOfManu',
@@ -349,13 +349,19 @@ WorkList.prototype.InfoList = function(cb) {
     console.log("InfoList");
     console.log("this CarId " + this.CarId);
     console.log("this InDate " + this.InDate);
-
+    console.log("this part" + this.Part);
+    console.log("this situation " + this.situation);
+    console.log("this Wrong " + this.Wrong);
+    console.log("this maintenance " + this.maintenance);
+    var question = this.situation +"/" + this.frequency  +"/" + this.position  +"/" + this.Part  +"/" + this.Wrong +"/"+ this.note + "/" + this.maintenance ;
+    console.log('question'+question);
     db("worklist")
         .insert({
             CarId: this.CarId,
             Miles: this.Miles,
             InDate: this.InDate,
             ExpectDate: this.ExpectDate,
+            Question : question
         })
         .then(function(result) {
             WorkId = result;
@@ -404,7 +410,7 @@ WorkList.prototype.WageList = function(WorkId, cb) {
 
     db("wagelist")
         .insert({
-            WorklistID: WorkId
+            WorkId: WorkId
         })
         .then(function(result) {
             cb(null, result);

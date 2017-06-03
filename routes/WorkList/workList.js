@@ -105,6 +105,7 @@ router.get('/upWorklist', function(req, res, next) {
               // req.session.WorkId = req.query.WorkId;
               // console.log('upWorklist[0]'+upWorklist[0]);
               upWorklist[0].InDate = fecha.format(upWorklist[0].InDate, 'YYYY-MM-DD');
+              upWorklist[0].ExpectDate = fecha.format(upWorklist[0].ExpectDate, 'YYYY-MM-DD');
               // upWorklist[0].CBirthDate = fecha.format(upWorklist[0].CBirthDate, 'YYYY-MM-DD');
               console.log('upWorklist' + upWorklist[0].WorkId);
               req.session.upWorkList = upWorklist[0];
