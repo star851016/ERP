@@ -33,7 +33,7 @@ Supplier.prototype.find = function(cb){
               this.Tell1 = upSupplier[0].Tell1;
               this.Contact_Person = upSupplier[0].Contact_Person;
               console.log('upSupplier'+upSupplier);
-              console.log('upSupplier[0].SName'+upSupplier[0].SName);
+              console.log('upSupplier[0].Email'+upSupplier[0].Email);
               cb(null, upSupplier);
             }.bind(this)
           )
