@@ -56,11 +56,8 @@ router.post('/', function(req, res, next) {
             // console.log(req.body.theForm);
             newQuestion.WageList(req.session.WorkId,function(err) {
                 // console.log(req.body.theForm);
-                
-                res.render('WorkList/addWorkList', {
-                    //  Q1List : Q1List,
-                    member: req.session.member || null
-                });
+
+                res.redirect('/workList');
 
             });
 
