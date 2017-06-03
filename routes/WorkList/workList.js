@@ -453,9 +453,16 @@ router.post('/update', function(req, res, next) {
 
 
 });
-//點刪除 要find資料
+//點刪除
 router.post('/delWorkList', function(req, res, next) {
-    res.render('WorkList/delWorkList');
+  var newDelWorklist = new DelWorklist({
+    id : req.body.WorkId
+  });
+ console.log('req.body.WorkId'+req.body.WorkId);
+  newDelWorklist.delWorklist(req.body.WorkId,function(err) {
+    console.log('delWorklist');
+      res.redirect('/workList');
+  });
 
 });
 

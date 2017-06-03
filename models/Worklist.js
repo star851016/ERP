@@ -105,6 +105,21 @@ WorkList.prototype.materiallist = function(cb) {
             cb(new GeneralErrors.Database());
         });
 }
+//刪除工單
+WorkList.prototype.delWorklist= function(WorkId, cb) {
+console.log('models');
+console.log('WorkId'+WorkId);
+    db('worklist')
+        .where('WorkId', WorkId)
+        .del()
+        .then(function(materiallist) {
+            cb(null, materiallist);
+        }.bind(this))
+        .catch(function(err) {
+            console.log("delWorkLlist", err);
+            cb(new GeneralErrors.Database());
+        });
+}
 //新增材料登錄
 WorkList.prototype.insertMat = function(WorkId, cb) {
 
