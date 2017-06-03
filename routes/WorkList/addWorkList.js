@@ -54,10 +54,16 @@ router.post('/', function(req, res, next) {
         // newQuestion.QuestionList(req.session.InfoList, function(err, QuestionList) {
         newQuestion.QuestionList(req.session.WorkId,function(err) {
             // console.log(req.body.theForm);
-            res.render('WorkList/addWorkList', {
-                //  Q1List : Q1List,
-                member: req.session.member || null
+            newQuestion.WageList(req.session.WorkId,function(err) {
+                // console.log(req.body.theForm);
+                
+                res.render('WorkList/addWorkList', {
+                    //  Q1List : Q1List,
+                    member: req.session.member || null
+                });
+
             });
+
         });
 
     });

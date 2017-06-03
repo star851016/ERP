@@ -399,4 +399,19 @@ WorkList.prototype.QuestionList = function(WorkId, cb) {
         });
 };
 
+//預設工資登錄
+WorkList.prototype.WageList = function(WorkId, cb) {
+
+    db("wagelist")
+        .insert({
+            WorklistID: WorkId
+        })
+        .then(function(result) {
+            cb(null, result);
+        }.bind(this))
+        .catch(function(err) {
+            console.log("INSERT ERROR", err);
+            cb(new GeneralErrors.Database());
+        });
+};
 module.exports = WorkList;
