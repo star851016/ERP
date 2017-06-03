@@ -335,11 +335,24 @@
                                 </td>
 
                                 <td>
-                                    <input type="radio" name="impair" checked="checked" value="是">是<br>
-                                    <input type="radio" name="impair" value="否">否<br>
+                                  <% if(materiallist[j].Fix == "否"){ %>
+                                    <input type="radio" name="impair"  value="是">是<br>
+                                    <input type="radio" name="impair" checked="checked" value="否">否<br>
+                                <%  }else{ %>
+                                  <input type="radio" name="impair" checked="checked" value="是">是<br>
+                                  <input type="radio" name="impair" value="否">否<br>
+                              <%  } %>
+
                                 </td>
                                 <td>
-                                    <input type="checkbox" name="impaired" value="yes">
+                                  <% if(materiallist[j].Finished == "否"){ %>
+                                    <input type="radio" name="impaired"  value="是">是<br>
+                                    <input type="radio" name="impaired" checked="checked" value="否">否<br>
+                                <%  }else{ %>
+                                  <input type="radio" name="impaired" checked="checked"  value="是">是<br>
+                                  <input type="radio" name="impaired"  value="否">否<br>
+                              <%  } %>
+
                                 </td>
                                 <td>$<input type="text" name="Amount" class="text2" value="<%= materiallist[j].Amount %>"></td>
                                 <td>
@@ -408,27 +421,24 @@
 
                                 <tr class="tr">
                                     <td>
-                                        <select class="selector" name="WhoRepair" >
-                                          <option>林輝恩</option>
-                                  <option>陳進</option>
-                                  <option>王尚保</option>
-                                        </select>
+                                        <input type="text" name="WhoFix" class="text2" value="">
                                     </td>
-                                    <td><select class="selector" name="WhoCheck"  >
-<option>佘仁光</option>                  <option>林輝恩</option>
-                                  <option>陳進</option>
-                                  <option>王尚保</option>
-                                    </select>
+                                    <td>
+                                        <input type="text" name="WhoCheck" class="text2" >
                                     </td>
 
                                     <td>
 
-                                        <input type="radio" name="impair" value="">是<br>
-                                        <input type="radio" name="impair" value="">否<br>
+                                        <input type="radio" name="impair" checked="checked"  value="是">是<br>
+                                        <input type="radio" name="impair"  value="否">否<br>
+
 
                                     </td>
                                     <td>
-                                        <input type="checkbox" name="impaired" value="<%= upWorklist.Fix %>">
+
+                                        <input type="radio" name="impaired"  value="是">是<br>
+                                        <input type="radio" name="impaired" checked="checked" value="否">否<br>
+
                                     </td>
                                     <td>$<input type="text" name="Amount" class="text2"></td>
                                     <td>

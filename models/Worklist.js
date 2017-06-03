@@ -82,7 +82,7 @@ WorkList.prototype.find = function(cb) {
         .innerJoin('cartype', 'car.TypeID', '=', 'cartype.ID')
         .innerJoin('wagelist', 'wagelist.WorkId', '=', 'worklist.WorkId')
         .innerJoin('question', 'question.WorklistID', '=', 'worklist.WorkId')
-        
+
 
         .where('worklist.WorkId', this.id)
         .then(function(upWorklist) {
@@ -158,15 +158,15 @@ WorkList.prototype.insertMat = function(WorkId, cb) {
     db.from('materiallist')
         .insert({
             WorkId: WorkId,
-            Id: this.PId || null ,
-            MQuantity: this.MQuantity || null  ,
-            Price: this.Price || null ,
-            Amount: this.Amount || null ,
-            MNote: this.MNote || null ,
-            Fix : this.Fix || null ,
-            Finished : this.Finished || null ,
-            WhoFix : this.WhoFix || null ,
-            WhoCheck : this.WhoCheck || null
+            Id: this.PId  ,
+            MQuantity: this.MQuantity ,
+            Price: this.Price,
+            Amount: this.Amount ,
+            MNote: this.MNote  ,
+            Fix : this.Fix  ,
+            Finished : this.Finished ,
+            WhoFix : this.WhoFix ,
+            WhoCheck : this.WhoCheck
         })
         .catch(function(err) {
             console.log("insertMat find", err);
@@ -182,6 +182,8 @@ WorkList.prototype.saveMat = function(cb) {
     console.log(this.WhoCheck);
     console.log(this.Amount);
     console.log(this.MNote);
+    console.log(this.Fix);
+    console.log('req.body.impaired'+this.Finished);
     db.from('materiallist')
 
         .where('MatId', this.id)
@@ -192,9 +194,9 @@ WorkList.prototype.saveMat = function(cb) {
             Amount: this.Amount  ,
              MNote: this.MNote ,
             WhoFix: this.WhoFix ,
-            WhoCheck: this.WhoCheck
-            // Fix: this.Fix,
-            // Finished : this.Finished
+            WhoCheck: this.WhoCheck,
+            Fix: this.Fix,
+            Finished : this.Finished
 
         })
         .catch(function(err) {
@@ -326,6 +328,10 @@ WorkList.prototype.saveWorklist = function(cb) {
         })
 
         .where('worklist.WorkId', this.WorkId)
+        .then(function(result) {
+
+            cb(null, result);
+        })
         .catch(function(err) {
             console.log("saveWorklist ", err);
             cb(new GeneralErrors.Database());

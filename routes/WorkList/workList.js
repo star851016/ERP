@@ -161,6 +161,8 @@ router.post('/saveCustomer', function(req, res, next) {
 router.post('/saveMat', function(req, res, next) {
     console.log('saveMat');
     console.log('req.body.MNote' + req.body.MNote[0]);
+    console.log('req.body.impair'+req.body.impair);
+    console.log('req.body.impaired'+req.body.impaired);
     var newSaveMat = new SaveMat({
         WorkId: req.body.WorkId,
         id: req.body.MatId,
@@ -172,8 +174,8 @@ router.post('/saveMat', function(req, res, next) {
         WhoCheck: req.body.WhoCheck,
         Price: req.body.Price,
 
-        // Fix: req.body.impair,
-        // Finished: req.body.impaired,
+        Fix: req.body.impair,
+         Finished: req.body.impaired,
         Amount: req.body.Amount
     });
     console.log('req.body.WhoFix'+req.body.WhoFix);
