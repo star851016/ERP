@@ -35,13 +35,13 @@ router.post('/', function(req, res, next) {
         Miles: req.body.Miles,
         InDate: req.body.InDate,
         ExpectDate: req.body.ExpectDate,
-        maintenance: req.body.maintenance,
-        situation: req.body.situation,
-        frequency: req.body.frequency,
-        position: req.body.position,
-        note: req.body.note,
-        Part: req.body.Part,
-        Wrong: req.body.Wrong
+        maintenance: req.body.maintenance || "無",
+        situation: req.body.situation || "無",
+        frequency: req.body.frequency || "無",
+        position: req.body.position || "無",
+        note: req.body.note || "無",
+        Part: req.body.Part || "無",
+        Wrong: req.body.Wrong || "無"
     });
 
     newQuestion.InfoList(function(err, WorkId) {
