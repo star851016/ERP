@@ -276,10 +276,10 @@ router.get('/carHistory', function(req, res, next) {
         if (err) {
             next(err);
         } else {
-            for (i = 0; i < worklist.length; i++) {
-                console.log(i);
-                worklist[i].OutDate = fecha.format(worklist[i].OutDate, 'YYYY-MM-DD');
-            };
+            // for (i = 0; i < worklist.length; i++) {
+            //     console.log(i);
+            //     worklist[i].OutDate = fecha.format(worklist[i].OutDate, 'YYYY-MM-DD');
+            // };
 
             res.render('WorkList/carHistory', {
                 worklist: worklist,
@@ -324,10 +324,10 @@ router.post('/carHistorySearch', function(req, res, next) {
         if (err) {
             next(err);
         } else {
-            for (i = 0; i < worklist.length; i++) {
-                console.log(i);
-                worklist[i].OutDate = fecha.format(worklist[i].OutDate, 'YYYY-MM-DD');
-            };
+            // for (i = 0; i < worklist.length; i++) {
+            //     console.log(i);
+            //     worklist[i].OutDate = fecha.format(worklist[i].OutDate, 'YYYY-MM-DD');
+            // };
 
             res.render('WorkList/carHistory', {
                 worklist: worklist,
@@ -369,6 +369,7 @@ router.post('/fixModel', function(req, res, next) {
                     next(err);
                 } else {
                     upWorklist[0].InDate = fecha.format(upWorklist[0].InDate, 'YYYY-MM-DD');
+                    upWorklist[0].ExpectDate = fecha.format(upWorklist[0].ExpectDate, 'YYYY-MM-DD');
                     // upWorklist[0].CBirthDate = fecha.format(upWorklist[0].CBirthDate, 'YYYY-MM-DD');
                     console.log('upWorklist' + upWorklist[0].WorkId);
 

@@ -335,16 +335,10 @@ WorkList.prototype.bill = function(cb) {
 }
 //結算交車 存到資料庫
 WorkList.prototype.saveWorklist = function(cb) {
-
+    console.log('this.RealReceive' + this.RealReceive);
     db.from('worklist')
         .insert({
-            WageTotal: this.WageTotal,
-            MaterialTotal: this.MaterialTotal,
-            PreTaxAmount: this.PreTaxAmount,
-            Tax: this.Tax,
-            AccountReceivable: this.AccountReceivable,
-            RealReceive: this.RealReceive,
-            discount: this.discount,
+
 
         })
 
@@ -366,8 +360,15 @@ WorkList.prototype.updateStatus = function(cb) {
         .where('WorkId', this.WorkId)
 
         .update({
-
-            Status: "已結帳"
+            WageTotal: this.WageTotal,
+            MaterialTotal: this.MaterialTotal,
+            PreTaxAmount: this.PreTaxAmount,
+            Tax: this.Tax,
+            AccountReceivable: this.AccountReceivable,
+            RealReceive: this.RealReceive,
+            discount: this.discount,
+            Status: "已結帳",
+            OutDate: "2017-06-05"
 
         })
         .then(function(result) {
