@@ -339,6 +339,28 @@ WorkList.prototype.saveWorklist = function(cb) {
             cb(new GeneralErrors.Database());
         });
 }
+//儲存收款完 改變工單狀態
+WorkList.prototype.updateStatus = function(cb) {
+
+    db.from('worklist')
+
+        .where('WorkId', this.WorkId)
+
+        .update({
+
+            Status : "已結帳"
+
+        })
+        .then(function(result) {
+
+            cb(null, result);
+        })
+        .catch(function(err) {
+            console.log("updateStatus ", err);
+            cb(new GeneralErrors.Database());
+        });
+}
+
 //車歷卡
 WorkList.prototype.carHistory = function(cb) {
     // console.log('this.id' + this.id);

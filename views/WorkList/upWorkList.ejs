@@ -16,11 +16,11 @@
                     <td class="td1">
                         <%= upWorklist.WorkId %>
                     </td>
+                    <form action="/worklist/milesStatus" method="POST" novalidate>
                     <td class="td">狀態:</td>
                     <td class="td1">
-                        <select class="selector">
-    <option><%= upWorklist.Status %></option>
-    <option>維修中</option>
+
+      <input class="text7" type="text" name="Status" value="<%= upWorklist.Status %>">
   </select>
                     </td>
                 </tr>
@@ -40,9 +40,10 @@
                     </td>
                     <td class="td">里程數:
                         <td class="td1">
-                            <input class="text" type="text" value="<%= upWorklist.Miles %>"></td>
+                            <input class="text7" type="text" name="Miles" value="<%= upWorklist.Miles %>"></td>
                 </tr>
-
+                  <button class="btn2" style="float:center;">儲存</button>
+              </form>
                 <tr>
                     <td class="td">進廠日期:</td>
                     <td class="td1" colspan="3">
@@ -241,14 +242,14 @@
                             <td class="td2"><input type="text" class="text2"></td>
                             <td>
                                 <select class="selector">
-                                  <option>佘仁光</option>
+                                  <option>林輝恩</option>
                                   <option>陳進</option>
                                   <option>王尚保</option>
                                 </select>
                             </td>
                             <td>
                                 <select class="selector">
-                                  <option>佘仁光</option>
+                                  <option>林輝恩</option>
                                   <option>陳進</option>
                                   <option>王尚保</option>
                                 </select>
