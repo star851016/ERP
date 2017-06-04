@@ -35,13 +35,13 @@
                     <th class="th3">公司名稱</th>
                     <th class="th3">聯絡人</th>
                     <th class="th3">電話</th>
-                    <th class="th3">統一編號</th>
+                    <th class="th3" colspan="3">E-mail</th>
                     <th class="th3">備註</th>
                     <th class="th3">編輯/刪除</th>
                 </tr>
                 <% supplierList.forEach(function(supplier) { %>
                     <tr class="tr_search">
-                        <td class="td3" rowspan="2" style="font-weight:bold;font-size:24px;">
+                        <td class="td3" style="font-weight:bold;font-size:24px;">
                             <%= supplier.SName %>
                         </td>
                         <td class="td3">
@@ -50,8 +50,11 @@
                         <td class="td3">
                             <%= supplier.Tell1 %>
                         </td>
+                        <td class="td3" colspan="3" value="">
+                            <%= supplier.Email %>
+                        </td>
                         <td class="td3"></td>
-                        <td class="td3"></td>
+
                         <td class="td3">
                             <form class="form1" action="/supplier/upSupplier" method="POST" novalidate>
                                 <input type="hidden" name="id" value="<%= supplier.id %>" />
@@ -63,12 +66,7 @@
                             </form>
                         </td>
                     </tr>
-                    <tr class="tr_search">
-                        <th class="th3">E-Mail</th>
-                        <td class="td3" colspan="4" value="" style="text-align:left;padding-left:20px;">
-                            <%= supplier.Email %>
-                        </td>
-                    </tr>
+
                     <%  }); %>
             </table>
         </div>
