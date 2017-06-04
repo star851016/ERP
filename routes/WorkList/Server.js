@@ -15,7 +15,7 @@ var smtpTransport = nodemailer.createTransport({
     port: 587,
     auth: {
         user: 'star851016@gmail.com',
-        pass: 'emily56789'
+        pass: 'Geajaf$1920118'
     },
     tls: {rejectUnauthorized: false},
     debug:true
@@ -27,7 +27,7 @@ var smtpTransport = nodemailer.createTransport({
 /*------------------Routing Started ------------------------*/
 
 router.get('/',function(req,res){
-  
+
 	res.render('WorkList/email');
 });
 router.get('/send',function(req,res){
