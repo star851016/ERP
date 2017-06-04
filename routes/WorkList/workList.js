@@ -8,6 +8,7 @@ var DelWorklist = require('../../models/Worklist');
 var Delete = require('../../models/Worklist');
 var SaveMat = require('../../models/Worklist');
 var FixModel = require('../../models/Worklist');
+var MilesStatus = require('../../models/Worklist');
 
 var dateFormat = require('dateformat');
 var fecha = require('fecha');
@@ -86,50 +87,50 @@ router.get('/upWorklist', function(req, res, next) {
     var newUpWorklist = new UpWorklist({
         id: req.query.WorkId || req.session.WorkId
     });
-    if(!req.query.WorkId){
-      console.log("從其他function進來");
-      req.session.WorkId = req.session.queryId;
-    }else {
-      console.log("從工單總表進來");
-      req.session.queryId = req.query.WorkId;
-      // console.log('req.session.queryId'+req.session.queryId);
-      req.session.WorkId = req.session.queryId;
-      console.log('req.session.WorkId'+req.session.WorkId);
+    if (!req.query.WorkId) {
+        console.log("從其他function進來");
+        req.session.WorkId = req.session.queryId;
+    } else {
+        console.log("從工單總表進來");
+        req.session.queryId = req.query.WorkId;
+        // console.log('req.session.queryId'+req.session.queryId);
+        req.session.WorkId = req.session.queryId;
+        console.log('req.session.WorkId' + req.session.WorkId);
     }
-    console.log('req.query.WorkId'+req.query.WorkId);
+    console.log('req.query.WorkId' + req.query.WorkId);
     newUpWorklist.find(function(err, upWorklist) {
         if (err) {
             next(err);
         } else {
 
-              // req.session.WorkId = req.query.WorkId;
-              // console.log('upWorklist[0]'+upWorklist[0]);
-              upWorklist[0].InDate = fecha.format(upWorklist[0].InDate, 'YYYY-MM-DD');
-              upWorklist[0].ExpectDate = fecha.format(upWorklist[0].ExpectDate, 'YYYY-MM-DD');
-              // upWorklist[0].CBirthDate = fecha.format(upWorklist[0].CBirthDate, 'YYYY-MM-DD');
-              console.log('upWorklist' + upWorklist[0].WorkId);
-              req.session.upWorkList = upWorklist[0];
-              newUpWorklist.materiallist(function(err, materiallist) {
-                  if (err) {
-                      next(err);
-                  } else {
-                      req.session.materiallist = materiallist;
-                      newUpWorklist.bill(function(err, Amount) {
+            // req.session.WorkId = req.query.WorkId;
+            // console.log('upWorklist[0]'+upWorklist[0]);
+            upWorklist[0].InDate = fecha.format(upWorklist[0].InDate, 'YYYY-MM-DD');
+            upWorklist[0].ExpectDate = fecha.format(upWorklist[0].ExpectDate, 'YYYY-MM-DD');
+            // upWorklist[0].CBirthDate = fecha.format(upWorklist[0].CBirthDate, 'YYYY-MM-DD');
+            console.log('upWorklist' + upWorklist[0].WorkId);
+            req.session.upWorkList = upWorklist[0];
+            newUpWorklist.materiallist(function(err, materiallist) {
+                if (err) {
+                    next(err);
+                } else {
+                    req.session.materiallist = materiallist;
+                    newUpWorklist.bill(function(err, Amount) {
 
-                          req.session.Amount = Amount;
-                          console.log('Amount' + Amount);
-                          res.render('WorkList/upWorkList', {
+                        req.session.Amount = Amount;
+                        console.log('Amount' + Amount);
+                        res.render('WorkList/upWorkList', {
 
-                              status: req.session.status || null,
-                              upWorklist: req.session.upWorkList,
-                              materiallist: req.session.materiallist,
-                              Amount: req.session.Amount,
-                              member: req.session.member || null
-                          });
-                      })
-                  }
+                            status: req.session.status || null,
+                            upWorklist: req.session.upWorkList,
+                            materiallist: req.session.materiallist,
+                            Amount: req.session.Amount,
+                            member: req.session.member || null
+                        });
+                    })
+                }
 
-              });
+            });
 
         }
     })
@@ -161,8 +162,8 @@ router.post('/saveCustomer', function(req, res, next) {
 router.post('/saveMat', function(req, res, next) {
     console.log('saveMat');
     console.log('req.body.MNote' + req.body.MNote[0]);
-    console.log('req.body.impair'+req.body.impair);
-    console.log('req.body.impaired'+req.body.impaired);
+    console.log('req.body.impair' + req.body.impair);
+    console.log('req.body.impaired' + req.body.impaired);
     var newSaveMat = new SaveMat({
         WorkId: req.body.WorkId,
         id: req.body.MatId,
@@ -175,22 +176,22 @@ router.post('/saveMat', function(req, res, next) {
         Price: req.body.Price,
 
         Fix: req.body.impair,
-         Finished: req.body.impaired,
+        Finished: req.body.impaired,
         Amount: req.body.Amount
     });
-    console.log('req.body.WhoFix'+req.body.WhoFix);
+    console.log('req.body.WhoFix' + req.body.WhoFix);
     console.log(req.body.MatId);
     // newSaveMat.findEmployee(function(err,EmployeeIdList){
     //   req.session.EmployeeIdFix = EmployeeIdList[0].EmployeeIdFix;
     //   req.session.EmployeeIdCheck = EmployeeIdList[0].EmployeeIdCheck;
-      if (req.body.MatId == "undefined") {
-          console.log("insertMat");
-          newSaveMat.insertMat(req.body.WorkId, function(err) {
+    if (req.body.MatId == "undefined") {
+        console.log("insertMat");
+        newSaveMat.insertMat(req.body.WorkId, function(err) {
 
-          });
-      } else {
-          newSaveMat.saveMat();
-      };
+        });
+    } else {
+        newSaveMat.saveMat();
+    };
     // });
 
 
@@ -231,7 +232,7 @@ router.get('/searchSupplier', function(req, res, next) {
         if (err) {
             next(err);
         } else {
-          console.log('SupList'+SupList[0].Pur_Price);
+            console.log('SupList' + SupList[0].Pur_Price);
             res.json(SupList);
         }
     });
@@ -346,7 +347,7 @@ router.post('/fixModel', function(req, res, next) {
         id: req.session.WorkId,
         fixModel: req.body.fixModel
     });
-    newFixModel.fixModel(req.body.fixModel,function(err, materiallist) {
+    newFixModel.fixModel(req.body.fixModel, function(err, materiallist) {
         console.log('materiallist[0].PName' + materiallist[0].PName);
         if (err) {
             next(err);
@@ -398,24 +399,19 @@ router.post('/fixModel', function(req, res, next) {
 //儲存狀態 公里數
 router.post('/milesStatus', function(req, res, next) {
 
-    
-    var newSearchPId = new SearchPId({
-        WageTotal: req.body.WageAmount,
-        MaterialTotal: req.body.Amount,
-        PreTaxAmount: req.body.PreTaxAmount,
-        Tax: req.body.Tax,
-        AccountReceivable: req.body.AccountReceivable,
-        RealReceive: req.body.RealReceive,
-        discount: req.body.discount,
-        WorkId: req.body.WorkId,
-        CarId: req.body.CarId
+    console.log('milesStatus');
+    console.log('req.body.Miles' + req.body.Miles);
+    var newMilesStatus = new MilesStatus({
+        Miles: req.body.Miles,
+        Status: req.body.Status,
+        WorkId: req.body.WorkId
     });
 
-    newSearchPId.saveWorklist(function(err) {
-      newSearchPId.updateStatus(function(err) {
+    newMilesStatus.saveMilesStatus(req.body.Miles, req.body.Status, function(err) {
 
-          res.redirect('/worklist');
-      });
+        console.log('saveMilesStatus');
+        res.redirect('/worklist');
+
 
 
     });
@@ -440,10 +436,10 @@ router.post('/billsRegister', function(req, res, next) {
     });
 
     newSearchPId.saveWorklist(function(err) {
-      newSearchPId.updateStatus(function(err) {
+        newSearchPId.updateStatus(function(err) {
 
-          res.redirect('/worklist');
-      });
+            res.redirect('/worklist');
+        });
 
 
     });
@@ -495,14 +491,14 @@ router.post('/update', function(req, res, next) {
 });
 //點刪除
 router.post('/delWorkList', function(req, res, next) {
-  var newDelWorklist = new DelWorklist({
-    id : req.body.WorkId
-  });
- console.log('req.body.WorkId'+req.body.WorkId);
-  newDelWorklist.delWorklist(req.body.WorkId,function(err) {
-    console.log('delWorklist');
-      res.redirect('/workList');
-  });
+    var newDelWorklist = new DelWorklist({
+        id: req.body.WorkId
+    });
+    console.log('req.body.WorkId' + req.body.WorkId);
+    newDelWorklist.delWorklist(req.body.WorkId, function(err) {
+        console.log('delWorklist');
+        res.redirect('/workList');
+    });
 
 });
 

@@ -17,7 +17,7 @@ var WorkList = function(options) {
     this.Price = options.Price;
     this.Amount = options.Amount;
     this.MNote = options.MNote;
-    this.Fix = options.Fix ;
+    this.Fix = options.Fix;
     this.Finished = options.Finished;
     this.WhoFix = options.WhoFix;
     this.WhoCheck = options.WhoCheck;
@@ -64,18 +64,18 @@ WorkList.prototype.WorkList = function(cb) {
 WorkList.prototype.find = function(cb) {
     console.log('this.id' + this.id);
     db.select('worklist.WorkId', 'worklist.CarId', 'worklist.Miles',
-            'worklist.Status', 'worklist.InDate','worklist.Question',
+            'worklist.Status', 'worklist.InDate', 'worklist.Question',
             'worklist.ExpectDate',
             'customer.Tell1',
             'customer.Tell2', 'customer.Address', 'customer.Contact_Person',
             'customer.UniformNum', 'customer.CBirthDate', 'customer.CName',
             'car.cc', 'car.EngineNum', 'car.CarBodyNum', 'car.YrOfManu',
-             'carbrand.carBrand', 'cartype.carType',
-              'wagelist.WContect',
+            'carbrand.carBrand', 'cartype.carType',
+            'wagelist.WContect',
             'wagelist.Wages', 'wagelist.WhoFix', 'wagelist.WhoCheck',
             'wagelist.WNote',
             'question.Part', 'question.Wrong'
-          )
+        )
         .from('car')
         .innerJoin('customer', 'car.ID', '=', 'customer.ID')
         .innerJoin('worklist', 'car.CarId', '=', 'worklist.CarId')
@@ -87,7 +87,7 @@ WorkList.prototype.find = function(cb) {
 
         .where('worklist.WorkId', this.id)
         .then(function(upWorklist) {
-          console.log('upWorklist[0]'+upWorklist[0]);
+            console.log('upWorklist[0]' + upWorklist[0]);
 
             cb(null, upWorklist);
         }.bind(this))
@@ -101,11 +101,11 @@ WorkList.prototype.find = function(cb) {
 WorkList.prototype.materiallist = function(cb) {
     console.log("this.id" + this.id);
     db.select('materiallist.Id', 'materiallist.MatId', 'materiallist.MQuantity',
-              'materiallist.Amount', 'materiallist.Price', 'materiallist.WhoFix',
-               'materiallist.WhoCheck', 'materiallist.Fix', 'materiallist.Finished',
-               'materiallist.MNote', 'product.PName'
-              //  ,'s1.EName AS ENameFix','s2.EName AS ENameCheck'
-             )
+            'materiallist.Amount', 'materiallist.Price', 'materiallist.WhoFix',
+            'materiallist.WhoCheck', 'materiallist.Fix', 'materiallist.Finished',
+            'materiallist.MNote', 'product.PName'
+            //  ,'s1.EName AS ENameFix','s2.EName AS ENameCheck'
+        )
         .from('materiallist')
         .innerJoin('worklist', 'materiallist.WorkId', '=', 'worklist.WorkId')
         .innerJoin('product', 'materiallist.Id', '=', 'product.Id')
@@ -122,9 +122,9 @@ WorkList.prototype.materiallist = function(cb) {
         });
 }
 //刪除工單
-WorkList.prototype.delWorklist= function(WorkId, cb) {
-console.log('models');
-console.log('WorkId'+WorkId);
+WorkList.prototype.delWorklist = function(WorkId, cb) {
+    console.log('models');
+    console.log('WorkId' + WorkId);
     db('worklist')
         .where('WorkId', WorkId)
         .del()
@@ -139,10 +139,10 @@ console.log('WorkId'+WorkId);
 //找員工Id
 WorkList.prototype.findEmployee = function(cb) {
 
-    db.select('s1.EmployeeId AS EmployeeIdFix','s2.EmployeeId AS EmployeeIdCheck')
+    db.select('s1.EmployeeId AS EmployeeIdFix', 's2.EmployeeId AS EmployeeIdCheck')
         .from('materiallist')
-        .innerJoin('employee AS s1','s1.EmployeeId', '=', 'materiallist.WhoFix')
-        .innerJoin('employee AS s2','s2.EmployeeId', '=', 'materiallist.WhoCheck')
+        .innerJoin('employee AS s1', 's1.EmployeeId', '=', 'materiallist.WhoFix')
+        .innerJoin('employee AS s2', 's2.EmployeeId', '=', 'materiallist.WhoCheck')
         .where('worklist.WorkId', this.WhoFix)
         .then(function(materiallist) {
             cb(null, materiallist);
@@ -159,15 +159,15 @@ WorkList.prototype.insertMat = function(WorkId, cb) {
     db.from('materiallist')
         .insert({
             WorkId: WorkId,
-            Id: this.PId  ,
-            MQuantity: this.MQuantity ,
+            Id: this.PId,
+            MQuantity: this.MQuantity,
             Price: this.Price,
-            Amount: this.Amount ,
-            MNote: this.MNote  ,
-            Fix : this.Fix  ,
-            Finished : this.Finished ,
-            WhoFix : this.WhoFix ,
-            WhoCheck : this.WhoCheck
+            Amount: this.Amount,
+            MNote: this.MNote,
+            Fix: this.Fix,
+            Finished: this.Finished,
+            WhoFix: this.WhoFix,
+            WhoCheck: this.WhoCheck
         })
         .catch(function(err) {
             console.log("insertMat find", err);
@@ -184,20 +184,20 @@ WorkList.prototype.saveMat = function(cb) {
     console.log(this.Amount);
     console.log(this.MNote);
     console.log(this.Fix);
-    console.log('req.body.impaired'+this.Finished);
+    console.log('req.body.impaired' + this.Finished);
     db.from('materiallist')
 
         .where('MatId', this.id)
 
         .update({
-            MQuantity: this.MQuantity  ,
-            Price: this.Price  ,
-            Amount: this.Amount  ,
-             MNote: this.MNote ,
-            WhoFix: this.WhoFix ,
+            MQuantity: this.MQuantity,
+            Price: this.Price,
+            Amount: this.Amount,
+            MNote: this.MNote,
+            WhoFix: this.WhoFix,
             WhoCheck: this.WhoCheck,
             Fix: this.Fix,
-            Finished : this.Finished
+            Finished: this.Finished
 
         })
         .catch(function(err) {
@@ -238,7 +238,7 @@ WorkList.prototype.searchPId = function(cb) {
 }
 
 //保養套組
-WorkList.prototype.fixModel = function(fixModel,cb) {
+WorkList.prototype.fixModel = function(fixModel, cb) {
     console.log(fixModel);
     console.log(this.CarId);
     console.log('model/fixModel');
@@ -294,7 +294,27 @@ WorkList.prototype.getQuestion = function(cb) {
             cb(new GeneralErrors.Database());
         });
 }
+//儲存公里數
+WorkList.prototype.saveMilesStatus = function(Miles, Status, cb) {
+    console.log('models');
 
+    db.from('worklist')
+
+        .where('WorkId', this.WorkId)
+
+        .update({
+            Status: Status,
+            Miles: Miles
+
+        })
+        .then(function(questionlist) {
+            cb(null, questionlist);
+        }.bind(this))
+        .catch(function(err) {
+            console.log("saveMat find", err);
+            cb(new GeneralErrors.Database());
+        });
+}
 //列印帳單
 WorkList.prototype.bill = function(cb) {
     console.log('this.id' + this.id);
@@ -348,7 +368,7 @@ WorkList.prototype.updateStatus = function(cb) {
 
         .update({
 
-            Status : "已結帳"
+            Status: "已結帳"
 
         })
         .then(function(result) {
@@ -419,7 +439,7 @@ WorkList.prototype.carHistoryDetail = function(WorkId, cb) {
 //材料登錄之比價
 WorkList.prototype.searchSupplier = function(searchPId, cb) {
     console.log(searchPId);
-    db.select('compare.Pur_Price','supplier.SName','compare.compareId')
+    db.select('compare.Pur_Price', 'supplier.SName', 'compare.compareId')
         .from('compare')
         .innerJoin('product', 'compare.Id', '=', 'product.Id')
         .innerJoin('supplier', 'compare.Sid', '=', 'supplier.id')
@@ -445,15 +465,15 @@ WorkList.prototype.InfoList = function(cb) {
     console.log("this situation " + this.situation);
     console.log("this Wrong " + this.Wrong);
     console.log("this maintenance " + this.maintenance);
-    var question = this.situation +"/" + this.frequency  +"/" + this.position  +"/" + this.Part  +"/" + this.Wrong +"/"+ this.note + "/" + this.maintenance ;
-    console.log('question'+question);
+    var question = this.situation + "/" + this.frequency + "/" + this.position + "/" + this.Part + "/" + this.Wrong + "/" + this.note + "/" + this.maintenance;
+    console.log('question' + question);
     db("worklist")
         .insert({
             CarId: this.CarId,
             Miles: this.Miles,
             InDate: this.InDate,
             ExpectDate: this.ExpectDate,
-            Question : question
+            Question: question
         })
         .then(function(result) {
             WorkId = result;

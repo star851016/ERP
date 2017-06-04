@@ -5,14 +5,14 @@
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
     <script type="text/javascript" src="/javascripts/jquery-ui-datepicker.js"></script>
     <script type="text/javascript">
-    $(function() {
-        $("#OutTime").datepicker();
-    });
+        $(function() {
+            $("#OutTime").datepicker();
+        });
     </script>
     <script type="text/javascript">
-    $(function() {
-        $("#InTime").datepicker();
-    });
+        $(function() {
+            $("#InTime").datepicker();
+        });
     </script>
 
     <body>
@@ -90,15 +90,22 @@
             <p>新增問題:</p>
             <div class="container" style="overflow:scroll;height:60%;width:100%;">
                 <script>
-                department = new Array();
-                department[0] = ["風量小", "不冷", "熱風", "有聲音", "沒風", "按鈕壞"]; // 資訊系
-                department[1] = ["熄火", "故障"]; // 電機系
+                    department = new Array();
+                    department[0] = ["風量小", "不冷", "熱風", "有聲音", "沒風", "按鈕壞"]; // 資訊系
+                    department[1] = ["無"];
+                    department[2] = ["更換", "補胎", "對調"]; // 電機系
+                    department[3] = ["漏油"];
+                    department[4] = ["無"];
+                    department[5] = ["有聲音"];
+                    department[6] = ["當機", "不密合", "燈不亮"];
+                    department[7] = ["不亮", "接觸不良"];
+                    department[8] = ["異音", "不動"];
 
-                function renew(index) {
-                    for (var i = 0; i < department[index].length; i++)
-                        document.theForm.Wrong.options[i] = new Option(department[index][i], department[index][i]); // 設定新選項
-                    document.theForm.Wrong.length = department[index].length; // 刪除多餘的選項
-                }
+                    function renew(index) {
+                        for (var i = 0; i < department[index].length; i++)
+                            document.theForm.Wrong.options[i] = new Option(department[index][i], department[index][i]); // 設定新選項
+                        document.theForm.Wrong.length = department[index].length; // 刪除多餘的選項
+                    }
                 </script>
                 <div>
                     <p style="display:inline-block;">情境:
@@ -146,7 +153,7 @@
                                 <option value="冷氣">冷氣</option>
                                 <option value="手煞車">手煞車</option>
                                 <option value="輪胎">輪胎</option>
-                                <option value="安全帶">安全帶帶</option>
+                                <option value="安全帶">皮帶</option>
                                 <option value="點菸器">點菸器</option>
                                 <option value="避震器">避震器</option>
                                 <option value="驗車">驗車</option>
@@ -167,29 +174,29 @@
                 </table>
                 </form>
                 <script>
-                function changeList() {
-                    var x = document.getElementById("Material ").value;
-                    document.getElementById("de ").innerHTML = "You selected: " + x;
+                    function changeList() {
+                        var x = document.getElementById("Material ").value;
+                        document.getElementById("de ").innerHTML = "You selected: " + x;
 
-                    $.ajax({
-                        url: "http://localhost:3000/addWorklist ",
-                        dataType: 'html',
-                        type: 'POST',
+                        $.ajax({
+                            url: "http://localhost:3000/addWorklist ",
+                            dataType: 'html',
+                            type: 'POST',
 
-                        success: function(data) {
-                            alert(data);
-                            var x = document.getElementById("Material ").value;
-                            Types = x;
-                        },
+                            success: function(data) {
+                                alert(data);
+                                var x = document.getElementById("Material ").value;
+                                Types = x;
+                            },
 
-                        error: function(xhr, ajaxOptions, thrownError) {
-                            alert(xhr.status);
-                            alert(thrownError);
-                        }
+                            error: function(xhr, ajaxOptions, thrownError) {
+                                alert(xhr.status);
+                                alert(thrownError);
+                            }
 
-                    });
+                        });
 
-                }
+                    }
                 </script>
             </div>
         </div>

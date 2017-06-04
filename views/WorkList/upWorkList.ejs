@@ -12,17 +12,18 @@
         <div class="container" style="overflow-x:auto;">
             <table style="width:100%">
                 <tr>
-                    <td class="td">工單號碼:</td>
-                    <td class="td1">
-                        <%= upWorklist.WorkId %>
-                    </td>
                     <form action="/worklist/milesStatus" method="POST" novalidate>
-                    <td class="td">狀態:</td>
-                    <td class="td1">
+                        <td class="td">工單號碼:</td>
+                        <td class="td1" name="WorkId">
+                            <%= upWorklist.WorkId %>
+                        </td>
 
-      <input class="text7" type="text" name="Status" value="<%= upWorklist.Status %>">
-  </select>
-                    </td>
+                        <td class="td">狀態:</td>
+                        <td class="td1">
+
+                            <input class="text7" type="text" name="Status" value="<%= upWorklist.Status %>">
+                            </select>
+                        </td>
                 </tr>
                 <tr>
                     <td class="td">車牌:</td>
@@ -38,12 +39,11 @@
                         <%= upWorklist.carBrand %>&nbsp
                             <%= upWorklist.carType %>
                     </td>
-                    <td class="td">里程數:
-                        <td class="td1">
-                            <input class="text7" type="text" name="Miles" value="<%= upWorklist.Miles %>"></td>
+                    <td class="td">里程數:</td>
+                    <td class="td1">
+                        <input class="text7" type="text" name="Miles" value="<%= upWorklist.Miles %>">
+                    </td>
                 </tr>
-                  <button class="btn2" style="float:center;">儲存</button>
-              </form>
                 <tr>
                     <td class="td">進廠日期:</td>
                     <td class="td1" colspan="3">
@@ -53,8 +53,13 @@
                     <td class="td1" colspan="3">
                         <%= upWorklist.ExpectDate %>
                     </td>
+                    <td>
+                        <button class="btn2" style="float:right;">儲存</button>
+                    </td>
                 </tr>
             </table>
+            </form>
+
         </div>
 
         <div class="container">
@@ -680,8 +685,8 @@
 
                         $('#tableSearchPId')
 
-                        .append('<tr onclick="setValue(\'' + data[i].Id + '\',\'' + data[i].PName + '\',\'' + num + '\')"><td class="td0" >' + data[i].Id + '</td>' +
-                            '<td class="td0">' + data[i].PName + '</td></tr>')
+                            .append('<tr onclick="setValue(\'' + data[i].Id + '\',\'' + data[i].PName + '\',\'' + num + '\')"><td class="td0" >' + data[i].Id + '</td>' +
+                                '<td class="td0">' + data[i].PName + '</td></tr>')
 
                     });
 
@@ -721,8 +726,8 @@
 
                         $('#tableSupplier')
 
-                        .append('<tr><td class="td0" >' + data[i].SName + '</td>' + '<td class="td0" >' + '正廠' + '</td>' + '<td class="td0" >' + data[i].Pur_Price + '</td>' +
-                            '<td class="td0">' + '<a class="btn btn-primary" href="/server">寄e-mail</a>' + '</td></tr>')
+                            .append('<tr><td class="td0" >' + data[i].SName + '</td>' + '<td class="td0" >' + '正廠' + '</td>' + '<td class="td0" >' + data[i].Pur_Price + '</td>' +
+                                '<td class="td0">' + '<a class="btn btn-primary" href="/server">寄e-mail</a>' + '</td></tr>')
 
                     });
                 },
