@@ -2,6 +2,7 @@ var db = require('../libs/db');
 var GeneralErrors = require('../errors/GeneralErrors');
 
 var WorkList = function(options) {
+    // this.fixModel = options.fixModel;
     this.MatId = options.MatId;
     this.id = options.id;
     this.CarId = options.CarId;
@@ -237,7 +238,8 @@ WorkList.prototype.searchPId = function(cb) {
 }
 
 //保養套組
-WorkList.prototype.fixModel = function(cb) {
+WorkList.prototype.fixModel = function(fixModel,cb) {
+    console.log(fixModel);
     console.log(this.CarId);
     console.log('model/fixModel');
     db.select('product.PName', 'materiallist.Id', 'materiallist.MQuantity', 'materiallist.Amount', 'materiallist.Price', 'materiallist.MNote')
@@ -245,7 +247,7 @@ WorkList.prototype.fixModel = function(cb) {
         .innerJoin('product', 'materiallist.Id', '=', 'product.Id')
         .innerJoin('worklist', 'materiallist.WorkId', '=', 'worklist.WorkId')
         .where({
-            'worklist.Question': '小保養',
+            'worklist.Question': fixModel,
             'worklist.CarId': this.CarId
         })
         .then(function(materiallist) {

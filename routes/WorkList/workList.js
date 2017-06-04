@@ -346,7 +346,7 @@ router.post('/fixModel', function(req, res, next) {
         id: req.session.WorkId,
         fixModel: req.body.fixModel
     });
-    newFixModel.fixModel(function(err, materiallist) {
+    newFixModel.fixModel(req.body.fixModel,function(err, materiallist) {
         console.log('materiallist[0].PName' + materiallist[0].PName);
         if (err) {
             next(err);
